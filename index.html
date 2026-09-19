@@ -45,6 +45,14 @@
     --gutter: clamp(20px, 5vw, 72px);
     --gap: clamp(24px, 3vw, 40px);
     --nav-bg: rgba(255, 255, 255, 0.62);
+  }
+  /* home page only: rhythm tightened per request, other pages keep the base scale */
+  main[data-page="home"] {
+    --sec-y: clamp(48px, 5.1vw, 74px);
+    --sec-y-half: clamp(24px, 2.6vw, 37px);
+    --gap: clamp(20px, 2.6vw, 34px);
+  }
+  :root {
     /* the one light section on the page — the ground the rest of the site inverts */
     --radius-sm: 12px;
     --radius-md: 18px;
@@ -657,6 +665,17 @@
   .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-burger { color: #fff !important; }
   .tgo-nav[data-hero-page="1"][data-scrolled="0"] > a:first-child,
   .tgo-nav[data-hero-page="1"][data-scrolled="0"] > a:first-child span { color: #fff !important; }
+  /* text stays legible over the dark hero photo/video even after the capsule
+     has formed (scrolled=1) but the hero is still visually behind it — the
+     capsule's own background/shape is untouched, only these colors follow it */
+  .tgo-nav[data-hero-page="1"][data-nav-dark="1"] .tgo-links > a,
+  .tgo-nav[data-hero-page="1"][data-nav-dark="1"] > button.tgo-lang,
+  .tgo-nav[data-hero-page="1"][data-nav-dark="1"] .tgo-burger,
+  .tgo-nav[data-hero-page="1"][data-nav-dark="1"] > a:first-child,
+  .tgo-nav[data-hero-page="1"][data-nav-dark="1"] > a:first-child span { color: #fff !important; }
+  .tgo-nav[data-hero-page="1"][data-nav-dark="1"] .tgo-links > a:hover,
+  .tgo-nav[data-hero-page="1"][data-nav-dark="1"] .tgo-links > a[aria-current="page"],
+  .tgo-nav[data-hero-page="1"][data-nav-dark="1"] > button.tgo-lang:hover { color: #fff !important; }
   .tgo-nav[data-scrolled="1"] > a:first-child span { color: #1d1d1f !important; opacity: 1 !important;
     display: inline-block !important; visibility: visible !important; overflow: visible !important;
     width: auto !important; max-width: none !important; clip-path: none !important; }
@@ -728,7 +747,7 @@
   main section > div, main figure, main img, main [data-panel], main [data-tile],
   main article, main table, main .card, main video, main [data-band] > div { border-radius: 18px; }
   main figure, main figure img { border-radius: 18px !important; overflow: hidden; }
-  main [data-hero], main [data-hero] figure, main [data-hero] figure img,
+  main [data-hero], main [data-hero] figure, main [data-hero] figure img, main [data-hero] video,
   main [aria-label="Brands"], main [aria-label="Gallery"] { border-radius: 0 !important; }
   main table.table { border-collapse: separate !important; border-spacing: 0;
     overflow: hidden; border: 1px solid #d2d2d7 !important; border-radius: 18px !important; }
@@ -829,6 +848,9 @@
   /* ══ Opening face — the hero reads as one dark photographic plate ══ */
   main [data-hero] { min-height: 100svh; }
   main [data-hero] img { filter: grayscale(1) contrast(1.08) brightness(0.82) !important; }
+  main [data-hero] video { filter: grayscale(1) contrast(1.08) brightness(0.82) !important; }
+  main [data-hero-video="1"] { display: block !important; }
+  main [data-hero-img="1"] { visibility: hidden; }
   main [data-hero] h1 { color: #fff !important; font-size: clamp(46px, 7.2vw, 96px) !important;
     text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4) !important; }
   main [data-hero] [data-heroeyebrow] { color: #2997ff !important; font-size: 19px !important;
@@ -1047,7 +1069,7 @@
 
 <div data-cjk="{{ cjk }}" style="background: var(--color-bg); color: var(--color-text); min-height: 100svh; font-family: var(--font-body); font-size: 15px; line-height: 1.55;">
 
-  <nav class="nav tgo-nav" data-scrolled="{{ scrolledFlag }}" data-hero-page="{{ cjkHomeFlag }}" style="display: flex; align-items: center; gap: clamp(10px, 1.6vw, 22px);">
+  <nav class="nav tgo-nav" data-scrolled="{{ scrolledFlag }}" data-hero-page="{{ cjkHomeFlag }}" data-nav-dark="{{ navDarkFlag }}" style="display: flex; align-items: center; gap: clamp(10px, 1.6vw, 22px);">
     <a href="#" onClick="{{ navHome }}" style="display: flex; align-items: center; gap: 8px; margin-right: auto; color: var(--color-text); font-family: var(--font-heading); font-weight: 800; font-size: 17px; letter-spacing: -0.01em;">
       TGO<span style="font-weight: 600; font-size: 18px; letter-spacing: -0.02em; color: var(--ink-3);">Brands</span>
     </a>
@@ -1064,10 +1086,11 @@
   <div class="tgo-spacer" data-home="{{ cjkHomeFlag }}"></div>
 
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-  <main>
+  <main data-page="home">
     <section data-hero="1" style="position: relative; min-height: 100svh; display: grid; place-items: center; overflow: hidden;">
       <figure style="position: absolute; inset: 0; margin: 0;">
-        <img src="assets/photo.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="assets/photo.jpg" alt="" data-hero-img="1" style="width: 100%; height: 100%; object-fit: cover;">
+        <video ref="{{ heroVideoRef }}" src="assets/hero.mp4" poster="assets/photo.jpg" autoplay muted loop playsinline disablepictureinpicture data-hero-video="1" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none;"></video>
       </figure>
       <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.42) 38%, rgba(0, 0, 0, 0.52) 72%, rgba(0, 0, 0, 0.72) 100%);"></div>
       <div data-heroin="1" style="position: relative; max-width: 900px; padding: clamp(120px, 14vw, 180px) var(--gutter) clamp(80px, 10vw, 120px); text-align: center;">
@@ -1491,6 +1514,28 @@
         </sc-for>
       </div>
     </section>
+
+    <section style="max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter) var(--sec-y);">
+      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin: 0 0 24px; font-weight: 600; border-top: 2px solid var(--color-divider); padding-top: 40px;">{{ t.founders.teamKicker }}</p>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); justify-items: stretch; align-items: start;">
+        <sc-for list="{{ t.founders.team }}" as="p" hint-placeholder-count="1">
+          <article style="border: 2px dashed var(--color-divider); text-align: left; height: 100%;">
+            <div style="padding: 24px;">
+              <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 12px; color: var(--color-accent-400);">{{ p.city }}</p>
+              <h2 style="font-family: var(--font-heading); font-weight: 800; font-size: 20px; line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 12px;">{{ p.name }}</h2>
+              <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.04em; margin: 0 0 16px; color: var(--ink-4);">{{ p.role }}</p>
+              <p style="font-size: 15px; line-height: 1.65; margin: 0 0 16px; color: var(--ink-3);">{{ p.bio }}</p>
+              <a href="{{ p.waHref }}" target="_blank" rel="noopener" style="font-size: 14px; color: var(--color-accent-700); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin: 0 0 20px;">{{ p.contact }}</a>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start;">
+                <sc-for list="{{ p.v }}" as="v" hint-placeholder-count="2">
+                  <span class="tag tag-outline">{{ v }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
   </main>
   </sc-if>
 
@@ -1781,7 +1826,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#0071e3&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#0071e3&quot;,&quot;#1d1d1f&quot;,&quot;#6e6e73&quot;,&quot;#2997ff&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;showProofFootnotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;startLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;zh&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
 class Component extends DCLogic {
-  state = { page: 'home', brand: 0, lang: 'en', step: -1, ans: {}, region: 'cn', cat: 0, ready: false, menu: false, scrolled: false };
+  state = { page: 'home', brand: 0, lang: 'en', step: -1, ans: {}, region: 'cn', cat: 0, ready: false, menu: false, scrolled: false, navDark: true };
 
   componentDidMount() {
     // continuous, not a threshold snap: scale tracks scroll over 0–320px and is
@@ -1797,12 +1842,24 @@ class Component extends DCLogic {
         r.setProperty('--nav-top', (22 - 10 * eased).toFixed(2) + 'px');
         // at the very top the bar is merged with the page edge; past 24px it
         // releases into the floating capsule
+        const heroThreshold = this.state.page === 'home' ? window.innerHeight * 0.88 : -1;
+        const navDark = window.scrollY < heroThreshold;
+        if (navDark !== this.state.navDark) this.setState({ navDark });
         const sc = window.scrollY > 24;
         if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
       });
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
+
+    this.heroVideoRef = (el) => {
+      if (!el) return;
+      el.muted = true;
+      el.defaultMuted = true;
+      el.volume = 0;
+      const p = el.play();
+      if (p && p.catch) p.catch(() => {});
+    };
 
     this.onKey = (e) => { if (e.key === 'Escape' && this.state.how) this.setState({ how: false }); };
     document.addEventListener('keydown', this.onKey);
@@ -1958,8 +2015,9 @@ class Component extends DCLogic {
     }));
 
     const stationCol = (active) => active ? 'var(--color-accent)' : 'var(--color-text)';
-    const roles = ['Origin', 'Umair', 'Aryan', 'Umer'];
-    const rolesZh = ['起点', 'Umair', 'Aryan', 'Umer'];
+    const roles = ['Origin', 'Umair', 'Aryan', 'Umer', 'Shamas'];
+    const heroVideoRef = this.heroVideoRef;
+    const rolesZh = ['起点', 'Umair', 'Aryan', 'Umer', 'Shamas'];
     const rl = s.lang === 'zh' ? rolesZh : roles;
     const labels = [t.route.origin].concat(t.route.stations);
     const stationsBig = labels.map((label, i) => ({ label, role: rl[i], col: stationCol(i === 0) }));
@@ -2044,6 +2102,7 @@ class Component extends DCLogic {
 
     return {
       hd, services, explore, svcKicker, svcTitle, svcNote, expKicker, expTitle,
+      heroVideoRef,
       t, cjk: s.lang === 'zh' ? '1' : '0',
       showFootnote: this.props.showProofFootnotes !== false,
       langLabel: s.lang === 'en' ? '中文' : 'EN',
@@ -2058,6 +2117,7 @@ class Component extends DCLogic {
       closeHow: () => this.setState({ how: false }),
       stopClose: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
       scrolledFlag: s.scrolled ? '1' : '0',
+      navDarkFlag: s.navDark ? '1' : '0',
       burgerGlyph: s.menu ? '✕' : '☰',
       toggleMenu: () => this.setState({ menu: !s.menu }),
       isHome: page === 'home', isWhat: page === 'what', isBrands: page === 'brands', isBrand: page === 'brand',
