@@ -33,11 +33,12 @@ window.TGO_CONTENT = {
     },
     what: {
       title: 'The bridge.', kicker: 'What we do',
-      sub: 'Three things, described plainly. If one of them is what you need, the fourth section tells you exactly how it starts.',
+      sub: 'Four things, described plainly. If one of them is what you need, the fifth section tells you exactly how it starts.',
       pillars: [
         { n: '01', t: 'Distribution', w: 'For manufacturers and brand owners with a product that already sells somewhere.', d: 'We put Chinese products into shops in Pakistan, India and the Philippines — the real channel, not a warehouse. Modern trade where it exists, and the ten-thousand-shop informal trade where it does not, which in our three markets is most of it.' },
         { n: '02', t: 'Brand building', w: 'For factories that make well and market badly.', d: 'We build and own brands under TGO: naming, packaging, price architecture, warranty terms, retail training. You keep making the product. The brand belongs to the market it sells in.' },
-        { n: '03', t: 'Market entry', w: 'For anyone who has been told "just find a distributor".', d: 'Certification (BIS in India, PSQCA in Pakistan, BPS in the Philippines), duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth.' }
+        { n: '03', t: 'Market entry', w: 'For anyone who has been told "just find a distributor".', d: 'Certification (BIS in India, PSQCA in Pakistan, BPS in the Philippines), duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth.' },
+        { n: '04', t: 'Sourcing', w: 'For retailers and brands who need a factory, not a market.', d: 'We qualify and manage Chinese manufacturers on your behalf: factory audits, price negotiation, QC on the line, and consolidated shipping. You get a vetted supply chain without the years it takes to build one yourself.' }
       ],
       startKicker: 'How a partnership actually starts',
       startNote: 'Almost nobody publishes this. Manufacturers ask us for it in the first meeting, so here it is.',
@@ -194,11 +195,12 @@ window.TGO_CONTENT = {
     },
     what: {
       title: '这座桥。', kicker: '我们做什么',
-      sub: '三件事，说清楚。如果其中一件正是您需要的，第四部分会告诉您合作具体怎么开始。',
+      sub: '四件事，说清楚。如果其中一件正是您需要的，第五部分会告诉您合作具体怎么开始。',
       pillars: [
         { n: '01', t: '分销', w: '面向产品已在某地稳定销售的制造商与品牌方。', d: '我们把中国产品送进巴基斯坦、印度和菲律宾的店里——真实的渠道，不是仓库。有现代零售的地方走现代零售；没有的地方走成千上万家小店的传统渠道，而在我们这三个市场，后者才是主体。' },
         { n: '02', t: '品牌建设', w: '面向做得好、卖得吃力的工厂。', d: '我们在 TGO 之下拥有并建设品牌：命名、包装、价格体系、保修条款、终端培训。您继续做产品，品牌属于它所销售的那个市场。' },
-        { n: '03', t: '市场进入', w: '面向所有被告知「找个分销商就行」的人。', d: '认证（印度 BIS、巴基斯坦 PSQCA、菲律宾 BPS）、关税与到岸成本测算、渠道策略、保修与售后体系。正是这些工作决定第一批货能否变成第十批。' }
+        { n: '03', t: '市场进入', w: '面向所有被告知「找个分销商就行」的人。', d: '认证（印度 BIS、巴基斯坦 PSQCA、菲律宾 BPS）、关税与到岸成本测算、渠道策略、保修与售后体系。正是这些工作决定第一批货能否变成第十批。' },
+        { n: '04', t: '采购', w: '面向需要工厂而非市场的零售商与品牌方。', d: '我们代您甄选并管理中国制造商：工厂审核、价格谈判、产线品控与集中发运。您获得一条经过验证的供应链，而无需花数年自己搭建。' }
       ],
       startKicker: '合作实际上如何开始',
       startNote: '几乎没有人把这个写出来。制造商第一次见面就会问，所以我们直接写在这里。',

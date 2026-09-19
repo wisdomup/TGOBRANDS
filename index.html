@@ -240,18 +240,24 @@
       padding: 10px 14px !important; gap: 10px !important; }
     .tgo-nav > a:first-child { margin-right: auto !important; }
     .tgo-burger { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 44px; height: 44px;
-      background: transparent; border: 1px solid var(--color-divider); cursor: pointer;
+      background: transparent; border: none; cursor: pointer;
       color: var(--color-text); font-size: 18px; line-height: 1; }
     .tgo-nav > .btn-primary { display: none; }
     .tgo-links { position: fixed; top: 74px; left: 10px; right: 10px;
       flex-direction: column; align-items: stretch; gap: 0;
-      background: var(--nav-bg); border: 1px solid var(--color-divider);
+      background: var(--glass-strong); border: 1px solid var(--glass-edge);
+      border-radius: 22px;
+      -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-shadow), var(--glass-spec), 0 0 0 1px var(--glass-ring);
       max-height: calc(100vh - 96px); overflow-y: auto;
       transform: translateY(-8px); opacity: 0; pointer-events: none;
-      transition: opacity 0.18s ease, transform 0.18s ease; }
+      transition: opacity 0.18s ease, transform 0.18s ease,
+                  background 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease; }
     .tgo-links[data-open="1"] { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .tgo-links > a:first-child { border-radius: 22px 22px 0 0; }
     .tgo-links > a { padding: 16px 18px; font-size: 16px !important; text-align: center;
-      border-bottom: 1px solid var(--color-divider); }
+      border-bottom: 1px solid var(--glass-edge); transition: background 0.2s ease, color 0.2s ease; }
+    .tgo-links > a:hover, .tgo-links > a:active { background: rgba(255, 255, 255, 0.5); }
     .tgo-links > .btn { margin: 14px 18px 18px; }
   }
   @media (max-width: 520px) {
@@ -429,8 +435,8 @@
   .tgo-lang:hover { color: var(--color-text) !important;
     background: rgba(255, 255, 255, 0.85) !important;
     border-color: #fff !important; }
-  .tgo-burger { background: rgba(255, 255, 255, 0.6) !important;
-    border-color: var(--glass-edge) !important; border-radius: 14px; }
+  .tgo-burger { background: transparent !important;
+    border-color: transparent !important; border-radius: 14px; box-shadow: none !important; }
 
   /* CTA: a tinted lens rather than a flat fill */
   .tgo-cta { background: linear-gradient(180deg,
@@ -637,6 +643,12 @@
   .tgo-nav[data-hero-page="1"][data-scrolled="0"] > button.tgo-lang { color: #fff !important; }
   .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a:hover,
   .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a[aria-current="page"] { color: #fff !important; }
+  @media (max-width: 860px) {
+    .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links {
+      background: rgba(20, 20, 22, 0.55) !important; border-color: rgba(255, 255, 255, 0.22) !important; }
+    .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a { border-bottom-color: rgba(255, 255, 255, 0.16) !important; }
+    .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a:hover { background: rgba(255, 255, 255, 0.12) !important; }
+  }
   @media (min-width: 861px) {
     .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a::before { background: rgba(255, 255, 255, 0.18); }
   }
@@ -728,6 +740,9 @@
     border-radius: 12px; }
   main .btn, .tgo-cta, .tgo-lang, main button[style*="text-transform"] { border-radius: 980px !important; }
   .tgo-burger { border-radius: 14px !important; }
+  @media (max-width: 480px) {
+    .tgo-burger { background: transparent !important; border-color: transparent !important; box-shadow: none !important; width: 32px !important; height: 32px !important; }
+  }
   .tgo-modal, .dialog { border-radius: 30px !important; }
 
   /* ══ Survey: centred sheet ════════════════════════════════════════ */
@@ -989,6 +1004,43 @@
     main section[style*="flex-wrap: wrap"] > button,
     main div[style*="display: flex; flex-wrap: wrap"] > button { margin: 2px 0; }
     .marq { animation-play-state: running; }
+  }
+
+  /* ══ Big screen (iMac / large desktop) — the layout stops growing past
+     ~1200px by design on laptops, which reads as a fixed, shrunken island
+     of content on a 27"+ display. Past 1600px scale the whole system up
+     together: wider containers, larger type, more generous rhythm, and
+     slightly softer, bigger radii — proportional, not just wider margins. */
+  @media (min-width: 1600px) {
+    :root {
+      --sec-y: 132px; --sec-y-half: 64px; --gutter: 80px; --gap: 44px;
+      --radius-sm: 16px; --radius-md: 22px; --radius-lg: 32px;
+    }
+    main [style*="max-width: 1200px"] { max-width: 1440px !important; }
+    main [data-heroin="1"][style*="max-width: 900px"] { max-width: 1080px !important; }
+    main [data-donein] { max-width: 760px; }
+    main h1 { font-size: clamp(56px, 4.4vw, 88px) !important; }
+    main h2 { font-size: clamp(42px, 3.2vw, 60px) !important; }
+    main h3 { font-size: 27px !important; }
+    main p { font-size: 19px !important; }
+    main p[data-lbl="1"] { font-size: 14px !important; }
+    main p[data-fig] { font-size: clamp(60px, 4.8vw, 88px) !important; }
+    main [data-hero] h1 { font-size: clamp(64px, 6vw, 116px) !important; }
+    main [data-hero] [data-herosub] { font-size: clamp(21px, 1.4vw, 27px) !important; }
+    main [data-donetitle] { font-size: clamp(46px, 4vw, 76px) !important; }
+    .tgo-nav { padding: 11px 11px 11px 28px !important; }
+    .tgo-links > a { font-size: 16px !important; }
+    .tgo-nav .btn.tgo-cta { font-size: 15px !important; padding: 0 10px 0 26px !important; }
+    main section > div, main figure, main img, main [data-panel], main [data-tile],
+    main article, main table, main .card, main video, main [data-band] > div,
+    main figure img, main a[data-bcard], main [data-fcard], main [data-donecard],
+    main table.table { border-radius: 22px !important; }
+    main .strip article { border-radius: 26px !important; }
+    main .btn, .tgo-cta, .tgo-lang, main button[style*="text-transform"] { border-radius: 980px !important; }
+    .tgo-modal, .dialog { border-radius: 34px !important; }
+    main [data-panel], main [data-tile] { padding: 40px !important; }
+    main article > div { padding: 36px !important; }
+    main [data-bbody], main [data-fbody] { padding: 34px !important; }
   }
 </style>
 </helmet>
@@ -1624,11 +1676,11 @@
           </span>
           <p data-lbl="1" data-donekick="1">{{ t.partner.kicker }}</p>
           <h1 data-donetitle="1">{{ t.partner.done.t }}</h1>
-          <p data-donesub="1">{{ t.partner.done.d }} <strong>{{ assignedTo }}</strong> — {{ t.partner.done.d2 }}</p>
+          <p data-donesub="1">{{ t.partner.done.d }} <a href="{{ assignedWa }}" target="_blank" rel="noopener" style="position: relative; color: var(--color-text); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;">{{ assignedTo }}<svg viewBox="0 0 24 24" width="11" height="11" fill="#8e8e93" style="position: absolute; top: -6px; right: -13px; opacity: 0.75;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.55-3.7 8.24-8.25 8.24a8.24 8.24 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.4c0-4.55 3.7-8.22 8.26-8.22m-4.53 4.7c-.15 0-.4.06-.61.3-.21.24-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.12.15 1.6 2.5 3.9 3.44 1.9.78 2.3.63 2.71.6.42-.04 1.34-.55 1.53-1.08.19-.53.19-.98.13-1.08-.05-.1-.2-.16-.42-.27-.22-.11-1.34-.66-1.55-.74-.21-.08-.36-.11-.51.12-.15.22-.58.73-.71.88-.13.15-.26.16-.48.05-.22-.11-.94-.35-1.79-1.11-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.51-1.25-.71-1.71-.18-.44-.37-.38-.51-.39-.13-.01-.28-.01-.43-.01Z"></path></svg></a> — {{ t.partner.done.d2 }}</p>
           <div data-donecards="1">
             <div data-donecard="1">
               <p data-lbl="1">{{ t.partner.done.route }}</p>
-              <p data-donefig="1">{{ assignedTo }}</p>
+              <a href="{{ assignedWa }}" target="_blank" rel="noopener" data-donefig="1" style="position: relative; color: var(--color-text); text-decoration: none; display: inline-block;">{{ assignedTo }}<svg viewBox="0 0 24 24" width="13" height="13" fill="#8e8e93" style="position: absolute; top: -4px; right: -15px; opacity: 0.75;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.55-3.7 8.24-8.25 8.24a8.24 8.24 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.4c0-4.55 3.7-8.22 8.26-8.22m-4.53 4.7c-.15 0-.4.06-.61.3-.21.24-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.12.15 1.6 2.5 3.9 3.44 1.9.78 2.3.63 2.71.6.42-.04 1.34-.55 1.53-1.08.19-.53.19-.98.13-1.08-.05-.1-.2-.16-.42-.27-.22-.11-1.34-.66-1.55-.74-.21-.08-.36-.11-.51.12-.15.22-.58.73-.71.88-.13.15-.26.16-.48.05-.22-.11-.94-.35-1.79-1.11-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.51-1.25-.71-1.71-.18-.44-.37-.38-.51-.39-.13-.01-.28-.01-.43-.01Z"></path></svg></a>
             </div>
             <div data-donecard="1">
               <p data-lbl="1">{{ t.partner.done.score }}</p>
@@ -1877,6 +1929,12 @@ class Component extends DCLogic {
     return 'Umair';
   }
 
+  assigneeWa() {
+    const numbers = { Umer: '639772547666', Umair: '8615623305030', Aryan: '917645912074' };
+    const n = numbers[this.assignee()];
+    return n ? 'https://wa.me/' + n : '#';
+  }
+
   score() {
     const a = this.state.ans;
     const v = { '<1k': 5, '1k-10k': 15, '10k-50k': 25, '50k+': 35, 'n/a': 5 }[a.monthly_volume_band] || 0;
@@ -2037,7 +2095,7 @@ class Component extends DCLogic {
       resetSurvey: () => this.setState({ step: -1, ans: {} }),
       fName: this.field('contact_name'), fCompany: this.field('company_name'), fCountry: this.field('company_country'),
       fEmail: this.field('contact_email'), fPhone: this.field('contact_phone'), fHandle: this.field('handle'), fMessage: this.field('message'),
-      assignedTo: this.assignee(), leadScore: this.score()
+      assignedTo: this.assignee(), assignedWa: this.assigneeWa(), leadScore: this.score()
     };
   }
 }
