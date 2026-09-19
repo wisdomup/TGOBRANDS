@@ -136,16 +136,15 @@
 
   /* ── Floating masthead ──────────────────────────────────────────── */
   .tgo-nav { position: fixed; top: var(--nav-top, 22px); left: 50%;
-    transform: translateX(-50%) scale(var(--nav-scale, 1));
+    transform: translateX(-50%);
     width: max-content; max-width: calc(100% - 32px); z-index: 40;
-    border: 1px solid color-mix(in srgb, var(--color-text) 16%, transparent);
+    border: 0;
     border-radius: 999px; padding: 6px 8px 6px 18px !important;
     background: color-mix(in srgb, var(--nav-bg) 72%, transparent);
     backdrop-filter: blur(14px) saturate(1.2);
     box-shadow: 0 8px 28px -12px rgba(0, 0, 0, 0.6);
     justify-content: center;
-    transform-origin: top center; will-change: transform;
-    transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.24, 1), top 0.7s cubic-bezier(0.22, 0.61, 0.24, 1); }
+    transform-origin: top center; }
   /* interior pages open with a kicker + h1, so they need the offset; only the
      home hero is designed to run under the floating bar */
   .tgo-spacer { height: 78px; }
@@ -411,9 +410,8 @@
   .tgo-nav {
     background: var(--glass-strong) !important;
     -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-edge) !important;
-    box-shadow: var(--glass-shadow), var(--glass-spec),
-                0 0 0 1px var(--glass-ring) !important; }
+    border: 0 !important;
+    box-shadow: var(--glass-shadow), var(--glass-spec) !important; }
   .tgo-links > a:hover { color: var(--color-text) !important; }
   @media (min-width: 861px) {
     .tgo-links > a::before { background: rgba(255, 255, 255, 0.9);
@@ -584,7 +582,7 @@
     padding: 9px 9px 9px 24px !important; gap: clamp(14px, 2vw, 28px) !important;
     background: rgba(255, 255, 255, 0.08) !important;
     -webkit-backdrop-filter: blur(7px) saturate(150%); backdrop-filter: blur(7px) saturate(150%);
-    border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+    border: 0 !important;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset,
                 0 10px 20px -10px rgba(0, 0, 0, 0.10),
                 0 22px 40px -26px rgba(0, 0, 0, 0.14) !important; }
@@ -611,23 +609,16 @@
     background: rgba(0, 0, 0, 0.04) !important; border: 0 !important;
     color: #1d1d1f !important; box-shadow: none !important; }
   .tgo-lang:hover { background: rgba(0, 0, 0, 0.10) !important; color: #000 !important; }
-  /* merged at the page top, released into the capsule once you scroll */
-  .tgo-nav { transition: top 0.6s cubic-bezier(0.32, 0.72, 0, 1),
-                         width 0.6s cubic-bezier(0.32, 0.72, 0, 1),
-                         border-radius 0.6s cubic-bezier(0.32, 0.72, 0, 1),
-                         padding 0.6s cubic-bezier(0.32, 0.72, 0, 1),
-                         background 0.5s ease, box-shadow 0.5s ease,
-                         border-color 0.5s ease, backdrop-filter 0.5s ease !important; }
+  /* keep the nav geometry fixed while scrolling */
+  .tgo-nav { transition: none !important; }
   .tgo-nav[data-scrolled="0"] {
-    top: 0 !important; width: 100% !important; max-width: none !important;
-    border-radius: 0 !important;
-    padding: 14px clamp(22px, 4vw, 48px) !important;
-    background: transparent !important;
-    -webkit-backdrop-filter: none; backdrop-filter: none;
-    border: 1.5px solid rgba(255, 255, 255, 0) !important;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0) inset,
-                0 10px 20px -10px rgba(0, 0, 0, 0),
-                0 22px 40px -26px rgba(0, 0, 0, 0) !important; }
+    top: 22px !important; width: max-content !important; max-width: calc(100% - 32px) !important;
+    border-radius: 999px !important;
+    padding: 6px 8px 6px 18px !important;
+    background: var(--glass-strong) !important;
+    -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+    border: 0 !important;
+    box-shadow: var(--glass-shadow), var(--glass-spec) !important; }
   /* merged over the hero: chrome goes white, the logo and the CTA hold */
   .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a,
   .tgo-nav[data-hero-page="1"][data-scrolled="0"] > button.tgo-lang { color: #fff !important; }
@@ -1734,13 +1725,7 @@ class Component extends DCLogic {
       if (this.raf) return;
       this.raf = requestAnimationFrame(() => {
         this.raf = null;
-        const p = Math.min(1, Math.max(0, window.scrollY / 320));
-        const eased = p * p * (3 - 2 * p);
-        const r = document.documentElement.style;
-        r.setProperty('--nav-scale', (1 - 0.14 * eased).toFixed(4));
-        r.setProperty('--nav-top', (22 - 10 * eased).toFixed(2) + 'px');
-        // at the very top the bar is merged with the page edge; past 24px it
-        // releases into the floating capsule
+        // Keep the nav geometry fixed; only update its contrast state.
         const sc = window.scrollY > 24;
         if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
       });
