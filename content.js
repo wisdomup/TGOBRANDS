@@ -3,15 +3,15 @@ window.TGO_CONTENT = {
   en: {
     dir: 'latin',
     nav: { what: 'What We Do', brands: 'Brands', founders: 'Founders', markets: 'Markets', insights: 'Insights', partner: 'Partner With Us', contact: 'Contact' },
-    route: { origin: 'Guangzhou', stations: ['Karachi', 'Mumbai', 'Manila'] },
+    route: { origin: 'Guangzhou', stations: ['Karachi', 'Mumbai', 'Manila', 'UAE'] },
     home: {
       h1a: 'We take Chinese brands', h1b: 'to the world.',
-      sub: 'Starting where we live — Pakistan, India, the Philippines. Three founders, three markets, one route from Guangzhou.',
+      sub: 'Starting where we live — Pakistan, India, the Philippines, and now the UAE. Three founders, three markets, one route from Guangzhou.',
       cta: 'Tell us about your business', cta2: 'How we work',
       premiseKicker: 'The premise',
       premise: [
         'A manufacturer in Dongguan can find an agent in an office in Karachi tomorrow. What is hard to find is someone who will be standing in the shop when the first container lands, and again when the third one does.',
-        'We are three people who met in Guangzhou and then spent fifteen years apart — building electronics, solar and retail businesses in Pakistan, India and the Philippines. We know what a phone shop in Saddar will actually stock, and why a battery that sells in Manila fails in Bihar.',
+        'We are three people who met in Guangzhou and then spent fifteen years apart — building electronics, solar and retail businesses in Pakistan, India, the Philippines, and now the UAE. We know what a phone shop in Saddar will actually stock, and why a battery that sells in Manila fails in Bihar.',
         'TGO owns and builds the brands, handles certification and channel, and carries the warranty. The parent stays invisible. The brands do the talking.'
       ],
       proofKicker: 'Where the credibility comes from',
@@ -35,9 +35,9 @@ window.TGO_CONTENT = {
       title: 'The bridge.', kicker: 'What we do',
       sub: 'Four things, described plainly. If one of them is what you need, the fifth section tells you exactly how it starts.',
       pillars: [
-        { n: '01', t: 'Distribution', w: 'For manufacturers and brand owners with a product that already sells somewhere.', d: 'We put Chinese products into shops in Pakistan, India and the Philippines — the real channel, not a warehouse. Modern trade where it exists, and the ten-thousand-shop informal trade where it does not, which in our three markets is most of it.' },
+        { n: '01', t: 'Distribution', w: 'For manufacturers and brand owners with a product that already sells somewhere.', d: 'We put Chinese products into shops in Pakistan, India, the Philippines, and now the UAEs — the real channel, not a warehouse. Modern trade where it exists, and the ten-thousand-shop informal trade where it does not, which in our three markets is most of it.' },
         { n: '02', t: 'Brand building', w: 'For factories that make well and market badly.', d: 'We build and own brands under TGO: naming, packaging, price architecture, warranty terms, retail training. You keep making the product. The brand belongs to the market it sells in.' },
-        { n: '03', t: 'Market entry', w: 'For anyone who has been told "just find a distributor".', d: 'Certification (BIS in India, PSQCA in Pakistan, BPS in the Philippines), duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth.' },
+        { n: '03', t: 'Market entry', w: 'For anyone who has been told "just find a distributor".', d: 'Certification (BIS in India, PSQCA in Pakistan, BPS in the Philippines, plus UAE market entry), duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth.' },
         { n: '04', t: 'Sourcing', w: 'For retailers and brands who need a factory, not a market.', d: 'We qualify and manage Chinese manufacturers on your behalf: factory audits, price negotiation, QC on the line, and consolidated shipping. You get a vetted supply chain without the years it takes to build one yourself.' }
       ],
       startKicker: 'How a partnership actually starts',
@@ -94,7 +94,13 @@ window.TGO_CONTENT = {
           bio: 'Ex-Oppo, Bihar — trained inside the most demanding retail machine in Indian mobile, then left to found his own technology company. Knows Indian distributor economics and the certification calendar, and owns everything BIS-shaped in the portfolio.',
           v: ['Technology venture', 'Ex-Oppo · Bihar'] }
       ],
-      photoNote: 'Founder portraits to be shot Q4 2026 — three markets, same treatment, black and white.'
+      photoNote: 'Founder portraits to be shot Q4 2026 — three markets, same treatment, black and white.',
+      teamKicker: 'Extended team',
+      team: [
+        { name: 'Shamas Zaffar', city: 'UAE', role: 'Guest · online brand growth & sales scaling',
+          bio: 'Based in the UAE since 2008. Works across Amazon and Noon, and consults on growing and scaling online brand sales.',
+          v: ['Amazon', 'Noon', 'shamaszaffar.com'], contact: '+971 54 297 1969', waHref: 'https://wa.me/971542971969' }
+      ]
     },
     markets: {
       title: 'Three markets we live in.', kicker: 'Markets',
@@ -111,7 +117,11 @@ window.TGO_CONTENT = {
         { c: 'Philippines', who: 'Umer', size: '~115M people · 7,600 islands · among the world’s highest social-commerce adoption',
           retail: 'More concentrated than South Asia: national chains and mall retail matter, alongside sari-sari stores at the smallest end. Live-selling and marketplace commerce are not a channel experiment here, they are the channel.',
           hard: 'Island logistics turn one country into three distribution problems. BPS certification and import documentation are strict. Typhoon season is a real line in the plan.',
-          have: 'Ten-plus years of resident operations in Manila, warehousing and last-mile relationships, and a founder who lives there.' }
+          have: 'Ten-plus years of resident operations in Manila, warehousing and last-mile relationships, and a founder who lives there.' },
+        { c: 'UAE', who: 'Shamas', size: '~10M people · high-income, high e-commerce penetration · gateway to the wider GCC',
+          retail: 'Amazon.ae and Noon dominate online; Dubai and Sharjah malls anchor offline. A demanding, brand-aware buyer used to fast delivery and easy returns.',
+          hard: 'Marketplace competition is fierce and margin-thin. Amazon/Noon account health, ad spend and review velocity all need constant management.',
+          have: 'A guest team member resident in the UAE since 2008, running Amazon and Noon accounts and consulting on online brand growth and sales scaling.' }
       ],
       labels: { size: 'Market', retail: 'Retail structure', hard: 'What is hard', have: 'What we have there', lead: 'Market lead' }
     },
@@ -126,7 +136,7 @@ window.TGO_CONTENT = {
         { d: '2026-07-28', c: 'Market notes', t: 'BIS is not a formality, it is a calendar', ex: 'What the India certification clock actually looks like, and how to run it in parallel instead of in sequence.', lang: 'EN · 中文' }
       ],
       videoKicker: 'The channel', videoTitle: 'Founder-led, weekly.',
-      videoNote: 'Filmed on the road — factories in Dongguan, shops in Karachi, a warehouse in Manila. YouTube on the English site; Bilibili on the 中文 site — no YouTube embeds there.',
+      videoNote: 'Filmed on the road — factories in Dongguan, shops in Karachi, a warehouse in Manila, and an office in the UAE. YouTube on the English site; Bilibili on the 中文 site — no YouTube embeds there.',
       videoBtn: 'Watch on YouTube'
     },
     partner: {
@@ -138,7 +148,7 @@ window.TGO_CONTENT = {
         { k: 'party_type', q: 'First — who are you?', h: 'So we route this to the right person.', opts: [['manufacturer', 'A manufacturer'], ['brand_owner', 'A brand owner'], ['distributor', 'A distributor or retailer'], ['investor', 'An investor'], ['other', 'Something else']] },
         { k: 'category', q: 'What category?', h: 'Closest fit is fine.', opts: [['accessories', 'Mobile & household accessories'], ['solar_energy', 'Solar & energy storage'], ['appliances', 'Appliances'], ['audio', 'Audio'], ['other', 'Other']] },
         { k: 'monthly_volume_band', q: 'Roughly what monthly volume?', h: 'Units per month. An estimate is genuinely fine.', opts: [['<1k', 'Under 1,000'], ['1k-10k', '1,000 – 10,000'], ['10k-50k', '10,000 – 50,000'], ['50k+', 'Over 50,000'], ['n/a', 'Not applicable']] },
-        { k: 'target_markets', q: 'Which markets are you after?', h: 'Choose as many as apply.', multi: true, opts: [['PK', 'Pakistan'], ['IN', 'India'], ['PH', 'Philippines'], ['other', 'Somewhere else']] },
+        { k: 'target_markets', q: 'Which markets are you after?', h: 'Choose as many as apply.', multi: true, opts: [['PK', 'Pakistan'], ['IN', 'India'], ['PH', 'Philippines'], ['AE', 'UAE'], ['other', 'Somewhere else']] },
         { k: 'need', q: 'What do you need from us?', h: '', opts: [['distribution', 'Distribution'], ['brand_building', 'Brand building'], ['sourcing', 'Sourcing'], ['market_entry', 'Market entry & certification']] },
         { k: 'timeline', q: 'When?', h: '', opts: [['now', 'Now — we are ready to ship'], ['3_months', 'Within 3 months'], ['6_months', 'Within 6 months'], ['exploring', 'Exploring for later']] }
       ],
@@ -157,7 +167,7 @@ window.TGO_CONTENT = {
         email: { t: 'Email', d: 'hello@tgobrands.com — read by all three of us.', a: 'Write to us' }
       },
       officesKicker: 'Where we are',
-      offices: [['Hong Kong', 'Registered entity · TGO Brands Limited'], ['Karachi', 'Pakistan operations'], ['Manila', 'Philippines operations'], ['Patna', 'India operations']]
+      offices: [['Hong Kong', 'Registered entity · TGO Brands Limited'], ['Karachi', 'Pakistan operations'], ['Manila', 'Philippines operations'], ['UAE', 'UAE operations'], ['Patna', 'India operations']]
     },
     footer: { tag: 'TGO Brands Limited · Hong Kong · TGO优选', legal: ['Privacy', 'Terms', 'llms.txt'], note: 'TGO means “The Good One”.' }
   },
@@ -165,15 +175,15 @@ window.TGO_CONTENT = {
   zh: {
     dir: 'cjk',
     nav: { what: '我们做什么', brands: '品牌', founders: '创始人', markets: '市场', insights: '洞察', partner: '与我们合作', contact: '联系我们' },
-    route: { origin: '广州', stations: ['卡拉奇', '孟买', '马尼拉'] },
+    route: { origin: '广州', stations: ['卡拉奇', '孟买', '马尼拉', '阿联酋'] },
     home: {
       h1a: '把中国品牌', h1b: '带向世界。',
-      sub: '从我们生活的地方开始——巴基斯坦、印度、菲律宾。三位创始人，三个市场，一条从广州出发的路线。',
+      sub: '从我们生活的地方开始——巴基斯坦、印度、菲律宾，现已拓展至阿联酋。三位创始人，三个市场，一条从广州出发的路线。',
       cta: '介绍一下您的业务', cta2: '我们如何合作',
       premiseKicker: '出发点',
       premise: [
         '东莞的工厂明天就能在卡拉奇找到一位坐在办公室里的代理。难找的是：第一个货柜到港时站在店里的人，第三个货柜到港时还站在那里的人。',
-        '我们三个人在广州相识，之后分开了十五年——分别在巴基斯坦、印度和菲律宾做电子、光伏与零售生意。我们知道卡拉奇 Saddar 的手机店真正会进什么货，也知道为什么在马尼拉卖得好的电池在比哈尔会出问题。',
+        '我们三个人在广州相识，之后分开了十五年——分别在巴基斯坦、印度和菲律宾做电子、光伏与零售生意，现已拓展至阿联酋。我们知道卡拉奇 Saddar 的手机店真正会进什么货，也知道为什么在马尼拉卖得好的电池在比哈尔会出问题。',
         'TGO 拥有并建设品牌，负责认证与渠道，承担售后保修。母公司保持隐形，让品牌说话。'
       ],
       proofKicker: '可信度从何而来',
@@ -197,9 +207,9 @@ window.TGO_CONTENT = {
       title: '这座桥。', kicker: '我们做什么',
       sub: '四件事，说清楚。如果其中一件正是您需要的，第五部分会告诉您合作具体怎么开始。',
       pillars: [
-        { n: '01', t: '分销', w: '面向产品已在某地稳定销售的制造商与品牌方。', d: '我们把中国产品送进巴基斯坦、印度和菲律宾的店里——真实的渠道，不是仓库。有现代零售的地方走现代零售；没有的地方走成千上万家小店的传统渠道，而在我们这三个市场，后者才是主体。' },
+        { n: '01', t: '分销', w: '面向产品已在某地稳定销售的制造商与品牌方。', d: '我们把中国产品送进巴基斯坦、印度、菲律宾——以及现已拓展的阿联酋——的店里——真实的渠道，不是仓库。有现代零售的地方走现代零售；没有的地方走成千上万家小店的传统渠道，而在我们这三个市场，后者才是主体。' },
         { n: '02', t: '品牌建设', w: '面向做得好、卖得吃力的工厂。', d: '我们在 TGO 之下拥有并建设品牌：命名、包装、价格体系、保修条款、终端培训。您继续做产品，品牌属于它所销售的那个市场。' },
-        { n: '03', t: '市场进入', w: '面向所有被告知「找个分销商就行」的人。', d: '认证（印度 BIS、巴基斯坦 PSQCA、菲律宾 BPS）、关税与到岸成本测算、渠道策略、保修与售后体系。正是这些工作决定第一批货能否变成第十批。' },
+        { n: '03', t: '市场进入', w: '面向所有被告知「找个分销商就行」的人。', d: '认证（印度 BIS、巴基斯坦 PSQCA、菲律宾 BPS，以及阿联酋市场准入）、关税与到岸成本测算、渠道策略、保修与售后体系。正是这些工作决定第一批货能否变成第十批。' },
         { n: '04', t: '采购', w: '面向需要工厂而非市场的零售商与品牌方。', d: '我们代您甄选并管理中国制造商：工厂审核、价格谈判、产线品控与集中发运。您获得一条经过验证的供应链，而无需花数年自己搭建。' }
       ],
       startKicker: '合作实际上如何开始',
@@ -256,7 +266,13 @@ window.TGO_CONTENT = {
           bio: '曾任职 OPPO 比哈尔——在印度手机零售最严苛的体系里受训，之后离开创办了自己的科技公司。熟悉印度分销商的账怎么算、认证的日历怎么排，负责组合里所有与 BIS 有关的事。',
           v: ['科技公司', '前 OPPO · 比哈尔'] }
       ],
-      photoNote: '创始人肖像计划于 2026 年第四季度拍摄——三个市场，同一种处理方式，黑白。'
+      photoNote: '创始人肖像计划于 2026 年第四季度拍摄——三个市场，同一种处理方式，黑白。',
+      teamKicker: '外部团队',
+      team: [
+        { name: 'Shamas Zaffar', city: '阿联酋', role: '客座 · 线上品牌增长与销售扩张',
+          bio: '自 2008 年起常驻阿联酋。深耕 Amazon 与 Noon 平台，专注线上品牌增长与销售规模化咨询。',
+          v: ['Amazon', 'Noon', 'shamaszaffar.com'], contact: '+971 54 297 1969', waHref: 'https://wa.me/971542971969' }
+      ]
     },
     markets: {
       title: '我们生活的三个市场。', kicker: '市场',
@@ -273,7 +289,11 @@ window.TGO_CONTENT = {
         { c: '菲律宾', who: 'Umer', size: '约 1.15 亿人 · 7,600多个岛 · 社交电商渗透率位居全球前列',
           retail: '比南亚更集中：全国连锁与商场零售举足轻重，最末端则是 sari-sari 小店。直播带货与平台电商在这里不是渠道试验，就是渠道本身。',
           hard: '岛屿物流把一个国家变成三个分销问题。BPS 认证与进口单证要求严格。台风季必须写进计划表。',
-          have: '在马尼拉十余年的本地运营、仓储与末端配送关系，以及一位住在当地的创始人。' }
+          have: '在马尼拉十余年的本地运营、仓储与末端配送关系，以及一位住在当地的创始人。' },
+        { c: '阿联酋', who: 'Shamas', size: '约 1000 万人 · 高收入、电商渗透率高 · 通往整个海湾地区的门户',
+          retail: '线上以 Amazon.ae 与 Noon 为主导；线下则以迪拜、沙迦的商场为锚点。买家对品牌敏感，习惯快速配送与便捷退货。',
+          hard: '平台竞争激烈、利润空间薄。Amazon/Noon 账户健康度、广告投放与评论增速都需要持续运营。',
+          have: '一位自 2008 年起常驻阿联酋的客座团队成员，负责运营 Amazon 与 Noon 账户，并为线上品牌增长与销售规模化提供咨询。' }
       ],
       labels: { size: '市场规模', retail: '零售结构', hard: '难点', have: '我们在当地拥有什么', lead: '市场负责人' }
     },
@@ -288,7 +308,7 @@ window.TGO_CONTENT = {
         { d: '2026-07-28', c: '市场观察', t: 'BIS 不是手续，而是一份日历', ex: '印度认证的时间表究竟是什么样子，以及如何并行推进而不是串行等待。', lang: '中文 · EN' }
       ],
       videoKicker: '频道', videoTitle: '创始人出镜，每周更新。',
-      videoNote: '在路上拍摄——东莞的工厂、卡拉奇的门店、马尼拉的仓库。英文站用 YouTube；中文站用哔哩哔哩，此处不嵌入 YouTube。',
+      videoNote: '在路上拍摄——东莞的工厂、卡拉奇的门店、马尼拉的仓库，以及阿联酋的办公室。英文站用 YouTube；中文站用哔哩哔哩，此处不嵌入 YouTube。',
       videoBtn: '在哔哩哔哩观看'
     },
     partner: {
@@ -300,7 +320,7 @@ window.TGO_CONTENT = {
         { k: 'party_type', q: '先问一句——您是？', h: '以便把信息送给对的人。', opts: [['manufacturer', '制造商'], ['brand_owner', '品牌方'], ['distributor', '分销商或零售商'], ['investor', '投资人'], ['other', '其他']] },
         { k: 'category', q: '什么品类？', h: '选最接近的即可。', opts: [['accessories', '手机与家用配件'], ['solar_energy', '光伏与储能'], ['appliances', '家电'], ['audio', '音频'], ['other', '其他']] },
         { k: 'monthly_volume_band', q: '月出货量大致多少？', h: '每月台数，估算即可。', opts: [['<1k', '1,000 以下'], ['1k-10k', '1,000 – 10,000'], ['10k-50k', '10,000 – 50,000'], ['50k+', '50,000 以上'], ['n/a', '不适用']] },
-        { k: 'target_markets', q: '目标市场是哪些？', h: '可多选。', multi: true, opts: [['PK', '巴基斯坦'], ['IN', '印度'], ['PH', '菲律宾'], ['other', '其他地区']] },
+        { k: 'target_markets', q: '目标市场是哪些？', h: '可多选。', multi: true, opts: [['PK', '巴基斯坦'], ['IN', '印度'], ['PH', '菲律宾'], ['AE', '阿联酋'], ['other', '其他地区']] },
         { k: 'need', q: '需要我们做什么？', h: '', opts: [['distribution', '分销'], ['brand_building', '品牌建设'], ['sourcing', '采购'], ['market_entry', '市场进入与认证']] },
         { k: 'timeline', q: '什么时候？', h: '', opts: [['now', '现在——随时可发货'], ['3_months', '3 个月内'], ['6_months', '6 个月内'], ['exploring', '先了解，以后再说']] }
       ],
@@ -319,7 +339,7 @@ window.TGO_CONTENT = {
         email: { t: '邮箱', d: 'hello@tgobrands.com——我们三人都会看。', a: '写信给我们' }
       },
       officesKicker: '我们在哪里',
-      offices: [['香港', '注册主体 · TGO Brands Limited'], ['卡拉奇', '巴基斯坦运营'], ['马尼拉', '菲律宾运营'], ['巴特那', '印度运营']]
+      offices: [['香港', '注册主体 · TGO Brands Limited'], ['卡拉奇', '巴基斯坦运营'], ['马尼拉', '菲律宾运营'], ['阿联酋', 'UAE 运营'], ['巴特那', '印度运营']]
     },
     footer: { tag: 'TGO Brands Limited · 香港 · TGO优选', legal: ['隐私政策', '条款', 'llms.txt'], note: 'TGO 即「The Good One」。' }
   }
