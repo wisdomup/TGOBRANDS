@@ -63,6 +63,7 @@
   @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .marq { display: flex; width: max-content; max-width: 100%; min-width: 0; overflow: hidden; animation: marq 34s linear infinite;
     will-change: transform; backface-visibility: hidden; }
+  .marq > * { flex: 0 0 auto; max-width: 100vw; }
   .marq:hover { animation-play-state: paused; }
   /* the bridge track drifts left on its own; the mask lives on the wrapper so
      the fade stays put while the cards move through it */
@@ -214,9 +215,10 @@
 
   /* ── Phone ──────────────────────────────────────────────────────── */
   @media (max-width: 860px) {
-    html, body { overflow-x: hidden; }
+    html, body { overflow-x: hidden !important; }
     .tgo-nav { width: calc(100vw - 20px) !important; max-width: calc(100vw - 20px) !important; }
-    .marq { width: 100vw; max-width: 100vw; }
+    .marq { width: 100vw !important; max-width: 100vw !important; min-width: 0 !important; overflow: hidden !important; }
+    .marq > * { max-width: 100vw !important; }
     main div[style*="grid-template-columns"] { grid-template-columns: minmax(0, 1fr) !important; }
     main section[aria-label="The Route"] div[style*="grid-template-columns"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 28px 16px !important; }
     main p { font-size: 16px !important; }
