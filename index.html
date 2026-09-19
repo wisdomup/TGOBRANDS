@@ -308,6 +308,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     // createElement so they execute, awaiting onload for src scripts to
     // preserve ordering (React before ReactDOM before Babel before text/babel).
     const doc = new DOMParser().parseFromString(template, 'text/html');
+    const heroVideo = doc.querySelector('[data-hero-video]');
+    if (heroVideo) {
+      heroVideo.setAttribute('src', 'assets/hero.mp4');
+      heroVideo.style.display = 'block';
+      heroVideo.muted = true;
+      heroVideo.autoplay = true;
+      heroVideo.playsInline = true;
+    }
     document.documentElement.replaceWith(doc.documentElement);
 
     // Resolve page-frame markers: mint this document's own blob for each
