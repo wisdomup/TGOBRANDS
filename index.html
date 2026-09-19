@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#1d1d1f"/><text x="50%" y="54%" text-anchor="middle" font-family="sans-serif" font-size="40" fill="#f5f5f7">TGO</text></svg></template>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -10,40 +11,54 @@
 <helmet>
 <link rel="stylesheet" href="_ds/modernist-4611cb4b-5142-4cb8-a432-3375c72adc1d/styles.css">
 <script src="_ds/modernist-4611cb4b-5142-4cb8-a432-3375c72adc1d/_ds_bundle.js"></script>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900&family=Outfit:wght@200;300;400&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Serif+SC:wght@900&amp;family=Outfit:wght@300&amp;display=swap">
 <script src="content.js"></script>
 <style>
-  /* Dark inversion of the Modernist tokens — every inline color-mix() on
-     --color-text and every var(--color-bg) surface follows automatically. */
+  /* Liquid-glass reading of the Modernist tokens: a near-white field, ink at
+     full strength, and every surface a lens rather than a panel. */
   :root {
-    --color-bg: #0c0d0f;
-    --color-text: #f2f1ef;
-    --color-surface: #16181c;
-    --color-divider: #2c2f35;
-    /* the -700 accent is a light-theme token: on this ground it fails contrast,
-       so it points at the light tint the dark blocks already use */
-    --color-accent-700: var(--color-accent-400);
+    --color-bg: #f5f5f7;
+    --color-text: #1d1d1f;
+    --color-surface: rgba(255, 255, 255, 0.62);
+    --color-divider: #d2d2d7;
+    --color-accent: #0071e3;
+    --color-accent-400: #2997ff;
+    --color-accent-600: #0077ed;
+    --color-accent-700: #0066cc;
+    --color-accent-2: #0071e3;
+    --glass: rgba(255, 255, 255, 0.55);
+    --glass-strong: rgba(255, 255, 255, 0.72);
+    --glass-edge: rgba(255, 255, 255, 0.85);
+    --glass-ring: rgba(20, 30, 50, 0.07);
+    --glass-blur: blur(28px) saturate(180%);
+    --glass-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.28), 0 2px 6px -2px rgba(0, 0, 0, 0.08);
+    --glass-spec: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(255, 255, 255, 0.45);
     /* one muted-ink scale replaces 13 ad-hoc color-mix percentages */
     --ink-1: var(--color-text);
-    --ink-2: color-mix(in srgb, var(--color-text) 82%, transparent);
-    --ink-3: color-mix(in srgb, var(--color-text) 70%, transparent);
-    --ink-4: color-mix(in srgb, var(--color-text) 58%, transparent);
+    --ink-2: #424245;
+    --ink-3: #6e6e73;
+    --ink-4: #86868b;
     /* one vertical rhythm: full section, half section, and the page gutter */
     --sec-y: clamp(56px, 6vw, 88px);
     --sec-y-half: clamp(28px, 3vw, 44px);
     --gutter: clamp(20px, 5vw, 72px);
     --gap: clamp(24px, 3vw, 40px);
-    --nav-bg: color-mix(in srgb, var(--color-bg) 92%, #000);
+    --nav-bg: rgba(255, 255, 255, 0.62);
     /* the one light section on the page — the ground the rest of the site inverts */
-    --radius-sm: 8px;
-    --radius-md: 8px;
-    --radius-lg: 8px;
-    --paper: #f2f1ef;
-    --paper-ink: #16181c;
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 26px;
+    --paper: #ffffff;
+    --paper-ink: #14161a;
   }
-  body { margin: 0; text-wrap: pretty; background: #0c0d0f; }
-  .grayscale img { filter: grayscale(1) contrast(1.06) brightness(0.92); }
+  body { margin: 0; text-wrap: pretty; background: #f5f5f7;
+    background-image:
+      radial-gradient(62vw 52vw at 14% 6%, rgba(0, 113, 227, 0.10), transparent 62%),
+      radial-gradient(52vw 46vw at 86% 26%, rgba(0, 113, 227, 0.05), transparent 64%),
+      linear-gradient(180deg, #ffffff, #f5f5f7 40%, #ededf0);
+    background-attachment: fixed; }
+  .grayscale img { filter: grayscale(1) contrast(1.02) brightness(1.04); }
   @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .marq { display: flex; width: max-content; animation: marq 34s linear infinite;
     will-change: transform; backface-visibility: hidden; }
@@ -92,7 +107,7 @@
      The page reads down the middle: every block is centre-aligned and
      max-width blocks are pulled to the centre with auto margins. The
      Latin optical left-shift is zeroed — it only makes sense flush left. */
-  main, footer { text-align: center; }
+  main, footer { text-align: left; }
   main .disp, main h1, main h2, main h3 { margin-left: auto !important; margin-right: auto !important; }
   main p, main figure, main table, main label, main textarea { margin-left: auto !important; margin-right: auto !important; }
   main div[style*="display: flex"] { justify-content: center; }
@@ -239,9 +254,13 @@
   /* ── Scroll reveal ──────────────────────────────────────────────
      Blocks rise into place as they enter the viewport. The attribute is set
      from JS, so nothing is hidden if scripting is unavailable. */
-  [data-reveal] { opacity: 0; transform: translateY(20px);
-    transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.24, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.24, 1); }
-  [data-reveal="in"] { opacity: 1; transform: none; }
+  [data-reveal] { opacity: 0; transform: translateY(20px); filter: blur(9px);
+    transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.24, 1),
+                transform 0.9s cubic-bezier(0.22, 0.61, 0.24, 1),
+                filter 1s cubic-bezier(0.22, 0.61, 0.24, 1); }
+  [data-reveal="in"] { opacity: 1; transform: none; filter: blur(0); }
+  /* structural blocks resolve without the blur — only type unblurs */
+  article[data-reveal], figure[data-reveal], [data-figs][data-reveal] { filter: none; }
   /* the light section carries its own ink scale and card borders */
   [data-paper] p, [data-paper] h2, [data-paper] h3 { color: var(--paper-ink); }
   [data-paper] p[data-lbl="1"] { color: color-mix(in srgb, var(--paper-ink) 60%, transparent); }
@@ -258,7 +277,7 @@
     border: 1px solid color-mix(in srgb, var(--paper-ink) 20%, transparent);
     padding: clamp(28px, 4vw, 52px); text-align: center; }
   @media (prefers-reduced-motion: reduce) {
-    [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; filter: none !important; }
   }
   /* ── The bar's vocabulary, applied site-wide ─────────────────────
      Pill controls, glass surfaces, hairline borders, and a lift on hover. */
@@ -379,24 +398,596 @@
   main input, main textarea { border-radius: 12px; }
   main table { border-radius: 0; }
 
+
+  /* ══ Liquid glass layer ═══════════════════════════════════════════
+     Every surface is a lens: heavy blur, a specular top edge, a hairline
+     refraction ring, and a soft cast shadow. Nothing carries a hard border. */
+  .tgo-nav {
+    background: var(--glass-strong) !important;
+    -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-edge) !important;
+    box-shadow: var(--glass-shadow), var(--glass-spec),
+                0 0 0 1px var(--glass-ring) !important; }
+  .tgo-links > a:hover { color: var(--color-text) !important; }
+  @media (min-width: 861px) {
+    .tgo-links > a::before { background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--glass-spec), 0 6px 14px -10px rgba(24, 34, 58, 0.5); }
+  }
+  .tgo-lang { background: rgba(255, 255, 255, 0.5) !important;
+    border-color: var(--glass-edge) !important;
+    box-shadow: var(--glass-spec); }
+  .tgo-lang:hover { color: var(--color-text) !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: #fff !important; }
+  .tgo-burger { background: rgba(255, 255, 255, 0.6) !important;
+    border-color: var(--glass-edge) !important; border-radius: 14px; }
+
+  /* CTA: a tinted lens rather than a flat fill */
+  .tgo-cta { background: linear-gradient(180deg,
+      color-mix(in srgb, var(--color-accent) 92%, #fff),
+      color-mix(in srgb, var(--color-accent) 88%, #000)) !important;
+    box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--color-accent) 85%, transparent),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.12) !important; }
+  .tgo-cta:hover { background: linear-gradient(180deg,
+      color-mix(in srgb, var(--color-accent) 82%, #fff),
+      var(--color-accent)) !important; }
+
+  /* bands become a wash of light instead of a darker tint */
+  main [data-band="raise"] { background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.24)) !important; }
+  main [data-band="raise"]::before,
+  main [data-band="raise"]::after { height: 120px; }
+  main [data-band="raise"]::before { background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0)); }
+  main [data-band="raise"]::after { background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0)); }
+
+  /* panels, tiles, cards: one glass recipe, three radii */
+  main [data-panel], main [data-tile], main article, .tgo-modal {
+    background: var(--glass) !important;
+    -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-edge) !important;
+    box-shadow: var(--glass-shadow), var(--glass-spec) !important; }
+  main [data-panel] { border-radius: 22px !important; }
+  main [data-tile] { border-radius: 26px !important; }
+  main article { border-radius: 24px !important; }
+  .tgo-modal { border-radius: 30px !important; background: rgba(255, 255, 255, 0.82) !important; }
+  main [data-panel]:hover, main [data-tile]:hover, main article:hover {
+    background: var(--glass-strong) !important;
+    border-color: #fff !important;
+    box-shadow: 0 30px 60px -28px rgba(24, 34, 58, 0.45), var(--glass-spec) !important; }
+
+  /* controls read as glass too */
+  main input, main textarea,
+  main button:not(.btn):not(.tgo-burger):not([style*="background: var(--color-accent)"]) {
+    background: rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid var(--glass-edge) !important;
+    box-shadow: var(--glass-spec); backdrop-filter: blur(14px) saturate(160%); }
+  /* a selected chip or survey option keeps its accent fill, in white type */
+  main button[style*="background: var(--color-accent)"] {
+    background: var(--color-accent) !important; color: #fff !important;
+    border: 1px solid var(--color-accent) !important;
+    box-shadow: 0 8px 20px -12px color-mix(in srgb, var(--color-accent) 85%, transparent),
+                inset 0 1px 0 rgba(255, 255, 255, 0.45) !important; }
+  .btn-ghost { background: rgba(255, 255, 255, 0.5) !important;    border: 1px solid var(--glass-edge) !important;
+    box-shadow: var(--glass-spec); color: var(--color-text) !important; }
+  .btn-primary:not(.tgo-cta) { box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--color-accent) 80%, transparent),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+
+  /* imagery and rules soften for the light ground */
+  main figure img { border-radius: 20px; }
+  main [data-hero] figure img { border-radius: 0; }
+  main [data-hero] h1, main [data-hero] p { text-shadow: 0 1px 24px rgba(255, 255, 255, 0.75) !important; }
+  main [data-hero] { padding: 104px 0 52px !important; align-content: center; }
+  main [data-tile] p[data-fig] { color: var(--color-text) !important; }
+  /* the corner rule sits inside the curve so the radius never clips it */
+  main [data-tile] [data-tilebar] { left: 28px !important; width: 44px; border-radius: 2px; }
+  main [data-tile]:hover [data-tilebar] { width: calc(100% - 56px); }
+  footer { border-top: 1px solid var(--color-divider) !important; }
+  .tgo-scrim { background: rgba(238, 240, 244, 0.55) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); }
+
+  /* the surface band (founders) and closing poster stay, restated in glass */
+  main section[style*="var(--color-accent)"] { color: #fff !important; }
+  main section[style*="var(--color-accent)"] h2, main section[style*="var(--color-accent)"] p { color: #fff !important; }
+  main section[style*="var(--color-surface)"] { background: rgba(255, 255, 255, 0.46) !important;
+    -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); }
+
   /* the hero headline sets tight; give the line box room for the ascenders */
   main [data-hero] h1 { line-height: 1.14 !important; }
   /* the bridge cards drift continuously — a live backdrop blur on 16 moving
      cards re-rasterizes every frame, so they take the fill without the lens */
   main .strip article { -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
-    background: color-mix(in srgb, var(--color-text) 7%, var(--color-bg)) !important; }
+    background: rgba(255, 255, 255, 0.62) !important; }
+
+  /* ══ Apple type + measure ══════════════════════════════════════════
+     SF stack, a 980px content column, 100px section rhythm, headlines at
+     600 with tight tracking, body at 17/1.47, eyebrows at 12 caps grey. */
+  :root {
+    --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --sec-y: clamp(64px, 8vw, 104px);
+    --sec-y-half: clamp(32px, 4vw, 52px);
+    --gutter: clamp(22px, 4vw, 48px);
+    --gap: clamp(20px, 2.4vw, 32px);
+  }
+  main [style*="max-width: 1200px"] { max-width: 980px !important; }
+  main section:not([data-hero]) h1,
+  main section:not([data-hero]) h2,
+  main section:not([data-hero]) h3,
+  main h1, main h2, main h3, main p[data-fig], .tgo-modal h2 {
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important; letter-spacing: -0.015em !important; }
+  main h1 { font-size: clamp(40px, 5.2vw, 56px) !important; line-height: 1.08 !important; margin-left: 0 !important; }
+  main h2 { font-size: clamp(32px, 3.8vw, 48px) !important; line-height: 1.08 !important; margin-left: 0 !important; }
+  main h3 { font-size: 24px !important; line-height: 1.17 !important; }
+  main p { font-size: 17px !important; line-height: 1.47 !important; letter-spacing: -0.01em; }
+  main p[data-lbl="1"] { font-size: 12px !important; font-weight: 600 !important;
+    letter-spacing: 0.06em !important; line-height: 1.33 !important; color: var(--ink-4) !important; }
+  main p[data-fig] { font-size: clamp(48px, 5.6vw, 72px) !important; line-height: 1.05 !important;
+    letter-spacing: -0.02em !important; font-weight: 600 !important; margin-left: 0 !important; }
+  main [data-hero] h1 { line-height: 1.07 !important; }
+
+  /* cards: flat white, 18px radius, 40px padding — Apple's card, not a lens */
+  main [data-panel], main [data-tile], main article {
+    background: #fff !important; -webkit-backdrop-filter: none; backdrop-filter: none;
+    border: 0 !important; border-radius: 18px !important;
+    padding: clamp(28px, 3.2vw, 40px) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important; }
+  main article { padding: 0 !important; overflow: hidden; }
+  main article > div { padding: clamp(24px, 2.6vw, 32px) !important; }
+  main [data-panel]:hover, main [data-tile]:hover, main article:hover {
+    background: #fff !important; transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10) !important; }
+  main [data-tile] [data-tilebar] { display: none; }
+  /* card content sits flush left the way Apple's step cards do; section
+     headers stay centred */
+  main [data-panel], main [data-tile], main article, main article > div,
+  main [data-panel] *, main [data-tile] *, main article * { text-align: left !important; }
+  main [data-tile] p[data-fig] { text-align: left !important; }
+  main [data-band="raise"] { background: #fff !important; }
+  main figure img { border-radius: 0; }
+  main a[data-panel] figure img, main article figure img { border-radius: 0; }
+
+  /* controls: Apple's pill, 17px label, blue fill */
+  .btn { border-radius: 980px !important; font-family: var(--font-body);
+    font-size: 17px !important; font-weight: 400 !important; letter-spacing: -0.01em !important;
+    min-height: 46px; padding: 0 22px !important; }
+  .btn-primary { background: var(--color-accent) !important; color: #fff !important;
+    border: 0 !important; box-shadow: none !important; }
+  .btn-primary:hover { background: var(--color-accent-600) !important; transform: none; }
+  .btn-ghost { background: transparent !important; border: 0 !important; box-shadow: none !important;
+    color: var(--color-accent) !important; padding: 0 !important; min-height: 0; }
+  .btn-ghost:hover { text-decoration: underline; transform: none; }
+  /* on an accent field the secondary action becomes a white pill */
+  main section[style*="var(--color-accent)"] .btn-ghost {
+    background: #fff !important; color: var(--color-accent) !important;
+    padding: 0 22px !important; min-height: 46px; text-decoration: none; }
+  main section[style*="var(--color-accent)"] .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.9) !important; text-decoration: none; }
+  .tgo-nav .btn { font-size: 14px !important; min-height: 32px; padding: 0 16px !important; }
+  .tgo-cta { background: var(--color-accent) !important; box-shadow: none !important; }
+  .tgo-cta:hover { background: var(--color-accent-600) !important; }
+  .tgo-cta::before { display: none; }
+  .tgo-nav { padding: 8px 10px 8px 20px !important; }
+  .tgo-links > a { font-size: 14px !important; }
+  main a { color: var(--color-accent); }
+  main a:hover h2, main a:hover h3 { color: var(--color-accent) !important; }
+
+  /* ══ Nav: pill of frosted glass, dark CTA with a circular arrow ══════ */
+  .tgo-nav { border-radius: 999px !important;
+    padding: 9px 9px 9px 24px !important; gap: clamp(14px, 2vw, 28px) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    -webkit-backdrop-filter: blur(7px) saturate(150%); backdrop-filter: blur(7px) saturate(150%);
+    border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset,
+                0 10px 20px -10px rgba(0, 0, 0, 0.10),
+                0 22px 40px -26px rgba(0, 0, 0, 0.14) !important; }
+  .tgo-nav > a:first-child { font-weight: 600 !important; font-size: 18px !important;
+    letter-spacing: -0.02em; color: #1d1d1f !important;
+    flex: 0 0 auto; white-space: nowrap; }
+  .tgo-nav > a:first-child span { white-space: nowrap; flex: 0 0 auto; }
+  .tgo-nav > button.tgo-lang { min-height: 38px !important; height: 38px; }
+  .tgo-links > a { color: #1d1d1f !important; font-size: 15px !important; font-weight: 600 !important; }
+  .tgo-links > a:hover, .tgo-links > a[aria-current="page"] { color: #000 !important; }
+  @media (min-width: 861px) { .tgo-links > a::before { background: rgba(0, 0, 0, 0.05); box-shadow: none; } }
+  .tgo-nav .btn.tgo-cta { background: #1d1d1f !important; color: #fff !important;
+    flex: 0 0 auto; min-height: 46px; padding: 0 8px 0 22px !important; gap: 14px;
+    font-size: 15px !important; font-weight: 500 !important;
+    box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.6) !important; }
+  .tgo-nav .btn.tgo-cta:hover { background: #000 !important; }
+  .tgo-cta .tgo-arrow { display: grid; place-items: center; flex: 0 0 30px; min-width: 30px;
+    width: 30px; height: 30px;
+    border-radius: 999px; background: rgba(255, 255, 255, 0.16);
+    font-size: 14px; line-height: 1; }
+  .tgo-cta:hover .tgo-arrow { transform: translateX(2px); background: rgba(255, 255, 255, 0.26); }
+  .tgo-lang { min-height: 38px !important; white-space: nowrap; padding: 0 16px !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, 0.04) !important; border: 0 !important;
+    color: #1d1d1f !important; box-shadow: none !important; }
+  .tgo-lang:hover { background: rgba(0, 0, 0, 0.10) !important; color: #000 !important; }
+  /* merged at the page top, released into the capsule once you scroll */
+  .tgo-nav { transition: top 0.6s cubic-bezier(0.32, 0.72, 0, 1),
+                         width 0.6s cubic-bezier(0.32, 0.72, 0, 1),
+                         border-radius 0.6s cubic-bezier(0.32, 0.72, 0, 1),
+                         padding 0.6s cubic-bezier(0.32, 0.72, 0, 1),
+                         background 0.5s ease, box-shadow 0.5s ease,
+                         border-color 0.5s ease, backdrop-filter 0.5s ease !important; }
+  .tgo-nav[data-scrolled="0"] {
+    top: 0 !important; width: 100% !important; max-width: none !important;
+    border-radius: 0 !important;
+    padding: 14px clamp(22px, 4vw, 48px) !important;
+    background: transparent !important;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    border: 1.5px solid rgba(255, 255, 255, 0) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0) inset,
+                0 10px 20px -10px rgba(0, 0, 0, 0),
+                0 22px 40px -26px rgba(0, 0, 0, 0) !important; }
+  /* merged over the hero: chrome goes white, the logo and the CTA hold */
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a,
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] > button.tgo-lang { color: #fff !important; }
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a:hover,
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a[aria-current="page"] { color: #fff !important; }
+  @media (min-width: 861px) {
+    .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links > a::before { background: rgba(255, 255, 255, 0.18); }
+  }
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] > button.tgo-lang { background: rgba(255, 255, 255, 0.16) !important; }
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] > button.tgo-lang:hover { background: rgba(255, 255, 255, 0.28) !important; color: #fff !important; }
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-burger { color: #fff !important; }
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] > a:first-child,
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] > a:first-child span { color: #fff !important; }
+  .tgo-nav[data-scrolled="1"] > a:first-child span { color: #1d1d1f !important; opacity: 1 !important;
+    display: inline-block !important; visibility: visible !important; overflow: visible !important;
+    width: auto !important; max-width: none !important; clip-path: none !important; }
+  /* the capsule is width:max-content — never let the wordmark be the thing
+     that gives way when the row runs out of room */
+  .tgo-nav > a:first-child { min-width: max-content !important; overflow: visible !important; }
+  .tgo-nav .tgo-links { min-width: 0; }
+  /* the merged bar spans the page, so the row is given room to fit */
+  .tgo-nav[data-scrolled="0"] { gap: clamp(10px, 1.4vw, 20px) !important; }
+  .tgo-nav[data-hero-page="1"][data-scrolled="0"] .tgo-links { gap: clamp(10px, 1.2vw, 18px); }
+  @media (max-width: 1100px) and (min-width: 861px) {
+    .tgo-links > a { font-size: 14px !important; }
+    .tgo-nav .btn.tgo-cta { padding: 0 6px 0 16px !important; gap: 10px; font-size: 14px !important; }
+    .tgo-nav[data-scrolled="0"] { padding: 12px 20px !important; }
+  }
+  /* a secondary action over the hero photograph takes a white pill, not bare text */
+  main [data-hero] .btn-ghost { background: rgba(255, 255, 255, 0.92) !important;
+    color: #1d1d1f !important; padding: 0 22px !important; min-height: 46px;
+    border: 0 !important; text-decoration: none;
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  main [data-hero] .btn-ghost:hover { background: #fff !important; text-decoration: none; }
+
+  /* ══ Global consistency pass — Apple 2026 ═════════════════════════
+     Applies to every page, not just home: hairline rules, grey eyebrows,
+     white sections, one radius family, one focus ring. */
+  main section, main div, main article, main a, main td, main th {
+    border-color: #d2d2d7 !important; }
+  main [style*="border-top: 2px"], main [style*="border-bottom: 2px"],
+  main [style*="border: 2px"] { border-width: 1px !important; }
+  main table.table th, main table.table td { border-width: 1px !important;
+    padding: 16px 16px 16px 0 !important; font-size: 17px; }
+  main table.table th { font-size: 12px !important; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-4) !important; font-weight: 600 !important; }
+  /* every eyebrow is grey caps; the accent is reserved for actions */
+  main p[data-lbl="1"] { color: var(--ink-4) !important; }
+  main section[style*="var(--color-accent)"] p[data-lbl="1"] { color: rgba(255,255,255,0.72) !important; }
+  /* the old tinted slabs become plain white blocks */
+  main section[style*="var(--color-surface)"] { background: #fff !important;
+    border-top: 1px solid #d2d2d7 !important; border-bottom: 1px solid #d2d2d7 !important; }
+  /* the accent poster: Apple's full-bleed statement */
+  main section[style*="background: var(--color-accent)"] { background: #1d1d1f !important; color: #f5f5f7 !important; }
+  main section[style*="background: var(--color-accent)"] h2 { color: #f5f5f7 !important; }
+  main section[style*="background: var(--color-accent)"] p { color: rgba(245,245,247,0.78) !important; }
+  main section[style*="background: var(--color-accent)"] .btn-ghost {
+    background: #f5f5f7 !important; color: #1d1d1f !important; }
+  /* explore tiles */
+  main a[data-explore] { text-decoration: none !important; }
+  main a[data-explore] [data-exarrow] { transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1); }
+  main a[data-explore]:hover [data-exarrow] { transform: translateX(6px); }
+  main a[data-explore]:hover h3 { color: var(--color-accent) !important; }
+  /* form controls in the Apple idiom */
+  main .input, main input, main textarea { border-radius: 12px !important;
+    border: 1px solid #d2d2d7 !important; padding: 14px 16px !important;
+    font-size: 17px !important; background: #fff !important; box-shadow: none !important; }
+  main .input:focus, main input:focus, main textarea:focus {
+    outline: none; border-color: var(--color-accent) !important;
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.16) !important; }
+  :focus-visible { outline: 2px solid var(--color-accent) !important; outline-offset: 3px; }
+  /* chips */
+  main button[style*="text-transform: uppercase"] { border-radius: 980px !important;
+    font-size: 14px !important; letter-spacing: 0 !important; text-transform: none !important;
+    min-height: 34px; padding: 0 16px !important; border: 1px solid #d2d2d7 !important; }
+  main footer { border-top: 1px solid #d2d2d7 !important; }
+
+  /* ══ Radius system — no square corners anywhere ═══════════════════
+     Apple's continuous-corner family: 12 controls, 18 cards, 26 panels,
+     30 sheets, 980 pills. Nothing on the page is left sharp. */
+  :root { --radius-sm: 12px; --radius-md: 18px; --radius-lg: 26px; }
+  main section > div, main figure, main img, main [data-panel], main [data-tile],
+  main article, main table, main .card, main video, main [data-band] > div { border-radius: 18px; }
+  main figure, main figure img { border-radius: 18px !important; overflow: hidden; }
+  main [data-hero], main [data-hero] figure, main [data-hero] figure img,
+  main [aria-label="Brands"], main [aria-label="Gallery"] { border-radius: 0 !important; }
+  main table.table { border-collapse: separate !important; border-spacing: 0;
+    overflow: hidden; border: 1px solid #d2d2d7 !important; border-radius: 18px !important; }
+  main table.table th, main table.table td { padding-left: 20px !important; border-left: 0 !important; border-right: 0 !important; }
+  main table.table tr:last-child td { border-bottom: 0 !important; }
+  main .marq img, main .marq figure { border-radius: 14px !important; }
+  main .strip article { border-radius: 22px !important; }
+  main button, main .btn, main a.btn, main input, main textarea, main select {
+    border-radius: 12px; }
+  main .btn, .tgo-cta, .tgo-lang, main button[style*="text-transform"] { border-radius: 980px !important; }
+  .tgo-burger { border-radius: 14px !important; }
+  .tgo-modal, .dialog { border-radius: 30px !important; }
+
+  /* ══ Survey: centred sheet ════════════════════════════════════════ */
+  main[style*="min-height: 70vh"] section { max-width: 760px !important; text-align: center;
+    margin-left: auto !important; margin-right: auto !important; }
+  main[style*="min-height: 70vh"] h1,
+  main[style*="min-height: 70vh"] h2,
+  main[style*="min-height: 70vh"] p { text-align: center !important;
+    margin-left: auto !important; margin-right: auto !important; }
+  main[style*="min-height: 70vh"] > section > div[style*="display: grid"] {
+    display: flex !important; flex-wrap: wrap; justify-content: center; }
+  main[style*="min-height: 70vh"] > section > div[style*="display: grid"] > button {
+    flex: 0 1 300px; }
+  main[style*="min-height: 70vh"] div[style*="display: flex"] { justify-content: center; }
+  main[style*="min-height: 70vh"] > section > button,
+  main[style*="min-height: 70vh"] section > .btn { display: inline-flex; }
+  /* the intro's lone action centres under the copy */
+  main[style*="min-height: 70vh"] > section > button.btn { display: block; margin: 0 auto !important; }
+  main[style*="min-height: 70vh"] section > div[style*="height: 2px"] {
+    border-radius: 980px; overflow: hidden; max-width: 420px; margin: 0 auto 16px; height: 4px !important; }
+  main[style*="min-height: 70vh"] section > div[style*="height: 2px"] > div { height: 4px !important; border-radius: 980px; }
+  /* option cards centre their labels and take the card radius */
+  main[style*="min-height: 70vh"] button[style*="text-align: left"] {
+    text-align: center !important; border-radius: 16px !important; border-width: 1px !important;
+    font-weight: 500 !important; font-size: 17px !important; padding: 18px 20px !important; }
+  main[style*="min-height: 70vh"] div[style*="border-top: 2px"] { border-top: 1px solid #d2d2d7 !important; }
+
+  /* ══ FINAL PASS — one type scale, one spacing scale, one palette ═══
+     Apple's ladder: display 64 / title 48 / headline 32 / subhead 24 /
+     lead 21 / body 17 / caption 14 / eyebrow 12. Weight carries hierarchy,
+     not color; blue appears only on actions and live links. */
+  :root {
+    --t-display: clamp(44px, 6vw, 72px);
+    --t-title: clamp(34px, 4.2vw, 52px);
+    --t-headline: clamp(26px, 2.8vw, 34px);
+    --t-subhead: 24px;
+    --t-lead: 21px;
+    --t-body: 17px;
+    --t-caption: 14px;
+    --sec-y: clamp(72px, 9vw, 128px);
+    --sec-y-half: clamp(36px, 4.5vw, 60px);
+    --gap: clamp(18px, 2vw, 26px);
+    --gutter: clamp(22px, 5vw, 56px);
+  }
+  main h1 { font-size: var(--t-display) !important; font-weight: 600 !important;
+    line-height: 1.06 !important; letter-spacing: -0.022em !important; margin-left: 0 !important; }
+  main h2 { font-size: var(--t-title) !important; font-weight: 600 !important;
+    line-height: 1.07 !important; letter-spacing: -0.019em !important; margin-left: 0 !important; }
+  main h3 { font-size: var(--t-subhead) !important; font-weight: 600 !important;
+    line-height: 1.17 !important; letter-spacing: -0.012em !important; }
+  main p { font-size: var(--t-body) !important; line-height: 1.47 !important;
+    letter-spacing: -0.008em !important; color: var(--ink-2) !important; }
+  /* the first paragraph after a page title is the lead — this is what keeps
+     the pages from reading flat */
+  main h1 + p, main section > div > h2 + p, main section > h2 + p {
+    font-size: var(--t-lead) !important; line-height: 1.38 !important;
+    letter-spacing: -0.012em !important; color: var(--ink-3) !important; max-width: 44ch; }
+  main p[data-lbl="1"] { font-size: 12px !important; font-weight: 600 !important;
+    letter-spacing: 0.07em !important; text-transform: uppercase !important;
+    color: var(--ink-4) !important; line-height: 1.3 !important; }
+  main [data-tile] p[data-fig] { font-size: clamp(56px, 6.4vw, 88px) !important;
+    font-weight: 600 !important; letter-spacing: -0.028em !important;
+    color: var(--color-text) !important; font-feature-settings: 'tnum' 1; }
+  main [data-tile] p:not([data-fig]) { font-size: var(--t-caption) !important;
+    line-height: 1.4 !important; color: var(--ink-3) !important; }
+
+  /* spacing: the scale above already re-rhythms every section (all of them
+     are inline-padded with var(--sec-y)/var(--gutter)); only the insets that
+     are not expressed as variables need restating */
+  main [data-panel], main [data-tile] { padding: clamp(26px, 2.8vw, 36px) !important;
+    justify-items: stretch !important; text-align: left !important; }
+  main [data-panel] > *, main [data-tile] > * { justify-self: start !important; }
+  main article > div { padding: clamp(24px, 2.6vw, 32px) !important; }
+  main [data-panel] h3 + p, main [data-tile] p[data-fig] + p { margin-top: 10px !important; }
+
+  /* color: ink for content, one blue for action, one grey for structure */
+  main a:not(.btn):not([data-panel]):not([data-row]) { color: var(--color-accent) !important; }
+  main a:not(.btn):not([data-panel]):not([data-row]):hover { text-decoration: underline; }
+  main [style*="var(--color-accent-700)"], main [style*="var(--color-accent-400)"],
+  main [style*="var(--color-accent-2-900)"] { color: var(--ink-4) !important; }
+  main [data-row="post"] h2 { font-size: var(--t-headline) !important; }
+  main [data-row="post"]:hover h2 { color: var(--color-accent) !important; }
+
+  /* ══ Opening face — the hero reads as one dark photographic plate ══ */
+  main [data-hero] { min-height: 100svh; }
+  main [data-hero] img { filter: grayscale(1) contrast(1.08) brightness(0.82) !important; }
+  main [data-hero] h1 { color: #fff !important; font-size: clamp(46px, 7.2vw, 96px) !important;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4) !important; }
+  main [data-hero] [data-heroeyebrow] { color: #2997ff !important; font-size: 19px !important;
+    line-height: 1.3 !important; text-transform: none !important; letter-spacing: -0.012em !important; }
+  main [data-hero] [data-herosub] { color: rgba(255, 255, 255, 0.86) !important;
+    font-size: clamp(19px, 1.7vw, 24px) !important; line-height: 1.4 !important;
+    text-shadow: 0 1px 20px rgba(0, 0, 0, 0.45) !important; }
+  main [data-hero] [data-heroroute] { color: rgba(255, 255, 255, 0.52) !important;
+    font-size: 13px !important; font-weight: 500 !important; }
+  main [data-hero] .btn-primary { min-height: 52px; padding: 0 30px !important; font-size: var(--t-body) !important; }
+  main [data-hero] .btn-ghost[data-heroghost] { min-height: 52px; padding: 0 30px !important;
+    background: rgba(255, 255, 255, 0.14) !important; color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.42) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+    text-decoration: none !important; }
+  main [data-hero] .btn-ghost[data-heroghost]:hover { background: rgba(255, 255, 255, 0.24) !important;
+    text-decoration: none !important; }
+  /* the plate resolves into the page ground rather than cutting off */
+  main [data-hero]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 180px; pointer-events: none;
+    background: linear-gradient(to top, var(--color-bg), transparent); }
+
+  /* ══ Titles centred site-wide ═════════════════════════════════════
+     Page titles, section headings and their leads run down the middle on
+     all nine pages; card interiors stay flush left. */
+  main > section > h1, main > section > h2,
+  main > section > div > h1, main > section > div > h2,
+  main > section > p[data-lbl="1"], main > section > div > p[data-lbl="1"],
+  main > section > h1 + p, main > section > div > h1 + p,
+  main > section > h2 + p, main > section > div > h2 + p,
+  main > section > p, main > section > div > p {
+    text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
+  main > section > div > div[style*="display: flex"],
+  main > section > div[style*="display: flex"] { justify-content: center; }
+  main [data-panel] h1, main [data-panel] h2, main [data-panel] h3, main [data-panel] p,
+  main [data-tile] h1, main [data-tile] h2, main [data-tile] h3, main [data-tile] p,
+  main article h1, main article h2, main article h3, main article p,
+  main [data-row] h1, main [data-row] h2, main [data-row] h3, main [data-row] p,
+  main table h1, main table h2, main table h3, main table p {
+    text-align: left !important; margin-left: 0 !important; margin-right: 0 !important; }
+
+  /* ══ Thank-you screen ═════════════════════════════════════════════ */
+  main section[data-done] { display: grid; place-items: center; min-height: 78vh;
+    padding: clamp(60px, 8vw, 110px) var(--gutter) !important; text-align: center; }
+  main [data-donein] { max-width: 640px; width: 100%; text-align: center; }
+  main [data-donetick] { display: inline-grid; place-items: center; width: 76px; height: 76px;
+    border-radius: 999px; color: #fff; margin: 0 0 28px;
+    background: linear-gradient(180deg, #34c759, #28a745);
+    box-shadow: 0 16px 34px -16px rgba(40, 167, 69, 0.7), inset 0 1px 0 rgba(255,255,255,0.5);
+    animation: donepop 0.7s cubic-bezier(0.32, 0.72, 0, 1) both; }
+  main [data-donetick] svg path { stroke-dasharray: 44; stroke-dashoffset: 44;
+    animation: donetick 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.28s forwards; }
+  @keyframes donepop { 0% { opacity: 0; transform: scale(0.5); } 60% { transform: scale(1.06); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes donetick { to { stroke-dashoffset: 0; } }
+  main [data-donekick] { margin: 0 0 12px !important; }
+  main [data-donetitle] { font-family: var(--font-heading); font-weight: 600;
+    font-size: clamp(38px, 5vw, 64px) !important; line-height: 1.04; letter-spacing: -0.024em;
+    margin: 0 0 16px !important; }
+  main [data-donesub] { font-size: var(--t-lead) !important; line-height: 1.4 !important;
+    color: var(--ink-3) !important; max-width: 44ch; margin: 0 auto 40px !important; }
+  main [data-donesub] strong { color: var(--color-text); font-weight: 600; }
+  main [data-donecards] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px; margin: 0 0 36px; }
+  main [data-donecard] { background: #fff; border: 1px solid #d2d2d7; border-radius: 18px;
+    padding: 24px 20px; text-align: center; }
+  main [data-donecard] p[data-lbl="1"] { margin: 0 0 10px !important; text-align: center !important; }
+  main [data-donefig] { font-family: var(--font-heading); font-weight: 600 !important;
+    font-size: 28px !important; line-height: 1.1 !important; letter-spacing: -0.018em !important;
+    margin: 0 !important; text-align: center !important; color: var(--color-text) !important;
+    font-feature-settings: 'tnum' 1; }
+  main [data-donescore] { color: var(--color-accent); }
+  main [data-doneof] { color: var(--ink-4); font-weight: 400; margin-left: 6px; font-size: 20px; }
+  main [data-doneacts] { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  main [data-doneacts] .btn-ghost { background: #fff !important; border: 1px solid #d2d2d7 !important;
+    color: var(--color-text) !important; padding: 0 26px !important; min-height: 46px; text-decoration: none !important; }
+  @media (max-width: 560px) { main [data-donecards] { grid-template-columns: minmax(0, 1fr); } }
+
+  /* ══ Scroll unblur — text resolves into focus as it enters ════════ */
+  [data-unblur] { opacity: 0; filter: blur(10px); transform: translateY(14px);    transition: opacity 0.85s cubic-bezier(0.22, 0.61, 0.24, 1),
+                filter 0.95s cubic-bezier(0.22, 0.61, 0.24, 1),
+                transform 0.85s cubic-bezier(0.22, 0.61, 0.24, 1); }
+  [data-unblur="in"] { opacity: 1; filter: blur(0); transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-unblur] { opacity: 1 !important; filter: none !important; transform: none !important; }
+  }
+
+  /* ══ Homepage — Apple section grammar ═════════════════════════════
+     Every section opens the same way: grey eyebrow, one statement
+     headline, then the content. Weight carries hierarchy; nothing is 800. */
+  main h2[data-sech] { font-family: var(--font-heading); font-weight: 600 !important;
+    font-size: var(--t-title) !important; line-height: 1.06 !important;
+    letter-spacing: -0.02em !important; max-width: 20ch;
+    margin-left: auto !important; margin-right: auto !important; text-align: center !important; }
+  main [data-col] { font-size: var(--t-body) !important; line-height: 1.55 !important;
+    color: var(--ink-2) !important; text-align: left !important;
+    margin-left: 0 !important; margin-right: 0 !important; }
+  main [style*="font-weight: 800"] { font-weight: 600 !important; }
+  main [data-station] { font-family: var(--font-heading); font-weight: 600;
+    font-size: clamp(18px, 1.7vw, 22px) !important; line-height: 1.2;
+    letter-spacing: -0.015em; text-align: left !important; margin-left: 0 !important; }
+
+  /* brand teasers as full cards */
+  main a[data-bcard] { background: #fff; border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04); text-decoration: none !important;
+    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.4s ease; }
+  main a[data-bcard]:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0, 0, 0, 0.10); }
+  main a[data-bcard] figure { border-radius: 0 !important; }
+  main [data-bbody] { padding: clamp(24px, 2.6vw, 32px); display: flex; flex-direction: column; flex: 1; }
+  main a[data-bcard] h3 { font-size: var(--t-subhead) !important; }
+  main [data-blink] { margin-top: auto; font-size: var(--t-caption); font-weight: 500;
+    color: var(--color-accent); }
+  main a[data-bcard]:hover [data-blink] { text-decoration: underline; }
+
+  /* founder portraits as cards */
+  main [data-fcard] { background: #fff; border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04); }
+  main [data-fcard] figure { border-radius: 0 !important; }
+  main [data-fbody] { padding: clamp(20px, 2.2vw, 26px); }
+  main [data-fcard] h3 { font-size: 20px !important; }
+  main [data-fcard] p { font-size: var(--t-caption) !important; line-height: 1.5 !important; }
+
+  /* the marquee band is a quiet strip, not a headline */
+  main [aria-label="Brands"] { background: transparent !important;
+    border-top: 1px solid #d2d2d7; border-bottom: 1px solid #d2d2d7; }
+  main [aria-label="Brands"]::before, main [aria-label="Brands"]::after { display: none; }
+
+  /* verifier fixes: card interiors are flush-left flex children, card titles
+     stay at subhead scale, and the closing CTA follows its centred headline */
+  main [data-bbody] h3, main [data-fbody] h3, main [data-bbody] p, main [data-fbody] p {
+    margin-left: 0 !important; margin-right: 0 !important; align-self: stretch; width: 100%; }
+  main a[data-bcard], main a[data-bcard] h3 { color: var(--color-text) !important; }
+  main a[data-bcard] [data-blink] { color: var(--color-accent) !important; }
+  main [data-panel] h2 { font-size: var(--t-subhead) !important; line-height: 1.17 !important;
+    letter-spacing: -0.012em !important; }
+  main section[style*="background: var(--color-accent)"] > div > div[style*="display: flex"],
+  main section[style*="background: var(--color-accent)"] > div > button,
+  main section[style*="background: var(--color-accent)"] > div > .btn {
+    display: flex; justify-content: center; margin-left: auto !important; margin-right: auto !important; }
+  main section[style*="background: var(--color-accent)"] > div > button.btn { display: inline-flex; }
+
+  /* trailing section actions sit centred under their centred headline */
+  main > section > div > div[style*="margin-top: 40px"],
+  main > section > div[style*="margin-top: 40px"],
+  main > section > div > div[style*="padding-top: 14px"] {
+    display: flex; justify-content: center; }
 
   @keyframes rdraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   @keyframes rtick { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+  /* ══ Mobile-oriented pass — most visits are touch, so touch is primary ══
+     No sticky :hover after a tap, bigger chip targets, no double-tap zoom
+     delay on controls, and the marquee tracks can be tapped to pause. */
+  main a, main button, .btn, .tgo-cta, .tgo-lang, .tgo-burger { touch-action: manipulation; }
+  @media (hover: none) {
+    .btn:hover, .tgo-cta:hover, .tgo-lang:hover, .tgo-burger:hover,
+    main article:hover, main [data-panel]:hover, main [data-tile]:hover,
+    main a[data-bcard]:hover, main [data-fcard]:hover,
+    main a:hover figure img, main article:hover figure img,
+    main [data-row="post"]:hover h2, main a:hover h2, main a:hover h3,
+    main a[data-explore]:hover [data-exarrow], main a[data-explore]:hover h3,
+    main button:not(.btn):hover { transform: none !important; }
+    main article:hover, main [data-panel]:hover, main [data-tile]:hover {
+      background: #fff !important; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important; }
+    main a[data-bcard]:hover { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important; }
+    main a:hover h2, main a:hover h3, main a[data-explore]:hover h3 { color: inherit !important; }
+    main a[data-bcard]:hover [data-blink] { text-decoration: none !important; }
+  }
+  @media (max-width: 860px) {
+    /* filter chips and pill buttons read fine at 34px on a cursor; give a
+       thumb a bit more room, and more air between adjacent ones */
+    main button[style*="text-transform: uppercase"] { min-height: 40px !important; }
+    main section[style*="flex-wrap: wrap"] > button,
+    main div[style*="display: flex; flex-wrap: wrap"] > button { margin: 2px 0; }
+    .marq { animation-play-state: running; }
+  }
 </style>
 </helmet>
 
 <div data-cjk="{{ cjk }}" style="background: var(--color-bg); color: var(--color-text); min-height: 100svh; font-family: var(--font-body); font-size: 15px; line-height: 1.55;">
 
-  <nav class="nav tgo-nav" data-scrolled="{{ scrolledFlag }}" style="display: flex; align-items: center; gap: clamp(10px, 1.6vw, 22px);">
+  <nav class="nav tgo-nav" data-scrolled="{{ scrolledFlag }}" data-hero-page="{{ cjkHomeFlag }}" style="display: flex; align-items: center; gap: clamp(10px, 1.6vw, 22px);">
     <a href="#" onClick="{{ navHome }}" style="display: flex; align-items: center; gap: 8px; margin-right: auto; color: var(--color-text); font-family: var(--font-heading); font-weight: 800; font-size: 17px; letter-spacing: -0.01em;">
-      TGO<span style="font-weight: 400; font-size: 13px; letter-spacing: 0.06em; color: var(--ink-4); font-size: 11px;">优选</span>
+      TGO<span style="font-weight: 600; font-size: 18px; letter-spacing: -0.02em; color: var(--ink-3);">Brands</span>
     </a>
     <div class="tgo-links" data-open="{{ menuFlag }}">
       <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
@@ -416,26 +1007,27 @@
       <figure style="position: absolute; inset: 0; margin: 0;">
         <img src="assets/photo.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
       </figure>
-      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, color-mix(in srgb, var(--color-bg) 42%, transparent) 0%, color-mix(in srgb, var(--color-bg) 28%, transparent) 34%, color-mix(in srgb, var(--color-bg) 50%, transparent) 72%, var(--color-bg) 100%);"></div>
-      <div style="position: relative; max-width: 1120px; padding: clamp(96px, 12vw, 160px) var(--gutter);">
-        <h1 class="disp" style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(42px, 7.6vw, 108px); line-height: 1.0; letter-spacing: -0.028em; margin: 0 0 32px; color: var(--color-text); text-shadow: 0 2px 40px rgba(0, 0, 0, 0.45);">
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.42) 38%, rgba(0, 0, 0, 0.52) 72%, rgba(0, 0, 0, 0.72) 100%);"></div>
+      <div data-heroin="1" style="position: relative; max-width: 900px; padding: clamp(120px, 14vw, 180px) var(--gutter) clamp(80px, 10vw, 120px); text-align: center;">
+        <p data-heroeyebrow="1" style="font-size: 19px; font-weight: 600; letter-spacing: -0.012em; margin: 0 0 14px;">{{ t.home.premiseKicker }}</p>
+        <h1 class="disp" style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(46px, 7.2vw, 96px); line-height: 1.02; letter-spacing: -0.028em; margin: 0 0 24px;">
           <span style="display: block;">{{ t.home.h1a }}</span>
           <span style="display: block;">{{ t.home.h1b }}</span>
         </h1>
-        <p style="font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; max-width: 46ch; margin: 0 auto 32px; color: var(--ink-2); text-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);">{{ t.home.sub }}</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 40px;">
+        <p data-herosub="1" style="font-size: clamp(19px, 1.7vw, 24px); line-height: 1.4; letter-spacing: -0.012em; max-width: 40ch; margin: 0 auto 36px;">{{ t.home.sub }}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 56px;">
           <button type="button" class="btn btn-primary" onClick="{{ navPartner }}">{{ t.home.cta }}</button>
-          <button type="button" class="btn btn-ghost" onClick="{{ openHow }}" style="color: var(--color-text); border-color: var(--color-text); background: color-mix(in srgb, var(--color-bg) 55%, transparent); backdrop-filter: blur(4px);">{{ t.home.cta2 }}</button>
+          <button type="button" class="btn btn-ghost" data-heroghost="1" onClick="{{ openHow }}">{{ t.home.cta2 }}</button>
         </div>
-        <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0; color: var(--ink-3);">{{ t.route.origin }} → {{ routeLine }}</p>
+        <p data-heroroute="1" style="font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">{{ t.route.origin }} → {{ routeLine }}</p>
       </div>
     </section>
 
     <section aria-label="Brands" data-band="raise" style="overflow: hidden; padding: 34px 0;">
       <div class="marq">
         <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="8">
-          <span style="display: flex; align-items: center; gap: clamp(28px, 5vw, 64px); padding-right: clamp(28px, 5vw, 64px); font-family: var(--font-heading); font-weight: 800; font-size: clamp(19px, 2.2vw, 30px); letter-spacing: -0.01em; white-space: nowrap; color: var(--ink-3);">
-            {{ m.name }}<span style="width: 7px; height: 7px; background: var(--color-accent);"></span>
+          <span style="display: flex; align-items: center; gap: clamp(28px, 5vw, 64px); padding-right: clamp(28px, 5vw, 64px); font-family: var(--font-heading); font-weight: 500; font-size: clamp(18px, 1.9vw, 24px); letter-spacing: -0.014em; white-space: nowrap; color: var(--ink-4);">
+            {{ m.name }}<span style="width: 6px; height: 6px; border-radius: 999px; background: var(--ink-4); flex: 0 0 auto;"></span>
           </span>
         </sc-for>
       </div>
@@ -447,8 +1039,8 @@
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
           <sc-for list="{{ stationsBig }}" as="s" hint-placeholder-count="4">
             <div style="position: relative; animation: rtick 0.5s ease-out both; animation-delay: 0.7s;">
-              <span style="position: absolute; top: -36px; left: 0; width: 14px; height: 14px; background: {{ s.col }};"></span>
-              <p style="font-family: var(--font-heading); font-weight: 800; font-size: clamp(17px, 1.7vw, 24px); line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em;">{{ s.label }}</p>
+              <span style="position: absolute; top: -36px; left: 0; width: 11px; height: 11px; border-radius: 999px; background: {{ s.col }};"></span>
+              <p data-station="1" style="margin: 0 0 8px;">{{ s.label }}</p>
               <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; color: var(--ink-4);">{{ s.role }}</p>
             </div>
           </sc-for>
@@ -457,17 +1049,19 @@
     </section>
 
     <section style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter);">
-      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin: 0 0 24px; font-weight: 600;">{{ t.home.premiseKicker }}</p>
+      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin: 0 0 12px; font-weight: 600;">{{ t.home.premiseKicker }}</p>
+      <h2 data-sech="1" style="margin: 0 0 var(--sec-y-half);">{{ hd.premise }}</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--gap);">
         <sc-for list="{{ t.home.premise }}" as="para" hint-placeholder-count="3">
-          <p style="font-size: 16px; line-height: 1.7; margin: 0; color: var(--ink-2);">{{ para }}</p>
+          <p data-col="1" style="margin: 0;">{{ para }}</p>
         </sc-for>
       </div>
     </section>
 
     <section data-band="raise">
       <div style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter); position: relative; z-index: 1;">
-      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin: 0 0 32px; font-weight: 600;">{{ t.home.proofKicker }}</p>
+      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin: 0 0 12px; font-weight: 600;">{{ t.home.proofKicker }}</p>
+      <h2 data-sech="1" style="margin: 0 0 var(--sec-y-half);">{{ hd.proof }}</h2>
       <div data-figs="1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px;">
         <sc-for list="{{ proofFigs }}" as="f" hint-placeholder-count="4">
           <div data-tile="1">
@@ -484,7 +1078,8 @@
     </section>
 
     <section style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter);">
-      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin: 0 0 8px; font-weight: 600;">{{ t.home.doKicker }}</p>
+      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin: 0 0 12px; font-weight: 600;">{{ t.home.doKicker }}</p>
+      <h2 data-sech="1" style="margin: 0 0 var(--sec-y-half);">{{ hd.pillars }}</h2>
       <sc-for list="{{ t.what.pillars }}" as="p" hint-placeholder-count="3">
         <div data-panel="1" style="display: grid; grid-template-columns: minmax(56px, 90px) minmax(0, 340px) minmax(0, 1fr); gap: 14px clamp(20px, 4vw, 64px); align-items: baseline; margin-bottom: 14px;">
           <p style="font-family: var(--font-heading); font-weight: 800; font-size: 15px; margin: 0; font-feature-settings: 'tnum' 1;">{{ p.n }}</p>
@@ -502,18 +1097,22 @@
 
     <section data-band="raise">
       <div style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter); position: relative; z-index: 1;">
-      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin: 0 0 8px; font-weight: 600;">{{ t.home.brandsKicker }}</p>
-      <p style="font-size: 16px; max-width: 52ch; margin: 0 0 32px; color: var(--ink-3);">{{ t.home.brandsNote }}</p>
+      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin: 0 0 12px; font-weight: 600;">{{ t.home.brandsKicker }}</p>
+      <h2 data-sech="1" style="margin: 0 0 16px;">{{ hd.brands }}</h2>
+      <p style="max-width: 52ch; margin: 0 0 var(--sec-y-half); color: var(--ink-3);">{{ t.home.brandsNote }}</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--sec-y-half);">
         <sc-for list="{{ brandCards }}" as="b" hint-placeholder-count="2">
-          <a href="#" onClick="{{ b.onClick }}" style="display: block; color: var(--color-text);">
-            <figure class="grayscale" style="margin: 0 0 16px;">
-              <img src="assets/photo.jpg" alt="" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover;">
+          <a href="#" data-bcard="1" onClick="{{ b.onClick }}" style="display: flex; flex-direction: column; color: var(--color-text); text-decoration: none;">
+            <figure class="grayscale" style="margin: 0;">
+              <img src="assets/photo.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;">
             </figure>
-            <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; color: var(--color-accent-700);">{{ b.cat }}</p>
-            <h3 style="font-family: var(--font-heading); font-weight: 800; font-size: 20px; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.012em;">{{ b.name }}</h3>
-            <p style="font-size: 15px; line-height: 1.65; margin: 0 0 12px; color: var(--ink-2);">{{ b.pos }}</p>
-            <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; margin: 0; color: var(--ink-4);">{{ b.mk }} — {{ b.st }}</p>
+            <div data-bbody="1">
+              <p data-lbl="1" style="margin: 0 0 10px;">{{ b.cat }}</p>
+              <h3 style="margin: 0 0 10px;">{{ b.name }}</h3>
+              <p style="margin: 0 0 16px; color: var(--ink-3);">{{ b.pos }}</p>
+              <p data-lbl="1" style="margin: 0 0 14px;">{{ b.mk }} — {{ b.st }}</p>
+              <span data-blink="1">{{ t.brands.labels.back }} →</span>
+            </div>
           </a>
         </sc-for>
       </div>
@@ -522,29 +1121,32 @@
 
     <section style="background: var(--color-surface); color: var(--color-text);">
       <div style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter);">
-        <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-400); margin: 0 0 24px; font-weight: 600;">{{ t.home.foundersKicker }}</p>
-        <h2 class="disp" style="font-family: var(--font-heading); font-weight: 800; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 40px; max-width: 22ch;">{{ t.founders.title }}</h2>
+        <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin: 0 0 12px; font-weight: 600;">{{ t.home.foundersKicker }}</p>
+        <h2 data-sech="1" style="margin: 0 0 var(--sec-y-half);">{{ hd.founders }}</h2>
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap);">
           <sc-for list="{{ t.founders.people }}" as="p" hint-placeholder-count="3">
-            <div>
-              <figure class="grayscale" style="margin: 0 0 16px;">
-                <img src="assets/photo.jpg" alt="" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover;">
+            <div data-fcard="1">
+              <figure class="grayscale" style="margin: 0;">
+                <img src="assets/photo.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;">
               </figure>
-              <p style="font-family: var(--font-heading); font-weight: 800; font-size: 20px; margin: 0 0 8px;">{{ p.name }}</p>
-              <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 12px; color: var(--color-accent-400);">{{ p.city }}</p>
-              <p style="font-size: 15px; line-height: 1.6; margin: 0; color: var(--ink-3);">{{ p.role }}</p>
+              <div data-fbody="1">
+                <h3 style="margin: 0 0 8px;">{{ p.name }}</h3>
+                <p data-lbl="1" style="margin: 0 0 12px;">{{ p.city }}</p>
+                <p style="margin: 0; color: var(--ink-3);">{{ p.role }}</p>
+              </div>
             </div>
           </sc-for>
         </div>
         <div style="margin-top: 40px;">
-          <button type="button" class="btn btn-ghost" onClick="{{ navFounders }}" style="color: var(--color-text); border-color: var(--color-text);">{{ t.nav.founders }}</button>
+          <button type="button" class="btn btn-ghost" onClick="{{ navFounders }}">{{ t.nav.founders }}</button>
         </div>
       </div>
     </section>
 
     <section style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter);">
-      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin: 0 0 8px; font-weight: 600;">{{ t.home.routeKicker }}</p>
-      <p style="font-size: 16px; margin: 0 0 32px; color: var(--ink-3);">{{ t.home.routeNote }}</p>
+      <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin: 0 0 12px; font-weight: 600;">{{ t.home.routeKicker }}</p>
+      <h2 data-sech="1" style="margin: 0 0 16px;">{{ hd.route }}</h2>
+      <p style="margin: 0 0 var(--sec-y-half); color: var(--ink-3);">{{ t.home.routeNote }}</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--gap);">
         <sc-for list="{{ homePosts }}" as="post" hint-placeholder-count="3">
           <a href="#" data-panel="1" onClick="{{ navInsights }}" style="display: block; color: var(--color-text);">
@@ -568,7 +1170,7 @@
           <sc-for list="{{ stepsLoop }}" as="st" hint-placeholder-count="4">
             <article style="text-align: left; overflow: hidden;">
               <figure class="grayscale" style="margin: 0;">
-                <img src="assets/photo.jpg" alt="" style="width: 100%; aspect-ratio: 16 / 10; object-fit: cover;">
+                <img src="assets/photo.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; aspect-ratio: 16 / 10; object-fit: cover;">
               </figure>
               <div style="padding: 20px;">
                 <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 12px; color: var(--color-accent-400); font-feature-settings: 'tnum' 1;">{{ st.n }}</p>
@@ -578,6 +1180,39 @@
             </article>
           </sc-for>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Services" data-band="raise">
+      <div style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter); position: relative; z-index: 1;">
+        <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin: 0 0 12px; font-weight: 600;">{{ svcKicker }}</p>
+        <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 12px; max-width: 20ch;">{{ svcTitle }}</h2>
+        <p style="font-size: 17px; line-height: 1.47; margin: 0 0 var(--sec-y-half); max-width: 56ch; color: var(--ink-3);">{{ svcNote }}</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--gap);">
+          <sc-for list="{{ services }}" as="sv" hint-placeholder-count="6">
+            <div data-panel="1">
+              <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 24px; line-height: 1.17; letter-spacing: -0.015em; margin: 0 0 10px;">{{ sv.n }}</h3>
+              <p style="font-size: 17px; line-height: 1.47; margin: 0; color: var(--ink-3);">{{ sv.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Explore">
+      <div style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter);">
+        <p data-lbl="1" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin: 0 0 12px; font-weight: 600;">{{ expKicker }}</p>
+        <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 var(--sec-y-half); max-width: 18ch;">{{ expTitle }}</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--gap);">
+          <sc-for list="{{ explore }}" as="ex" hint-placeholder-count="4">
+            <a href="#" data-panel="1" data-explore="1" onClick="{{ ex.go }}" style="display: flex; flex-direction: column; gap: 10px; color: var(--color-text); text-decoration: none;">
+              <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; margin: 0; color: var(--ink-4); font-weight: 600;">{{ ex.k }}</p>
+              <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 24px; line-height: 1.17; letter-spacing: -0.015em; margin: 0;">{{ ex.n }}</h3>
+              <p style="font-size: 17px; line-height: 1.47; margin: 0; color: var(--ink-3);">{{ ex.d }}</p>
+              <span data-exarrow="1" style="margin-top: auto; padding-top: 18px; font-size: 15px; font-weight: 500; color: var(--color-accent);">→</span>
+            </a>
+          </sc-for>
         </div>
       </div>
     </section>
@@ -593,12 +1228,12 @@
     </section>
 
     <section style="background: var(--color-accent); color: var(--color-bg);">
-      <div style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter);">
+      <div style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter); position: relative">
         <h2 class="disp" style="font-family: var(--font-heading); font-weight: 800; font-size: clamp(32px, 4.2vw, 56px); line-height: 1.06; letter-spacing: -0.02em; margin: 0 0 24px; margin-left: -0.058em;">
           <span style="display: block;">{{ t.home.closeA }}</span>
           <span style="display: block; opacity: 0.72;">{{ t.home.closeB }}</span>
-        </h2>
-        <button type="button" class="btn btn-ghost" onClick="{{ navPartner }}" style="color: var(--color-bg); border-color: var(--color-bg);">{{ t.home.closeBtn }}</button>
+        </h2><button type="button" class="btn btn-ghost" onClick="{{ navPartner }}" style="color: var(--color-bg); border-color: var(--color-bg); justify-content: center; position: relative; left: 340px">{{ t.home.closeBtn }}</button>
+        
       </div>
     </section>
   </main>
@@ -695,7 +1330,7 @@
         <sc-for list="{{ brandCards }}" as="b" hint-placeholder-count="2">
           <a href="#" onClick="{{ b.onClick }}" style="display: block; color: var(--color-text);">
             <figure class="grayscale" style="margin: 0 0 16px;">
-              <img src="assets/photo.jpg" alt="" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover;">
+              <img src="assets/photo.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover;">
             </figure>
             <h3 style="font-family: var(--font-heading); font-weight: 800; font-size: 20px; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.012em;">{{ b.name }}</h3>
             <p style="font-size: 15px; line-height: 1.65; margin: 0 0 12px; color: var(--ink-2);">{{ b.pos }}</p>
@@ -719,7 +1354,7 @@
         <p style="font-size: 17px; line-height: 1.7; max-width: 48ch; margin: 0; color: var(--ink-2);">{{ brandItem.pos }}</p>
       </div>
       <figure class="grayscale" style="margin: 0;">
-        <img src="assets/photo.jpg" alt="" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover;">
+        <img src="assets/photo.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover;">
       </figure>
     </section>
     <section style="max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter) var(--sec-y);">
@@ -777,7 +1412,7 @@
         <sc-for list="{{ t.founders.people }}" as="p" hint-placeholder-count="3">
           <article style="border: 2px solid var(--color-divider); text-align: left; height: 100%;">
             <figure class="grayscale" style="margin: 0;">
-              <img src="assets/photo.jpg" alt="" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover;">
+              <img src="assets/photo.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover;">
             </figure>
             <div style="padding: 24px;">
               <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 12px; color: var(--color-accent-400);">{{ p.city }}</p>
@@ -888,7 +1523,7 @@
           <button type="button" class="btn btn-ghost" style="color: var(--color-text); border-color: var(--color-text);">{{ t.insights.videoBtn }}</button>
         </div>
         <figure class="grayscale" style="margin: 0;">
-          <img src="assets/photo.jpg" alt="" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
+          <img src="assets/photo.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
         </figure>
       </div>
     </section>
@@ -972,21 +1607,28 @@
     </sc-if>
 
     <sc-if value="{{ surveyDone }}" hint-placeholder-val="{{ false }}">
-      <section style="background: var(--color-accent); color: var(--color-bg);">
-        <div style="max-width: 1200px; margin: 0 auto; padding: var(--sec-y) var(--gutter);">
-          <h1 class="disp" style="font-family: var(--font-heading); font-weight: 800; font-size: clamp(36px, 5vw, 68px); line-height: 1.06; letter-spacing: -0.025em; margin: 0 0 24px; margin-left: -0.058em;">{{ t.partner.done.t }}</h1>
-          <p style="font-size: 17px; line-height: 1.65; max-width: 46ch; margin: 0 0 32px;">{{ t.partner.done.d }} <strong>{{ assignedTo }}</strong> — {{ t.partner.done.d2 }}</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 12px 44px; border-top: 2px solid var(--color-bg); padding-top: 22px; margin-bottom: 32px;">
-            <div>
-              <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; opacity: 0.8;">{{ t.partner.done.route }}</p>
-              <p style="font-family: var(--font-heading); font-weight: 800; font-size: 24px; margin: 0;">{{ assignedTo }}</p>
+      <section data-done="1">
+        <div data-donein="1">
+          <span data-donetick="1" aria-hidden="true">
+            <svg viewBox="0 0 44 44" width="34" height="34" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 23.5 L19 31 L33 14"></path></svg>
+          </span>
+          <p data-lbl="1" data-donekick="1">{{ t.partner.kicker }}</p>
+          <h1 data-donetitle="1">{{ t.partner.done.t }}</h1>
+          <p data-donesub="1">{{ t.partner.done.d }} <strong>{{ assignedTo }}</strong> — {{ t.partner.done.d2 }}</p>
+          <div data-donecards="1">
+            <div data-donecard="1">
+              <p data-lbl="1">{{ t.partner.done.route }}</p>
+              <p data-donefig="1">{{ assignedTo }}</p>
             </div>
-            <div>
-              <p data-lbl="1" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; opacity: 0.8;">{{ t.partner.done.score }}</p>
-              <p style="font-family: var(--font-heading); font-weight: 800; font-size: 24px; margin: 0; font-feature-settings: 'tnum' 1;">{{ leadScore }} / 90</p>
+            <div data-donecard="1">
+              <p data-lbl="1">{{ t.partner.done.score }}</p>
+              <p data-donefig="1"><span data-donescore="1">{{ leadScore }}</span><span data-doneof="1">/ 90</span></p>
             </div>
           </div>
-          <button type="button" class="btn btn-ghost" onClick="{{ resetSurvey }}" style="color: var(--color-bg); border-color: var(--color-bg);">{{ t.partner.done.again }}</button>
+          <div data-doneacts="1">
+            <button type="button" class="btn btn-primary" onClick="{{ navBrands }}">{{ t.nav.brands }}</button>
+            <button type="button" class="btn btn-ghost" onClick="{{ resetSurvey }}">{{ t.partner.done.again }}</button>
+          </div>
         </div>
       </section>
     </sc-if>
@@ -1075,9 +1717,9 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ec3013&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ec3013&quot;,&quot;#a83a2b&quot;,&quot;#2f5d50&quot;,&quot;#201e1d&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;showProofFootnotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;startLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;zh&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#0071e3&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#0071e3&quot;,&quot;#1d1d1f&quot;,&quot;#6e6e73&quot;,&quot;#2997ff&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;showProofFootnotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;startLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;zh&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
 class Component extends DCLogic {
-  state = { page: 'home', brand: 0, lang: 'en', step: -1, ans: {}, region: 'cn', cat: 0, ready: false, menu: false };
+  state = { page: 'home', brand: 0, lang: 'en', step: -1, ans: {}, region: 'cn', cat: 0, ready: false, menu: false, scrolled: false };
 
   componentDidMount() {
     // continuous, not a threshold snap: scale tracks scroll over 0–320px and is
@@ -1091,6 +1733,10 @@ class Component extends DCLogic {
         const r = document.documentElement.style;
         r.setProperty('--nav-scale', (1 - 0.14 * eased).toFixed(4));
         r.setProperty('--nav-top', (22 - 10 * eased).toFixed(2) + 'px');
+        // at the very top the bar is merged with the page edge; past 24px it
+        // releases into the floating capsule
+        const sc = window.scrollY > 24;
+        if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
       });
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
@@ -1280,7 +1926,56 @@ class Component extends DCLogic {
     const order = { cn: ['wechat', 'email', 'whatsapp'], pk: ['whatsapp', 'email', 'wechat'], other: ['email', 'whatsapp', 'wechat'] }[s.region];
     const channels = order.map(k => Object.assign({ k }, t.contact.channels[k]));
 
+    const zh = s.lang === 'zh';
+    const services = zh ? [
+      { n: '品牌孵化', d: '定位、命名、包装与产品线规划 —— 从空白到可上架的完整品牌。' },
+      { n: '合规认证', d: 'PSQCA、BIS、BPS 与目标市场准入文件，由我方申报并承担。' },
+      { n: '生产与质检', d: '珠三角自有与合作产线，出货前逐批抽检，缺陷率留档。' },
+      { n: '跨境物流', d: '拼柜与整柜、清关代理、目的港交付，账期与单证透明。' },
+      { n: '渠道分销', d: '本地经销网络、KA 谈判与线上店铺运营，按市场分层铺货。' },
+      { n: '售后与质保', d: '母公司承担质保，本地换新与备件供应，经销商无需垫资。' }
+    ] : [
+      { n: 'Brand incubation', d: 'Positioning, naming, packaging and range planning — a shelf-ready brand from a blank page.' },
+      { n: 'Certification', d: 'PSQCA, BIS, BPS and market-entry files, filed and carried by us rather than by you.' },
+      { n: 'Manufacturing & QC', d: 'Owned and partner lines in the Pearl River Delta, batch-sampled before every shipment.' },
+      { n: 'Cross-border logistics', d: 'LCL and FCL, customs brokerage, delivery to destination port on transparent terms.' },
+      { n: 'Channel distribution', d: 'Local dealer networks, key-account negotiation and marketplace operations, tiered by market.' },
+      { n: 'Warranty & service', d: 'The parent carries the warranty — local replacement and spares, no float from the dealer.' }
+    ];
+    const explore = zh ? [
+      { k: '业务', n: '我们做什么', d: '四条支柱业务与它们如何协作。', go: this.go('what') },
+      { k: '品牌', n: '品牌矩阵', d: '在售品牌、品类与所在市场。', go: this.go('brands') },
+      { k: '市场', n: '市场版图', d: '三个目标市场的准入与节奏。', go: this.go('markets') },
+      { k: '团队', n: '创始团队', d: '三位合伙人与各自负责的环节。', go: this.go('founders') }
+    ] : [
+      { k: 'Business', n: 'What we do', d: 'The four pillars and how they work together.', go: this.go('what') },
+      { k: 'Portfolio', n: 'The brands', d: 'Live brands, their categories and markets.', go: this.go('brands') },
+      { k: 'Markets', n: 'Where we operate', d: 'Entry and cadence across three markets.', go: this.go('markets') },
+      { k: 'People', n: 'The founders', d: 'Three partners and what each one carries.', go: this.go('founders') }
+    ];
+    const hd = zh ? {
+      premise: '一家看不见的母公司。',
+      proof: '规模说明一切。',
+      pillars: '四条支柱，一套体系。',
+      brands: '我们自己的品牌。',
+      founders: '三个人，三个市场。',
+      route: '我们正在学到的东西。'
+    } : {
+      premise: 'A parent company you never see.',
+      proof: 'The scale, stated plainly.',
+      pillars: 'Four pillars. One system.',
+      brands: 'Brands we own outright.',
+      founders: 'Three people. Three markets.',
+      route: 'What we are learning.'
+    };
+    const svcKicker = zh ? '服务' : 'Services';
+    const svcTitle = zh ? '一个母公司，六项能力。' : 'One parent company. Six capabilities.';
+    const svcNote = zh ? '合作方只需要选品和铺货，其余环节由 TGO 承担。' : 'Partners choose the range and sell it. TGO carries everything behind it.';
+    const expKicker = zh ? '继续了解' : 'Explore';
+    const expTitle = zh ? '深入了解业务。' : 'Go deeper into the business.';
+
     return {
+      hd, services, explore, svcKicker, svcTitle, svcNote, expKicker, expTitle,
       t, cjk: s.lang === 'zh' ? '1' : '0',
       showFootnote: this.props.showProofFootnotes !== false,
       langLabel: s.lang === 'en' ? '中文' : 'EN',
