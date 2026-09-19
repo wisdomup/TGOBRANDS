@@ -52,6 +52,7 @@
     --paper: #ffffff;
     --paper-ink: #14161a;
   }
+  html, body { margin: 0; overflow-x: hidden; }
   body { margin: 0; text-wrap: pretty; background: #f5f5f7;
     background-image:
       radial-gradient(62vw 52vw at 14% 6%, rgba(0, 113, 227, 0.10), transparent 62%),
@@ -213,6 +214,8 @@
 
   /* ── Phone ──────────────────────────────────────────────────────── */
   @media (max-width: 860px) {
+    html, body { overflow-x: hidden; }
+    .tgo-nav { width: calc(100vw - 20px) !important; max-width: calc(100vw - 20px) !important; }
     main div[style*="grid-template-columns"] { grid-template-columns: minmax(0, 1fr) !important; }
     main section[aria-label="The Route"] div[style*="grid-template-columns"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 28px 16px !important; }
     main p { font-size: 16px !important; }
