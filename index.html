@@ -4,14 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#1d1d1f"/><text x="50%" y="54%" text-anchor="middle" font-family="sans-serif" font-size="40" fill="#f5f5f7">TGO</text></svg></template>
-<script src="content.js"></script>
-<script src="./support.js"></script>
+<script src="content.js" defer></script>
+<script src="./support.js" defer></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="_ds/modernist-4611cb4b-5142-4cb8-a432-3375c72adc1d/styles.css">
-<script src="_ds/modernist-4611cb4b-5142-4cb8-a432-3375c72adc1d/_ds_bundle.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Serif+SC:wght@900&amp;family=Outfit:wght@300&amp;display=swap">
 <style>
@@ -1833,7 +1832,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#0071e3&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#0071e3&quot;,&quot;#1d1d1f&quot;,&quot;#6e6e73&quot;,&quot;#2997ff&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;showProofFootnotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;startLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;zh&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
 class Component extends DCLogic {
-  state = { page: 'home', brand: 0, lang: 'en', step: -1, ans: {}, region: 'cn', cat: 0, ready: false, menu: false, scrolled: false, navDark: true };
+  state = { page: 'home', brand: 0, lang: 'en', step: -1, ans: {}, region: 'cn', cat: 0, menu: false, scrolled: false, navDark: true };
 
   componentDidMount() {
     // continuous, not a threshold snap: scale tracks scroll over 0–320px and is
@@ -1889,12 +1888,17 @@ class Component extends DCLogic {
     this.mo = new MutationObserver(() => this.scan());
     this.mo.observe(document.body, { childList: true, subtree: true });
     this.scan();
-    if (this.props.startLang === 'zh') this.setState({ lang: 'zh' });
+    try {
+      const savedLang = localStorage.getItem('tgo:lang');
+      const savedRegion = localStorage.getItem('tgo:region');
+      this.setState({
+        lang: this.props.startLang === 'zh' || savedLang === 'zh' ? 'zh' : 'en',
+        region: savedRegion === 'pk' || savedRegion === 'other' ? savedRegion : 'cn'
+      });
+    } catch {
+      if (this.props.startLang === 'zh') this.setState({ lang: 'zh' });
+    }
     if (this.props.accent) document.documentElement.style.setProperty('--color-accent', this.props.accent);
-    if (window.TGO_CONTENT) { this.setState({ ready: true }); return; }
-    this.iv = setInterval(() => {
-      if (window.TGO_CONTENT) { clearInterval(this.iv); this.setState({ ready: true }); }
-    }, 50);
   }
   // marquee tracks and the hero are excluded: they animate on their own
   componentDidUpdate() {
@@ -1951,7 +1955,6 @@ class Component extends DCLogic {
     if (this.io) this.io.disconnect();
     if (this.mo) this.mo.disconnect();
     if (this.figTimer) clearInterval(this.figTimer);
-    clearInterval(this.iv);
     if (this.raf) cancelAnimationFrame(this.raf);
     window.removeEventListener('scroll', this.onScroll);
     document.removeEventListener('keydown', this.onKey);
@@ -2051,7 +2054,10 @@ class Component extends DCLogic {
     const posts = s.cat === 0 ? t.insights.posts : t.insights.posts.filter(p => p.c === cats[s.cat]);
 
     const regionItems = t.contact.regions.map(([val, label]) => ({
-      label, onClick: () => this.setState({ region: val }),
+    label, onClick: () => {
+      try { localStorage.setItem('tgo:region', val); } catch {}
+      this.setState({ region: val });
+    },
       bg: s.region === val ? 'var(--color-accent)' : 'transparent',
       fg: s.region === val ? 'var(--color-bg)' : 'var(--color-text)',
       bd: s.region === val ? 'var(--color-accent)' : 'var(--color-divider)'
@@ -2115,7 +2121,11 @@ class Component extends DCLogic {
       t, cjk: s.lang === 'zh' ? '1' : '0',
       showFootnote: this.props.showProofFootnotes !== false,
       langLabel: s.lang === 'en' ? '中文' : 'EN',
-      toggleLang: () => this.setState({ lang: s.lang === 'en' ? 'zh' : 'en' }),
+      toggleLang: () => {
+        const lang = s.lang === 'en' ? 'zh' : 'en';
+        try { localStorage.setItem('tgo:lang', lang); } catch {}
+        this.setState({ lang });
+      },
       navItems, navHome: this.go('home'), navWhat: this.go('what'), navBrands: this.go('brands'),
       navFounders: this.go('founders'), navMarkets: this.go('markets'), navInsights: this.go('insights'),
       navPartner: this.go('partner'), navContact: this.go('contact'),
