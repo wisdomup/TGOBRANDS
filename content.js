@@ -6,7 +6,7 @@ window.TGO_CONTENT = {
     route: { origin: 'Guangzhou', stations: ['Karachi', 'Mumbai', 'Manila', 'UAE'] },
     home: {
       h1a: 'We take Chinese brands', h1b: 'to the world.',
-      sub: 'Starting where we live — Pakistan, India, the Philippines, and now the UAE. Three founders, three markets, one route from Guangzhou.',
+      sub: 'Starting where we live — Pakistan, India, the Philippines, and now the UAE. Three founders, four markets, one route from Guangzhou.',
       cta: 'Tell us about your business', cta2: 'How we work',
       premiseKicker: 'The premise',
       premise: [
@@ -17,7 +17,7 @@ window.TGO_CONTENT = {
       proofKicker: 'Where the credibility comes from',
       proof: [
         { n: '45+', l: 'Combined years operating in China' },
-        { n: '3', l: 'Live markets on the ground' },
+        { n: '4', l: 'Live markets on the ground' },
         { n: '6', l: 'Ventures built by the founders' },
         { n: '40+', l: 'Manufacturing partners' }
       ],
@@ -38,7 +38,8 @@ window.TGO_CONTENT = {
         { n: '01', t: 'Distribution', w: 'For manufacturers and brand owners with a product that already sells somewhere.', d: 'We put Chinese products into shops in Pakistan, India, the Philippines, and now the UAEs — the real channel, not a warehouse. Modern trade where it exists, and the ten-thousand-shop informal trade where it does not, which in our three markets is most of it.' },
         { n: '02', t: 'Brand building', w: 'For factories that make well and market badly.', d: 'We build and own brands under TGO: naming, packaging, price architecture, warranty terms, retail training. You keep making the product. The brand belongs to the market it sells in.' },
         { n: '03', t: 'Market entry', w: 'For anyone who has been told "just find a distributor".', d: 'Certification (BIS in India, PSQCA in Pakistan, BPS in the Philippines, plus UAE market entry), duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth.' },
-        { n: '04', t: 'Sourcing', w: 'For retailers and brands who need a factory, not a market.', d: 'We qualify and manage Chinese manufacturers on your behalf: factory audits, price negotiation, QC on the line, and consolidated shipping. You get a vetted supply chain without the years it takes to build one yourself.' }
+        { n: '04', t: 'Sourcing', w: 'For retailers and brands who need a factory, not a market.', d: 'We qualify and manage Chinese manufacturers on your behalf: factory audits, price negotiation, QC on the line, and consolidated shipping. You get a vetted supply chain without the years it takes to build one yourself.' },
+        { n: '05', t: 'Market survey trips', w: 'For teams who need to see a market before they commit to it.', d: 'We take your team on the ground in Pakistan, India, the Philippines or the UAE to survey the real conditions — retail, competition, pricing — then help set up the local company needed to expand there.' }
       ],
       startKicker: 'How a partnership actually starts',
       startNote: 'Almost nobody publishes this. Manufacturers ask us for it in the first meeting, so here it is.',
@@ -103,7 +104,7 @@ window.TGO_CONTENT = {
       ]
     },
     markets: {
-      title: 'Three markets we live in.', kicker: 'Markets',
+      title: 'Four markets we live in.', kicker: 'Markets',
       sub: 'Not a list of opportunities. What is actually true about selling here, including the parts that are hard.',
       items: [
         { c: 'Pakistan', who: 'Umair', size: '~240M people · median age ~20 · consumer electronics import market $2.4B',
@@ -169,7 +170,7 @@ window.TGO_CONTENT = {
       officesKicker: 'Where we are',
       offices: [['Hong Kong', 'Registered entity · TGO Brands Limited'], ['Karachi', 'Pakistan operations'], ['Manila', 'Philippines operations'], ['UAE', 'UAE operations'], ['Patna', 'India operations']]
     },
-    footer: { tag: 'TGO Brands Limited · Hong Kong · TGO优选', legal: ['Privacy', 'Terms', 'llms.txt'], note: 'TGO means “The Good One”.' }
+    footer: { tag: 'TGO Brands Limited · Hong Kong · TGO优选', legal: ['Privacy', 'Terms'], note: 'TGO means “The Good One”.' }
   },
 
   zh: {
@@ -178,7 +179,7 @@ window.TGO_CONTENT = {
     route: { origin: '广州', stations: ['卡拉奇', '孟买', '马尼拉', '阿联酋'] },
     home: {
       h1a: '把中国品牌', h1b: '带向世界。',
-      sub: '从我们生活的地方开始——巴基斯坦、印度、菲律宾，现已拓展至阿联酋。三位创始人，三个市场，一条从广州出发的路线。',
+      sub: '从我们生活的地方开始——巴基斯坦、印度、菲律宾，现已拓展至阿联酋。三位创始人，四个市场，一条从广州出发的路线。',
       cta: '介绍一下您的业务', cta2: '我们如何合作',
       premiseKicker: '出发点',
       premise: [
@@ -189,7 +190,7 @@ window.TGO_CONTENT = {
       proofKicker: '可信度从何而来',
       proof: [
         { n: '45+', l: '在中国经营的累计年数' },
-        { n: '3', l: '有落地团队的市场' },
+        { n: '4', l: '有落地团队的市场' },
         { n: '6', l: '创始人创办过的企业' },
         { n: '40+', l: '制造合作伙伴' }
       ],
@@ -205,12 +206,13 @@ window.TGO_CONTENT = {
     },
     what: {
       title: '这座桥。', kicker: '我们做什么',
-      sub: '四件事，说清楚。如果其中一件正是您需要的，第五部分会告诉您合作具体怎么开始。',
+      sub: '五件事，说清楚。如果其中一件正是您需要的，接下来的部分会告诉您合作具体怎么开始。',
       pillars: [
         { n: '01', t: '分销', w: '面向产品已在某地稳定销售的制造商与品牌方。', d: '我们把中国产品送进巴基斯坦、印度、菲律宾——以及现已拓展的阿联酋——的店里——真实的渠道，不是仓库。有现代零售的地方走现代零售；没有的地方走成千上万家小店的传统渠道，而在我们这三个市场，后者才是主体。' },
         { n: '02', t: '品牌建设', w: '面向做得好、卖得吃力的工厂。', d: '我们在 TGO 之下拥有并建设品牌：命名、包装、价格体系、保修条款、终端培训。您继续做产品，品牌属于它所销售的那个市场。' },
         { n: '03', t: '市场进入', w: '面向所有被告知「找个分销商就行」的人。', d: '认证（印度 BIS、巴基斯坦 PSQCA、菲律宾 BPS，以及阿联酋市场准入）、关税与到岸成本测算、渠道策略、保修与售后体系。正是这些工作决定第一批货能否变成第十批。' },
-        { n: '04', t: '采购', w: '面向需要工厂而非市场的零售商与品牌方。', d: '我们代您甄选并管理中国制造商：工厂审核、价格谈判、产线品控与集中发运。您获得一条经过验证的供应链，而无需花数年自己搭建。' }
+        { n: '04', t: '采购', w: '面向需要工厂而非市场的零售商与品牌方。', d: '我们代您甄选并管理中国制造商：工厂审核、价格谈判、产线品控与集中发运。您获得一条经过验证的供应链，而无需花数年自己搭建。' },
+        { n: '05', t: '市场考察团', w: '面向需要在投入之前先看清市场的团队。', d: '我们带您的团队实地走访巴基斯坦、印度、菲律宾或阿联酋，考察零售、竞争与价格的真实情况，并协助设立当地公司以支撑长期扩张。' }
       ],
       startKicker: '合作实际上如何开始',
       startNote: '几乎没有人把这个写出来。制造商第一次见面就会问，所以我们直接写在这里。',
@@ -275,7 +277,7 @@ window.TGO_CONTENT = {
       ]
     },
     markets: {
-      title: '我们生活的三个市场。', kicker: '市场',
+      title: '我们生活的四个市场。', kicker: '市场',
       sub: '不是机会清单。是在这里做生意的真实情况，包括困难的部分。',
       items: [
         { c: '巴基斯坦', who: 'Umair', size: '约 2.4 亿人 · 年龄中位数约 20 岁 · 消费电子进口市场24 亿美元',
@@ -341,6 +343,6 @@ window.TGO_CONTENT = {
       officesKicker: '我们在哪里',
       offices: [['香港', '注册主体 · TGO Brands Limited'], ['卡拉奇', '巴基斯坦运营'], ['马尼拉', '菲律宾运营'], ['阿联酋', 'UAE 运营'], ['巴特那', '印度运营']]
     },
-    footer: { tag: 'TGO Brands Limited · 香港 · TGO优选', legal: ['隐私政策', '条款', 'llms.txt'], note: 'TGO 即「The Good One」。' }
+    footer: { tag: 'TGO Brands Limited · 香港 · TGO优选', legal: ['隐私政策', '条款'], note: 'TGO 即「The Good One」。' }
   }
 };

@@ -588,9 +588,6 @@
                 "{{ " + p.trim() + " }}"
               );
             }
-            if (typeof window !== "undefined" && !window.TGO_CONTENT) {
-              return null;
-            }
             warnUnresolved(
               ctx,
               "{{ " + p.trim() + " }} never resolved \u2014 rendered as empty"

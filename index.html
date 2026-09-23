@@ -1,18 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#1d1d1f"/><text x="50%" y="54%" text-anchor="middle" font-family="sans-serif" font-size="40" fill="#f5f5f7">TGO</text></svg></template>
-<script src="content.js" defer></script>
-<script src="./support.js" defer></script>
+<link rel="preconnect" href="https://unpkg.com" crossorigin="">
+<link rel="preload" as="script" href="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z">
+<link rel="preload" as="script" href="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1">
+<style>html{background:#0b0b0c}body{margin:0;min-height:100vh;background:linear-gradient(180deg,rgba(0,0,0,.62),rgba(0,0,0,.42) 38%,rgba(0,0,0,.52) 72%,rgba(0,0,0,.72)),url(assets/photo.jpg) center/cover no-repeat fixed,#0b0b0c}x-dc{display:none!important}#dc-root{background:#f5f5f7}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TGO Brands — Take Chinese Brands Global | Pakistan, Philippines, India, UAE</title>
+<meta name="description" content="TGO Brands helps Chinese manufacturers and brands enter new markets — Pakistan, the Philippines, India and the UAE. Market entry, distribution, local company setup and on-the-ground market survey trips.">
+<meta name="keywords" content="TGO Brands, Chinese brands overseas, market entry, Pakistan distribution, Philippines distribution, India market entry, UAE market entry, China export partner, 中国品牌出海, 海外市场拓展">
+<meta name="robots" content="index, follow">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="theme-color" content="#1d1d1f">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TGO Brands">
+<meta property="og:title" content="TGO Brands — We take you global">
+<meta property="og:description" content="Market entry and distribution for Chinese brands in Pakistan, the Philippines, India and the UAE.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TGO Brands — We take you global">
+<meta name="twitter:description" content="Market entry and distribution for Chinese brands in Pakistan, the Philippines, India and the UAE.">
+<link rel="preload" as="image" href="assets/photo.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"TGO Brands","description":"Market entry, distribution and local company setup for Chinese brands in Pakistan, the Philippines, India and the UAE.","areaServed":["PK","PH","IN","AE","CN"]}</script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#f5f5f7"/><text x="50%" y="54%" text-anchor="middle" font-family="-apple-system,Helvetica,sans-serif" font-weight="800" font-size="40" fill="#ececf0">TGO</text></svg></template>
+<script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="_ds/modernist-4611cb4b-5142-4cb8-a432-3375c72adc1d/styles.css">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Serif+SC:wght@900&amp;family=Outfit:wght@300&amp;display=swap">
+<script src="_ds/modernist-4611cb4b-5142-4cb8-a432-3375c72adc1d/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300&amp;display=swap">
+<script src="content.js"></script>
 <style>
   /* Liquid-glass reading of the Modernist tokens: a near-white field, ink at
      full strength, and every surface a lens rather than a panel. */
@@ -96,10 +118,10 @@
      and heavier headings. Fonts are CDN-loaded here for design review; the
      build self-hosts subsetted WOFF2 (Google Fonts is blocked in the mainland). */
   [data-cjk='1'], [data-cjk='1'] button, [data-cjk='1'] input, [data-cjk='1'] textarea, [data-cjk='1'] span, [data-cjk='1'] a, [data-cjk='1'] td, [data-cjk='1'] th {
-    font-family: 'Noto Sans SC', var(--font-body) !important;
+    font-family: var(--font-body), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif !important;
   }
   [data-cjk='1'] h1, [data-cjk='1'] h2, [data-cjk='1'] h3, [data-cjk='1'] .disp {
-    font-family: 'Noto Serif SC', serif !important; font-weight: 900 !important;
+    font-family: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif CJK SC", "SimSun", serif !important; font-weight: 900 !important;
     letter-spacing: 0 !important; margin-left: 0 !important;
   }
   [data-cjk='1'] p, [data-cjk='1'] li {
@@ -243,12 +265,14 @@
     .tgo-spacer { height: 76px; }
 
     /* the bar keeps one row; the links move into a full-width drawer */
-    .tgo-nav { top: 10px; width: calc(100% - 20px); max-width: none;
+    .tgo-nav { top: 10px; width: calc(100% - 0px); max-width: none;
       padding: 10px 14px !important; gap: 10px !important; }
-    .tgo-nav > a:first-child { margin-right: auto !important; }
-    .tgo-lang { min-width: 46px; text-align: center; flex-shrink: 0; }
+    .tgo-nav[data-scrolled="1"] > a:first-child span.tgo-brand-word { display: none !important; }
+    .tgo-nav > a:first-child { margin-right: auto !important; min-width: 0 !important; flex-shrink: 1 !important; }
+    .tgo-brand-word { display: none !important; }
+    .tgo-lang { min-width: 40px; text-align: center; flex-shrink: 0; }
     .tgo-burger { flex-shrink: 0; }
-    .tgo-burger { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 44px; height: 44px;
+    .tgo-burger { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 40px; height: 40px;
       background: transparent; border: none; cursor: pointer;
       color: var(--color-text); font-size: 18px; line-height: 1; }
     .tgo-nav > .btn-primary { display: none; }
@@ -273,12 +297,8 @@
     /* the hero and gallery figures are sized by their container — only
        inline content figures take the squarer phone crop */
     main section:not([data-hero]) figure:not([style*="absolute"]) img { aspect-ratio: 4 / 3 !important; }
-    .tgo-nav { top: 8px; width: calc(100% - 16px); }
+    .tgo-nav { top: 8px; width: calc(100% - 0px); }
     .tgo-links { top: 70px; left: 8px; right: 8px; }
-    main [data-stationgrid="1"] { grid-template-columns: repeat(2, 1fr) !important; row-gap: 40px !important; }
-  }
-  @media (max-width: 860px) and (min-width: 521px) {
-    main [data-stationgrid="1"] { grid-template-columns: repeat(2, 1fr) !important; row-gap: 32px !important; }
   }
   /* ── Scroll reveal ──────────────────────────────────────────────
      Blocks rise into place as they enter the viewport. The attribute is set
@@ -686,7 +706,7 @@
     width: auto !important; max-width: none !important; clip-path: none !important; }
   /* the capsule is width:max-content — never let the wordmark be the thing
      that gives way when the row runs out of room */
-  .tgo-nav > a:first-child { min-width: max-content !important; overflow: visible !important; }
+  @media (min-width: 861px) { .tgo-nav > a:first-child { min-width: max-content !important; overflow: visible !important; } }
   .tgo-nav .tgo-links { min-width: 0; }
   /* the merged bar spans the page, so the row is given room to fit */
   .tgo-nav[data-scrolled="0"] { gap: clamp(10px, 1.4vw, 20px) !important; }
@@ -957,6 +977,15 @@
     font-size: clamp(18px, 1.7vw, 22px) !important; line-height: 1.2;
     letter-spacing: -0.015em; }
   main [data-stationgrid="1"] [data-station] { text-align: center !important; margin-left: 0 !important; }
+  /* station row: one line at every width, swipeable when it overflows */
+  main [data-stationgrid="1"] { grid-template-columns: none !important;
+    grid-auto-flow: column !important; grid-auto-columns: minmax(104px, 1fr) !important;
+    overflow-x: auto !important; overflow-y: hidden !important;
+    padding-top: 48px !important; margin-top: -48px !important; padding-bottom: 4px !important;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; }
+  main [data-stationgrid="1"]::-webkit-scrollbar { display: none; }
+  main [data-stationgrid="1"] > * { scroll-snap-align: center; }
 
   /* brand teasers as full cards */
   main a[data-bcard] { background: #fff; border-radius: 18px; overflow: hidden;
@@ -1077,7 +1106,7 @@
 
   <nav class="nav tgo-nav" data-scrolled="{{ scrolledFlag }}" data-hero-page="{{ cjkHomeFlag }}" data-nav-dark="{{ navDarkFlag }}" style="display: flex; align-items: center; gap: clamp(10px, 1.6vw, 22px);">
     <a href="#" onClick="{{ navHome }}" style="display: flex; align-items: center; gap: 8px; margin-right: auto; color: var(--color-text); font-family: var(--font-heading); font-weight: 800; font-size: 17px; letter-spacing: -0.01em;">
-      TGO<span style="font-weight: 600; font-size: 18px; letter-spacing: -0.02em; color: var(--ink-3);">Brands</span>
+      TGO<span class="tgo-brand-word" style="font-weight: 600; font-size: 18px; letter-spacing: -0.02em; color: var(--ink-3);">Brands</span>
     </a>
     <div class="tgo-links" data-open="{{ menuFlag }}">
       <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
@@ -1096,7 +1125,7 @@
     <section data-hero="1" style="position: relative; min-height: 100svh; display: grid; place-items: center; overflow: hidden;">
       <figure style="position: absolute; inset: 0; margin: 0;">
         <img src="assets/photo.jpg" alt="" data-hero-img="1" style="width: 100%; height: 100%; object-fit: cover;">
-        <video ref="{{ heroVideoRef }}" src="assets/hero.mp4" poster="assets/photo.jpg" autoplay muted loop playsinline disablepictureinpicture data-hero-video="1" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none;"></video>
+        <video ref="{{ heroVideoRef }}" poster="assets/photo.jpg" preload="none" autoplay muted loop playsinline disablepictureinpicture data-hero-video="1" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none;"></video>
       </figure>
       <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.42) 38%, rgba(0, 0, 0, 0.52) 72%, rgba(0, 0, 0, 0.72) 100%);"></div>
       <div data-heroin="1" style="position: relative; max-width: 900px; padding: clamp(120px, 14vw, 180px) var(--gutter) clamp(80px, 10vw, 120px); text-align: center;">
@@ -1832,7 +1861,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#0071e3&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#0071e3&quot;,&quot;#1d1d1f&quot;,&quot;#6e6e73&quot;,&quot;#2997ff&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;showProofFootnotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;startLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;zh&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
 class Component extends DCLogic {
-  state = { page: 'home', brand: 0, lang: 'en', step: -1, ans: {}, region: 'cn', cat: 0, menu: false, scrolled: false, navDark: true };
+  state = { page: 'home', brand: 0, lang: 'en', step: -1, ans: {}, region: 'cn', cat: 0, ready: false, menu: false, scrolled: false, navDark: true };
 
   componentDidMount() {
     // continuous, not a threshold snap: scale tracks scroll over 0–320px and is
@@ -1863,8 +1892,16 @@ class Component extends DCLogic {
       el.muted = true;
       el.defaultMuted = true;
       el.volume = 0;
-      const p = el.play();
-      if (p && p.catch) p.catch(() => {});
+      if (el.dataset.src) return;
+      // streamed after first paint so the page is interactive before the video arrives
+      const start = () => {
+        el.dataset.src = '1';
+        el.src = ['assets', 'hero' + '.mp4'].join('/');
+        const p = el.play();
+        if (p && p.catch) p.catch(() => {});
+      };
+      if (document.readyState === 'complete') setTimeout(start, 300);
+      else window.addEventListener('load', () => setTimeout(start, 300), { once: true });
     };
 
     this.onKey = (e) => { if (e.key === 'Escape' && this.state.how) this.setState({ how: false }); };
@@ -1888,17 +1925,12 @@ class Component extends DCLogic {
     this.mo = new MutationObserver(() => this.scan());
     this.mo.observe(document.body, { childList: true, subtree: true });
     this.scan();
-    try {
-      const savedLang = localStorage.getItem('tgo:lang');
-      const savedRegion = localStorage.getItem('tgo:region');
-      this.setState({
-        lang: this.props.startLang === 'zh' || savedLang === 'zh' ? 'zh' : 'en',
-        region: savedRegion === 'pk' || savedRegion === 'other' ? savedRegion : 'cn'
-      });
-    } catch {
-      if (this.props.startLang === 'zh') this.setState({ lang: 'zh' });
-    }
+    if (this.props.startLang === 'zh') this.setState({ lang: 'zh' });
     if (this.props.accent) document.documentElement.style.setProperty('--color-accent', this.props.accent);
+    if (window.TGO_CONTENT) { this.setState({ ready: true }); return; }
+    this.iv = setInterval(() => {
+      if (window.TGO_CONTENT) { clearInterval(this.iv); this.setState({ ready: true }); }
+    }, 50);
   }
   // marquee tracks and the hero are excluded: they animate on their own
   componentDidUpdate() {
@@ -1955,6 +1987,7 @@ class Component extends DCLogic {
     if (this.io) this.io.disconnect();
     if (this.mo) this.mo.disconnect();
     if (this.figTimer) clearInterval(this.figTimer);
+    clearInterval(this.iv);
     if (this.raf) cancelAnimationFrame(this.raf);
     window.removeEventListener('scroll', this.onScroll);
     document.removeEventListener('keydown', this.onKey);
@@ -2054,10 +2087,7 @@ class Component extends DCLogic {
     const posts = s.cat === 0 ? t.insights.posts : t.insights.posts.filter(p => p.c === cats[s.cat]);
 
     const regionItems = t.contact.regions.map(([val, label]) => ({
-    label, onClick: () => {
-      try { localStorage.setItem('tgo:region', val); } catch {}
-      this.setState({ region: val });
-    },
+      label, onClick: () => this.setState({ region: val }),
       bg: s.region === val ? 'var(--color-accent)' : 'transparent',
       fg: s.region === val ? 'var(--color-bg)' : 'var(--color-text)',
       bd: s.region === val ? 'var(--color-accent)' : 'var(--color-divider)'
@@ -2121,11 +2151,7 @@ class Component extends DCLogic {
       t, cjk: s.lang === 'zh' ? '1' : '0',
       showFootnote: this.props.showProofFootnotes !== false,
       langLabel: s.lang === 'en' ? '中文' : 'EN',
-      toggleLang: () => {
-        const lang = s.lang === 'en' ? 'zh' : 'en';
-        try { localStorage.setItem('tgo:lang', lang); } catch {}
-        this.setState({ lang });
-      },
+      toggleLang: () => this.setState({ lang: s.lang === 'en' ? 'zh' : 'en' }),
       navItems, navHome: this.go('home'), navWhat: this.go('what'), navBrands: this.go('brands'),
       navFounders: this.go('founders'), navMarkets: this.go('markets'), navInsights: this.go('insights'),
       navPartner: this.go('partner'), navContact: this.go('contact'),
