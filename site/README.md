@@ -39,7 +39,7 @@ folders with an `index.html`, so no rewrites are needed.
 | `/markets/`, `/markets/<country>/` | The four markets and a playbook per country: approvals with typical weeks, customs and tax, channels, cities, visiting |
 | `/tools/entry-estimator/` | Product × market → approvals, weeks to the first shelf, duty band, import tax, landed-cost range, matching services. Accepts `?market=` and `?category=` |
 | `/travel/` | The travel desk: five destinations, who travels with us, six ways to travel, ground services, how a trip comes together, upcoming expeditions and the travel enquiry form |
-| `/travel/<country>/` | Destination guides (`travel.guides`), written as the local desk briefing a client: entry rules by passport, flights, where business happens, getting around, guests from China, island extensions, sample itineraries, the host and the enquiry form. The Philippines is the first; the market playbook links to it |
+| `/travel/<country>/` | Destination guides (`travel.guides`), written as the local desk briefing a client. Each guide is a list of typed `sections` — `cards`, `ticks`, `plans`, `phases`, `packages`, `split`, `faq`, `trip` (an expedition's day-by-day) and `desk` (services + host) — so each country carries what matters there. **Philippines:** entry rules by passport, flights, business districts, guests from China, islands, sample itineraries. **China:** the Canton Fair by phase, four packages up to the 12-day Five-City Sourcing Tour, the five cities, what's included, visas by passport, fair advice and FAQ. Market playbooks and trip pages link to their guide |
 | `/expeditions/`, `/expeditions/<trip>/` | Dated group editions with a day-by-day itinerary |
 | `/portal/` | Partner Portal preview: one sample partner's stages, approvals, shipments, sell-through, documents and messages — labelled as sample data |
 | `/partner/` | The application (below) |
@@ -143,6 +143,10 @@ Rendered as non-clickable placeholders, or marked as drafts, until filled in:
   market lead to verify; they move with every budget
 - Home figures (`home.proof`) and the Portal's sample partner, which is illustrative
 - Native review of all 中文 copy, the v4 modules especially
+- China / Canton Fair: confirm the package prices (Fair Week from ¥8,800, Fair and Factories from ¥16,800,
+  Five-City Sourcing Tour from ¥29,800), the inclusions (flights from the listed hubs, travel insurance,
+  interpreter languages) and the spring 2027 dates once the fair announces them. The market study behind
+  the page is in [`research/canton-fair-tours-2026.md`](../research/canton-fair-tours-2026.md)
 - Travel: confirm the services promised (meet and assist, Cantonese and Hokkien interpreters, a planner
   on call day and night) and re-check the Philippines entry rules and flights before each season
 - WeChat QR and the public WhatsApp number — `contact.channels.*.href` in the content files

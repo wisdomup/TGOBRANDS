@@ -1221,6 +1221,9 @@ def page_trip(c, lang, i):
     apply = href(lang, 'partner') + '?service=market-survey-trips'
     book = (f'<a class="btn btn--outline" href="{href(lang, "playbook", x["playbook"])}">{e(L["playbook"])}</a>'
             if x['playbook'] else '')
+    guide = next((g for g in c['travel']['guides'] if g['code'] == x['market']), None)
+    if guide:
+        book += f'\n      <a class="btn btn--outline" href="{href(lang, "guide", guide["slug"])}">{e(c["travel"]["labels"]["guide"])}</a>'
     prev = ((href(lang, 'trip', items[i - 1]['slug']), items[i - 1]['title']) if i > 0
             else (href(lang, 'expeditions'), L['all']))
     nxt = ((href(lang, 'trip', items[i + 1]['slug']), items[i + 1]['title']) if i + 1 < len(items)
@@ -1399,31 +1402,94 @@ def page_travel(c, lang):
 </main>"""
 
 
+def guide_section(c, lang, g, sec):
+    """One section of a destination guide. Each guide is a list of typed sections, so a
+    country can carry what matters there: entry rules, islands, a fair calendar, packages."""
+    t = c['travel']
+    L = t['labels']
+    kind = sec['type']
+    if kind == 'cards':
+        cls = 'grid grid--2 svc-cards' if sec.get('cols', 3) == 2 else 'grid grid--3'
+        body = f'<div class="{cls}">' + ''.join(
+            (f'<div class="panel isle">{eyebrow(x["e"])}<h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' if x.get('e')
+             else f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>')
+            for x in sec['items']) + '</div>'
+    elif kind == 'ticks':
+        body = f'<div class="panel guide-tips">{ticks(sec["items"])}</div>'
+    elif kind == 'plans':
+        body = '<div class="grid grid--3 plans">' + ''.join(
+            f'<div class="panel plan">{eyebrow(x["len"])}<h3>{e(x["t"])}</h3><ol class="plan__days">'
+            + ''.join(f'<li><span>{e(L["day"].format(n=n + 1))}</span>{e(day)}</li>' for n, day in enumerate(x['days']))
+            + '</ol></div>' for x in sec['items']) + '</div>'
+    elif kind == 'phases':
+        body = '<div class="grid grid--3 phases">' + ''.join(
+            f'<div class="panel phase">{eyebrow(x["n"])}<h3>{e(x["t"])}</h3><p>{e(x["d"])}</p><dl class="phase__dates">'
+            + ''.join(f'<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in x['dates'])
+            + '</dl></div>' for x in sec['items']) + '</div>'
+    elif kind == 'packages':
+        body = '<div class="grid grid--2 pkgs">' + ''.join(
+            f'<article class="panel pkg{" pkg--featured" if x.get("featured") else ""}">{eyebrow(x["len"])}'
+            f'<h3>{e(x["t"])}</h3><p class="pkg__cities">{e(x["cities"])}</p>'
+            f'<p class="pkg__price">{e(x["price"])}<span>{e(x["priceNote"])}</span></p>'
+            f'<p class="pkg__best">{e(x["best"])}</p>{ticks(x["incl"])}'
+            f'<a class="btn {"btn--primary" if x.get("featured") else "btn--outline"}" href="#plan">{e(L["plan"])}</a></article>'
+            for x in sec['items']) + '</div>'
+    elif kind == 'split':
+        half = lambda b, k: (f'<div class="panel fit"><h3>{e(b["t"])}</h3><ul class="ticks ticks--{k}">'
+                             + ''.join(f'<li>{e(x)}</li>' for x in b['items']) + '</ul></div>')
+        body = f'<div class="grid grid--2">{half(sec["a"], "yes")}{half(sec["b"], "no")}</div>'
+    elif kind == 'faq':
+        body = '<div class="faq">' + ''.join(
+            f'<details class="faq__item"><summary>{e(x["q"])}</summary><p>{e(x["a"])}</p></details>' for x in sec['items']) + '</div>'
+    elif kind == 'trip':
+        eds = c['expeditions']['editions']
+        x = next(ed for ed in eds if ed['slug'] == sec['slug'])
+        day = c['expeditions']['labels']['day']
+        days = ''.join(
+            f'<li class="day"><p class="day__n">{e(day.format(n=n + 1))}</p><div><h3>{e(city)}</h3><p>{e(what)}</p></div></li>'
+            for n, (city, what) in enumerate(x['days']))
+        body = (f'<ol class="itinerary">{days}</ol>'
+                f'<div class="actions"><a class="btn btn--outline" href="{href(lang, "trip", x["slug"])}">{e(x["title"])}</a></div>')
+    elif kind == 'desk':
+        d = next(x for x in t['destinations'] if x['code'] == g['code'])
+        person = next((p for p in c['founders']['people'] if p['name'].split()[0] == d['host']), None)
+        host = f"""<div class="panel host">
+          {eyebrow(L["host"])}
+          <h3>{e(person['name'] if person else d['host'])}</h3>
+          <p>{e(g["hostNote"])}</p>
+          <a class="wa-link" href="https://wa.me/{WHATSAPP[d['host']]}" target="_blank" rel="noopener">WhatsApp {e(d["host"])}{WA_ICON}</a>
+        </div>"""
+        body = f'<div class="grid grid--2 desk"><div class="panel">{ticks(sec["items"])}</div>{host}</div>'
+    else:
+        raise ValueError(f'unknown guide section type: {kind}')
+    note = sec.get('note', '')
+    if sec.get('checked'):
+        note = f'{note} {L["checked"]}.'
+    note_html = f'\n    <p class="note">{e(note)}</p>' if note else ''
+    return f"""<header class="shead">{eyebrow(sec["kicker"])}<h2 class="sech">{e(sec["title"])}</h2></header>
+    {body}{note_html}"""
+
+
 def page_guide(c, lang, i):
     t = c['travel']
     L = t['labels']
     g = t['guides'][i]
     d = next(x for x in t['destinations'] if x['code'] == g['code'])
-    panels = lambda items: ''.join(f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' for x in items)
     facts = ''.join(f'<div class="fact">{eyebrow(k)}<p class="fact__v">{e(v)}</p></div>' for k, v in g['facts'])
-    islands = ''.join(f'<div class="panel isle">{eyebrow(x["time"])}<h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>'
-                      for x in g['islands'])
-    plans = ''.join(
-        f'<div class="panel plan">{eyebrow(x["len"])}<h3>{e(x["t"])}</h3><ol class="plan__days">'
-        + ''.join(f'<li><span>{e(L["day"].format(n=n + 1))}</span>{e(day)}</li>' for n, day in enumerate(x['days']))
-        + '</ol></div>' for x in g['plans'])
-    person = next((p for p in c['founders']['people'] if p['name'].split()[0] == d['host']), None)
-    host_name = person['name'] if person else d['host']
-    host = f"""<div class="panel host">
-          {eyebrow(L["host"])}
-          <h3>{e(host_name)}</h3>
-          <p>{e(g["hostNote"])}</p>
-          <a class="wa-link" href="https://wa.me/{WHATSAPP[d['host']]}" target="_blank" rel="noopener">WhatsApp {e(d["host"])}{WA_ICON}</a>
-        </div>"""
+    sections = ''
+    for n, sec in enumerate(g['sections']):
+        inner = guide_section(c, lang, g, sec)
+        # sections alternate between a white band and the grey ground, starting with a band
+        sections += (f'\n  <section class="band">\n    <div class="wrap sec">\n    {inner}\n    </div>\n  </section>\n' if n % 2 == 0
+                     else f'\n  <section class="wrap sec">\n    {inner}\n  </section>\n')
+    form = travel_form(c, lang, g['code'])
+    form = f'<div class="band">{form}</div>' if len(g['sections']) % 2 == 0 else form
     book = (f'<a class="btn btn--outline" href="{href(lang, "playbook", d["playbook"])}">{e(L["playbook"])}</a>'
             if d['playbook'] else '')
+    eds = c['expeditions']['editions']
+    trip = next(x for x in eds if x['slug'] == d['trip'])
     prev = (href(lang, 'travel') + '#destinations', L['all'])
-    nxt = (href(lang, 'trip', d['trip']), c['expeditions']['editions'][[x['slug'] for x in c['expeditions']['editions']].index(d['trip'])]['title'])
+    nxt = (href(lang, 'trip', trip['slug']), trip['title'])
     return f"""<main id="main" class="page page--guide">
   <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'travel')}#destinations">← {e(L["all"])}</a></section>
   <section class="wrap svc-hero">
@@ -1436,61 +1502,9 @@ def page_guide(c, lang, i):
       {book}
     </div>
   </section>
-
-  <section class="band">
-    <div class="wrap sec">
-      <header class="shead">{eyebrow(g["entryKicker"])}<h2 class="sech">{e(g["entryTitle"])}</h2></header>
-      <div class="grid grid--2 svc-cards">{panels(g["entry"])}</div>
-      <p class="note">{e(g["entryNote"])} {e(L["checked"])}.</p>
-    </div>
-  </section>
-
-  <section class="wrap sec">
-    <header class="shead">{eyebrow(g["flyKicker"])}<h2 class="sech">{e(g["flyTitle"])}</h2></header>
-    <div class="grid grid--2">{panels(g["fly"])}</div>
-  </section>
-
-  <section class="band">
-    <div class="wrap sec">
-      <header class="shead">{eyebrow(g["whereKicker"])}<h2 class="sech">{e(g["whereTitle"])}</h2></header>
-      <div class="grid grid--3">{panels(g["where"])}</div>
-    </div>
-  </section>
-
-  <section class="wrap sec">
-    <header class="shead">{eyebrow(g["moveKicker"])}<h2 class="sech">{e(g["moveTitle"])}</h2></header>
-    <div class="panel guide-tips">{ticks(g["move"])}</div>
-  </section>
-
-  <section class="band">
-    <div class="wrap sec">
-      <header class="shead">{eyebrow(g["chinaKicker"])}<h2 class="sech">{e(g["chinaTitle"])}</h2></header>
-      <div class="grid grid--3">{panels(g["china"])}</div>
-    </div>
-  </section>
-
-  <section class="wrap sec">
-    <header class="shead">{eyebrow(g["islandsKicker"])}<h2 class="sech">{e(g["islandsTitle"])}</h2></header>
-    <div class="grid grid--3">{islands}</div>
-  </section>
-
-  <section class="band">
-    <div class="wrap sec">
-      <header class="shead">{eyebrow(g["plansKicker"])}<h2 class="sech">{e(g["plansTitle"])}</h2></header>
-      <div class="grid grid--3 plans">{plans}</div>
-    </div>
-  </section>
-
-  <section class="wrap sec">
-    <header class="shead">{eyebrow(g["deskKicker"])}<h2 class="sech">{e(g["deskTitle"])}</h2></header>
-    <div class="grid grid--2 desk">
-      <div class="panel">{ticks(g["desk"])}</div>
-      {host}
-    </div>
-    <p class="note">{e(g["note"])}</p>
-  </section>
-
-  <div class="band">{travel_form(c, lang, g["code"])}</div>
+{sections}
+  {form}
+  <section class="wrap"><p class="note">{e(g["note"])}</p></section>
   {pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])}
 </main>"""
 

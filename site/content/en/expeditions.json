@@ -191,34 +191,62 @@
         "type": 3,
         "market": "CN",
         "playbook": "",
-        "title": "Canton Fair and factory trip: Guangzhou, Dongguan, Shenzhen",
-        "one": "The reverse trip — for buyers who want to source with someone who knows the factories.",
-        "when": "Spring 2027 · during the Canton Fair",
-        "length": "5 days",
-        "group": "6–10 people",
+        "title": "Five-City Sourcing Tour: Canton Fair, Foshan, Dongguan, Shenzhen, Yiwu",
+        "one": "The Canton Fair and the factories and markets behind it — twelve days, five cities, with flights, visa and living included.",
+        "when": "Spring 2027 · built around Phase 1, 2 or 3",
+        "length": "12 days",
+        "group": "10–20 people",
         "lead": "Umair",
-        "price": "Price on application",
-        "for": "Distributors, retailers and creators from Pakistan, India, the Philippines and the UAE sourcing from China.",
+        "price": "From ¥29,800 per person",
+        "for": "Importers, wholesalers, retailers and brand owners from Pakistan, India, the Philippines, the Gulf and beyond, building a supply base in China.",
         "days": [
           [
             "Guangzhou",
-            "Arrival and sourcing briefing; dinner with the team."
+            "Arrive; meet and assist; hotel near Pazhou; SIM, apps and badge collection; briefing dinner."
           ],
           [
             "Guangzhou",
-            "Canton Fair: halls chosen for your categories, with an interpreter."
+            "Canton Fair: the halls for your categories, with your interpreter."
           ],
           [
             "Guangzhou",
-            "Canton Fair and supplier meetings; samples and price checks."
+            "Canton Fair: booked meetings with shortlisted suppliers."
+          ],
+          [
+            "Guangzhou",
+            "Canton Fair in the morning; the wholesale districts in the afternoon."
+          ],
+          [
+            "Foshan",
+            "Furniture and ceramics markets and a factory visit; back to Guangzhou."
           ],
           [
             "Dongguan",
-            "Factory visits and quality-control walk-throughs."
+            "Two factory visits with our team: production lines, quality checks and prices."
           ],
           [
             "Shenzhen",
-            "Huaqiangbei electronics market, debrief and next steps; departures."
+            "Huaqiangbei electronics markets; component and accessory suppliers."
+          ],
+          [
+            "Shenzhen",
+            "A second factory or supplier visit; evening free."
+          ],
+          [
+            "Yiwu",
+            "Fly to Yiwu; International Trade City, first districts."
+          ],
+          [
+            "Yiwu",
+            "Yiwu market, second day; sample buying and shipping agents."
+          ],
+          [
+            "Yiwu",
+            "Samples, quotes and next steps with our team; farewell dinner."
+          ],
+          [
+            "Departure",
+            "Fly home through Guangzhou or Shanghai."
           ]
         ]
       }

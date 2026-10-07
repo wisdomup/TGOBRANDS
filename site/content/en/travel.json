@@ -158,10 +158,10 @@
       {
         "code": "CN",
         "name": "China",
-        "cities": "Guangzhou · Dongguan · Shenzhen",
-        "best": "April and October, for the Canton Fair",
+        "cities": "Guangzhou · Foshan · Dongguan · Shenzhen · Yiwu",
+        "best": "April–May and October–November, for the Canton Fair",
         "host": "Umair",
-        "guide": "",
+        "guide": "china",
         "playbook": "",
         "trip": "canton-fair-trip"
       }
@@ -312,207 +312,592 @@
             "English"
           ]
         ],
-        "entryKicker": "Before you fly",
-        "entryTitle": "Visas and arrival, by passport.",
-        "entry": [
-          {
-            "t": "Chinese passports",
-            "d": "Since 16 January 2026, 14 days without a visa for tourism or business — but only when you land at Manila (NAIA) or Cebu (Mactan). The stay cannot be extended or changed to another visa. Bring a passport valid six months beyond your stay, your confirmed hotel booking and a return or onward ticket. Staying longer, or flying into Clark, Davao or another airport? Apply for a temporary visitor visa before you travel; we prepare the invitation letter and itinerary."
-          },
-          {
-            "t": "Indian passports",
-            "d": "14 days visa-free for tourism, or 30 days if you hold a valid US, Japanese, Australian, Canadian, Schengen, Singapore or UK visa or residence permit. Coming for business meetings? Tell us — the right visa depends on what you will be doing."
-          },
-          {
-            "t": "Pakistani passports",
-            "d": "A visa is needed before you travel, from a Philippine embassy or consulate. We send the invitation letter, hotel confirmation and itinerary the application asks for."
-          },
-          {
-            "t": "Other passports",
-            "d": "Many nationalities get 30 days visa-free on arrival; some need a visa first. Send us your passport country and we confirm what applies before you book."
-          },
-          {
-            "t": "Everyone: eTravel",
-            "d": "Register free at etravel.gov.ph within 72 hours before you land. You get a QR code that airline check-in and immigration will ask for. Any site that charges for it is not the government's."
-          }
-        ],
-        "entryNote": "Immigration officers do ask about your trip. Keep your hotel booking, return ticket and our itinerary letter on your phone or on paper. Entry rules change often — we confirm yours when you book.",
-        "flyKicker": "Getting there",
-        "flyTitle": "Direct from five Chinese cities.",
-        "fly": [
-          {
-            "t": "To Manila",
-            "d": "Direct flights from Beijing, Shanghai, Guangzhou, Shenzhen and Xiamen — about 2½ hours from South China, 4 to 4½ from Beijing."
-          },
-          {
-            "t": "To Cebu",
-            "d": "Direct from Shanghai, Guangzhou, Shenzhen and Quanzhou. Cebu is the better gateway for Bohol and the central islands."
-          },
-          {
-            "t": "From elsewhere",
-            "d": "Connections through Hong Kong, Singapore and Bangkok, and direct flights to Manila from Dubai and Abu Dhabi."
-          },
-          {
-            "t": "About Clark",
-            "d": "Clark International, two hours north of Manila, is quicker to get through — but the visa-free entry for Chinese passports does not apply there."
-          }
-        ],
-        "whereKicker": "Where business happens",
-        "whereTitle": "Manila is six cities in one.",
-        "where": [
-          {
-            "t": "Makati",
-            "d": "The established business district: banks, law firms, embassies and the long-standing hotels."
-          },
-          {
-            "t": "BGC",
-            "d": "Bonifacio Global City: newer towers, regional headquarters and the most walkable streets in Manila. Where most of our clients stay."
-          },
-          {
-            "t": "Ortigas",
-            "d": "Corporate and retail headquarters, and SM Megamall, one of the country's largest malls."
-          },
-          {
-            "t": "Binondo and Divisoria",
-            "d": "Founded in 1594 and often called the world's oldest Chinatown. Filipino-Chinese trading families, wholesalers and chambers — and the markets where you see what goods really sell for."
-          },
-          {
-            "t": "The bay area",
-            "d": "The convention centres — SMX and the World Trade Center — and the large resort hotels near the airport."
-          },
-          {
-            "t": "Beyond Manila",
-            "d": "Clark and Subic freeports to the north for logistics and light manufacturing; Cebu for furniture, export zones and the Visayas; Davao for agriculture and Mindanao."
-          }
-        ],
-        "moveKicker": "Getting around",
-        "moveTitle": "How we move you around Manila.",
-        "move": [
-          "Plan two meetings a day, three at most. A 10 km drive across Metro Manila can take over an hour at peak time.",
-          "A car and driver stay with you all day. The driver waits outside every meeting; nobody stands in a taxi queue.",
-          "Stay near your meetings — BGC or Makati for most weeks, closer to Binondo if your week is with the Filipino-Chinese trade.",
-          "Domestic flights and boat transfers get buffer time. On the islands the weather decides, not the timetable.",
-          "From June to November typhoons can close airports for a day. We build a spare day into trips in those months.",
-          "Grab works well if you want to move on your own; we set it up on your phone when you land."
-        ],
-        "chinaKicker": "Guests from China",
-        "chinaTitle": "The details that make the trip easy.",
-        "china": [
-          {
-            "t": "Mandarin on the ground",
-            "d": "Mandarin-speaking guides and interpreters every day of the trip; Cantonese and Hokkien on request — Hokkien is the home language of many Filipino-Chinese families."
-          },
-          {
-            "t": "The same clock as home",
-            "d": "The Philippines runs on UTC+8, like Beijing. Your office in China is awake when you are working."
-          },
-          {
-            "t": "Apps that work",
-            "d": "WeChat works normally. Filipino business runs on Viber and Messenger, so we set up the groups with your local contacts."
-          },
-          {
-            "t": "Paying",
-            "d": "Cards work in hotels and malls. Alipay and WeChat Pay are taken at some malls, hotels and duty-free shops — not everywhere. We arrange pesos and a local SIM or eSIM when you land."
-          },
-          {
-            "t": "Food",
-            "d": "Chinese restaurants we know in Binondo, Makati and BGC for the business dinners; Filipino food when you want it."
-          },
-          {
-            "t": "The Filipino-Chinese network",
-            "d": "Introductions to Filipino-Chinese trading families and chambers — often the fastest way into distribution."
-          }
-        ],
-        "islandsKicker": "Add the islands",
-        "islandsTitle": "Add three days. It is the part they talk about.",
-        "islands": [
-          {
-            "t": "Palawan: El Nido and Coron",
-            "time": "About an hour's flight from Manila",
-            "d": "Limestone lagoons, island hopping and some of Asia's best beaches. Our first choice for incentive groups."
-          },
-          {
-            "t": "Boracay",
-            "time": "About an hour's flight, then a short boat",
-            "d": "White Beach, sunsets and easy resorts. Good for families and first visits."
-          },
-          {
-            "t": "Bohol",
-            "time": "An hour from Manila, or two by ferry from Cebu",
-            "d": "The Chocolate Hills, tarsiers, river cruises and Panglao's beaches."
-          },
-          {
-            "t": "Cebu",
-            "time": "Direct flights from China",
-            "d": "Island hopping from Mactan, waterfalls and diving on the south coast; easy to pair with Bohol."
-          },
-          {
-            "t": "Siargao",
-            "time": "Under two hours from Manila",
-            "d": "Surf, palm forests and a slower pace."
-          },
-          {
-            "t": "Near Manila",
-            "time": "Day trips by road or ferry",
-            "d": "Tagaytay and Taal Volcano, the walled city of Intramuros, and Corregidor island."
-          }
-        ],
-        "plansKicker": "Sample itineraries",
-        "plansTitle": "Three ways we put it together.",
-        "plans": [
-          {
-            "t": "Business week in Manila",
-            "len": "5 days",
-            "days": [
-              "Arrive at NAIA, meet and assist, check in at BGC; briefing dinner.",
-              "Makati and BGC: distributors and retail chains.",
-              "Binondo and Divisoria: market walk, lunch with Filipino-Chinese traders.",
-              "Ortigas and Pasig: chain headquarters, warehouses and logistics.",
-              "Debrief and next steps; departure."
-            ]
-          },
-          {
-            "t": "Business and Palawan",
-            "len": "7 days",
-            "days": [
-              "Arrive in Manila; briefing dinner.",
-              "Meetings in Makati and BGC.",
-              "Binondo, Divisoria and the Filipino-Chinese trade.",
-              "Warehouses and partners; debrief.",
-              "Fly to El Nido; afternoon on the beach.",
-              "Island hopping in Bacuit Bay.",
-              "Fly back through Manila; departure."
-            ]
-          },
-          {
-            "t": "Incentive group, Cebu and Bohol",
-            "len": "6 days",
-            "days": [
-              "Arrive in Cebu; welcome dinner.",
-              "Island hopping from Mactan.",
-              "Ferry to Bohol: Chocolate Hills and Loboc river.",
-              "Beach day in Panglao.",
-              "Back to Cebu; gala dinner.",
-              "Departure."
-            ]
-          }
-        ],
-        "deskKicker": "Our Philippines desk",
-        "deskTitle": "What we handle, so you don't.",
-        "desk": [
-          "Invitation letters, eTravel help and documents for immigration",
-          "Meet and assist at Manila and Cebu airports",
-          "Hotels near your meetings, and resorts on the islands",
-          "Cars with drivers, vans and coaches for groups",
-          "Mandarin, Cantonese, Hokkien and English interpreters",
-          "Meetings with distributors, retailers, chambers and regulators",
-          "Domestic flights, boats and island transfers",
-          "Business dinners, launches and events",
-          "One planner on call, day and night, for the whole trip"
-        ],
-        "hostNote": "Based in the Philippines and runs our desk there — distribution, operations and the people you will meet.",
         "cta": "Plan my Philippines trip",
-        "note": "Entry rules, flights and prices change. We confirm everything for your passport and dates when you book."
+        "hostNote": "Based in the Philippines and runs our desk there — distribution, operations and the people you will meet.",
+        "note": "Entry rules, flights and prices change. We confirm everything for your passport and dates when you book.",
+        "sections": [
+          {
+            "type": "cards",
+            "kicker": "Before you fly",
+            "title": "Visas and arrival, by passport.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Chinese passports",
+                "d": "Since 16 January 2026, 14 days without a visa for tourism or business — but only when you land at Manila (NAIA) or Cebu (Mactan). The stay cannot be extended or changed to another visa. Bring a passport valid six months beyond your stay, your confirmed hotel booking and a return or onward ticket. Staying longer, or flying into Clark, Davao or another airport? Apply for a temporary visitor visa before you travel; we prepare the invitation letter and itinerary."
+              },
+              {
+                "t": "Indian passports",
+                "d": "14 days visa-free for tourism, or 30 days if you hold a valid US, Japanese, Australian, Canadian, Schengen, Singapore or UK visa or residence permit. Coming for business meetings? Tell us — the right visa depends on what you will be doing."
+              },
+              {
+                "t": "Pakistani passports",
+                "d": "A visa is needed before you travel, from a Philippine embassy or consulate. We send the invitation letter, hotel confirmation and itinerary the application asks for."
+              },
+              {
+                "t": "Other passports",
+                "d": "Many nationalities get 30 days visa-free on arrival; some need a visa first. Send us your passport country and we confirm what applies before you book."
+              },
+              {
+                "t": "Everyone: eTravel",
+                "d": "Register free at etravel.gov.ph within 72 hours before you land. You get a QR code that airline check-in and immigration will ask for. Any site that charges for it is not the government's."
+              }
+            ],
+            "note": "Immigration officers do ask about your trip. Keep your hotel booking, return ticket and our itinerary letter on your phone or on paper. Entry rules change often — we confirm yours when you book.",
+            "checked": true
+          },
+          {
+            "type": "cards",
+            "kicker": "Getting there",
+            "title": "Direct from five Chinese cities.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "To Manila",
+                "d": "Direct flights from Beijing, Shanghai, Guangzhou, Shenzhen and Xiamen — about 2½ hours from South China, 4 to 4½ from Beijing."
+              },
+              {
+                "t": "To Cebu",
+                "d": "Direct from Shanghai, Guangzhou, Shenzhen and Quanzhou. Cebu is the better gateway for Bohol and the central islands."
+              },
+              {
+                "t": "From elsewhere",
+                "d": "Connections through Hong Kong, Singapore and Bangkok, and direct flights to Manila from Dubai and Abu Dhabi."
+              },
+              {
+                "t": "About Clark",
+                "d": "Clark International, two hours north of Manila, is quicker to get through — but the visa-free entry for Chinese passports does not apply there."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Where business happens",
+            "title": "Manila is six cities in one.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Makati",
+                "d": "The established business district: banks, law firms, embassies and the long-standing hotels."
+              },
+              {
+                "t": "BGC",
+                "d": "Bonifacio Global City: newer towers, regional headquarters and the most walkable streets in Manila. Where most of our clients stay."
+              },
+              {
+                "t": "Ortigas",
+                "d": "Corporate and retail headquarters, and SM Megamall, one of the country's largest malls."
+              },
+              {
+                "t": "Binondo and Divisoria",
+                "d": "Founded in 1594 and often called the world's oldest Chinatown. Filipino-Chinese trading families, wholesalers and chambers — and the markets where you see what goods really sell for."
+              },
+              {
+                "t": "The bay area",
+                "d": "The convention centres — SMX and the World Trade Center — and the large resort hotels near the airport."
+              },
+              {
+                "t": "Beyond Manila",
+                "d": "Clark and Subic freeports to the north for logistics and light manufacturing; Cebu for furniture, export zones and the Visayas; Davao for agriculture and Mindanao."
+              }
+            ]
+          },
+          {
+            "type": "ticks",
+            "kicker": "Getting around",
+            "title": "How we move you around Manila.",
+            "items": [
+              "Plan two meetings a day, three at most. A 10 km drive across Metro Manila can take over an hour at peak time.",
+              "A car and driver stay with you all day. The driver waits outside every meeting; nobody stands in a taxi queue.",
+              "Stay near your meetings — BGC or Makati for most weeks, closer to Binondo if your week is with the Filipino-Chinese trade.",
+              "Domestic flights and boat transfers get buffer time. On the islands the weather decides, not the timetable.",
+              "From June to November typhoons can close airports for a day. We build a spare day into trips in those months.",
+              "Grab works well if you want to move on your own; we set it up on your phone when you land."
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Guests from China",
+            "title": "The details that make the trip easy.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Mandarin on the ground",
+                "d": "Mandarin-speaking guides and interpreters every day of the trip; Cantonese and Hokkien on request — Hokkien is the home language of many Filipino-Chinese families."
+              },
+              {
+                "t": "The same clock as home",
+                "d": "The Philippines runs on UTC+8, like Beijing. Your office in China is awake when you are working."
+              },
+              {
+                "t": "Apps that work",
+                "d": "WeChat works normally. Filipino business runs on Viber and Messenger, so we set up the groups with your local contacts."
+              },
+              {
+                "t": "Paying",
+                "d": "Cards work in hotels and malls. Alipay and WeChat Pay are taken at some malls, hotels and duty-free shops — not everywhere. We arrange pesos and a local SIM or eSIM when you land."
+              },
+              {
+                "t": "Food",
+                "d": "Chinese restaurants we know in Binondo, Makati and BGC for the business dinners; Filipino food when you want it."
+              },
+              {
+                "t": "The Filipino-Chinese network",
+                "d": "Introductions to Filipino-Chinese trading families and chambers — often the fastest way into distribution."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Add the islands",
+            "title": "Add three days. It is the part they talk about.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Palawan: El Nido and Coron",
+                "e": "About an hour's flight from Manila",
+                "d": "Limestone lagoons, island hopping and some of Asia's best beaches. Our first choice for incentive groups."
+              },
+              {
+                "t": "Boracay",
+                "e": "About an hour's flight, then a short boat",
+                "d": "White Beach, sunsets and easy resorts. Good for families and first visits."
+              },
+              {
+                "t": "Bohol",
+                "e": "An hour from Manila, or two by ferry from Cebu",
+                "d": "The Chocolate Hills, tarsiers, river cruises and Panglao's beaches."
+              },
+              {
+                "t": "Cebu",
+                "e": "Direct flights from China",
+                "d": "Island hopping from Mactan, waterfalls and diving on the south coast; easy to pair with Bohol."
+              },
+              {
+                "t": "Siargao",
+                "e": "Under two hours from Manila",
+                "d": "Surf, palm forests and a slower pace."
+              },
+              {
+                "t": "Near Manila",
+                "e": "Day trips by road or ferry",
+                "d": "Tagaytay and Taal Volcano, the walled city of Intramuros, and Corregidor island."
+              }
+            ]
+          },
+          {
+            "type": "plans",
+            "kicker": "Sample itineraries",
+            "title": "Three ways we put it together.",
+            "items": [
+              {
+                "t": "Business week in Manila",
+                "len": "5 days",
+                "days": [
+                  "Arrive at NAIA, meet and assist, check in at BGC; briefing dinner.",
+                  "Makati and BGC: distributors and retail chains.",
+                  "Binondo and Divisoria: market walk, lunch with Filipino-Chinese traders.",
+                  "Ortigas and Pasig: chain headquarters, warehouses and logistics.",
+                  "Debrief and next steps; departure."
+                ]
+              },
+              {
+                "t": "Business and Palawan",
+                "len": "7 days",
+                "days": [
+                  "Arrive in Manila; briefing dinner.",
+                  "Meetings in Makati and BGC.",
+                  "Binondo, Divisoria and the Filipino-Chinese trade.",
+                  "Warehouses and partners; debrief.",
+                  "Fly to El Nido; afternoon on the beach.",
+                  "Island hopping in Bacuit Bay.",
+                  "Fly back through Manila; departure."
+                ]
+              },
+              {
+                "t": "Incentive group, Cebu and Bohol",
+                "len": "6 days",
+                "days": [
+                  "Arrive in Cebu; welcome dinner.",
+                  "Island hopping from Mactan.",
+                  "Ferry to Bohol: Chocolate Hills and Loboc river.",
+                  "Beach day in Panglao.",
+                  "Back to Cebu; gala dinner.",
+                  "Departure."
+                ]
+              }
+            ]
+          },
+          {
+            "type": "desk",
+            "kicker": "Our Philippines desk",
+            "title": "What we handle, so you don't.",
+            "items": [
+              "Invitation letters, eTravel help and documents for immigration",
+              "Meet and assist at Manila and Cebu airports",
+              "Hotels near your meetings, and resorts on the islands",
+              "Cars with drivers, vans and coaches for groups",
+              "Mandarin, Cantonese, Hokkien and English interpreters",
+              "Meetings with distributors, retailers, chambers and regulators",
+              "Domestic flights, boats and island transfers",
+              "Business dinners, launches and events",
+              "One planner on call, day and night, for the whole trip"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "china",
+        "code": "CN",
+        "name": "China",
+        "kicker": "China travel desk · Canton Fair",
+        "title": "The Canton Fair, and the five cities behind it.",
+        "sub": "Twice a year we take buyers from Pakistan, India, the Philippines, the Gulf and beyond to Guangzhou — and on to the factories and markets of Foshan, Dongguan, Shenzhen and Yiwu. Visa, flights, hotels, meals, interpreters and booked factory meetings, run by a team in China and in your market.",
+        "facts": [
+          [
+            "Next fair",
+            "15 Oct – 4 Nov 2026"
+          ],
+          [
+            "Spring 2027",
+            "15 Apr – 5 May (expected)"
+          ],
+          [
+            "Venue",
+            "Pazhou, Guangzhou"
+          ],
+          [
+            "Each phase",
+            "5 days"
+          ],
+          [
+            "Exhibitors",
+            "30,000+"
+          ],
+          [
+            "Five-City tour",
+            "12 days, from ¥29,800"
+          ]
+        ],
+        "cta": "Plan my Canton Fair trip",
+        "hostNote": "Leads our China desk — the fair, the factories and the people you will meet.",
+        "note": "Prices are per person, twin share, and indicative until confirmed for your departure. Spring 2027 dates are expected and visa rules change — we confirm both when you book.",
+        "sections": [
+          {
+            "type": "phases",
+            "kicker": "The fair",
+            "title": "Pick your phase by what you buy.",
+            "items": [
+              {
+                "n": "Phase 1",
+                "t": "Electronics and machinery",
+                "d": "Consumer electronics, household appliances, lighting, hardware and tools, machinery, vehicles and parts, new energy.",
+                "dates": [
+                  [
+                    "Autumn 2026",
+                    "15–19 October"
+                  ],
+                  [
+                    "Spring 2027",
+                    "15–19 April"
+                  ]
+                ]
+              },
+              {
+                "n": "Phase 2",
+                "t": "Home, gifts and building",
+                "d": "Housewares, kitchenware, ceramics, gifts, home décor, festive goods, furniture and building materials.",
+                "dates": [
+                  [
+                    "Autumn 2026",
+                    "23–27 October"
+                  ],
+                  [
+                    "Spring 2027",
+                    "23–27 April"
+                  ]
+                ]
+              },
+              {
+                "n": "Phase 3",
+                "t": "Textiles, fashion and daily goods",
+                "d": "Garments, textiles, shoes, bags, toys, baby products, office supplies, food, health and medical products.",
+                "dates": [
+                  [
+                    "Autumn 2026",
+                    "31 October – 4 November"
+                  ],
+                  [
+                    "Spring 2027",
+                    "1–5 May"
+                  ]
+                ]
+              }
+            ],
+            "note": "There are three days between phases. Other tours fill them with sightseeing; we use them for factories."
+          },
+          {
+            "type": "packages",
+            "kicker": "Packages",
+            "title": "Four ways to go.",
+            "items": [
+              {
+                "t": "Fair Week",
+                "len": "6 days · one phase",
+                "cities": "Guangzhou",
+                "price": "From ¥8,800",
+                "priceNote": "about US$1,240 · flights extra",
+                "best": "First-time buyers who know their category.",
+                "incl": [
+                  "Visa support and the fair's invitation letter",
+                  "Buyer badge pre-registration",
+                  "4★ hotel near Pazhou, breakfast and dinner",
+                  "Daily transfers to the fair",
+                  "Interpreter on fair days",
+                  "Local SIM and payment apps set up"
+                ]
+              },
+              {
+                "t": "Fair and Factories",
+                "len": "9 days · one phase + factories",
+                "cities": "Guangzhou · Foshan · Dongguan · Shenzhen",
+                "price": "From ¥16,800",
+                "priceNote": "about US$2,370 · flights extra",
+                "best": "Buyers ready to visit the factories behind the booths.",
+                "incl": [
+                  "Everything in Fair Week",
+                  "Booked factory visits in Foshan and Dongguan",
+                  "Huaqiangbei electronics markets in Shenzhen",
+                  "Private coach and interpreter every day"
+                ]
+              },
+              {
+                "t": "Five-City Sourcing Tour",
+                "len": "12 days · our flagship",
+                "cities": "Guangzhou · Foshan · Dongguan · Shenzhen · Yiwu",
+                "price": "From ¥29,800",
+                "priceNote": "about US$4,200 · flights, visa and living included",
+                "featured": true,
+                "best": "Importers, wholesalers and brand owners building a supply base.",
+                "incl": [
+                  "Return flights from Lahore, Karachi, Islamabad, Delhi, Mumbai, Manila or Dubai",
+                  "China visa",
+                  "4★ hotels, breakfast and dinner every day",
+                  "Fair days, factory visits and the Yiwu market",
+                  "Domestic flight to Yiwu and private coaches",
+                  "Interpreter and tour manager throughout"
+                ]
+              },
+              {
+                "t": "Private delegation",
+                "len": "Your dates",
+                "cities": "Any of the five cities, plus Shanghai or Hong Kong",
+                "price": "Price on application",
+                "priceNote": "for companies, chambers and banks",
+                "best": "Groups of ten or more with their own agenda.",
+                "incl": [
+                  "Your own itinerary and meeting list",
+                  "A supplier shortlist prepared before you fly",
+                  "Venues, dinners and a group host",
+                  "A written report for the organisation that sends you"
+                ]
+              }
+            ],
+            "note": "Per person, twin share. Single rooms and a second phase cost extra."
+          },
+          {
+            "type": "cards",
+            "kicker": "The five cities",
+            "title": "What each city is for.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Guangzhou",
+                "e": "The fair",
+                "d": "The Canton Fair halls at Pazhou, plus the wholesale districts: Shahe for clothing, Yide Road for toys and stationery, Xiaobei for halal food and traders from Africa and the Gulf."
+              },
+              {
+                "t": "Foshan",
+                "e": "Furniture, ceramics, appliances",
+                "d": "45 to 60 minutes from Guangzhou: Lecong's furniture markets, ceramics and building-material makers, and Shunde's home-appliance factories."
+              },
+              {
+                "t": "Dongguan",
+                "e": "The factories",
+                "d": "Electronics, shoes, toys and packaging — the factory floor behind many Canton Fair booths. Where we check production and negotiate."
+              },
+              {
+                "t": "Shenzhen",
+                "e": "Electronics and tech",
+                "d": "Huaqiangbei's electronics markets, component and accessory suppliers, and the technology companies of the Greater Bay Area."
+              },
+              {
+                "t": "Yiwu",
+                "e": "Small commodities",
+                "d": "International Trade City: more than 75,000 booths of everyday goods — the place to fill a mixed container. A short flight from Guangzhou."
+              }
+            ]
+          },
+          {
+            "type": "trip",
+            "kicker": "Day by day",
+            "title": "The Five-City Sourcing Tour.",
+            "slug": "canton-fair-trip"
+          },
+          {
+            "type": "split",
+            "kicker": "One price",
+            "title": "What it covers, and what it doesn't.",
+            "a": {
+              "t": "Included",
+              "items": [
+                "Visa support and the fair's invitation letter",
+                "Buyer badge pre-registration and collection",
+                "Return flights (Five-City Sourcing Tour)",
+                "4★ hotels with breakfast and dinner — halal, Indian vegetarian and Chinese",
+                "All airport, fair and factory transfers",
+                "Interpreters from Mandarin into English, Urdu, Hindi, Filipino or Arabic",
+                "Your interpreter's own fair badge",
+                "Local SIM and payment apps set up",
+                "Travel insurance",
+                "A TGO host from your market and our team in China"
+              ]
+            },
+            "b": {
+              "t": "Not included",
+              "items": [
+                "Lunch on fair days",
+                "Samples and goods you buy",
+                "Single-room supplement",
+                "A second fair phase",
+                "Personal expenses"
+              ]
+            }
+          },
+          {
+            "type": "cards",
+            "kicker": "Buyers from our markets",
+            "title": "Built for buyers from Pakistan, India, the Philippines and the Gulf.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Food from home",
+                "d": "Halal restaurants we know in Xiaobei and near Pazhou, Indian vegetarian kitchens, and Filipino food when you miss it."
+              },
+              {
+                "t": "Your language",
+                "d": "Interpreters who work from Mandarin into Urdu, Hindi, Filipino or Arabic — not only English."
+              },
+              {
+                "t": "A host from home",
+                "d": "A TGO team member from your market travels with the group; our China team meets you at arrivals."
+              },
+              {
+                "t": "Certification checked before you buy",
+                "d": "We flag which suppliers already hold BIS, PSQCA, BPS or UAE approvals, so what you order can clear customs at home."
+              },
+              {
+                "t": "Landed cost, not factory price",
+                "d": "We work out duty, tax and freight to your market while you negotiate — the price that matters is the one on your shelf."
+              },
+              {
+                "t": "After the trip",
+                "d": "Samples consolidated, factories checked, quality control before shipping, and our market teams to help you sell it."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Visas",
+            "title": "Your China visa, by passport.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Pakistani passports",
+                "d": "A business (M) visa with the fair's invitation letter. We prepare the application pack and book your appointment at the visa centre."
+              },
+              {
+                "t": "Indian passports",
+                "d": "A business visa with the fair's invitation letter, or a group visa when you travel with our group. Apply at least four weeks before you fly."
+              },
+              {
+                "t": "Bangladeshi passports",
+                "d": "A business visa. For the 140th fair the Chinese Embassy in Dhaka made the fair's invitation letter the only mandatory document."
+              },
+              {
+                "t": "Philippine passports",
+                "d": "A visa is required. Travelling with our group, a group visa through an accredited agency is the quickest route, with no personal appearance."
+              },
+              {
+                "t": "UAE, Qatar and visa-free passports",
+                "d": "UAE and Qatar passports enter China visa-free for up to 30 days, as do many European ones. Living in the Gulf on another passport? Your passport's rules apply — we check."
+              },
+              {
+                "t": "Everyone: register for the fair",
+                "d": "Online pre-registration is free and issues the invitation letter your visa needs. Bring the passport you registered with, and business cards, to collect your badge."
+              }
+            ],
+            "note": "Visa rules change; we confirm yours before you book.",
+            "checked": true
+          },
+          {
+            "type": "ticks",
+            "kicker": "At the fair",
+            "title": "What we tell every first-timer.",
+            "items": [
+              "Book six to eight weeks ahead: visas take time, and Guangzhou hotel rates can triple in fair weeks.",
+              "Walk the halls for your category on day one; keep the serious meetings for days two and three.",
+              "Bring business cards, and photograph every booth card and price list — we log them with you each evening.",
+              "Alipay and WeChat Pay now accept foreign cards; we set them up with you before the fair.",
+              "Google and WhatsApp do not work on Chinese networks; roaming or an eSIM from home does. We test yours when you land.",
+              "Use the days between phases for factories. The best prices are agreed at the factory, not at the booth.",
+              "Metro Line 8 stops at the fair (Xingang East and Pazhou), but we drive you — you are never in the queue."
+            ]
+          },
+          {
+            "type": "faq",
+            "kicker": "Questions",
+            "title": "Asked before every trip.",
+            "items": [
+              {
+                "q": "Do I need a registered company?",
+                "a": "No, but a business card and a clear list of what you want to buy make the visa and the meetings easier. Most of our travellers are importers, wholesalers, retailers and online sellers."
+              },
+              {
+                "q": "How early should I book?",
+                "a": "Six to eight weeks before your phase. Your visa needs the fair's invitation letter, and hotel rates rise as the fair gets closer."
+              },
+              {
+                "q": "Can I come on my own?",
+                "a": "Yes. Join a group departure, or travel privately with the same hotel, interpreter and factory visits."
+              },
+              {
+                "q": "What happens after I get home?",
+                "a": "That is the part we are built for: samples, factory checks, quality control, shipping, customs and certification in your market, and selling through our distribution."
+              },
+              {
+                "q": "Do you work with banks and chambers?",
+                "a": "Yes. We run private delegations for banks, chambers and trade associations that send their members, with a report for the organiser."
+              }
+            ]
+          },
+          {
+            "type": "desk",
+            "kicker": "Our China desk",
+            "title": "What we handle, so you can buy.",
+            "items": [
+              "Visa packs and invitation letters",
+              "Badge pre-registration and collection",
+              "Flights, hotels and fair-week rates",
+              "Interpreters in your language",
+              "Supplier shortlists and booked factory meetings",
+              "Coaches, drivers and domestic flights",
+              "Halal and Indian food",
+              "Sample consolidation, quality control and shipping",
+              "Certification and customs for your home market"
+            ]
+          }
+        ]
       }
     ]
   }
