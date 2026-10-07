@@ -38,8 +38,8 @@ folders with an `index.html`, so no rewrites are needed.
 | `/for/<audience>/` | Manufacturers, distributors & retailers, creators, investors — each links into its own application branch (`/partner/?as=…`) |
 | `/markets/`, `/markets/<country>/` | The four markets and a playbook per country: approvals with typical weeks, customs and tax, channels, cities, visiting |
 | `/tools/entry-estimator/` | Product × market → approvals, weeks to the first shelf, duty band, import tax, landed-cost range, matching services. Accepts `?market=` and `?category=` |
-| `/travel/` | The travel desk: five destinations, who travels with us, six ways to travel, ground services, how a trip comes together, upcoming expeditions and the travel enquiry form |
-| `/travel/<country>/` | Destination guides (`travel.guides`), written as the local desk briefing a client. Each guide is a list of typed `sections` — `cards`, `ticks`, `plans`, `phases`, `packages`, `split`, `faq`, `trip` (an expedition's day-by-day) and `desk` (services + host) — so each country carries what matters there. **Philippines:** entry rules by passport, flights, business districts, guests from China, islands, sample itineraries. **China:** the Canton Fair by phase, four packages up to the 12-day Five-City Sourcing Tour, the five cities, what's included, visas by passport, fair advice and FAQ. Market playbooks and trip pages link to their guide |
+| `/travel/` | Opens with the **visa and passport check** (below), then the travel desk: five destinations, who travels with us, six ways to travel, ground services, how a trip comes together, upcoming expeditions and the travel enquiry form |
+| `/travel/<country>/` | Destination guides (`travel.guides`), written as the local desk briefing a client. Each guide is a list of typed `sections` — `cards`, `ticks`, `plans`, `phases`, `packages`, `split`, `faq`, `trip` (an expedition's day-by-day) and `desk` (services + host) — so each country carries what matters there. **Philippines:** entry rules by passport, flights, business districts, guests from China, islands, sample itineraries. **China:** the Canton Fair by phase, four packages up to the 12-day Five-City Sourcing Tour, the five cities, what's included, visas by passport, fair advice and FAQ. **India, Pakistan, Bangladesh:** business-first packages, the trade-fair calendar, visas by passport (including blocked neighbour combinations), each country's traps (WeChat in India, the security protocol for Chinese guests in Pakistan, hartals and the Friday weekend in Bangladesh), business geography, leisure extensions, itineraries, included / not included and FAQ; the Philippines guide carries the same packages, fairs, included list and FAQ. Market playbooks and trip pages link to their guide; Bangladesh is a travel destination without a playbook |
 | `/expeditions/`, `/expeditions/<trip>/` | Dated group editions with a day-by-day itinerary |
 | `/portal/` | Partner Portal preview: one sample partner's stages, approvals, shipments, sell-through, documents and messages — labelled as sample data |
 | `/partner/` | The application (below) |
@@ -74,6 +74,18 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
 - **Travel enquiry** (on `/travel/` and every destination guide, `#plan`) posts to `/api/lead` the same
   way. It needs a destination and a way to reply, `?to=PH` preselects a destination, and if delivery is
   not set up it hands off to the destination host's WhatsApp or to help@tgobrands.com.
+- **Visa and passport check** (top of `/travel/`, `#check`; `?pp=CN&to=IN` preselects). Passport,
+  destination and purpose — plus optional arrival, departure and passport-expiry dates — give the visa
+  type (visa-free, on arrival, e-Visa, visa before travel, not available now, own country, or "we'll check"),
+  the stay, the fee where known, an apply-by date (flagged when it has passed), a six-month passport-validity
+  verdict (beyond the stay for the Philippines), and a checklist built from the visa type, purpose and
+  destination. Rules live once in `content/shared/visa_rules.json` (`rules[destination][passport]` → type,
+  note key, stay, fee, lead days, optional business overrides); wording, notes and checklist items in
+  `content/<lang>/checker.json`. A passport × destination table under the tool gives the same answers
+  without JavaScript. Combinations not in the rules answer "we'll check" rather than guess. Destination
+  guides link to it with their country preselected.
+- **Live result areas** (`[aria-live]`: the checker and the entry estimator) are excluded from the scroll
+  reveal, which only watches elements present at load.
 - **Entry estimator** reads its data from a JSON block in the page; with JavaScript off it says so and
   points to the market playbooks, which carry the same facts.
 - **Portal tabs** are ARIA tabs (arrow keys, Home, End); without JavaScript every pane is listed.
@@ -147,6 +159,11 @@ Rendered as non-clickable placeholders, or marked as drafts, until filled in:
   Five-City Sourcing Tour from ¥29,800), the inclusions (flights from the listed hubs, travel insurance,
   interpreter languages) and the spring 2027 dates once the fair announces them. The market study behind
   the page is in [`research/canton-fair-tours-2026.md`](../research/canton-fair-tours-2026.md)
+- India, Pakistan, Bangladesh and Philippines travel packages: confirm prices (all "from" US$ figures),
+  inclusions and who hosts Bangladesh (enquiries currently route to Aryan). Study:
+  [`research/india-pakistan-bangladesh-philippines-travel-2026.md`](../research/india-pakistan-bangladesh-philippines-travel-2026.md)
+- Visa rules: re-check `content/shared/visa_rules.json` regularly — China's 30-day visa-free pilot runs to
+  31 December 2026, and the India–Pakistan and India–Bangladesh rules have changed several times
 - Travel: confirm the services promised (meet and assist, Cantonese and Hokkien interpreters, a planner
   on call day and night) and re-check the Philippines entry rules and flights before each season
 - WeChat QR and the public WhatsApp number — `contact.channels.*.href` in the content files

@@ -1005,6 +1005,50 @@ html:lang(zh) {
 .tdone__title { margin-bottom: 10px; font-size: var(--t-subhead); outline: none; }
 .tdone p { margin-bottom: 20px; color: var(--ink-2); }
 .tform:hover, .tdone:hover { transform: none; box-shadow: var(--surface-shadow); }
+/* visa and passport check */
+.checker { text-align: left; }
+.checker:hover, .vresult:hover { transform: none; box-shadow: var(--surface-shadow); }
+.checker__fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.checker__result { margin-top: 16px; }
+.checker__result:empty { display: none; }
+.vresult { display: grid; gap: 16px; text-align: left; }
+.vresult__head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.vresult__title { font-size: var(--t-subhead); }
+.vresult__note { color: var(--ink-2); }
+.page .vresult__rule { color: var(--ink-3); font-size: var(--t-caption); }
+.vresult__list > .eyebrow { margin-bottom: 10px; }
+.vresult__acts { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+.vbadge {
+  display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border: 1px solid transparent; border-radius: 980px;
+  font-size: 14px; font-weight: 600; line-height: 1;
+}
+.vbadge--free, .vbadge--voa { background: #e3f3e9; color: #13643a; }
+.vbadge--evisa { background: #e2eefb; color: #005bb5; }
+.vbadge--visa { background: #fbeedd; color: #8a4a00; }
+.vbadge--blocked { background: #fbe4e7; color: #a30016; }
+.vbadge--home, .vbadge--check { border-color: var(--line); color: var(--ink-2); }
+.band .vresult .fact { background: #fff; box-shadow: none; }
+.fact.is-ok .fact__v { color: #13643a; }
+.fact.is-bad .fact__v { color: #a30016; }
+.vtable-wrap { margin-top: 36px; }
+.vtable__kicker, .vtable__title { text-align: center; }
+.vtable__title { margin: 8px 0 16px; font-size: var(--t-subhead); }
+.vtable-scroll { overflow-x: auto; border-radius: 16px; background: var(--surface); box-shadow: var(--surface-shadow); }
+.vtable-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.vtable { width: 100%; min-width: 680px; border-collapse: collapse; font-size: 14px; }
+.vtable th, .vtable td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+.vtable thead th { color: var(--ink-3); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.vtable tbody th { color: var(--text); font-weight: 600; }
+/* the passport column stays put while the destinations scroll */
+.vtable tbody th, .vtable thead th:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface); }
+.vtable td { color: var(--ink-2); }
+.vtable tbody tr:last-child th, .vtable tbody tr:last-child td { border-bottom: 0; }
+.vt::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: var(--line); vertical-align: middle; }
+.vt--free::before, .vt--voa::before { background: #1d8a4e; }
+.vt--evisa::before { background: var(--accent); }
+.vt--visa::before { background: #c27a00; }
+.vt--blocked::before { background: #c4001a; }
+.vt--home::before { background: transparent; }
 .phase__dates { display: grid; gap: 8px; margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
 .phase__dates > div { display: flex; justify-content: space-between; gap: 12px; }
 .phase__dates dt { color: var(--ink-3); font-size: 14px; }
@@ -1120,6 +1164,7 @@ html:lang(zh) {
   .door .explore__arrow { grid-column: 2; grid-row: 1 / span 2; margin: 0; padding: 0; }
   .tool__chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dest__facts { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .checker__fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dest__facts > div { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; align-items: baseline; }
   .dest__facts .eyebrow { margin: 0; }
   .tform .opt { flex: 1 1 calc(50% - 4px); }
@@ -1229,16 +1274,17 @@ html:lang(zh) {
 
 /* ── Motion ──────────────────────────────────────────────────────────── */
 /* blocks rise into focus as they enter the viewport; the class is only set
-   when scripting runs, so nothing is hidden without it */
+   when scripting runs, so nothing is hidden without it. Live result areas ([aria-live]) are drawn
+   after load and must show at once, so they are left out. */
 @media (prefers-reduced-motion: no-preference) {
-  .js :where(.page > section:not(.hero), .page .survey) :where(h1, h2, h3, p, article, figure, .figs):not(.marq *) {
+  .js :where(.page > section:not(.hero), .page .survey) :where(h1, h2, h3, p, article, figure, .figs):not(.marq *, [aria-live] *) {
     transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 1s var(--ease);
   }
-  .js :where(.page > section:not(.hero), .page .survey) :where(h1, h2, h3, p):not(.is-in, .marq *) {
+  .js :where(.page > section:not(.hero), .page .survey) :where(h1, h2, h3, p):not(.is-in, .marq *, [aria-live] *) {
     opacity: 0; transform: translateY(20px); filter: blur(9px);
   }
   /* structural blocks resolve without the blur — only type unblurs */
-  .js :where(.page > section:not(.hero), .page .survey) :where(article, figure, .figs):not(.is-in, .marq *) {
+  .js :where(.page > section:not(.hero), .page .survey) :where(article, figure, .figs):not(.is-in, .marq *, [aria-live] *) {
     opacity: 0; transform: translateY(20px);
   }
 }

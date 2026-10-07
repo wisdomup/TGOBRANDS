@@ -1,0 +1,168 @@
+{
+  "checker": {
+    "kicker": "Visa and passport check",
+    "title": "Can you go? Check in ten seconds.",
+    "sub": "Choose your passport and where you are going. We show the visa you need, how long you can stay, when to apply, whether your passport is valid long enough, and what to bring.",
+    "cta": "Check my passport",
+    "passport": "Your passport",
+    "dest": "Going to",
+    "purpose": "Trip",
+    "purposes": [
+      [
+        "business",
+        "Business"
+      ],
+      [
+        "tourism",
+        "Tourism"
+      ]
+    ],
+    "arrive": "Arriving",
+    "leave": "Leaving",
+    "expiry": "Passport expires",
+    "optional": "Dates are optional — add them for an apply-by date and a passport check.",
+    "passports": [
+      [
+        "CN",
+        "China"
+      ],
+      [
+        "PK",
+        "Pakistan"
+      ],
+      [
+        "IN",
+        "India"
+      ],
+      [
+        "BD",
+        "Bangladesh"
+      ],
+      [
+        "PH",
+        "Philippines"
+      ],
+      [
+        "AE",
+        "United Arab Emirates"
+      ],
+      [
+        "US",
+        "United States"
+      ],
+      [
+        "GB",
+        "United Kingdom"
+      ],
+      [
+        "EU",
+        "European Union"
+      ],
+      [
+        "XX",
+        "Another country"
+      ]
+    ],
+    "types": {
+      "free": "Visa-free",
+      "voa": "Visa on arrival",
+      "evisa": "e-Visa online",
+      "visa": "Visa before you travel",
+      "blocked": "Not available right now",
+      "home": "Your own country",
+      "check": "We'll check for you"
+    },
+    "short": {
+      "free": "Visa-free",
+      "voa": "On arrival",
+      "evisa": "e-Visa",
+      "visa": "Visa",
+      "blocked": "Not now",
+      "home": "—",
+      "check": "Ask us"
+    },
+    "stay": "Stay",
+    "fee": "Fee",
+    "applyBy": "Apply by",
+    "passportCheck": "Your passport",
+    "days": "Up to {n} days",
+    "stayVaries": "Set by your visa",
+    "noFee": "No fee",
+    "feeOnArrival": "US${n}, paid on arrival",
+    "feeFrom": "From US${n}",
+    "feeVaries": "Varies by visa",
+    "noApply": "No application needed",
+    "beforeFly": "At least {n} days before you fly",
+    "addDates": "Add your dates",
+    "valid": "Valid for this trip",
+    "renew": "Renew before you travel",
+    "validRule": "It must be valid for six months from the day you arrive.",
+    "validRuleStay": "It must be valid for six months beyond your stay.",
+    "pages": "Keep at least two blank pages.",
+    "checklist": "What to bring",
+    "plan": "Plan this trip with us",
+    "guide": "Read the {country} guide",
+    "whatsapp": "Ask {name} on WhatsApp",
+    "tableKicker": "At a glance",
+    "tableTitle": "Every passport, every destination.",
+    "tablePassport": "Passport",
+    "tableNote": "Rules checked October 2026 for ordinary passports. Visa rules change often — the check above and our team confirm yours before you book.",
+    "noscript": "The check needs JavaScript. The table below has the same answers.",
+    "notes": {
+      "ph_cn": "Since 16 January 2026, 14 days visa-free for tourism or business — only when you land at Manila (NAIA) or Cebu (Mactan). No extension and no change of visa. Bring a confirmed hotel booking and a return ticket; an eVisa covers the same 14 days.",
+      "ph_in": "14 days visa-free for tourism — or 30 days if you hold a valid US, Japanese, Australian, Canadian, Schengen, Singapore or UK visa or residence permit. For business meetings, ask us which visa fits.",
+      "ph_pk": "Apply at a Philippine embassy or consulate before you travel. We provide the invitation letter, hotel confirmation and itinerary.",
+      "ph_bd": "Apply online for the Philippine e-Visa, open to Bangladeshi passports since 5 June 2026.",
+      "ph_free30": "Visa-free for up to 30 days for tourism or business meetings.",
+      "in_cn": "India's e-Tourist visa: 30 days for US$25, one year for US$40, five years for US$80, usually issued within 72 hours.",
+      "in_cn_biz": "Meetings need a business visa. Installation, quality checks, training and vendor development need the e-B-4 production-investment visa, for up to six months — allow 45 to 50 days.",
+      "in_pk": "India suspended visas for Pakistani citizens in April 2025. We can arrange meetings with Indian partners in Dubai instead.",
+      "in_bd": "India reopened tourist visas for Bangladeshi citizens on 28 June 2026, through the visa centres in Dhaka, Rajshahi, Chittagong, Sylhet and Khulna. Business visas need an Indian invitation, which we provide.",
+      "in_evisa": "Apply online for an Indian e-Visa. A business e-Visa needs an invitation letter from an Indian company — we issue one for your meetings.",
+      "pk_cn": "Apply online through Pakistan's official visa portal. A business visa needs an invitation from a Pakistani company, and CPEC travel has its own business visa. Pakistan's security protocol for Chinese nationals applies — we arrange it.",
+      "pk_in": "Pakistan suspended visas for Indian citizens in 2025. We can arrange meetings with Pakistani partners in Dubai instead.",
+      "pk_evisa": "Apply online through Pakistan's official visa portal. A business visa needs an invitation letter, which we provide.",
+      "bd_cn": "Visa on arrival at Dhaka airport, US$50, for up to 30 days. For business, bring an invitation letter — the inviting company must inform immigration in advance, and we do that.",
+      "bd_voa": "Visa on arrival for tourism, business or investment, for up to 30 days, paid at the airport. For business, bring an invitation letter.",
+      "bd_in": "Apply to the Bangladesh mission in India before you travel; we provide the invitation letter.",
+      "bd_pk": "Apply before you travel; we provide the invitation letter and check current processing.",
+      "bd_visa": "Apply to a Bangladesh mission before you travel; we provide the invitation letter.",
+      "cn_visa": "A business (M) visa with an invitation letter — for the Canton Fair, the letter from free online pre-registration — or a tourist (L) visa. Apply at the Chinese visa centre.",
+      "cn_bd": "A business (M) visa. For the 140th Canton Fair the Chinese Embassy in Dhaka made the fair's invitation letter the only mandatory document.",
+      "cn_ph": "A visa is required. Travelling with our group, a group visa through an accredited agency (about US$50) needs no personal appearance.",
+      "cn_free": "Visa-free for up to 30 days under the mutual exemption between the two countries.",
+      "cn_free_2026": "Visa-free for up to 30 days under China's visa-free pilot, which runs to 31 December 2026. Most EU passports are included.",
+      "cn_us": "US passports are not on China's 30-day visa-free list, so apply for a visa. Travelling on to a third country? The 240-hour visa-free transit may apply.",
+      "ae_free": "Visa-free for up to 30 days.",
+      "ae_free90": "Visa-free for up to 90 days in any 180 for most EU passports.",
+      "ae_pk": "A pre-arranged visit visa through a licensed agency or airline. Five-year multiple-entry tourist visas are now available without a sponsor.",
+      "ae_in": "A pre-arranged visit visa — or a 14-day visa on arrival if you hold a valid US visa or green card, or an EU, Canadian, Australian, New Zealand, Japanese, Singapore or Korean visa or residence. UK visas no longer qualify.",
+      "ae_bd": "A pre-arranged visa through an authorised sponsor; applications face enhanced screening.",
+      "ae_ph": "A pre-arranged visit visa, unless you hold a qualifying US, UK, EU, Canadian, Australian, New Zealand, Japanese, Singapore or Korean residence permit.",
+      "check": "We haven't listed this combination. Send us your passport and dates — we confirm the rules before you book.",
+      "home": "No visa needed — it's your own country."
+    },
+    "destNotes": {
+      "PH": "Everyone registers free on eTravel (etravel.gov.ph) within 72 hours before arrival."
+    },
+    "docs": {
+      "passport": "Passport valid six months, with two blank pages",
+      "photo": "Recent passport photo on a white background",
+      "online": "Online application, completed before you fly",
+      "form": "Visa application form and appointment",
+      "funds": "Recent bank statements",
+      "ticket": "Return or onward ticket",
+      "hotel": "Confirmed hotel booking",
+      "invite": "Invitation letter for your meetings — we issue it",
+      "company": "Business card or company letter",
+      "cash": "The visa fee in US dollars, in cash",
+      "etravel": "eTravel registration and its QR code",
+      "fair": "Canton Fair invitation letter from free pre-registration",
+      "notice": "Notice to immigration from the inviting company — we send it",
+      "security": "Itinerary filed for the security protocol — we arrange it",
+      "id": "Your passport or national ID"
+    },
+    "late": "already passed — talk to us today",
+    "dayShort": "{n} days"
+  }
+}

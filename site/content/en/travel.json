@@ -2,7 +2,7 @@
   "travel": {
     "kicker": "Travel",
     "title": "We get you there, and we stay with you.",
-    "sub": "Business delegations, buyers, investors, company groups and families — into Pakistan, India, the Philippines and the UAE, and to China the other way. Visas, flights, hotels, cars, interpreters and the meetings themselves, run by people who live where you are going.",
+    "sub": "Business delegations, buyers, investors, company groups and families — into Pakistan, India, Bangladesh, the Philippines and the UAE, and to China the other way. Visas, flights, hotels, cars, interpreters and the meetings themselves, run by people who know where you are going.",
     "whoKicker": "Who travels with us",
     "whoTitle": "Six kinds of traveller.",
     "who": [
@@ -113,7 +113,7 @@
       }
     ],
     "destKicker": "Destinations",
-    "destTitle": "Five countries, one team.",
+    "destTitle": "Six countries, one team.",
     "destinations": [
       {
         "code": "PH",
@@ -131,7 +131,7 @@
         "cities": "Karachi · Lahore · Islamabad",
         "best": "October to March",
         "host": "Umair",
-        "guide": "",
+        "guide": "pakistan",
         "playbook": "pakistan",
         "trip": "pakistan-market-trip"
       },
@@ -141,7 +141,7 @@
         "cities": "Delhi NCR · Patna · Mumbai",
         "best": "October to March",
         "host": "Aryan",
-        "guide": "",
+        "guide": "india",
         "playbook": "india",
         "trip": "india-market-trip"
       },
@@ -164,6 +164,16 @@
         "guide": "china",
         "playbook": "",
         "trip": "canton-fair-trip"
+      },
+      {
+        "code": "BD",
+        "name": "Bangladesh",
+        "cities": "Dhaka · Gazipur · Chattogram",
+        "best": "November to February",
+        "host": "Aryan",
+        "guide": "bangladesh",
+        "playbook": "",
+        "trip": ""
       }
     ],
     "howKicker": "How a trip comes together",
@@ -316,6 +326,116 @@
         "hostNote": "Based in the Philippines and runs our desk there — distribution, operations and the people you will meet.",
         "note": "Entry rules, flights and prices change. We confirm everything for your passport and dates when you book.",
         "sections": [
+          {
+            "type": "packages",
+            "kicker": "Packages",
+            "title": "Four ways to work the Philippines.",
+            "items": [
+              {
+                "t": "Market Week: Manila",
+                "len": "4 days",
+                "cities": "Makati · BGC · Binondo · Ortigas",
+                "price": "From US$1,250",
+                "priceNote": "flights extra",
+                "best": "Brands meeting chains, distributors and the Filipino-Chinese trade.",
+                "incl": [
+                  "Distributor and chain meetings",
+                  "Binondo and Divisoria with a Filipino-Chinese trader",
+                  "Lazada, Shopee and live-selling briefing",
+                  "Car, driver and interpreter every day"
+                ],
+                "featured": true
+              },
+              {
+                "t": "Business and Palawan",
+                "len": "7 days",
+                "cities": "Manila · El Nido",
+                "price": "From US$2,150",
+                "priceNote": "domestic flights included",
+                "best": "Business owners who want the islands after the meetings.",
+                "incl": [
+                  "Four days of Manila meetings",
+                  "Flights to El Nido and back",
+                  "Island hopping in Bacuit Bay",
+                  "Beach resort, breakfast and dinner"
+                ]
+              },
+              {
+                "t": "Incentive group: Cebu and Bohol",
+                "len": "6 days",
+                "cities": "Cebu · Bohol",
+                "price": "From US$1,450",
+                "priceNote": "groups of 20 or more · flights extra",
+                "best": "Dealer rewards and company trips.",
+                "incl": [
+                  "Island hopping from Mactan",
+                  "Ferry to Bohol: Chocolate Hills and Loboc river",
+                  "Gala dinner and group host",
+                  "Coaches and transfers"
+                ]
+              },
+              {
+                "t": "Private delegation",
+                "len": "Your dates",
+                "cities": "Manila, Clark, Cebu or Davao",
+                "price": "Price on application",
+                "priceNote": "for companies, chambers and investors",
+                "best": "Investors and delegations meeting regulators, ecozones and partners.",
+                "incl": [
+                  "Investment-agency and chamber meetings",
+                  "Ecozone and freeport visits",
+                  "Venues, dinners and a group host",
+                  "A written report for the organiser"
+                ]
+              }
+            ],
+            "note": "Per person, twin share. Single rooms extra."
+          },
+          {
+            "type": "phases",
+            "kicker": "Trade fairs",
+            "title": "Where Philippine buyers meet.",
+            "items": [
+              {
+                "n": "Pasay, Metro Manila",
+                "t": "Manila FAME",
+                "d": "Home, furniture, fashion and lifestyle — the country's design-led export fair.",
+                "dates": [
+                  [
+                    "2026",
+                    "15–17 October"
+                  ]
+                ]
+              },
+              {
+                "n": "World Trade Center Metro Manila",
+                "t": "IFEX Philippines",
+                "d": "Food, beverage and ingredients from the Philippines and abroad.",
+                "dates": [
+                  [
+                    "2027",
+                    "20–22 May"
+                  ]
+                ]
+              },
+              {
+                "n": "WTC Metro Manila and SMX",
+                "t": "WOFEX",
+                "d": "The food-service and hospitality show across two venues.",
+                "dates": [
+                  [
+                    "2026",
+                    "29 July – 1 August"
+                  ],
+                  [
+                    "2027",
+                    "Mid-year (expected)"
+                  ]
+                ]
+              }
+            ],
+            "note": "Fair dates are set by the organisers; we confirm them when you book."
+          },
           {
             "type": "cards",
             "kicker": "Before you fly",
@@ -525,6 +645,56 @@
                   "Back to Cebu; gala dinner.",
                   "Departure."
                 ]
+              }
+            ]
+          },
+          {
+            "type": "split",
+            "kicker": "One price",
+            "title": "What it covers, and what it doesn't.",
+            "a": {
+              "t": "Included",
+              "items": [
+                "Visa and eTravel guidance, and the itinerary letter for immigration",
+                "4★ hotels near your meetings, breakfast and dinner",
+                "Car and driver every day; airport meet and assist",
+                "Mandarin, Cantonese, Hokkien or English interpreters",
+                "Every meeting and visit on the itinerary",
+                "Domestic flights and boats where the package says so",
+                "A written debrief and next-step plan"
+              ]
+            },
+            "b": {
+              "t": "Not included",
+              "items": [
+                "International flights",
+                "Visa fees, where they apply",
+                "Island environmental and terminal fees",
+                "Lunches and personal expenses",
+                "Single-room supplement"
+              ]
+            }
+          },
+          {
+            "type": "faq",
+            "kicker": "Questions",
+            "title": "Asked before every Philippines trip.",
+            "items": [
+              {
+                "q": "Can I come visa-free on a Chinese passport?",
+                "a": "Yes, for 14 days of tourism or business — but only through Manila or Cebu airports, and the stay cannot be extended. For longer trips or other airports, apply for a visa before you travel."
+              },
+              {
+                "q": "When should we avoid?",
+                "a": "Typhoon season runs from June to November. We still travel then, with a spare day in every itinerary."
+              },
+              {
+                "q": "Can you introduce us to Filipino-Chinese traders?",
+                "a": "Yes — in Binondo and through the chambers. It is often the fastest way into distribution."
+              },
+              {
+                "q": "Do my products need certification?",
+                "a": "Many electrical goods need BPS certification and devices with radios need NTC approval. We brief you before you meet buyers."
               }
             ]
           },
@@ -895,6 +1065,1387 @@
               "Halal and Indian food",
               "Sample consolidation, quality control and shipping",
               "Certification and customs for your home market"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "india",
+        "code": "IN",
+        "name": "India",
+        "kicker": "India travel desk",
+        "title": "Delhi to decide. Then the rest of India.",
+        "sub": "We plan market weeks, trade-fair visits and plant tours across Delhi NCR, Mumbai, Bengaluru, Chennai and the east — and the Taj Mahal when the work is done. Visas, flights, cars, interpreters and the meetings themselves, from a team that sells in India every day.",
+        "facts": [
+          [
+            "Fly into",
+            "Delhi, Mumbai, Bengaluru or Kolkata"
+          ],
+          [
+            "From China",
+            "Direct from Shanghai, Beijing, Guangzhou, Kunming"
+          ],
+          [
+            "Chinese passports",
+            "e-Tourist visa from US$25; business visas again"
+          ],
+          [
+            "Best months",
+            "October to March"
+          ],
+          [
+            "Business language",
+            "English"
+          ],
+          [
+            "Time zone",
+            "UTC+5:30 — 2½ hours behind Beijing"
+          ]
+        ],
+        "cta": "Plan my India trip",
+        "hostNote": "Leads our India desk — channel, certification and the people you will meet, from Delhi to Patna.",
+        "note": "Prices are per person, twin share, and indicative until confirmed for your dates. Visa rules, flights and fair dates change — we confirm them when you book.",
+        "sections": [
+          {
+            "type": "packages",
+            "kicker": "Packages",
+            "title": "Five ways to work India.",
+            "items": [
+              {
+                "t": "Market Week: Delhi NCR",
+                "len": "5 days",
+                "cities": "Delhi · Noida · Gurugram",
+                "price": "From US$1,450",
+                "priceNote": "flights extra",
+                "best": "Brands meeting distributors and retailers for the first time.",
+                "incl": [
+                  "Meetings with distributors and chain buyers",
+                  "Gaffar Market and Nehru Place on foot",
+                  "Noida's phone and electronics manufacturing belt",
+                  "BIS and import briefing",
+                  "Car and driver every day; interpreter"
+                ],
+                "featured": true
+              },
+              {
+                "t": "Fair Week",
+                "len": "5 days",
+                "cities": "Delhi NCR or Bengaluru",
+                "price": "From US$1,250",
+                "priceNote": "flights extra",
+                "best": "Buyers and exhibitors at IHGF, IITF or electronica India.",
+                "incl": [
+                  "Fair registration and transfers",
+                  "Hotel near the venue",
+                  "Booked meetings around the fair",
+                  "Interpreter on fair days"
+                ]
+              },
+              {
+                "t": "Three-City Business Circuit",
+                "len": "8 days",
+                "cities": "Delhi · Mumbai · Bengaluru",
+                "price": "From US$2,650",
+                "priceNote": "domestic flights included",
+                "best": "Companies choosing where to base a distributor, office or plant.",
+                "incl": [
+                  "Distributors, chains and marketplaces in three cities",
+                  "Mumbai's Lamington Road and port logistics",
+                  "Bengaluru's electronics and design firms",
+                  "Domestic flights and airport transfers"
+                ]
+              },
+              {
+                "t": "Business and the Golden Triangle",
+                "len": "7 days",
+                "cities": "Delhi · Agra · Jaipur",
+                "price": "From US$1,950",
+                "priceNote": "flights extra",
+                "best": "Business owners who want the Taj Mahal on the way home.",
+                "incl": [
+                  "Four days of Delhi meetings",
+                  "Agra and the Taj Mahal at sunrise",
+                  "Jaipur's forts and bazaars",
+                  "Licensed guide and private car"
+                ]
+              },
+              {
+                "t": "Plant and investment visit",
+                "len": "Your dates",
+                "cities": "Chennai, Pune, Noida or Gujarat",
+                "price": "Price on application",
+                "priceNote": "for manufacturers and investors",
+                "best": "Teams installing lines, auditing vendors or scouting a plant site.",
+                "incl": [
+                  "e-B-4 production-investment visa pack",
+                  "Industrial-park and vendor visits",
+                  "State investment-agency meetings",
+                  "Interpreters and engineers' logistics"
+                ]
+              }
+            ],
+            "note": "Per person, twin share. Single rooms extra."
+          },
+          {
+            "type": "phases",
+            "kicker": "Trade fairs",
+            "title": "Where India's buyers meet.",
+            "items": [
+              {
+                "n": "Greater Noida, Delhi NCR",
+                "t": "IHGF Delhi Fair",
+                "d": "India's handicrafts, home, gifts, furniture and fashion-accessory fair — thousands of exporters under one roof.",
+                "dates": [
+                  [
+                    "Autumn 2026",
+                    "13–17 October"
+                  ],
+                  [
+                    "Spring 2027",
+                    "February (expected)"
+                  ]
+                ]
+              },
+              {
+                "n": "Bharat Mandapam, New Delhi",
+                "t": "India International Trade Fair (IITF)",
+                "d": "The country's largest general trade fair: states, ministries and brands across consumer and industrial goods.",
+                "dates": [
+                  [
+                    "2026",
+                    "14–27 November"
+                  ]
+                ]
+              },
+              {
+                "n": "Pragati Maidan, New Delhi",
+                "t": "Convergence India",
+                "d": "Telecom, digital infrastructure, electronics and smart technology.",
+                "dates": [
+                  [
+                    "2027",
+                    "23–25 March"
+                  ]
+                ]
+              },
+              {
+                "n": "Greater Noida and Bengaluru",
+                "t": "electronica India",
+                "d": "Electronic components, systems and manufacturing — the place to meet India's EMS and design firms.",
+                "dates": [
+                  [
+                    "Greater Noida",
+                    "April (yearly)"
+                  ],
+                  [
+                    "Bengaluru",
+                    "September (yearly)"
+                  ]
+                ]
+              }
+            ],
+            "note": "Dates for 2027 editions are confirmed by the organisers through the year."
+          },
+          {
+            "type": "cards",
+            "kicker": "Before you fly",
+            "title": "Visas, by passport.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Chinese passports",
+                "d": "India issues e-Tourist visas to Chinese citizens again: 30 days for US$25, one year for US$40, five years for US$80, usually within 72 hours. Business visas are issued too, and since 1 January 2026 an e-B-4 production-investment visa covers up to six months of installation, quality checks, training and vendor development — allow 45 to 50 days."
+              },
+              {
+                "t": "Bangladeshi passports",
+                "d": "India reopened tourist visas for Bangladeshi citizens on 28 June 2026, through the visa centres in Dhaka, Rajshahi, Chittagong, Sylhet and Khulna. Business visas need an Indian invitation; we provide it."
+              },
+              {
+                "t": "Pakistani passports",
+                "d": "India suspended visas for Pakistani citizens in April 2025. Until that changes we cannot arrange travel to India on a Pakistani passport — we meet in Dubai instead."
+              },
+              {
+                "t": "Philippine, UAE and most other passports",
+                "d": "Apply online for an e-Visa — tourist or business — before you fly. A business e-Visa needs an invitation letter from an Indian company; we issue one for your meetings."
+              }
+            ],
+            "note": "Visa rules change; we confirm yours before you book.",
+            "checked": true
+          },
+          {
+            "type": "cards",
+            "kicker": "Getting there",
+            "title": "Direct from China again.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "To Delhi",
+                "d": "Direct from Shanghai (Air India, China Eastern), Beijing (Air China) and Guangzhou (IndiGo), restored through 2026."
+              },
+              {
+                "t": "To Kolkata",
+                "d": "IndiGo flies from Shanghai daily and from Guangzhou; China Eastern from Kunming — the shortest hop between the two countries."
+              },
+              {
+                "t": "From the Gulf and Southeast Asia",
+                "d": "Daily connections through Dubai, Abu Dhabi, Doha, Singapore and Bangkok to every Indian metro."
+              },
+              {
+                "t": "Inside India",
+                "d": "Delhi to Mumbai or Bengaluru is about two hours by air. We fly between cities and drive within them."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Where business happens",
+            "title": "India is a set of markets, not one.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Delhi NCR",
+                "d": "The capital, the regulators and the north's distributors. Gaffar Market and Nehru Place for phones and IT; Noida for phone and electronics assembly; Gurugram for corporate offices."
+              },
+              {
+                "t": "Mumbai",
+                "d": "Finance, media and the west's trade. Lamington Road for electronics, the port at Nhava Sheva, and Bhiwandi's warehouses."
+              },
+              {
+                "t": "Bengaluru",
+                "d": "India's technology capital: electronics design, start-ups, and e-commerce companies."
+              },
+              {
+                "t": "Chennai",
+                "d": "Cars and electronics manufacturing around Sriperumbudur, and one of India's busiest ports."
+              },
+              {
+                "t": "Kolkata and Patna",
+                "d": "The gateway to the east: Bihar, Bengal and the north-east, a different market from the south, and the closest flights to China."
+              },
+              {
+                "t": "Gujarat and Pune",
+                "d": "Manufacturing states with industrial parks and engineering clusters — for plant visits and suppliers."
+              }
+            ]
+          },
+          {
+            "type": "ticks",
+            "kicker": "On the ground",
+            "title": "How we run an India week.",
+            "items": [
+              "Plan by zone, not by day: Delhi NCR is three cities, and crossing it at peak time takes more than an hour.",
+              "A car and driver stay with you all day; between cities we fly.",
+              "November to January brings fog and smog to the north: we build in buffer time for morning flights.",
+              "June to September is monsoon — business carries on, but leave room in the plan.",
+              "Foreign visitors can now pay like locals with UPI One World, set up at the Delhi, Mumbai and Bengaluru airports. Cards work in hotels and malls.",
+              "Many Indian partners are vegetarian; dinners are planned with both menus in mind."
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Guests from China",
+            "title": "What our guests from China need to know.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "WeChat is blocked",
+                "d": "WeChat and several Chinese apps have been banned in India since 2020. They work on your Chinese roaming plan, not on an Indian SIM — and Indian business runs on WhatsApp."
+              },
+              {
+                "t": "Interpreters",
+                "d": "Mandarin–English and Mandarin–Hindi interpreters for meetings; English carries most business conversations."
+              },
+              {
+                "t": "Chinese food",
+                "d": "Kolkata's Tangra is India's Chinatown; Delhi, Mumbai and Bengaluru have Chinese restaurants we use for business dinners."
+              },
+              {
+                "t": "The right visa",
+                "d": "Engineers and technicians should travel on the e-B-4 or a business visa, not a tourist visa — we prepare the application pack."
+              },
+              {
+                "t": "Border areas",
+                "d": "Ladakh, Sikkim and the north-east need special permits that are generally not open to Chinese passports. We plan around them."
+              },
+              {
+                "t": "Same-day follow-up",
+                "d": "Our India team writes up every meeting the same evening, in English and Chinese."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "When the work is done",
+            "title": "Add a few days.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Agra and the Taj Mahal",
+                "e": "Day trip or overnight from Delhi",
+                "d": "By expressway or train; sunrise at the Taj before the crowds."
+              },
+              {
+                "t": "Jaipur",
+                "e": "Five hours from Delhi",
+                "d": "Amber Fort, the City Palace and the bazaars — the third corner of the Golden Triangle."
+              },
+              {
+                "t": "Varanasi",
+                "e": "An hour's flight from Delhi",
+                "d": "The ghats of the Ganges at dawn — India's most extraordinary city."
+              },
+              {
+                "t": "Goa",
+                "e": "From Mumbai or Bengaluru",
+                "d": "Beaches and old Portuguese churches for a long weekend."
+              },
+              {
+                "t": "Kerala",
+                "e": "From Bengaluru or Chennai",
+                "d": "Backwaters by houseboat, tea hills and Ayurveda."
+              },
+              {
+                "t": "Bodh Gaya",
+                "e": "From Patna",
+                "d": "Where the Buddha found enlightenment — a short drive from Patna."
+              }
+            ]
+          },
+          {
+            "type": "plans",
+            "kicker": "Sample itineraries",
+            "title": "Three ways we put it together.",
+            "items": [
+              {
+                "t": "Market Week: Delhi NCR",
+                "len": "5 days",
+                "days": [
+                  "Arrive; meet and assist; hotel in Aerocity; briefing dinner.",
+                  "Distributors and chain buyers in Delhi.",
+                  "Gaffar Market and Nehru Place; dealer lunch.",
+                  "Noida: electronics manufacturing; BIS and import briefing.",
+                  "Debrief and next steps; departure."
+                ]
+              },
+              {
+                "t": "Three-City Business Circuit",
+                "len": "8 days",
+                "days": [
+                  "Arrive in Delhi; briefing dinner.",
+                  "Delhi distributors and regulators.",
+                  "Fly to Mumbai; Lamington Road and retailers.",
+                  "Port logistics and Bhiwandi warehouses.",
+                  "Fly to Bengaluru; e-commerce companies.",
+                  "Electronics design and service partners.",
+                  "Debrief.",
+                  "Departure."
+                ]
+              },
+              {
+                "t": "Business and the Golden Triangle",
+                "len": "7 days",
+                "days": [
+                  "Arrive in Delhi; briefing dinner.",
+                  "Distributor meetings.",
+                  "Market visits and a factory.",
+                  "Debrief; drive to Agra.",
+                  "Taj Mahal at sunrise; on to Jaipur.",
+                  "Amber Fort and the bazaars.",
+                  "Back to Delhi; departure."
+                ]
+              }
+            ]
+          },
+          {
+            "type": "split",
+            "kicker": "One price",
+            "title": "What it covers, and what it doesn't.",
+            "a": {
+              "t": "Included",
+              "items": [
+                "Visa guidance and the invitation letter for your meetings",
+                "4★ hotels with breakfast and dinner, vegetarian and non-vegetarian",
+                "Car and driver every day; airport meet and assist",
+                "Interpreter for meetings",
+                "Every meeting and market visit on the itinerary",
+                "Domestic flights where the package says so",
+                "A written debrief and next-step plan"
+              ]
+            },
+            "b": {
+              "t": "Not included",
+              "items": [
+                "International flights (unless stated)",
+                "Visa fees",
+                "Lunches and personal expenses",
+                "Monument entry tickets on free days",
+                "Single-room supplement"
+              ]
+            }
+          },
+          {
+            "type": "faq",
+            "kicker": "Questions",
+            "title": "Asked before every India trip.",
+            "items": [
+              {
+                "q": "Which visa should my team use?",
+                "a": "Tourist visas are for tourism. Meetings need a business visa; installation, commissioning, training and vendor development need the e-B-4. We check what your team will do and prepare the right application."
+              },
+              {
+                "q": "When is the best time to come?",
+                "a": "October to March. The north is hot from April to June and wet from June to September; Delhi has fog and smog in December and January."
+              },
+              {
+                "q": "Can you set up meetings with distributors?",
+                "a": "Yes — that is the point of the trip. We book distributors, chain buyers and marketplaces before you land, based on your product and price."
+              },
+              {
+                "q": "Do my products need certification?",
+                "a": "Many electronics need BIS registration before they can be imported. We tell you what applies before you meet buyers — try our entry estimator."
+              }
+            ]
+          },
+          {
+            "type": "desk",
+            "kicker": "Our India desk",
+            "title": "What we handle, so you can sell.",
+            "items": [
+              "Visa packs and invitation letters",
+              "Meetings with distributors, chains and marketplaces",
+              "Fair registrations and meetings around them",
+              "Hotels, cars, drivers and domestic flights",
+              "Mandarin, Hindi and English interpreters",
+              "BIS, WPC and import briefings",
+              "Same-evening meeting notes",
+              "Golden Triangle and leisure extensions"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "pakistan",
+        "code": "PK",
+        "name": "Pakistan",
+        "kicker": "Pakistan travel desk",
+        "title": "Karachi sets the price. Lahore sets the trend.",
+        "sub": "We host manufacturers, buyers and investors in Karachi, Lahore, Islamabad and the export towns of Punjab — Faisalabad, Sialkot and Gujranwala — and take them north to the mountains when there is time. Visas, security, cars, interpreters and the meetings, from a team that lives here.",
+        "facts": [
+          [
+            "Fly into",
+            "Karachi, Lahore or Islamabad"
+          ],
+          [
+            "From China",
+            "About 6 hours from Guangzhou"
+          ],
+          [
+            "Chinese passports",
+            "Online visa; security protocol applies"
+          ],
+          [
+            "Best months",
+            "October to March (cities); April to October (north)"
+          ],
+          [
+            "Business language",
+            "English and Urdu"
+          ],
+          [
+            "Time zone",
+            "UTC+5 — 3 hours behind Beijing"
+          ]
+        ],
+        "cta": "Plan my Pakistan trip",
+        "hostNote": "Leads our Pakistan desk — the dealers, the markets and the people you will meet in Karachi and Lahore.",
+        "note": "Prices are per person, twin share, and indicative until confirmed for your dates. Security arrangements for Chinese passport holders are quoted per route. Visa rules and fair dates change — we confirm them when you book.",
+        "sections": [
+          {
+            "type": "packages",
+            "kicker": "Packages",
+            "title": "Five ways to work Pakistan.",
+            "items": [
+              {
+                "t": "Market Week: Karachi and Lahore",
+                "len": "5 days",
+                "cities": "Karachi · Lahore",
+                "price": "From US$1,350",
+                "priceNote": "flights extra",
+                "best": "Manufacturers meeting dealers and distributors in the two cities that set the price.",
+                "incl": [
+                  "Saddar and Hafeez Centre markets on foot",
+                  "Distributor and dealer meetings",
+                  "Customs and PSQCA briefing",
+                  "Flight Karachi–Lahore",
+                  "Car, driver and interpreter every day"
+                ],
+                "featured": true
+              },
+              {
+                "t": "Industrial Punjab",
+                "len": "6 days",
+                "cities": "Lahore · Faisalabad · Sialkot · Gujranwala",
+                "price": "From US$1,550",
+                "priceNote": "flights extra",
+                "best": "Buyers sourcing textiles, sports goods, surgical instruments, leather and electrical goods.",
+                "incl": [
+                  "Faisalabad's textile mills",
+                  "Sialkot's sports-goods and leather exporters",
+                  "Gujranwala's fans and electrical makers",
+                  "Factory visits arranged in advance"
+                ]
+              },
+              {
+                "t": "Fair Week",
+                "len": "4 days",
+                "cities": "Karachi or Lahore",
+                "price": "From US$1,050",
+                "priceNote": "flights extra",
+                "best": "Visitors to the leather, textile and solar fairs.",
+                "incl": [
+                  "Fair registration and transfers",
+                  "Hotel near the Expo Centre",
+                  "Booked meetings with exhibitors",
+                  "Interpreter on fair days"
+                ]
+              },
+              {
+                "t": "Business, Gandhara and the North",
+                "len": "9 days",
+                "cities": "Islamabad · Taxila · Hunza",
+                "price": "From US$2,450",
+                "priceNote": "domestic flights included",
+                "best": "Business owners who want to see the mountains — and the Buddhist heritage of Gandhara.",
+                "incl": [
+                  "Islamabad meetings",
+                  "Taxila's Gandhara sites and museum",
+                  "Karakoram Highway to Hunza",
+                  "Licensed guide and private car"
+                ]
+              },
+              {
+                "t": "Private delegation",
+                "len": "Your dates",
+                "cities": "Any city, plus the free zones",
+                "price": "Price on application",
+                "priceNote": "for companies, chambers and investors",
+                "best": "Investors and delegations meeting regulators, partners and special economic zones.",
+                "incl": [
+                  "Investment-board and chamber meetings",
+                  "Special economic zone visits",
+                  "Security planning for the whole group",
+                  "Venues, dinners and a group host"
+                ]
+              }
+            ],
+            "note": "Per person, twin share. Single rooms, and the escort and armoured car required for some routes, cost extra."
+          },
+          {
+            "type": "phases",
+            "kicker": "Trade fairs",
+            "title": "Where Pakistan's trade meets.",
+            "items": [
+              {
+                "n": "Karachi and Faisalabad",
+                "t": "Textile Asia",
+                "d": "Textile machinery, yarn, dyes and garment technology — the industry's main meeting point.",
+                "dates": [
+                  [
+                    "Karachi",
+                    "5–7 December 2026"
+                  ],
+                  [
+                    "Faisalabad",
+                    "11–13 December 2026"
+                  ]
+                ]
+              },
+              {
+                "n": "Karachi",
+                "t": "Shoes & Bags Asia",
+                "d": "Footwear, leather goods and their machinery and materials.",
+                "dates": [
+                  [
+                    "2026",
+                    "24–27 December"
+                  ]
+                ]
+              },
+              {
+                "n": "Lahore",
+                "t": "Pakistan Mega Leather Show",
+                "d": "Leather garments, gloves, footwear and accessories from Pakistan's exporters.",
+                "dates": [
+                  [
+                    "2027",
+                    "8–10 January"
+                  ]
+                ]
+              },
+              {
+                "n": "Pakistan",
+                "t": "Solar Fair Pakistan",
+                "d": "Solar panels, inverters and batteries — one of the fastest-growing categories in the country.",
+                "dates": [
+                  [
+                    "2027",
+                    "16–18 April"
+                  ]
+                ]
+              }
+            ],
+            "note": "Fair dates are set by the organisers and can move; we confirm them when you book."
+          },
+          {
+            "type": "cards",
+            "kicker": "Before you fly",
+            "title": "Visas, by passport.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Chinese passports",
+                "d": "Apply online through Pakistan's official visa portal. A business visa needs an invitation letter from a Pakistani company issued through the e-Business invitation system; CPEC-related travel has its own business visa. Allow at least two weeks."
+              },
+              {
+                "t": "Indian passports",
+                "d": "Visas for Indian citizens have been suspended since April 2025. Until that changes we cannot arrange travel to Pakistan on an Indian passport — we meet in Dubai instead."
+              },
+              {
+                "t": "Other passports",
+                "d": "Most nationalities apply online for a tourist or business visa; many get the business visa with an invitation letter we provide. We check your passport before you book."
+              },
+              {
+                "t": "Everyone",
+                "d": "Carry your visa approval, invitation letter, hotel bookings and return ticket. A local SIM needs biometric registration with your passport — we arrange it, or you can roam."
+              }
+            ],
+            "note": "Visa rules change; we confirm yours before you book.",
+            "checked": true
+          },
+          {
+            "type": "cards",
+            "kicker": "Security",
+            "title": "Security for guests from China, handled properly.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "It is the law, not an option",
+                "d": "Pakistan's authorities provide dedicated protection for Chinese nationals: police are informed of your movements in advance, and police escorts accompany travel between cities."
+              },
+              {
+                "t": "Armoured vehicles where required",
+                "d": "In districts rated high-risk, and for larger groups, armoured vehicles are required. We plan routes so you need them as little as possible, and quote them per route."
+              },
+              {
+                "t": "Approved hotels and routes",
+                "d": "We use hotels that are cleared to host foreign guests and keep to planned routes and daylight travel. Spontaneous market walks are planned walks."
+              },
+              {
+                "t": "Where we do not go",
+                "d": "Balochistan and parts of Khyber Pakhtunkhwa are off our itineraries. Karachi, Lahore, Islamabad and the Punjab export towns are where the business is."
+              }
+            ],
+            "note": "Guests on other passports travel with lighter arrangements; we advise per trip."
+          },
+          {
+            "type": "cards",
+            "kicker": "Getting there",
+            "title": "Direct from China, or through the Gulf.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "From Guangzhou",
+                "d": "China Southern flies from Guangzhou to Lahore and Islamabad — about six hours."
+              },
+              {
+                "t": "From Beijing and Urumqi",
+                "d": "Direct flights to Islamabad; PIA restarts its weekly Islamabad–Beijing service from 30 October 2026."
+              },
+              {
+                "t": "Through the Gulf",
+                "d": "Daily connections through Dubai, Abu Dhabi, Doha and Riyadh to all three cities."
+              },
+              {
+                "t": "Inside Pakistan",
+                "d": "Karachi to Lahore is under two hours by air; Lahore to Islamabad four hours on the motorway."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Where business happens",
+            "title": "Six places to know.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Karachi",
+                "d": "The port and the commercial capital: Saddar's mobile and electronics markets, wholesale bazaars, and the SITE and Korangi industrial areas."
+              },
+              {
+                "t": "Lahore",
+                "d": "Punjab's capital and its consumer heart: Hafeez Centre for phones and IT, Hall Road for electrical goods, and the dealers who supply the province."
+              },
+              {
+                "t": "Islamabad and Rawalpindi",
+                "d": "Government, regulators and the investment board; quieter, greener, and the base for the north."
+              },
+              {
+                "t": "Faisalabad",
+                "d": "The textile city: spinning, weaving and home textiles."
+              },
+              {
+                "t": "Sialkot",
+                "d": "A world exporter of sports goods, surgical instruments and leather — with its own airport."
+              },
+              {
+                "t": "Gujranwala",
+                "d": "Fans, electrical goods, ceramics and metalwork."
+              }
+            ]
+          },
+          {
+            "type": "ticks",
+            "kicker": "On the ground",
+            "title": "How we run a Pakistan week.",
+            "items": [
+              "Two cities, one flight: Karachi and Lahore are a week's work; Islamabad adds the regulators.",
+              "Friday afternoons are short — prayers come first. We keep Friday mornings for meetings.",
+              "In Ramadan, business slows by day and moves to the evening; we plan around it.",
+              "Lahore has heavy smog from November to January; we keep flights flexible.",
+              "Cash still rules in the markets; cards work in hotels and large shops. We arrange rupees on arrival.",
+              "Business is personal: tea first, then the deal. Expect a second meeting before a decision."
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Guests from China",
+            "title": "What our guests from China need to know.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Urdu–Mandarin interpreters",
+                "d": "Many Pakistanis have studied in China; we work with interpreters who speak both."
+              },
+              {
+                "t": "WeChat works",
+                "d": "WeChat works normally in Pakistan, though local business runs on WhatsApp — we set up the groups."
+              },
+              {
+                "t": "Food",
+                "d": "Everything is halal and pork is not served; Chinese restaurants in Islamabad, Lahore and Karachi for the evenings."
+              },
+              {
+                "t": "Alcohol",
+                "d": "Restricted by law; some international hotels serve foreign guests."
+              },
+              {
+                "t": "Gandhara heritage",
+                "d": "Taxila and Swat hold some of the oldest Buddhist sites on the Silk Road — a highlight for many of our Chinese guests."
+              },
+              {
+                "t": "The Karakoram Highway",
+                "d": "The road from Kashgar over the Khunjerab Pass, open in the warmer months — the most spectacular way in or out."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "When the work is done",
+            "title": "Add a few days.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Lahore's Walled City",
+                "e": "In Lahore",
+                "d": "Badshahi Mosque, Lahore Fort and the food streets of the old city."
+              },
+              {
+                "t": "Taxila",
+                "e": "An hour from Islamabad",
+                "d": "Gandhara monasteries, stupas and a museum of Buddhist art."
+              },
+              {
+                "t": "Hunza",
+                "e": "Fly to Gilgit, then about 2½ hours by road",
+                "d": "Attabad Lake, the Baltit and Altit forts, and the high peaks."
+              },
+              {
+                "t": "Skardu",
+                "e": "An hour's flight from Islamabad",
+                "d": "Gateway to K2, with lakes and cold deserts."
+              },
+              {
+                "t": "Islamabad",
+                "e": "In the city",
+                "d": "Faisal Mosque, the Margalla Hills and Daman-e-Koh at sunset."
+              },
+              {
+                "t": "Khunjerab Pass",
+                "e": "From Hunza, seasonal",
+                "d": "The China–Pakistan border at 4,693 metres."
+              }
+            ]
+          },
+          {
+            "type": "plans",
+            "kicker": "Sample itineraries",
+            "title": "Three ways we put it together.",
+            "items": [
+              {
+                "t": "Market Week: Karachi and Lahore",
+                "len": "5 days",
+                "days": [
+                  "Arrive in Karachi; briefing dinner.",
+                  "Saddar markets; dealer lunch.",
+                  "Distributors and warehouses; customs and PSQCA briefing.",
+                  "Fly to Lahore; Hafeez Centre and Hall Road.",
+                  "Dealer meetings, debrief; departure."
+                ]
+              },
+              {
+                "t": "Industrial Punjab",
+                "len": "6 days",
+                "days": [
+                  "Arrive in Lahore; briefing dinner.",
+                  "Lahore distributors.",
+                  "Faisalabad's textile mills.",
+                  "Sialkot's exporters.",
+                  "Gujranwala's factories.",
+                  "Debrief; departure."
+                ]
+              },
+              {
+                "t": "Business, Gandhara and the North",
+                "len": "9 days",
+                "days": [
+                  "Arrive in Islamabad.",
+                  "Meetings in Islamabad.",
+                  "Taxila's Gandhara sites.",
+                  "Fly or drive north to Gilgit.",
+                  "Hunza: forts and Attabad Lake.",
+                  "Hunza valleys.",
+                  "Return towards Islamabad.",
+                  "Lahore's Walled City.",
+                  "Departure."
+                ]
+              }
+            ]
+          },
+          {
+            "type": "split",
+            "kicker": "One price",
+            "title": "What it covers, and what it doesn't.",
+            "a": {
+              "t": "Included",
+              "items": [
+                "Visa guidance and the invitation letter",
+                "4★ hotels cleared for foreign guests, breakfast and dinner",
+                "Car and driver every day; airport meet and assist",
+                "Urdu, English and Mandarin interpreters",
+                "Every meeting and market visit on the itinerary",
+                "Security planning with the authorities",
+                "A written debrief and next-step plan"
+              ]
+            },
+            "b": {
+              "t": "Not included",
+              "items": [
+                "International flights",
+                "Visa fees",
+                "Armoured vehicles where required (quoted per route)",
+                "Lunches and personal expenses",
+                "Single-room supplement"
+              ]
+            }
+          },
+          {
+            "type": "faq",
+            "kicker": "Questions",
+            "title": "Asked before every Pakistan trip.",
+            "items": [
+              {
+                "q": "Is it safe for a Chinese business visitor?",
+                "a": "Karachi, Lahore and Islamabad receive Chinese business visitors every week. With the official security arrangements, planned routes and approved hotels, our guests travel safely; we do not take guests to the areas the authorities restrict."
+              },
+              {
+                "q": "How long does the visa take?",
+                "a": "Apply online at least two weeks before you fly. A business visa needs our invitation letter, which we issue once your meetings are set."
+              },
+              {
+                "q": "Can we visit factories in Sialkot or Faisalabad?",
+                "a": "Yes. We arrange the visits in advance — the export houses there are used to foreign buyers."
+              },
+              {
+                "q": "What about certification for our products?",
+                "a": "Many electrical goods need PSQCA conformity and devices with radios need PTA approval. We brief you before you meet buyers."
+              }
+            ]
+          },
+          {
+            "type": "desk",
+            "kicker": "Our Pakistan desk",
+            "title": "What we handle, so you can sell.",
+            "items": [
+              "Visa packs and invitation letters",
+              "Security planning with the authorities",
+              "Meetings with dealers, distributors and chambers",
+              "Factory visits in Faisalabad, Sialkot and Gujranwala",
+              "Hotels, cars, drivers and domestic flights",
+              "Urdu–Mandarin interpreters",
+              "PSQCA, PTA and customs briefings",
+              "Gandhara and northern extensions"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "bangladesh",
+        "code": "BD",
+        "name": "Bangladesh",
+        "kicker": "Bangladesh travel desk",
+        "title": "The world's tailor. And a market of 170 million.",
+        "sub": "Buyers come to Bangladesh for garments and textiles; brands come for one of Asia's largest consumer markets. We plan factory weeks in Dhaka, Gazipur, Narayanganj and Chattogram, trade-fair visits, and the tea hills and mangroves when there is time — with visas, cars, interpreters and the meetings arranged.",
+        "facts": [
+          [
+            "Fly into",
+            "Dhaka (Hazrat Shahjalal)"
+          ],
+          [
+            "From China",
+            "About 4 hours from Guangzhou, 2½ from Kunming"
+          ],
+          [
+            "Chinese passports",
+            "Visa on arrival, US$50, 30 days"
+          ],
+          [
+            "Best months",
+            "November to February"
+          ],
+          [
+            "Business language",
+            "English and Bangla"
+          ],
+          [
+            "Weekend",
+            "Friday and Saturday"
+          ]
+        ],
+        "cta": "Plan my Bangladesh trip",
+        "hostNote": "Leads our South Asia desk, including Bangladesh — the factories, the buying houses and the people you will meet.",
+        "note": "Prices are per person, twin share, and indicative until confirmed for your dates. Visa rules, fair dates and the security picture change — we confirm them when you book.",
+        "sections": [
+          {
+            "type": "packages",
+            "kicker": "Packages",
+            "title": "Five ways to work Bangladesh.",
+            "items": [
+              {
+                "t": "Apparel Sourcing Week",
+                "len": "5 days",
+                "cities": "Dhaka · Gazipur · Narayanganj · Chattogram",
+                "price": "From US$1,350",
+                "priceNote": "flights extra",
+                "best": "Brands and importers sourcing knitwear, woven garments and denim.",
+                "incl": [
+                  "A factory shortlist matched to your product and volumes",
+                  "Visits in Gazipur, Narayanganj and Chattogram",
+                  "Meetings with buying houses",
+                  "Compliance and lead-time briefing",
+                  "Car, driver and interpreter every day"
+                ],
+                "featured": true
+              },
+              {
+                "t": "Market Week: Dhaka and Chattogram",
+                "len": "5 days",
+                "cities": "Dhaka · Chattogram",
+                "price": "From US$1,250",
+                "priceNote": "flights extra",
+                "best": "Brands entering the Bangladeshi consumer market.",
+                "incl": [
+                  "Distributor and retailer meetings",
+                  "Dhaka's electronics and phone markets",
+                  "Port and customs briefing in Chattogram",
+                  "Domestic flight Dhaka–Chattogram"
+                ]
+              },
+              {
+                "t": "Fair Week",
+                "len": "4 days",
+                "cities": "Dhaka",
+                "price": "From US$990",
+                "priceNote": "flights extra",
+                "best": "Visitors to the Dhaka International Trade Fair and the textile shows.",
+                "incl": [
+                  "Fair registration and transfers",
+                  "Hotel in Gulshan or Banani",
+                  "Booked meetings with exhibitors",
+                  "Interpreter on fair days"
+                ]
+              },
+              {
+                "t": "Business and the Tea Country",
+                "len": "7 days",
+                "cities": "Dhaka · Srimangal · Sylhet",
+                "price": "From US$1,850",
+                "priceNote": "flights extra",
+                "best": "Business owners who want to see the green side of Bangladesh.",
+                "incl": [
+                  "Three days of Dhaka meetings",
+                  "Srimangal's tea estates and Lawachara forest",
+                  "Sylhet's hills and rivers",
+                  "Private car and guide"
+                ]
+              },
+              {
+                "t": "Private delegation",
+                "len": "Your dates",
+                "cities": "Dhaka, the economic zones and the EPZs",
+                "price": "Price on application",
+                "priceNote": "for companies, chambers and investors",
+                "best": "Investors and delegations visiting economic zones and partners.",
+                "incl": [
+                  "Investment-authority and chamber meetings",
+                  "Economic-zone and EPZ visits",
+                  "Security planning for the group",
+                  "Venues, dinners and a group host"
+                ]
+              }
+            ],
+            "note": "Per person, twin share. Single rooms extra."
+          },
+          {
+            "type": "phases",
+            "kicker": "Trade fairs",
+            "title": "Where Bangladesh's buyers meet.",
+            "items": [
+              {
+                "n": "Purbachal, Dhaka",
+                "t": "Dhaka International Trade Fair",
+                "d": "A month-long national fair at the Bangladesh–China Friendship Exhibition Centre — consumer goods, electronics, textiles and machinery.",
+                "dates": [
+                  [
+                    "2027",
+                    "1–31 January"
+                  ]
+                ]
+              },
+              {
+                "n": "Dhaka",
+                "t": "Garment and textile technology shows",
+                "d": "Garment Technology Bangladesh, GAPEXPO and the Dhaka International Denim Show bring machinery, fabric and denim mills together.",
+                "dates": [
+                  [
+                    "2027",
+                    "January (expected)"
+                  ]
+                ]
+              },
+              {
+                "n": "Dhaka",
+                "t": "DTG — Textile & Garment Machinery",
+                "d": "The region's large textile and garment machinery exhibition.",
+                "dates": [
+                  [
+                    "2027",
+                    "February (expected)"
+                  ]
+                ]
+              }
+            ],
+            "note": "2027 dates for the textile shows are confirmed by the organisers through the year."
+          },
+          {
+            "type": "cards",
+            "kicker": "Before you fly",
+            "title": "Visas, by passport.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Chinese passports",
+                "d": "A visa on arrival at Dhaka airport, US$50, for up to 30 days, with a passport valid six months and a return ticket. For business, bring an invitation letter — and the inviting company must inform immigration in advance; we do that. Longer stays: a business visa of up to six months from the embassy."
+              },
+              {
+                "t": "Indian passports",
+                "d": "Apply to the Bangladesh mission in India before you travel; we provide the invitation letter and check current processing times."
+              },
+              {
+                "t": "Pakistani passports",
+                "d": "Apply before you travel; relations have eased and we check current processing for you."
+              },
+              {
+                "t": "Other passports",
+                "d": "Many nationalities qualify for a visa on arrival for business or tourism; others apply in advance. We confirm yours before you book."
+              }
+            ],
+            "note": "Visa rules change; we confirm yours before you book.",
+            "checked": true
+          },
+          {
+            "type": "cards",
+            "kicker": "Safety",
+            "title": "The honest picture.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Calmer, with caution",
+                "d": "After the unrest of 2024 and the February 2026 election, travel advice for Bangladesh sits at 'exercise increased caution'. Business in Dhaka and Chattogram runs normally."
+              },
+              {
+                "t": "Demonstrations and strikes",
+                "d": "Rallies and strikes (hartals) can close roads at short notice. We check the day's situation every morning and keep itineraries flexible."
+              },
+              {
+                "t": "Where we stay",
+                "d": "Gulshan and Banani, Dhaka's diplomatic and business districts, with a car and driver for every journey."
+              },
+              {
+                "t": "Where we do not go",
+                "d": "The Chittagong Hill Tracts need permits and the camps near Cox's Bazar are off our itineraries."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Getting there",
+            "title": "Direct from China.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "From Guangzhou",
+                "d": "China Southern, US-Bangla and Biman fly direct to Dhaka — about four hours."
+              },
+              {
+                "t": "From Kunming and Beijing",
+                "d": "China Eastern from Kunming (about 2½ hours); Air China and China Southern from Beijing."
+              },
+              {
+                "t": "Through the Gulf and Southeast Asia",
+                "d": "Connections through Dubai, Doha, Singapore, Kuala Lumpur and Bangkok."
+              },
+              {
+                "t": "Inside Bangladesh",
+                "d": "Dhaka to Chattogram is under an hour by air; the Padma Bridge has cut the drive to the south-west."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Where business happens",
+            "title": "Five places to know.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Dhaka",
+                "d": "The capital and the market: Gulshan and Banani for offices and buying houses, Motijheel for banks, and the city's electronics and phone markets."
+              },
+              {
+                "t": "Gazipur and Savar",
+                "d": "The heart of the garment belt north of Dhaka, with the Dhaka EPZ — knit, woven and denim factories by the hundred."
+              },
+              {
+                "t": "Narayanganj",
+                "d": "The river port south of Dhaka and the centre of knitwear."
+              },
+              {
+                "t": "Chattogram",
+                "d": "The main seaport, the Chattogram EPZ and the new economic zone at Mirsarai."
+              },
+              {
+                "t": "Purbachal",
+                "d": "Dhaka's new town and home of the exhibition centre built with China."
+              }
+            ]
+          },
+          {
+            "type": "ticks",
+            "kicker": "On the ground",
+            "title": "How we run a Bangladesh week.",
+            "items": [
+              "Dhaka traffic is among the world's slowest: two meetings a day, three at most, and stay near them.",
+              "The weekend is Friday and Saturday; Sunday is a working day.",
+              "The monsoon, June to October, floods roads; November to February is the best time to come.",
+              "First-time garment buyers do better through a buying house than direct; we introduce both.",
+              "Cash and cards in hotels; mobile money is everywhere but hard for visitors. We arrange taka on arrival.",
+              "A local SIM needs biometric registration with your passport; we set it up at the airport."
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Guests from China",
+            "title": "What our guests from China need to know.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "A familiar partner",
+                "d": "China built the Padma Bridge and the exhibition centre at Purbachal; Chinese engineers and businesses are a common sight."
+              },
+              {
+                "t": "WeChat works",
+                "d": "WeChat works normally; local business runs on WhatsApp and Messenger, and we set up the groups."
+              },
+              {
+                "t": "Interpreters",
+                "d": "Mandarin–Bangla interpreters are rare; we bring Mandarin–English interpreters and our own team."
+              },
+              {
+                "t": "Food",
+                "d": "Food is halal and pork is rarely served; Chinese restaurants in Gulshan and Banani for the evenings."
+              },
+              {
+                "t": "Buddhist heritage",
+                "d": "Paharpur's Somapura Mahavihara — a UNESCO site — was one of the great Buddhist monasteries of South Asia."
+              },
+              {
+                "t": "Factory audits",
+                "d": "We arrange social-compliance and quality checks before you place an order."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "When the work is done",
+            "title": "Add a few days.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Old Dhaka",
+                "e": "In Dhaka",
+                "d": "Lalbagh Fort, Ahsan Manzil and the boats on the Buriganga."
+              },
+              {
+                "t": "Srimangal",
+                "e": "About four hours from Dhaka",
+                "d": "Tea estates, Lawachara rainforest and the seven-layer tea."
+              },
+              {
+                "t": "Sylhet",
+                "e": "An hour's flight from Dhaka",
+                "d": "Hills, rivers and the clear waters near the Indian border."
+              },
+              {
+                "t": "The Sundarbans",
+                "e": "Two to three days by boat",
+                "d": "The world's largest mangrove forest and home of the Bengal tiger."
+              },
+              {
+                "t": "Cox's Bazar",
+                "e": "An hour's flight from Dhaka",
+                "d": "One of the longest natural sea beaches in the world."
+              },
+              {
+                "t": "Paharpur and Bagerhat",
+                "e": "Each an overnight trip from Dhaka",
+                "d": "Two UNESCO sites: a great Buddhist monastery and the Mosque City."
+              }
+            ]
+          },
+          {
+            "type": "plans",
+            "kicker": "Sample itineraries",
+            "title": "Three ways we put it together.",
+            "items": [
+              {
+                "t": "Apparel Sourcing Week",
+                "len": "5 days",
+                "days": [
+                  "Arrive in Dhaka; meet and assist; hotel in Gulshan; briefing dinner.",
+                  "Gazipur and Savar: knit and woven factories.",
+                  "Narayanganj knitwear; a buying house in the afternoon.",
+                  "Fly to Chattogram: EPZ factories and the port.",
+                  "Debrief and next steps; departure."
+                ]
+              },
+              {
+                "t": "Market Week: Dhaka and Chattogram",
+                "len": "5 days",
+                "days": [
+                  "Arrive in Dhaka; briefing dinner.",
+                  "Distributors and retailers.",
+                  "Electronics and phone markets.",
+                  "Chattogram: port, customs and regional distributors.",
+                  "Debrief; departure."
+                ]
+              },
+              {
+                "t": "Business and the Tea Country",
+                "len": "7 days",
+                "days": [
+                  "Arrive in Dhaka.",
+                  "Meetings in Dhaka.",
+                  "Meetings and Old Dhaka.",
+                  "Drive to Srimangal.",
+                  "Tea estates and Lawachara.",
+                  "Sylhet's hills and rivers.",
+                  "Fly back to Dhaka; departure."
+                ]
+              }
+            ]
+          },
+          {
+            "type": "split",
+            "kicker": "One price",
+            "title": "What it covers, and what it doesn't.",
+            "a": {
+              "t": "Included",
+              "items": [
+                "Visa guidance, invitation letter and notice to immigration",
+                "4★ hotels in Gulshan or Banani, breakfast and dinner",
+                "Car and driver every day; airport meet and assist",
+                "Interpreters for meetings and factory visits",
+                "A factory and buying-house shortlist",
+                "Daily security check and flexible routing",
+                "A written debrief and next-step plan"
+              ]
+            },
+            "b": {
+              "t": "Not included",
+              "items": [
+                "International flights",
+                "Visa fees",
+                "Third-party audits and lab tests",
+                "Lunches and personal expenses",
+                "Single-room supplement"
+              ]
+            }
+          },
+          {
+            "type": "faq",
+            "kicker": "Questions",
+            "title": "Asked before every Bangladesh trip.",
+            "items": [
+              {
+                "q": "Should I go to factories directly or through a buying house?",
+                "a": "First-time buyers usually do better through a buying house, which handles samples, quality and follow-up. We introduce both and you choose."
+              },
+              {
+                "q": "What minimum order should I expect?",
+                "a": "It depends on the product and the factory; larger factories expect bigger runs. We shortlist factories that fit your volumes before you fly."
+              },
+              {
+                "q": "Is it safe?",
+                "a": "Business travel in Dhaka and Chattogram runs normally. We stay in the business districts, check the situation every morning and keep plans flexible on days of rallies or strikes."
+              },
+              {
+                "q": "Can you help us sell in Bangladesh, not only buy?",
+                "a": "Yes. Our Market Week meets distributors and retailers for brands entering the consumer market."
+              }
+            ]
+          },
+          {
+            "type": "desk",
+            "kicker": "Our Bangladesh desk",
+            "title": "What we handle, so you can buy and sell.",
+            "items": [
+              "Visas on arrival and notice to immigration",
+              "Factory and buying-house shortlists",
+              "Compliance and quality checks",
+              "Distributor and retailer meetings",
+              "Hotels, cars, drivers and domestic flights",
+              "Interpreters",
+              "Daily security checks",
+              "Tea-country and Sundarbans extensions"
             ]
           }
         ]

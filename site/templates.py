@@ -1263,7 +1263,7 @@ def page_trip(c, lang, i):
 
 # ── travel ────────────────────────────────────────────────────────────────
 
-TRAVEL_HOSTS = {'PK': 'Umair', 'IN': 'Aryan', 'PH': 'Umer', 'AE': 'Shamas', 'CN': 'Umair'}
+TRAVEL_HOSTS = {'PK': 'Umair', 'IN': 'Aryan', 'PH': 'Umer', 'AE': 'Shamas', 'CN': 'Umair', 'BD': 'Aryan'}
 
 
 def attr(name, value):
@@ -1324,6 +1324,82 @@ def travel_form(c, lang, preset=''):
   </section>"""
 
 
+def visa_rule(c, passport, dest):
+    """The rule for one passport going to one destination, with home and unknown cases filled in."""
+    if passport == dest:
+        return {'type': 'home', 'note': 'home', 'stay': None, 'fee': None, 'lead': 0}
+    return c['visaRules']['rules'].get(dest, {}).get(passport) or {'type': 'check', 'note': 'check', 'stay': None, 'fee': None, 'lead': 0}
+
+
+def visa_checker(c, lang):
+    """Passport and visa check: passport + destination (+ purpose, dates) → the visa needed, stay, fee,
+    apply-by date, passport validity and a checklist. Runs in the browser on the rules shipped in the
+    page; the table below it gives the same answers without JavaScript."""
+    k = c['checker']
+    t = c['travel']
+    vr = c['visaRules']
+    pnames = dict(k['passports'])
+    dnames = {d['code']: d['name'] for d in t['destinations']}
+    dests = [d for d in vr['destinations'] if d in dnames]
+    payload = {
+        'rules': {d: {p: visa_rule(c, p, d) for p in vr['passports']} for d in dests},
+        'validity': vr['validityMonths'], 'beyondStay': vr['validityBeyondStay'],
+        'labels': {x: k[x] for x in ('types', 'stay', 'fee', 'applyBy', 'passportCheck', 'days', 'stayVaries', 'noFee',
+                                     'feeOnArrival', 'feeFrom', 'feeVaries', 'noApply', 'beforeFly', 'addDates', 'valid',
+                                     'renew', 'validRule', 'validRuleStay', 'pages', 'checklist', 'plan', 'guide', 'whatsapp',
+                                     'late')},
+        'notes': k['notes'], 'destNotes': k['destNotes'], 'docs': k['docs'],
+        'destNames': dnames,
+        'guides': {g['code']: href(lang, 'guide', g['slug']) for g in t['guides']},
+        'hosts': TRAVEL_HOSTS, 'lang': lang,
+    }
+    data = json.dumps(payload, ensure_ascii=False).replace('</', '<\\/')
+    opt = lambda pairs: ''.join(f'<option value="{e(v)}">{e(n)}</option>' for v, n in pairs)
+    passports = opt(k['passports'])
+    destopts = opt([(d, dnames[d]) for d in dests])
+    purposes = opt(k['purposes'])
+    # the same answers as a table, for scanning and for readers without JavaScript
+    head = ''.join(f'<th scope="col">{e(dnames[d])}</th>' for d in dests)
+    rows = ''
+    for p in vr['passports']:
+        cells = ''
+        for d in dests:
+            rule = visa_rule(c, p, d)
+            stay = (' · ' + k['dayShort'].format(n=rule['stay'])) if rule.get('stay') and rule['type'] in ('free', 'voa') else ''
+            cells += f'<td class="vt vt--{rule["type"]}">{e(k["short"][rule["type"]])}{e(stay)}</td>'
+        rows += f'<tr><th scope="row">{e(pnames[p])}</th>{cells}</tr>'
+    return f"""<section class="band" id="check">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(k["kicker"])}<h2 class="sech">{e(k["title"])}</h2><p class="lead" style="--mw:56ch">{e(k["sub"])}</p></header>
+      <script type="application/json" data-checker-data>{data}</script>
+      <form class="panel checker" data-checker>
+        <div class="checker__fields">
+          <div class="field"><label for="vc-passport">{e(k["passport"])}</label><select class="input" id="vc-passport" name="passport">{passports}</select></div>
+          <div class="field"><label for="vc-dest">{e(k["dest"])}</label><select class="input" id="vc-dest" name="dest">{destopts}</select></div>
+          <div class="field"><label for="vc-purpose">{e(k["purpose"])}</label><select class="input" id="vc-purpose" name="purpose">{purposes}</select></div>
+          <div class="field"><label for="vc-arrive">{e(k["arrive"])}</label><input class="input" id="vc-arrive" name="arrive" type="date"></div>
+          <div class="field"><label for="vc-leave">{e(k["leave"])}</label><input class="input" id="vc-leave" name="leave" type="date"></div>
+          <div class="field"><label for="vc-expiry">{e(k["expiry"])}</label><input class="input" id="vc-expiry" name="expiry" type="date"></div>
+        </div>
+        <p class="estimator__hint">{e(k["optional"])}</p>
+      </form>
+      <noscript><p class="note">{e(k["noscript"])}</p></noscript>
+      <div class="checker__result" data-checker-result aria-live="polite"></div>
+      <div class="vtable-wrap">
+        <p class="eyebrow vtable__kicker">{e(k["tableKicker"])}</p>
+        <h3 class="vtable__title" id="vtable-title">{e(k["tableTitle"])}</h3>
+        <div class="vtable-scroll" tabindex="0" role="region" aria-labelledby="vtable-title">
+          <table class="vtable">
+            <thead><tr><th scope="col">{e(k["tablePassport"])}</th>{head}</tr></thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>
+      </div>
+      <p class="note">{e(k["tableNote"])}</p>
+    </div>
+  </section>"""
+
+
 def dest_card(c, lang, d):
     L = c['travel']['labels']
     facts = ''.join(f'<div><dt class="eyebrow">{e(k)}</dt><dd>{e(v)}</dd></div>'
@@ -1356,7 +1432,9 @@ def page_travel(c, lang):
                   for n, x in enumerate(t['how']))
     trips = ''.join(trip_card(c, lang, x) for x in c['expeditions']['editions'][:4])
     return f"""<main id="main" class="page page--travel">
-  {phead(t["kicker"], t["title"], t["sub"], extra=f'<div class="actions"><a class="btn btn--primary" href="#plan">{e(t["labels"]["plan"])}</a></div>')}
+  {phead(t["kicker"], t["title"], t["sub"], extra=f'<div class="actions actions--row"><a class="btn btn--primary" href="#check">{e(c["checker"]["cta"])}</a><a class="btn btn--outline" href="#plan">{e(t["labels"]["plan"])}</a></div>')}
+
+  {visa_checker(c, lang)}
 
   <section class="wrap sec" id="destinations">
     <header class="shead">{eyebrow(t["destKicker"])}<h2 class="sech">{e(t["destTitle"])}</h2></header>
@@ -1487,9 +1565,12 @@ def page_guide(c, lang, i):
     book = (f'<a class="btn btn--outline" href="{href(lang, "playbook", d["playbook"])}">{e(L["playbook"])}</a>'
             if d['playbook'] else '')
     eds = c['expeditions']['editions']
-    trip = next(x for x in eds if x['slug'] == d['trip'])
+    trip = next((x for x in eds if x['slug'] == d['trip']), None)
     prev = (href(lang, 'travel') + '#destinations', L['all'])
-    nxt = (href(lang, 'trip', trip['slug']), trip['title'])
+    # the next card is the destination's dated trip, else its playbook, else the expeditions list
+    nxt = ((href(lang, 'trip', trip['slug']), trip['title']) if trip
+           else (href(lang, 'playbook', d['playbook']), L['playbook']) if d['playbook']
+           else (href(lang, 'expeditions'), c['nav']['expeditions']))
     return f"""<main id="main" class="page page--guide">
   <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'travel')}#destinations">← {e(L["all"])}</a></section>
   <section class="wrap svc-hero">
@@ -1499,6 +1580,7 @@ def page_guide(c, lang, i):
     <div class="svc-facts guide-facts">{facts}</div>
     <div class="actions actions--row">
       <a class="btn btn--primary" href="#plan">{e(g["cta"])}</a>
+      <a class="btn btn--outline" href="{href(lang, 'travel')}?to={g['code']}#check">{e(c["checker"]["cta"])}</a>
       {book}
     </div>
   </section>

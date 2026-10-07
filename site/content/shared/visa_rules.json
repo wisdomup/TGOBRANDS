@@ -1,0 +1,392 @@
+{
+  "visaRules": {
+    "checked": "2026-10",
+    "passports": [
+      "CN",
+      "PK",
+      "IN",
+      "BD",
+      "PH",
+      "AE",
+      "US",
+      "GB",
+      "EU",
+      "XX"
+    ],
+    "destinations": [
+      "PK",
+      "IN",
+      "BD",
+      "PH",
+      "CN",
+      "AE"
+    ],
+    "validityMonths": 6,
+    "validityBeyondStay": [
+      "PH"
+    ],
+    "rules": {
+      "PH": {
+        "CN": {
+          "type": "free",
+          "note": "ph_cn",
+          "stay": 14,
+          "fee": 0,
+          "lead": 0
+        },
+        "PK": {
+          "type": "visa",
+          "note": "ph_pk",
+          "stay": null,
+          "fee": null,
+          "lead": 21
+        },
+        "IN": {
+          "type": "free",
+          "note": "ph_in",
+          "stay": 14,
+          "fee": 0,
+          "lead": 0
+        },
+        "BD": {
+          "type": "evisa",
+          "note": "ph_bd",
+          "stay": null,
+          "fee": null,
+          "lead": 21
+        },
+        "AE": {
+          "type": "free",
+          "note": "ph_free30",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "US": {
+          "type": "free",
+          "note": "ph_free30",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "GB": {
+          "type": "free",
+          "note": "ph_free30",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "EU": {
+          "type": "free",
+          "note": "ph_free30",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        }
+      },
+      "IN": {
+        "CN": {
+          "type": "evisa",
+          "note": "in_cn",
+          "stay": null,
+          "fee": {
+            "kind": "from",
+            "n": 25
+          },
+          "lead": 7,
+          "leadBiz": 50,
+          "noteBiz": "in_cn_biz"
+        },
+        "PK": {
+          "type": "blocked",
+          "note": "in_pk",
+          "stay": null,
+          "fee": null,
+          "lead": 0
+        },
+        "BD": {
+          "type": "visa",
+          "note": "in_bd",
+          "stay": null,
+          "fee": null,
+          "lead": 21
+        },
+        "PH": {
+          "type": "evisa",
+          "note": "in_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 7
+        },
+        "AE": {
+          "type": "evisa",
+          "note": "in_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 7
+        },
+        "US": {
+          "type": "evisa",
+          "note": "in_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 7
+        },
+        "GB": {
+          "type": "evisa",
+          "note": "in_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 7
+        },
+        "EU": {
+          "type": "evisa",
+          "note": "in_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 7
+        }
+      },
+      "PK": {
+        "CN": {
+          "type": "evisa",
+          "note": "pk_cn",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        },
+        "IN": {
+          "type": "blocked",
+          "note": "pk_in",
+          "stay": null,
+          "fee": null,
+          "lead": 0
+        },
+        "BD": {
+          "type": "evisa",
+          "note": "pk_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        },
+        "PH": {
+          "type": "evisa",
+          "note": "pk_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        },
+        "AE": {
+          "type": "evisa",
+          "note": "pk_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        },
+        "US": {
+          "type": "evisa",
+          "note": "pk_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        },
+        "GB": {
+          "type": "evisa",
+          "note": "pk_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        },
+        "EU": {
+          "type": "evisa",
+          "note": "pk_evisa",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        }
+      },
+      "BD": {
+        "CN": {
+          "type": "voa",
+          "note": "bd_cn",
+          "stay": 30,
+          "fee": {
+            "kind": "onArrival",
+            "n": 50
+          },
+          "lead": 0,
+          "leadBiz": 7
+        },
+        "IN": {
+          "type": "visa",
+          "note": "bd_in",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        },
+        "PK": {
+          "type": "visa",
+          "note": "bd_pk",
+          "stay": null,
+          "fee": null,
+          "lead": 21
+        },
+        "PH": {
+          "type": "visa",
+          "note": "bd_visa",
+          "stay": null,
+          "fee": null,
+          "lead": 21
+        },
+        "AE": {
+          "type": "voa",
+          "note": "bd_voa",
+          "stay": 30,
+          "fee": null,
+          "lead": 0,
+          "leadBiz": 7
+        },
+        "US": {
+          "type": "voa",
+          "note": "bd_voa",
+          "stay": 30,
+          "fee": null,
+          "lead": 0,
+          "leadBiz": 7
+        },
+        "GB": {
+          "type": "voa",
+          "note": "bd_voa",
+          "stay": 30,
+          "fee": null,
+          "lead": 0,
+          "leadBiz": 7
+        },
+        "EU": {
+          "type": "voa",
+          "note": "bd_voa",
+          "stay": 30,
+          "fee": null,
+          "lead": 0,
+          "leadBiz": 7
+        }
+      },
+      "CN": {
+        "PK": {
+          "type": "visa",
+          "note": "cn_visa",
+          "stay": null,
+          "fee": null,
+          "lead": 28
+        },
+        "IN": {
+          "type": "visa",
+          "note": "cn_visa",
+          "stay": null,
+          "fee": null,
+          "lead": 28
+        },
+        "BD": {
+          "type": "visa",
+          "note": "cn_bd",
+          "stay": null,
+          "fee": null,
+          "lead": 28
+        },
+        "PH": {
+          "type": "visa",
+          "note": "cn_ph",
+          "stay": null,
+          "fee": null,
+          "lead": 28
+        },
+        "AE": {
+          "type": "free",
+          "note": "cn_free",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "US": {
+          "type": "visa",
+          "note": "cn_us",
+          "stay": null,
+          "fee": null,
+          "lead": 28
+        },
+        "GB": {
+          "type": "free",
+          "note": "cn_free_2026",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "EU": {
+          "type": "free",
+          "note": "cn_free_2026",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        }
+      },
+      "AE": {
+        "CN": {
+          "type": "free",
+          "note": "ae_free",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "PK": {
+          "type": "visa",
+          "note": "ae_pk",
+          "stay": null,
+          "fee": null,
+          "lead": 7
+        },
+        "IN": {
+          "type": "visa",
+          "note": "ae_in",
+          "stay": null,
+          "fee": null,
+          "lead": 7
+        },
+        "BD": {
+          "type": "visa",
+          "note": "ae_bd",
+          "stay": null,
+          "fee": null,
+          "lead": 14
+        },
+        "PH": {
+          "type": "visa",
+          "note": "ae_ph",
+          "stay": null,
+          "fee": null,
+          "lead": 7
+        },
+        "US": {
+          "type": "free",
+          "note": "ae_free",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "GB": {
+          "type": "free",
+          "note": "ae_free",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "EU": {
+          "type": "free",
+          "note": "ae_free90",
+          "stay": 90,
+          "fee": 0,
+          "lead": 0
+        }
+      }
+    }
+  }
+}

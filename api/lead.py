@@ -28,14 +28,14 @@ from urllib.parse import urlparse
 # Who covers which market, first match wins. Mirrors assignee() in site/static/site.js; the
 # numbers are the founders' public WhatsApp numbers (WHATSAPP in site/templates.py). The
 # recipient is always derived here, never taken from the request.
-COVERS = [('PK', 'Umair'), ('IN', 'Aryan'), ('PH', 'Umer'), ('AE', 'Shamas'), ('CN', 'Umair')]
+COVERS = [('PK', 'Umair'), ('IN', 'Aryan'), ('PH', 'Umer'), ('AE', 'Shamas'), ('CN', 'Umair'), ('BD', 'Aryan')]
 DEFAULT_LEAD = 'Umair'
 WHATSAPP = {'Umer': '639772547666', 'Umair': '8615623305030', 'Aryan': '917645912074', 'Shamas': '971542971969'}
 
 PARTY = {'manufacturer': 'Manufacturer', 'brand_owner': 'Brand owner', 'distributor': 'Distributor / retailer',
          'creator': 'Creator', 'investor': 'Investor', 'other': 'Other'}
 MARKETS = {'PK': 'Pakistan', 'IN': 'India', 'PH': 'Philippines', 'AE': 'UAE', 'other': 'Other'}
-DESTINATIONS = {'PK': 'Pakistan', 'IN': 'India', 'PH': 'Philippines', 'AE': 'UAE', 'CN': 'China'}
+DESTINATIONS = {'PK': 'Pakistan', 'IN': 'India', 'PH': 'Philippines', 'AE': 'UAE', 'CN': 'China', 'BD': 'Bangladesh'}
 PURPOSE = {'business': 'Business meetings', 'fair': 'Trade fair or factory visits', 'group': 'Company or incentive group',
            'leisure': 'Holiday', 'mix': 'Business and holiday'}
 
