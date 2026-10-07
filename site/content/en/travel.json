@@ -329,7 +329,7 @@
           {
             "type": "packages",
             "kicker": "Packages",
-            "title": "Four ways to work the Philippines.",
+            "title": "Five ways to travel the Philippines.",
             "items": [
               {
                 "t": "Market Week: Manila",
@@ -344,7 +344,8 @@
                   "Lazada, Shopee and live-selling briefing",
                   "Car, driver and interpreter every day"
                 ],
-                "featured": true
+                "featured": true,
+                "kind": "business"
               },
               {
                 "t": "Business and Palawan",
@@ -358,7 +359,8 @@
                   "Flights to El Nido and back",
                   "Island hopping in Bacuit Bay",
                   "Beach resort, breakfast and dinner"
-                ]
+                ],
+                "kind": "holiday"
               },
               {
                 "t": "Incentive group: Cebu and Bohol",
@@ -372,7 +374,23 @@
                   "Ferry to Bohol: Chocolate Hills and Loboc river",
                   "Gala dinner and group host",
                   "Coaches and transfers"
-                ]
+                ],
+                "kind": "holiday"
+              },
+              {
+                "t": "Island holiday: El Nido and Coron",
+                "len": "7 days",
+                "cities": "Manila · El Nido · Coron",
+                "price": "Quoted for your dates",
+                "priceNote": "per person, twin share",
+                "best": "Families and groups on their first Philippines holiday.",
+                "incl": [
+                  "Flight to El Nido, ferry to Coron, flight back to Manila",
+                  "Beach resorts with breakfast",
+                  "Island-hopping tours with lunch",
+                  "Transfers and a host on call"
+                ],
+                "kind": "holiday"
               },
               {
                 "t": "Private delegation",
@@ -386,10 +404,12 @@
                   "Ecozone and freeport visits",
                   "Venues, dinners and a group host",
                   "A written report for the organiser"
-                ]
+                ],
+                "kind": "business"
               }
             ],
-            "note": "Per person, twin share. Single rooms extra."
+            "note": "Per person, twin share. Single rooms extra.",
+            "id": "packages"
           },
           {
             "type": "phases",
@@ -809,7 +829,7 @@
           {
             "type": "packages",
             "kicker": "Packages",
-            "title": "Four ways to go.",
+            "title": "Five ways to go.",
             "items": [
               {
                 "t": "Fair Week",
@@ -825,7 +845,8 @@
                   "Daily transfers to the fair",
                   "Interpreter on fair days",
                   "Local SIM and payment apps set up"
-                ]
+                ],
+                "kind": "business"
               },
               {
                 "t": "Fair and Factories",
@@ -839,7 +860,8 @@
                   "Booked factory visits in Foshan and Dongguan",
                   "Huaqiangbei electronics markets in Shenzhen",
                   "Private coach and interpreter every day"
-                ]
+                ],
+                "kind": "business"
               },
               {
                 "t": "Five-City Sourcing Tour",
@@ -856,7 +878,23 @@
                   "Fair days, factory visits and the Yiwu market",
                   "Domestic flight to Yiwu and private coaches",
                   "Interpreter and tour manager throughout"
-                ]
+                ],
+                "kind": "business"
+              },
+              {
+                "t": "Guilin, Yangshuo and the Li River",
+                "len": "5 days",
+                "cities": "Guangzhou · Guilin · Yangshuo",
+                "price": "Quoted for your dates",
+                "priceNote": "per person, twin share",
+                "best": "A holiday after the fair, or a first trip to China.",
+                "incl": [
+                  "High-speed train from Guangzhou",
+                  "Li River cruise to Yangshuo",
+                  "Hotels with breakfast",
+                  "English-speaking guide"
+                ],
+                "kind": "holiday"
               },
               {
                 "t": "Private delegation",
@@ -870,10 +908,12 @@
                   "A supplier shortlist prepared before you fly",
                   "Venues, dinners and a group host",
                   "A written report for the organisation that sends you"
-                ]
+                ],
+                "kind": "business"
               }
             ],
-            "note": "Per person, twin share. Single rooms and a second phase cost extra."
+            "note": "Per person, twin share. Single rooms and a second phase cost extra.",
+            "id": "packages"
           },
           {
             "type": "cards",
@@ -1109,7 +1149,7 @@
           {
             "type": "packages",
             "kicker": "Packages",
-            "title": "Five ways to work India.",
+            "title": "Six ways to travel India.",
             "items": [
               {
                 "t": "Market Week: Delhi NCR",
@@ -1125,7 +1165,8 @@
                   "BIS and import briefing",
                   "Car and driver every day; interpreter"
                 ],
-                "featured": true
+                "featured": true,
+                "kind": "business"
               },
               {
                 "t": "Fair Week",
@@ -1139,7 +1180,8 @@
                   "Hotel near the venue",
                   "Booked meetings around the fair",
                   "Interpreter on fair days"
-                ]
+                ],
+                "kind": "business"
               },
               {
                 "t": "Three-City Business Circuit",
@@ -1153,7 +1195,8 @@
                   "Mumbai's Lamington Road and port logistics",
                   "Bengaluru's electronics and design firms",
                   "Domestic flights and airport transfers"
-                ]
+                ],
+                "kind": "business"
               },
               {
                 "t": "Business and the Golden Triangle",
@@ -1167,7 +1210,8 @@
                   "Agra and the Taj Mahal at sunrise",
                   "Jaipur's forts and bazaars",
                   "Licensed guide and private car"
-                ]
+                ],
+                "kind": "holiday"
               },
               {
                 "t": "Plant and investment visit",
@@ -1181,10 +1225,27 @@
                   "Industrial-park and vendor visits",
                   "State investment-agency meetings",
                   "Interpreters and engineers' logistics"
-                ]
+                ],
+                "kind": "business"
+              },
+              {
+                "t": "Golden Triangle and Udaipur",
+                "len": "8 days",
+                "cities": "Delhi · Agra · Jaipur · Udaipur",
+                "price": "Quoted for your dates",
+                "priceNote": "per person, twin share",
+                "best": "A first visit to India, for families and groups.",
+                "incl": [
+                  "Private car and driver throughout",
+                  "Hotels with breakfast, including a heritage hotel",
+                  "Taj Mahal at sunrise with a guide",
+                  "Flight from Udaipur back to Delhi"
+                ],
+                "kind": "holiday"
               }
             ],
-            "note": "Per person, twin share. Single rooms extra."
+            "note": "Per person, twin share. Single rooms extra.",
+            "id": "packages"
           },
           {
             "type": "phases",
@@ -1563,7 +1624,7 @@
           {
             "type": "packages",
             "kicker": "Packages",
-            "title": "Five ways to work Pakistan.",
+            "title": "Six ways to travel Pakistan.",
             "items": [
               {
                 "t": "Market Week: Karachi and Lahore",
@@ -1579,7 +1640,8 @@
                   "Flight Karachi–Lahore",
                   "Car, driver and interpreter every day"
                 ],
-                "featured": true
+                "featured": true,
+                "kind": "business"
               },
               {
                 "t": "Industrial Punjab",
@@ -1593,7 +1655,8 @@
                   "Sialkot's sports-goods and leather exporters",
                   "Gujranwala's fans and electrical makers",
                   "Factory visits arranged in advance"
-                ]
+                ],
+                "kind": "business"
               },
               {
                 "t": "Fair Week",
@@ -1607,7 +1670,8 @@
                   "Hotel near the Expo Centre",
                   "Booked meetings with exhibitors",
                   "Interpreter on fair days"
-                ]
+                ],
+                "kind": "business"
               },
               {
                 "t": "Business, Gandhara and the North",
@@ -1621,7 +1685,23 @@
                   "Taxila's Gandhara sites and museum",
                   "Karakoram Highway to Hunza",
                   "Licensed guide and private car"
-                ]
+                ],
+                "kind": "holiday"
+              },
+              {
+                "t": "Northern Pakistan: Hunza and Skardu",
+                "len": "8 days",
+                "cities": "Islamabad · Hunza · Skardu",
+                "price": "Quoted for your dates",
+                "priceNote": "per person, twin share",
+                "best": "Groups and families who want the Karakoram, from April to October.",
+                "incl": [
+                  "Flights between Islamabad and the north, weather permitting",
+                  "4x4 with driver on the Karakoram Highway",
+                  "Hotels with breakfast and dinner",
+                  "Guide and the security arrangements for each route"
+                ],
+                "kind": "holiday"
               },
               {
                 "t": "Private delegation",
@@ -1635,10 +1715,12 @@
                   "Special economic zone visits",
                   "Security planning for the whole group",
                   "Venues, dinners and a group host"
-                ]
+                ],
+                "kind": "business"
               }
             ],
-            "note": "Per person, twin share. Single rooms, and the escort and armoured car required for some routes, cost extra."
+            "note": "Per person, twin share. Single rooms, and the escort and armoured car required for some routes, cost extra.",
+            "id": "packages"
           },
           {
             "type": "phases",
@@ -2038,7 +2120,7 @@
           {
             "type": "packages",
             "kicker": "Packages",
-            "title": "Five ways to work Bangladesh.",
+            "title": "Six ways to travel Bangladesh.",
             "items": [
               {
                 "t": "Apparel Sourcing Week",
@@ -2054,7 +2136,8 @@
                   "Compliance and lead-time briefing",
                   "Car, driver and interpreter every day"
                 ],
-                "featured": true
+                "featured": true,
+                "kind": "business"
               },
               {
                 "t": "Market Week: Dhaka and Chattogram",
@@ -2068,7 +2151,8 @@
                   "Dhaka's electronics and phone markets",
                   "Port and customs briefing in Chattogram",
                   "Domestic flight Dhaka–Chattogram"
-                ]
+                ],
+                "kind": "business"
               },
               {
                 "t": "Fair Week",
@@ -2082,7 +2166,8 @@
                   "Hotel in Gulshan or Banani",
                   "Booked meetings with exhibitors",
                   "Interpreter on fair days"
-                ]
+                ],
+                "kind": "business"
               },
               {
                 "t": "Business and the Tea Country",
@@ -2096,7 +2181,23 @@
                   "Srimangal's tea estates and Lawachara forest",
                   "Sylhet's hills and rivers",
                   "Private car and guide"
-                ]
+                ],
+                "kind": "holiday"
+              },
+              {
+                "t": "Sundarbans and Cox’s Bazar",
+                "len": "6 days",
+                "cities": "Khulna · Sundarbans · Cox’s Bazar",
+                "price": "Quoted for your dates",
+                "priceNote": "per person, twin share",
+                "best": "Nature and beach holidays, from November to February.",
+                "incl": [
+                  "Two nights on a Sundarbans cruise boat",
+                  "Domestic flights via Dhaka",
+                  "Beach hotel in Cox’s Bazar",
+                  "Guide, forest permits and transfers"
+                ],
+                "kind": "holiday"
               },
               {
                 "t": "Private delegation",
@@ -2110,10 +2211,12 @@
                   "Economic-zone and EPZ visits",
                   "Security planning for the group",
                   "Venues, dinners and a group host"
-                ]
+                ],
+                "kind": "business"
               }
             ],
-            "note": "Per person, twin share. Single rooms extra."
+            "note": "Per person, twin share. Single rooms extra.",
+            "id": "packages"
           },
           {
             "type": "phases",
@@ -2450,6 +2553,264 @@
           }
         ]
       }
-    ]
+    ],
+    "helpKicker": "Three ways we help",
+    "helpTitle": "Pick a trip, or just the paperwork.",
+    "help": [
+      {
+        "t": "Business & trade fairs",
+        "d": "Market weeks, fair weeks, factory tours and delegations, with the meetings set up before you land.",
+        "link": "packages",
+        "hash": "business"
+      },
+      {
+        "t": "Holidays & tours",
+        "d": "Islands, mountains and heritage — on their own, or after the meetings.",
+        "link": "packages",
+        "hash": "holidays"
+      },
+      {
+        "t": "Visas & documents",
+        "d": "Visa checks, applications, invitation letters and appointments, for any trip.",
+        "link": "visas"
+      }
+    ],
+    "packagesCta": "See packages",
+    "bookingLink": "Booking & terms",
+    "packagesPage": {
+      "name": "Packages",
+      "kicker": "Packages",
+      "title": "Every package, in one place.",
+      "sub": "Business weeks, trade fairs and holidays across our destinations. Prices are per person, twin share; your quote confirms them for your dates.",
+      "business": {
+        "kicker": "Business & trade fairs",
+        "title": "Trips built around meetings.",
+        "sub": "Market weeks, fair weeks, factory tours and delegations — with the meetings set up before you land."
+      },
+      "holiday": {
+        "kicker": "Holidays & tours",
+        "title": "Trips built around the place.",
+        "sub": "Islands, mountains and heritage — on their own, or after the meetings."
+      },
+      "visas": {
+        "kicker": "Visas & documents",
+        "title": "The paperwork, handled.",
+        "d": "Visa checks, applications, invitation letters and document reviews — for any trip, booked with us or not."
+      },
+      "dated": "Prefer a dated group trip?",
+      "datedCta": "All expedition dates",
+      "guide": "Destination guide",
+      "plan": "Plan this trip"
+    },
+    "visasPage": {
+      "name": "Visas & documents",
+      "kicker": "Visas & documents",
+      "title": "The paperwork, handled.",
+      "sub": "We check what you need, prepare the file, book the appointment and follow it to a decision — for business trips, trade fairs and holidays.",
+      "servicesKicker": "What we do",
+      "servicesTitle": "Six parts of every visa.",
+      "services": [
+        {
+          "t": "Visa check",
+          "d": "The visa type, the stay allowed and when to apply, for every passport and destination — free on this site."
+        },
+        {
+          "t": "Applications",
+          "d": "E-visas filed online for you; embassy and consulate files prepared, submitted and paid."
+        },
+        {
+          "t": "Invitation letters",
+          "d": "Business invitations from our companies or your partners, matched to your itinerary and the embassy’s format."
+        },
+        {
+          "t": "Document review",
+          "d": "Passport validity, photos, bank statements, bookings and letters checked against the embassy’s list before filing."
+        },
+        {
+          "t": "Appointments",
+          "d": "Fingerprint and interview appointments booked, with a list of what to bring."
+        },
+        {
+          "t": "Tracking",
+          "d": "We follow the application to a decision and answer any request for more documents."
+        }
+      ],
+      "stepsKicker": "How it works",
+      "stepsTitle": "From passport to visa.",
+      "steps": [
+        {
+          "t": "Tell us the trip",
+          "d": "Passport, destination, dates and purpose — or run the visa check first."
+        },
+        {
+          "t": "Your document list",
+          "d": "The exact list for your passport and trip, with a sample of each letter."
+        },
+        {
+          "t": "We review the file",
+          "d": "Every page is checked before it is filed, so it is not sent back."
+        },
+        {
+          "t": "We file and book",
+          "d": "Online application or embassy submission, fee paid, appointment booked."
+        },
+        {
+          "t": "We follow it",
+          "d": "Status checks, and answers to any request from the embassy."
+        },
+        {
+          "t": "You travel",
+          "d": "Your visa sits in the trip file with flights, hotels and our numbers."
+        }
+      ],
+      "feesKicker": "Fees",
+      "feesTitle": "What it costs.",
+      "fees": [
+        "Government visa fees are passed on at cost, with the receipt.",
+        "Our service fee is per traveller and quoted before anything is filed.",
+        "Priority processing, where an embassy offers it, is quoted separately."
+      ],
+      "limitsTitle": "What we cannot do.",
+      "limits": [
+        "Guarantee a visa — the embassy or immigration service decides.",
+        "Shorten an embassy’s own processing time, except through its official priority service.",
+        "Leave out a required document: if the embassy asks for it, it has to be in the file."
+      ],
+      "faqKicker": "Questions",
+      "faqTitle": "Asked before every application.",
+      "faq": [
+        {
+          "q": "How early should I apply?",
+          "a": "As soon as your dates are fixed. Online visas often take days; embassy visas can take weeks, and trade-fair season is busier. The visa check suggests an apply-by date for your passport and destination."
+        },
+        {
+          "q": "Do I have to go to the embassy?",
+          "a": "Many embassies take fingerprints or interview applicants in person. We book the appointment and tell you exactly what to bring."
+        },
+        {
+          "q": "Can you help if I am not booking a trip with you?",
+          "a": "Yes. Visas and documents are a service on their own; we quote the service fee before we start."
+        },
+        {
+          "q": "What happens if a visa is refused?",
+          "a": "We explain the reason given, and whether to reapply, appeal or change the plan. Embassies do not refund their fees; for trips booked with us, our booking terms set out what is refunded."
+        }
+      ]
+    },
+    "bookingPage": {
+      "name": "Booking & terms",
+      "kicker": "Booking & terms",
+      "title": "How booking works.",
+      "sub": "From your first message to the flight home, and the terms behind it — in plain words. Your written quote confirms the terms for your trip.",
+      "stepsKicker": "Step by step",
+      "stepsTitle": "Seven steps, no surprises.",
+      "steps": [
+        {
+          "t": "Tell us",
+          "d": "Where, when, how many and why — by the form, WhatsApp or WeChat."
+        },
+        {
+          "t": "A plan and a price",
+          "d": "Within two working days: the itinerary, hotels, meetings or tours, and what is included."
+        },
+        {
+          "t": "Confirm with a deposit",
+          "d": "The deposit secures flights and hotels; we send a written confirmation."
+        },
+        {
+          "t": "Visas and documents",
+          "d": "Invitation letters, applications and appointments, handled by us."
+        },
+        {
+          "t": "Balance and trip file",
+          "d": "The balance is paid before departure; tickets, vouchers and contacts arrive in one file."
+        },
+        {
+          "t": "Travel with a host",
+          "d": "Met at the airport, with a host on call for the whole trip."
+        },
+        {
+          "t": "Home, and a follow-up",
+          "d": "A debrief after business trips, and help with anything left to settle."
+        }
+      ],
+      "termsKicker": "The terms",
+      "termsTitle": "Payments, changes and cancellations.",
+      "terms": [
+        {
+          "id": "price",
+          "h": "Prices and what they include",
+          "body": [
+            "Prices are per person, sharing a twin room, in the currency shown. Single rooms cost extra.",
+            "Each package lists what it includes; anything not listed is not included. Your quote lists both, and its price is fixed once you pay the deposit — unless a government tax or fee changes before you travel."
+          ]
+        },
+        {
+          "id": "payment",
+          "h": "Deposit and balance",
+          "body": [
+            "A deposit of 30% of the trip price confirms your booking.",
+            "The balance is due 30 days before departure. If you book within 30 days of departure, the full price is due when you book.",
+            "In trade-fair season hotels must be paid in full in advance; when that applies, your quote says so."
+          ]
+        },
+        {
+          "id": "changes",
+          "h": "Changes",
+          "body": [
+            "Tell us as soon as your plans change. Name changes are free until tickets are issued. Other changes cost what the airline or hotel charges, plus any difference in price."
+          ]
+        },
+        {
+          "id": "cancel",
+          "h": "If you cancel",
+          "body": [
+            [
+              "60 days or more before departure: everything you paid is refunded, less costs already committed to airlines and hotels.",
+              "30 to 59 days before departure: we keep 50% of the trip price.",
+              "Fewer than 30 days before departure: no refund."
+            ],
+            "Cancellations must be in writing. Travel insurance usually covers the reasons people cancel, which is why we require it."
+          ]
+        },
+        {
+          "id": "we-cancel",
+          "h": "If we cancel",
+          "body": [
+            "If we have to cancel a dated group trip — for example because too few people book — you choose a full refund or another date."
+          ]
+        },
+        {
+          "id": "visa",
+          "h": "If a visa is refused",
+          "body": [
+            "We refund the trip price, less visa fees and costs already committed to airlines and hotels."
+          ]
+        },
+        {
+          "id": "insurance",
+          "h": "Travel insurance",
+          "body": [
+            "Insurance covering medical care, emergency evacuation and cancellation is required for every trip. Add a policy to your quote, or send us the details of your own."
+          ]
+        },
+        {
+          "id": "documents",
+          "h": "Passports and entry",
+          "body": [
+            "You need a passport valid for your destination and must meet its entry rules. We check them with you, but entry is decided at the border."
+          ]
+        },
+        {
+          "id": "concerns",
+          "h": "If something goes wrong",
+          "body": [
+            "Tell your host straight away so it can be put right on the spot. For anything else, write to hello@tgobrands.com within 14 days of your return."
+          ]
+        }
+      ],
+      "note": "These booking terms apply alongside our website",
+      "termsLink": "terms of use"
+    }
   }
 }

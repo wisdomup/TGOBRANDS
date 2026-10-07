@@ -101,6 +101,9 @@ def routes(c):
         out.append((key, T.PATHS[key], f'{c["nav"][key]} — {suffix}', c[key]['sub'], T.PAGES[key], None))
     for key in ('privacy', 'terms'):
         out.append((key, T.PATHS[key], f'{c[key]["name"]} — {suffix}', c[key]['sub'], T.PAGES[key], None))
+    for key, page in (('packages', 'packagesPage'), ('visas', 'visasPage'), ('booking', 'bookingPage')):
+        p = c['travel'][page]
+        out.append((key, T.PATHS[key], f'{p["name"]} — {c["nav"]["travel"]} — {suffix}', p['sub'], T.PAGES[key], None))
     for i, x in enumerate(c['services']['items']):
         render = lambda c, lang, i=i: T.page_service(c, lang, i)
         out.append(('service', T.DETAIL['service'].format(x['slug']), f'{x["name"]} — {suffix}', x['one'], render, None))

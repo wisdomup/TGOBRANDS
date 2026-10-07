@@ -220,6 +220,14 @@ Rendered as non-clickable placeholders, or marked as drafts, until filled in:
   [`research/india-pakistan-bangladesh-philippines-travel-2026.md`](../research/india-pakistan-bangladesh-philippines-travel-2026.md)
 - Visa rules: re-check `content/shared/visa_rules.json` regularly — China's 30-day visa-free pilot runs to
   31 December 2026, and the India–Pakistan and India–Bangladesh rules have changed several times
+- Travel agency pages (`/travel/packages/`, `/travel/visas/`, `/travel/booking/`; content in
+  `content/<lang>/travel.json` under `packagesPage`, `visasPage`, `bookingPage`). The packages page
+  gathers every guide's packages by `kind` (`business` or `holiday`). Confirm before relying on them:
+  the five new holiday packages (priced "Quoted for your dates" until real prices exist), the booking
+  terms — 30% deposit, balance 30 days before departure, cancellation scale (60+ days: refund less
+  committed costs; 30–59 days: 50% kept; under 30 days: no refund), refund less costs on a visa refusal,
+  insurance required, concerns within 14 days — and the visa service (applications, invitation letters,
+  appointments, service fee quoted per traveller, government fees at cost, no visa guaranteed).
 - Travel: confirm the services promised (meet and assist, Cantonese and Hokkien interpreters, a planner
   on call day and night) and re-check the Philippines entry rules and flights before each season
 - WeChat QR and the public WhatsApp number — `contact.channels.*.href` in the content files
