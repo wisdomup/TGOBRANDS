@@ -1,0 +1,702 @@
+{
+  "visaOverrides": {
+    "asOf": "2026-10-07",
+    "about": "Corrections applied on top of the base dataset (data/passport-index), checked against government announcements. Later rules win; the core rules in visa_rules.json win over both. Sources are kept here, not shown on the site.",
+    "schengen": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IS",
+      "IT",
+      "LV",
+      "LI",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "NO",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH"
+    ],
+    "rules": [
+      {
+        "dest": "CN",
+        "passports": "*",
+        "type": "visa",
+        "note": "visa",
+        "src": [
+          "https://www.fmprc.gov.cn/eng/xw/fyrbt/fyrbt/202602/t20260215_11860467.html"
+        ]
+      },
+      {
+        "dest": "CN",
+        "passports": [
+          "HK",
+          "MO",
+          "TW"
+        ],
+        "type": "check",
+        "note": "permit"
+      },
+      {
+        "dest": "CN",
+        "passports": [
+          "FR",
+          "DE",
+          "IT",
+          "ES",
+          "NL",
+          "CH",
+          "IE",
+          "HU",
+          "AT",
+          "BE",
+          "LU",
+          "PL",
+          "PT",
+          "GR",
+          "CY",
+          "SI",
+          "SK",
+          "NO",
+          "FI",
+          "DK",
+          "IS",
+          "AD",
+          "MC",
+          "LI",
+          "BG",
+          "RO",
+          "HR",
+          "ME",
+          "MK",
+          "MT",
+          "EE",
+          "LV",
+          "SE",
+          "KR",
+          "JP",
+          "NZ",
+          "AU",
+          "SA",
+          "OM",
+          "KW",
+          "BH",
+          "BR",
+          "AR",
+          "CL",
+          "PE",
+          "UY",
+          "CA",
+          "GB"
+        ],
+        "type": "free",
+        "stay": 30,
+        "note": "cn_scheme",
+        "src": [
+          "https://www.fmprc.gov.cn/eng/xw/fyrbt/fyrbt/202602/t20260215_11860467.html"
+        ]
+      },
+      {
+        "dest": "CN",
+        "passports": [
+          "RU"
+        ],
+        "type": "free",
+        "stay": 30,
+        "note": "free",
+        "src": [
+          "https://english.scio.gov.cn/internationalexchanges/2025-12/03/content_118208383.html"
+        ]
+      },
+      {
+        "dest": "CN",
+        "passports": [
+          "SG",
+          "TH",
+          "MY",
+          "AE",
+          "QA",
+          "GE",
+          "KZ",
+          "UZ",
+          "AM",
+          "RS",
+          "BY",
+          "MV",
+          "AL",
+          "BA",
+          "SM",
+          "MU",
+          "SC",
+          "FJ",
+          "TO",
+          "SB",
+          "WS",
+          "BN"
+        ],
+        "type": "free",
+        "stay": 30,
+        "note": "free",
+        "src": [
+          "https://www.focac.org/eng/zjfz_1/lhqz/202602/t20260226_11863811.htm"
+        ]
+      },
+      {
+        "dest": "GB",
+        "passports": "*",
+        "when": [
+          "free",
+          "eta"
+        ],
+        "except": [
+          "IE"
+        ],
+        "type": "eta",
+        "stay": 180,
+        "note": "eta",
+        "src": [
+          "https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta"
+        ]
+      },
+      {
+        "dest": "GB",
+        "passports": [
+          "IE"
+        ],
+        "type": "free",
+        "note": "free"
+      },
+      {
+        "dest": "US",
+        "passports": [
+          "AD",
+          "AU",
+          "AT",
+          "BE",
+          "BN",
+          "CL",
+          "HR",
+          "CZ",
+          "DK",
+          "EE",
+          "FI",
+          "FR",
+          "DE",
+          "GR",
+          "HU",
+          "IS",
+          "IE",
+          "IL",
+          "IT",
+          "JP",
+          "LV",
+          "LI",
+          "LT",
+          "LU",
+          "MT",
+          "MC",
+          "NL",
+          "NZ",
+          "NO",
+          "PL",
+          "PT",
+          "QA",
+          "SM",
+          "SG",
+          "SK",
+          "SI",
+          "KR",
+          "ES",
+          "SE",
+          "CH",
+          "TW",
+          "GB"
+        ],
+        "type": "eta",
+        "stay": 90,
+        "note": "eta",
+        "src": [
+          "https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visa-waiver-program.html"
+        ]
+      },
+      {
+        "dest": "US",
+        "passports": [
+          "AF",
+          "BF",
+          "MM",
+          "TD",
+          "CG",
+          "GQ",
+          "ER",
+          "HT",
+          "IR",
+          "LA",
+          "LY",
+          "ML",
+          "NE",
+          "SL",
+          "SO",
+          "SS",
+          "SD",
+          "SY",
+          "YE",
+          "PS"
+        ],
+        "type": "blocked",
+        "note": "us_suspended",
+        "src": [
+          "https://www.congress.gov/crs-product/IN12631"
+        ]
+      },
+      {
+        "dest": "US",
+        "passports": [
+          "AO",
+          "AG",
+          "BJ",
+          "CI",
+          "DM",
+          "GA",
+          "GM",
+          "MW",
+          "MR",
+          "NG",
+          "SN",
+          "TZ",
+          "TO",
+          "ZM",
+          "ZW"
+        ],
+        "type": "blocked",
+        "note": "us_visitor_suspended",
+        "src": [
+          "https://www.congress.gov/crs-product/IN12631"
+        ]
+      },
+      {
+        "dest": "TH",
+        "passports": "*",
+        "type": "evisa",
+        "note": "evisa",
+        "src": [
+          "https://image.mfa.go.th/mfa/0/wdW3FTtVMc/2026-05-22/%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%97%E0%B8%9A%E0%B8%97%E0%B8%A7%E0%B8%99%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%81%E0%B8%B2%E0%B8%A3_ver._eng.pdf"
+        ]
+      },
+      {
+        "dest": "TH",
+        "passports": [
+          "AU",
+          "AT",
+          "BH",
+          "BE",
+          "BT",
+          "BN",
+          "CA",
+          "CZ",
+          "DK",
+          "EE",
+          "FJ",
+          "FI",
+          "FR",
+          "GE",
+          "DE",
+          "GR",
+          "HU",
+          "IS",
+          "ID",
+          "IE",
+          "IL",
+          "IT",
+          "JP",
+          "JO",
+          "KW",
+          "KG",
+          "LV",
+          "LI",
+          "LT",
+          "LU",
+          "MY",
+          "NL",
+          "NZ",
+          "NO",
+          "OM",
+          "PH",
+          "PL",
+          "PT",
+          "QA",
+          "RO",
+          "SA",
+          "SG",
+          "SK",
+          "SI",
+          "ZA",
+          "ES",
+          "SE",
+          "CH",
+          "TW",
+          "TR",
+          "UA",
+          "AE",
+          "GB",
+          "US"
+        ],
+        "type": "free",
+        "stay": 30,
+        "note": "free"
+      },
+      {
+        "dest": "TH",
+        "passports": [
+          "SC",
+          "MV",
+          "MU"
+        ],
+        "type": "free",
+        "stay": 15,
+        "note": "free"
+      },
+      {
+        "dest": "TH",
+        "passports": [
+          "AZ",
+          "BY",
+          "RS",
+          "IN"
+        ],
+        "type": "voa",
+        "stay": 15,
+        "note": "voa"
+      },
+      {
+        "dest": "TH",
+        "passports": [
+          "KH",
+          "MM"
+        ],
+        "type": "free",
+        "stay": 14,
+        "note": "free"
+      },
+      {
+        "dest": "TH",
+        "passports": [
+          "CN",
+          "HK",
+          "KZ",
+          "LA",
+          "MO",
+          "MN",
+          "RU",
+          "TL",
+          "VN"
+        ],
+        "type": "free",
+        "stay": 30,
+        "note": "free"
+      },
+      {
+        "dest": "TH",
+        "passports": [
+          "AR",
+          "BR",
+          "CL",
+          "PE",
+          "KR"
+        ],
+        "type": "free",
+        "stay": 90,
+        "note": "free"
+      },
+      {
+        "dest": "BR",
+        "passports": [
+          "US",
+          "CA",
+          "AU"
+        ],
+        "type": "evisa",
+        "stay": 90,
+        "note": "evisa",
+        "src": [
+          "https://www.gov.br/mre/en/subjects/visas"
+        ]
+      },
+      {
+        "dest": "MY",
+        "passports": [
+          "CN",
+          "IN"
+        ],
+        "type": "free",
+        "stay": 30,
+        "note": "free",
+        "src": [
+          "https://www.ey.com/en_gl/technical/tax-alerts/malaysia-extends-visa-exemption-period-for-india-and-china-nationals"
+        ]
+      },
+      {
+        "dest": "VN",
+        "passports": "*",
+        "type": "evisa",
+        "stay": 90,
+        "note": "evisa",
+        "src": [
+          "https://www.vietnamtourism.com/en/vietnam-visa-exemptions-which-nationalities-can-enter-visa-free"
+        ]
+      },
+      {
+        "dest": "VN",
+        "passports": [
+          "RU",
+          "JP",
+          "KR",
+          "GB",
+          "FR",
+          "DE",
+          "ES",
+          "IT",
+          "NO",
+          "FI",
+          "DK",
+          "SE",
+          "BE",
+          "HR",
+          "CZ",
+          "HU",
+          "LU",
+          "NL",
+          "PL",
+          "RO",
+          "SK",
+          "SI",
+          "CH"
+        ],
+        "type": "free",
+        "stay": 45,
+        "note": "free"
+      },
+      {
+        "dest": "VN",
+        "passports": [
+          "CL",
+          "PA"
+        ],
+        "type": "free",
+        "stay": 90,
+        "note": "free"
+      },
+      {
+        "dest": "VN",
+        "passports": [
+          "KH",
+          "KZ",
+          "KG",
+          "LA",
+          "MY",
+          "SG",
+          "TH"
+        ],
+        "type": "free",
+        "stay": 30,
+        "note": "free"
+      },
+      {
+        "dest": "VN",
+        "passports": [
+          "PH"
+        ],
+        "type": "free",
+        "stay": 21,
+        "note": "free"
+      },
+      {
+        "dest": "VN",
+        "passports": [
+          "BN",
+          "ID",
+          "MM"
+        ],
+        "type": "free",
+        "stay": 14,
+        "note": "free"
+      },
+      {
+        "dest": "KR",
+        "passports": "*",
+        "when": [
+          "free",
+          "eta"
+        ],
+        "type": "eta",
+        "note": "eta",
+        "keepStay": true,
+        "src": [
+          "https://www.mofa.go.kr/ca-en/brd/m_5231/view.do?seq=761797"
+        ]
+      },
+      {
+        "dest": "KR",
+        "passports": [
+          "AU",
+          "AT",
+          "BE",
+          "CA",
+          "DK",
+          "FI",
+          "FR",
+          "DE",
+          "HK",
+          "IT",
+          "JP",
+          "MO",
+          "NL",
+          "NZ",
+          "NO",
+          "PL",
+          "SG",
+          "ES",
+          "SE",
+          "TW",
+          "GB",
+          "US"
+        ],
+        "type": "free",
+        "note": "free",
+        "keepStay": true
+      },
+      {
+        "dest": "KE",
+        "passports": [
+          "DZ",
+          "AO",
+          "BJ",
+          "BW",
+          "BF",
+          "BI",
+          "CV",
+          "CM",
+          "CF",
+          "TD",
+          "KM",
+          "CG",
+          "CD",
+          "CI",
+          "DJ",
+          "EG",
+          "GQ",
+          "ER",
+          "SZ",
+          "ET",
+          "GA",
+          "GM",
+          "GH",
+          "GN",
+          "GW",
+          "LS",
+          "LR",
+          "MG",
+          "MW",
+          "ML",
+          "MR",
+          "MU",
+          "MA",
+          "MZ",
+          "NA",
+          "NE",
+          "NG",
+          "RW",
+          "ST",
+          "SN",
+          "SC",
+          "SL",
+          "ZA",
+          "SS",
+          "SD",
+          "TZ",
+          "TG",
+          "TN",
+          "UG",
+          "ZM",
+          "ZW"
+        ],
+        "type": "free",
+        "stay": 60,
+        "note": "free",
+        "src": [
+          "https://eiglaw.com/kenya-removes-eta-requirement-for-most-african-and-select-foreign-nationals/"
+        ]
+      },
+      {
+        "dest": "KE",
+        "passports": [
+          "BI",
+          "CD",
+          "RW",
+          "SS",
+          "TZ",
+          "UG"
+        ],
+        "type": "free",
+        "stay": 180,
+        "note": "free"
+      },
+      {
+        "dest": "KE",
+        "passports": [
+          "LY",
+          "SO"
+        ],
+        "type": "eta",
+        "note": "eta",
+        "src": [
+          "https://eiglaw.com/kenya-removes-eta-requirement-for-most-african-and-select-foreign-nationals/"
+        ]
+      },
+      {
+        "dest": "LK",
+        "passports": "*",
+        "when": [
+          "free",
+          "voa",
+          "eta",
+          "evisa"
+        ],
+        "type": "eta",
+        "stay": 30,
+        "note": "eta",
+        "src": [
+          "https://eta.gov.lk/slvisa/"
+        ]
+      },
+      {
+        "dest": "RU",
+        "passports": [
+          "CN"
+        ],
+        "type": "free",
+        "stay": 30,
+        "note": "free",
+        "src": [
+          "https://www.themoscowtimes.com/2026/07/20/russia-extends-visa-free-travel-for-chinese-tourists-a93290"
+        ]
+      }
+    ]
+  }
+}

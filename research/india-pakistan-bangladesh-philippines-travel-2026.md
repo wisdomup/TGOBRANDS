@@ -201,3 +201,30 @@ The passport × destination rules in `site/content/shared/visa_rules.json` draw 
 touristvisaservices.com (the reference the brief named) returns "Access denied" to automated visitors
 behind Cloudflare and is not indexed in detail, so its tools could not be studied directly. The checker
 follows the standard model of visa-check services, built on TGO's own verified data.
+
+## Worldwide visa check (added 7 October 2026)
+
+The checker now covers every passport and destination (199 × 199 = 39,601 pairs). The base table is the
+open passport-index dataset (MIT; data as of 12 January 2025). Spot checks showed it is out of date for
+several major corridors, so `site/content/shared/visa_overrides.json` applies government-checked corrections
+(31 rules), each recording its source:
+
+- China — 30-day visa-free scheme for 50 countries to 31 Dec 2026, incl. the UK and Canada from 17 Feb 2026
+  ([MFA](https://www.fmprc.gov.cn/eng/xw/fyrbt/fyrbt/202602/t20260215_11860467.html)); mutual exemption
+  agreements ([list](https://www.focac.org/eng/zjfz_1/lhqz/202602/t20260226_11863811.htm)); Russia
+  ([SCIO](https://english.scio.gov.cn/internationalexchanges/2025-12/03/content_118208383.html)).
+- United Kingdom — ETA for all visa-free nationalities ([gov.uk](https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta)).
+- United States — Visa Waiver Program incl. Qatar ([State Department](https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visa-waiver-program.html));
+  Proclamation 10998 restrictions from 1 Jan 2026 ([CRS](https://www.congress.gov/crs-product/IN12631)).
+- Thailand — revised exemption and VOA scheme from 15 Sep 2026 ([MFA](https://image.mfa.go.th/mfa/0/wdW3FTtVMc/2026-05-22/%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%97%E0%B8%9A%E0%B8%97%E0%B8%A7%E0%B8%99%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%81%E0%B8%B2%E0%B8%A3_ver._eng.pdf)).
+- Brazil — e-Visa for US, Canadian and Australian citizens since 10 Apr 2025.
+- Malaysia — China and India visa-free to 31 Dec 2026 ([EY](https://www.ey.com/en_gl/technical/tax-alerts/malaysia-extends-visa-exemption-period-for-india-and-china-nationals)).
+- Vietnam — 45/90/30/21/14-day exemptions, e-Visa for others.
+- South Korea — K-ETA waived for 22 countries to 31 Dec 2026 ([MOFA](https://www.mofa.go.kr/ca-en/brd/m_5231/view.do?seq=761797)).
+- Kenya — most African citizens visa-free since 30 May 2025; EAC 180 days; Libya and Somalia still need eTA.
+- Sri Lanka — ETA for all visitors ([eta.gov.lk](https://eta.gov.lk/slvisa/)).
+- Russia — Chinese citizens visa-free to 31 Dec 2027.
+
+A fixture test of 85 official facts against the merged table passed (0 missing cells), and 400 random pairs
+rendered without gaps in the browser. Expiring rules to re-check: China's scheme (31 Dec 2026), Malaysia
+(31 Dec 2026), Korea's K-ETA waiver (31 Dec 2026), ETIAS (not yet operating; Q4 2026 target).

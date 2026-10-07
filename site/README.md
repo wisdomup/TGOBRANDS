@@ -74,16 +74,28 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
 - **Travel enquiry** (on `/travel/` and every destination guide, `#plan`) posts to `/api/lead` the same
   way. It needs a destination and a way to reply, `?to=PH` preselects a destination, and if delivery is
   not set up it hands off to the destination host's WhatsApp or to help@tgobrands.com.
-- **Visa and passport check** (top of `/travel/`, `#check`; `?pp=CN&to=IN` preselects). Passport,
-  destination and purpose — plus optional arrival, departure and passport-expiry dates — give the visa
-  type (visa-free, on arrival, e-Visa, visa before travel, not available now, own country, or "we'll check"),
-  the stay, the fee where known, an apply-by date (flagged when it has passed), a six-month passport-validity
-  verdict (beyond the stay for the Philippines), and a checklist built from the visa type, purpose and
-  destination. Rules live once in `content/shared/visa_rules.json` (`rules[destination][passport]` → type,
-  note key, stay, fee, lead days, optional business overrides); wording, notes and checklist items in
-  `content/<lang>/checker.json`. A passport × destination table under the tool gives the same answers
-  without JavaScript. Combinations not in the rules answer "we'll check" rather than guess. Destination
-  guides link to it with their country preselected.
+- **Visa and passport check** (top of `/travel/`, `#check`; `?pp=CN&to=IN` preselects) — **any passport to any
+  country or territory** (199 × 199). Passport, destination and purpose, plus optional arrival, departure and
+  passport-expiry dates, give the visa type (visa-free, on arrival, e-Visa, electronic travel authorisation,
+  visa before travel, not possible now, own country, or "we'll check"), the stay, the fee where known, an
+  apply-by date (flagged when it has passed), a passport-validity verdict (six months from arrival by
+  default; three months beyond departure for Schengen; six beyond the stay for the Philippines) and a
+  checklist. Country names come from the browser (`Intl.DisplayNames`) in the page's language.
+  Data, in order of precedence (no sources are shown on the site):
+  1. `content/shared/visa_rules.json` — TGO's core corridors (our six destinations × the main passports),
+     with fees, lead times and business notes.
+  2. `content/shared/visa_overrides.json` — corrections checked against government announcements, each with
+     its source URL (China's visa-free scheme and mutual exemptions, UK ETA, US ESTA and 2026 travel
+     restrictions, Thailand's September 2026 scheme, Brazil, Malaysia, Vietnam, South Korea, Kenya, Sri Lanka,
+     Russia). Rules can target `"*"`, filter by the current type (`when`) and exclude passports.
+  3. `data/passport-index/passport-index-tidy-iso2.csv` — the base table for every pair (MIT, see the
+     `LICENSE` beside it; its data is from January 2025, which is why the overrides exist).
+  `build.py` merges them into `/assets/visa-<hash>.json` (~108 KB), which the tool loads after the page; the
+  core corridors work even if that file fails to load. The table under the tool covers the main routes
+  without JavaScript.
+  **Refreshing:** replace the CSV with a newer copy if one is published, review `visa_overrides.json` against
+  official portals (expiring schemes are noted with their end dates), rebuild, and run the fixture test
+  described in the research file.
 - **Live result areas** (`[aria-live]`: the checker and the entry estimator) are excluded from the scroll
   reveal, which only watches elements present at load.
 - **Entry estimator** reads its data from a JSON block in the page; with JavaScript off it says so and

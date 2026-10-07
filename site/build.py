@@ -9,6 +9,7 @@ Standard library only. Every page is pre-rendered for both locales
 robots.txt and llms.txt. Deploy the output folder to any static host.
 """
 import argparse
+import csv
 import hashlib
 import json
 import shutil
@@ -18,6 +19,62 @@ import templates as T
 
 ROOT = Path(__file__).resolve().parent
 LANGS = ('en', 'zh')
+# passport x destination base data (MIT, see data/passport-index/LICENSE); corrected by content/shared/visa_overrides.json
+VISA_BASE = ROOT.parent / 'data' / 'passport-index' / 'passport-index-tidy-iso2.csv'
+VISA_TYPES = {'visa free': 'free', 'visa on arrival': 'voa', 'e-visa': 'evisa', 'eta': 'eta',
+              'visa required': 'visa', 'no admission': 'blocked'}
+VISA_TOKEN = {'free': 'F', 'voa': 'A', 'evisa': 'E', 'eta': 'T', 'visa': 'V', 'blocked': 'B', 'home': 'H', 'check': 'C'}
+GENERIC_NOTES = {'free', 'voa', 'evisa', 'eta', 'visa', 'blocked', 'check', 'home'}
+
+
+def visa_world(content):
+    """Every passport to every destination: the base dataset, then the government-checked
+    overrides (later rules win), then TGO's core rules for its own corridors. Returns the sorted
+    country codes and final[passport][destination] = {type, stay?, note?, core?}."""
+    final = {}
+    for row in csv.DictReader(VISA_BASE.open(encoding='utf-8')):
+        p, d, v = row['Passport'], row['Destination'], row['Requirement'].strip().lower()
+        if v == '-1':
+            rule = {'type': 'home'}
+        elif v.isdigit():
+            rule = {'type': 'free', 'stay': int(v)}
+        else:
+            rule = {'type': VISA_TYPES.get(v, 'check')}
+        final.setdefault(p, {})[d] = rule
+    codes = sorted(final)
+    for rule in content['visaOverrides']['rules']:
+        d = rule['dest']
+        for p in (codes if rule['passports'] == '*' else rule['passports']):
+            if p == d or p not in final or p in rule.get('except', ()):
+                continue
+            cur = final[p].get(d, {'type': 'check'})
+            if 'when' in rule and cur['type'] not in rule['when']:
+                continue
+            new = {'type': rule['type'], 'note': rule.get('note')}
+            stay = cur.get('stay') if rule.get('keepStay') else rule.get('stay')
+            if stay:
+                new['stay'] = stay
+            final[p][d] = new
+    for d, per in content['visaRules']['rules'].items():
+        for p, rule in per.items():
+            if p in final:
+                final[p][d] = dict(rule, core=True)
+    return codes, final
+
+
+def visa_asset(codes, final):
+    """The world table as compact text for the browser: one row per passport, one token per
+    destination (type letter + stay days), plus the few pair-specific note keys."""
+    rows, notes = {}, {}
+    for p in codes:
+        toks = []
+        for d in codes:
+            r = final[p].get(d, {'type': 'check'})
+            toks.append(VISA_TOKEN[r['type']] + (str(r['stay']) if r.get('stay') and r['type'] != 'home' else ''))
+            if r.get('note') and r['note'] not in GENERIC_NOTES and not r.get('core'):
+                notes[f'{p}>{d}'] = r['note']
+        rows[p] = ','.join(toks)
+    return json.dumps({'codes': codes, 'rows': rows, 'notes': notes}, separators=(',', ':'))
 
 
 def load(lang):
@@ -114,6 +171,13 @@ def build(out):
     version = hashlib.sha1(b''.join((static / n).read_bytes() for n in ('site.css', 'site.js'))).hexdigest()[:10]
 
     content = {lang: load(lang) for lang in LANGS}
+    codes, final = visa_world(content['en'])
+    world = visa_asset(codes, final)
+    world_name = f'visa-{hashlib.sha1(world.encode()).hexdigest()[:10]}.json'
+    (assets / world_name).write_text(world, encoding='utf-8')
+    for lang in LANGS:
+        content[lang]['visaFinal'] = final
+        content[lang]['visaWorld'] = '/assets/' + world_name
     plans = {lang: routes(content[lang]) for lang in LANGS}
     paths = {lang: [r[1] for r in plans[lang]] for lang in LANGS}
     if paths['en'] != paths['zh']:

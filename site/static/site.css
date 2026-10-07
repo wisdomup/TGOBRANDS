@@ -1023,7 +1023,7 @@ html:lang(zh) {
   font-size: 14px; font-weight: 600; line-height: 1;
 }
 .vbadge--free, .vbadge--voa { background: #e3f3e9; color: #13643a; }
-.vbadge--evisa { background: #e2eefb; color: #005bb5; }
+.vbadge--evisa, .vbadge--eta { background: #e2eefb; color: #005bb5; }
 .vbadge--visa { background: #fbeedd; color: #8a4a00; }
 .vbadge--blocked { background: #fbe4e7; color: #a30016; }
 .vbadge--home, .vbadge--check { border-color: var(--line); color: var(--ink-2); }
@@ -1045,7 +1045,7 @@ html:lang(zh) {
 .vtable tbody tr:last-child th, .vtable tbody tr:last-child td { border-bottom: 0; }
 .vt::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: var(--line); vertical-align: middle; }
 .vt--free::before, .vt--voa::before { background: #1d8a4e; }
-.vt--evisa::before { background: var(--accent); }
+.vt--evisa::before, .vt--eta::before { background: var(--accent); }
 .vt--visa::before { background: #c27a00; }
 .vt--blocked::before { background: #c4001a; }
 .vt--home::before { background: transparent; }

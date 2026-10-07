@@ -1,8 +1,8 @@
 {
   "checker": {
     "kicker": "Visa and passport check",
-    "title": "Can you go? Check in ten seconds.",
-    "sub": "Choose your passport and where you are going. We show the visa you need, how long you can stay, when to apply, whether your passport is valid long enough, and what to bring.",
+    "title": "Any passport. Anywhere in the world.",
+    "sub": "Choose your passport and destination — every country and territory. We show the visa you need, how long you can stay, when to apply, whether your passport is valid long enough, and what to bring.",
     "cta": "Check my passport",
     "passport": "Your passport",
     "dest": "Going to",
@@ -55,12 +55,8 @@
         "United Kingdom"
       ],
       [
-        "EU",
-        "European Union"
-      ],
-      [
-        "XX",
-        "Another country"
+        "DE",
+        "Germany"
       ]
     ],
     "types": {
@@ -70,7 +66,8 @@
       "visa": "Visa before you travel",
       "blocked": "Not available right now",
       "home": "Your own country",
-      "check": "We'll check for you"
+      "check": "We'll check for you",
+      "eta": "Travel authorisation online"
     },
     "short": {
       "free": "Visa-free",
@@ -79,7 +76,8 @@
       "visa": "Visa",
       "blocked": "Not now",
       "home": "—",
-      "check": "Ask us"
+      "check": "Ask us",
+      "eta": "ETA"
     },
     "stay": "Stay",
     "fee": "Fee",
@@ -103,10 +101,10 @@
     "plan": "Plan this trip with us",
     "guide": "Read the {country} guide",
     "whatsapp": "Ask {name} on WhatsApp",
-    "tableKicker": "At a glance",
-    "tableTitle": "Every passport, every destination.",
+    "tableKicker": "Our main routes",
+    "tableTitle": "At a glance.",
     "tablePassport": "Passport",
-    "tableNote": "Rules checked October 2026 for ordinary passports. Visa rules change often — the check above and our team confirm yours before you book.",
+    "tableNote": "For ordinary passports. Visa rules change often — our team confirms yours before you book.",
     "noscript": "The check needs JavaScript. The table below has the same answers.",
     "notes": {
       "ph_cn": "Since 16 January 2026, 14 days visa-free for tourism or business — only when you land at Manila (NAIA) or Cebu (Mactan). No extension and no change of visa. Bring a confirmed hotel booking and a return ticket; an eVisa covers the same 14 days.",
@@ -140,7 +138,22 @@
       "ae_bd": "A pre-arranged visa through an authorised sponsor; applications face enhanced screening.",
       "ae_ph": "A pre-arranged visit visa, unless you hold a qualifying US, UK, EU, Canadian, Australian, New Zealand, Japanese, Singapore or Korean residence permit.",
       "check": "We haven't listed this combination. Send us your passport and dates — we confirm the rules before you book.",
-      "home": "No visa needed — it's your own country."
+      "home": "No visa needed — it's your own country.",
+      "g_free": "Visa-free.",
+      "g_free_n": "Visa-free for up to {n} days.",
+      "g_voa": "Visa on arrival.",
+      "g_voa_n": "Visa on arrival, for up to {n} days.",
+      "g_evisa": "Apply online for an e-Visa before you fly.",
+      "g_evisa_n": "Apply online for an e-Visa before you fly; stays of up to {n} days.",
+      "g_eta": "Apply online for an electronic travel authorisation before you fly.",
+      "g_eta_n": "Apply online for an electronic travel authorisation before you fly; stays of up to {n} days.",
+      "g_visa": "Apply for a visa at an embassy, consulate or visa centre before you travel.",
+      "g_blocked": "Entry is not currently possible on this passport.",
+      "g_check": "We'll confirm the rules for this passport before you book.",
+      "cn_scheme": "Visa-free for up to 30 days under China's visa-free scheme, which runs to 31 December 2026.",
+      "permit": "Residents of Hong Kong, Macao and Taiwan travel to the mainland on special permits rather than visas. We confirm which applies to you.",
+      "us_suspended": "Entry to the United States is currently suspended for this passport.",
+      "us_visitor_suspended": "Visitor and business visas for the United States are currently suspended for this passport."
     },
     "destNotes": {
       "PH": "Everyone registers free on eTravel (etravel.gov.ph) within 72 hours before arrival."
@@ -163,6 +176,11 @@
       "id": "Your passport or national ID"
     },
     "late": "already passed — talk to us today",
-    "dayShort": "{n} days"
+    "dayShort": "{n} days",
+    "groupTop": "Our markets",
+    "groupAll": "All countries and territories",
+    "validRuleStay3": "It must be valid for three months beyond the day you leave.",
+    "tripTo": "Trip to",
+    "loading": "Loading every country…"
   }
 }

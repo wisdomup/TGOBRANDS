@@ -561,27 +561,63 @@
     });
   }
 
-  /* ── Visa and passport check: passport + destination (+ purpose, dates) → the visa, the stay,
-     the fee, an apply-by date, passport validity and a checklist, from rules shipped in the page ── */
+  /* ── Visa and passport check: any passport to any country. TGO's core corridors carry their
+     own rules (fees, lead times, business notes); everything else comes from the world table,
+     which loads as a cached file. Names come from the browser in the page's language. ── */
   function initChecker() {
     var form = $('[data-checker]');
     if (!form) return;
     var d = JSON.parse($('[data-checker-data]').textContent);
     var L = d.labels;
     var out = $('[data-checker-result]');
+    var locale = d.lang === 'zh' ? 'zh-CN' : 'en';
+    var TYPES = { F: 'free', A: 'voa', E: 'evisa', T: 'eta', V: 'visa', B: 'blocked', H: 'home', C: 'check' };
+    var LEAD = { free: 0, voa: 0, eta: 3, evisa: 7, visa: 21 };
+    var world = null;
+    var regions = null;
+    try { regions = new Intl.DisplayNames([locale], { type: 'region' }); } catch (e) { /* older browsers: codes */ }
+    function name(code) {
+      if (d.destNames[code]) return d.destNames[code];
+      try { return (regions && regions.of(code)) || code; } catch (e) { return code; }
+    }
     var q = new URLSearchParams(location.search);
-    [['to', 'dest'], ['pp', 'passport']].forEach(function (pair) {
-      var v = q.get(pair[0]), sel = form.elements[pair[1]];
-      if (v && $$('option', sel).some(function (o) { return o.value === v; })) sel.value = v;
-    });
+    var wanted = { passport: q.get('pp'), dest: q.get('to') };
+    function pick(sel, v) { if (v && $$('option', sel).some(function (o) { return o.value === v; })) sel.value = v; }
+    pick(form.elements.passport, wanted.passport);
+    pick(form.elements.dest, wanted.dest);
+
+    function fill(sel, current) {
+      var coll = new Intl.Collator(locale);
+      var top = document.createElement('optgroup');
+      top.label = L.groupTop;
+      d.featured.forEach(function (c) { top.appendChild(new Option(name(c), c)); });
+      var all = document.createElement('optgroup');
+      all.label = L.groupAll;
+      world.codes.slice().sort(function (a, b) { return coll.compare(name(a), name(b)); })
+        .forEach(function (c) { all.appendChild(new Option(name(c), c)); });
+      sel.textContent = '';
+      sel.appendChild(top);
+      sel.appendChild(all);
+      sel.value = current;
+    }
+
+    function rule(pp, dest) {
+      if (d.core[dest] && d.core[dest][pp]) return d.core[dest][pp];
+      if (pp === dest) return { type: 'home', note: 'home' };
+      if (!world || !world.rows[pp]) return { type: 'check', note: 'g_check' };
+      if (typeof world.rows[pp] === 'string') world.rows[pp] = world.rows[pp].split(',');
+      var tok = world.rows[pp][world.index[dest]] || 'C';
+      var type = TYPES[tok.charAt(0)] || 'check';
+      var stay = parseInt(tok.slice(1), 10) || null;
+      var note = world.notes[pp + '>' + dest] || ('g_' + type + (stay && d.notes['g_' + type + '_n'] ? '_n' : ''));
+      return { type: type, stay: stay, note: note, fee: type === 'free' ? 0 : null, lead: LEAD[type] || 0 };
+    }
 
     function fmt(str, map) { return str.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }); }
     function day(v) { var x = v ? new Date(v + 'T00:00:00') : null; return x && !isNaN(x) ? x : null; }
     function addDays(x, n) { var y = new Date(x); y.setDate(y.getDate() + n); return y; }
     function addMonths(x, n) { var y = new Date(x); y.setMonth(y.getMonth() + n); return y; }
-    function show(x) {
-      return x.toLocaleDateString(d.lang === 'zh' ? 'zh-CN' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-    }
+    function show(x) { return x.toLocaleDateString(d.lang === 'zh' ? 'zh-CN' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
     function tile(label, value, cls) {
       var t = el('div', 'fact' + (cls ? ' ' + cls : ''));
       t.appendChild(el('p', 'eyebrow', label));
@@ -591,7 +627,7 @@
     function checklist(r, pp, dest, biz) {
       if (r.type === 'home') return ['id'];
       var k = ['passport'];
-      if (r.type === 'evisa') k.push('photo', 'online');
+      if (r.type === 'evisa' || r.type === 'eta') k.push('photo', 'online');
       if (r.type === 'visa') k.push('photo', 'form', 'funds');
       if (r.type === 'voa') k.push('cash');
       k.push('ticket', 'hotel');
@@ -605,19 +641,19 @@
     function render() {
       var pp = form.elements.passport.value, dest = form.elements.dest.value;
       var biz = form.elements.purpose.value === 'business';
-      var r = d.rules[dest][pp];
+      var r = rule(pp, dest);
       var arrive = day(form.elements.arrive.value), leave = day(form.elements.leave.value), expiry = day(form.elements.expiry.value);
       out.textContent = '';
 
       var card = el('div', 'panel vresult');
       var head = el('div', 'vresult__head');
       head.appendChild(el('span', 'vbadge vbadge--' + r.type, L.types[r.type]));
-      head.appendChild(el('h3', 'vresult__title', d.destNames[dest]));
+      head.appendChild(el('h3', 'vresult__title', name(dest)));
       card.appendChild(head);
-      card.appendChild(el('p', 'vresult__note', d.notes[biz && r.noteBiz ? r.noteBiz : r.note]));
+      var key = biz && r.noteBiz ? r.noteBiz : r.note;
+      card.appendChild(el('p', 'vresult__note', fmt(d.notes[key] || d.notes['g_' + r.type] || '', { n: r.stay })));
 
-      var open = ['free', 'voa', 'evisa', 'visa'].indexOf(r.type) > -1;
-      if (open) {
+      if (['free', 'voa', 'evisa', 'eta', 'visa'].indexOf(r.type) > -1) {
         var grid = el('div', 'est-grid');
         grid.appendChild(tile(L.stay, r.stay ? fmt(L.days, { n: r.stay }) : L.stayVaries));
         // a business-specific rule (e.g. India's e-B-4) has its own fee, so don't show the tourist one
@@ -631,17 +667,19 @@
         var late = by && by < new Date(new Date().toDateString());
         grid.appendChild(tile(L.applyBy, !lead ? L.noApply : by ? show(by) + (late ? ' — ' + L.late : '') : fmt(L.beforeFly, { n: lead }),
           late ? 'is-bad' : ''));
-        // passport validity: six months from arrival, or beyond the stay where the destination asks for that
-        var beyond = d.beyondStay.indexOf(dest) > -1;
+        // passport validity: Schengen asks three months beyond departure; the Philippines six beyond the
+        // stay; most other countries six months from arrival
+        var schengen = d.schengen.indexOf(dest) > -1, beyond = schengen || d.beyondStay.indexOf(dest) > -1;
+        var months = schengen ? 3 : d.validity;
         var verdict = L.addDates, cls = '';
         if (expiry && arrive) {
-          var ok = expiry >= addMonths(beyond ? (leave || arrive) : arrive, d.validity);
+          var ok = expiry >= addMonths(beyond ? (leave || arrive) : arrive, months);
           verdict = ok ? L.valid : L.renew;
           cls = ok ? 'is-ok' : 'is-bad';
         }
         grid.appendChild(tile(L.passportCheck, verdict, cls));
         card.appendChild(grid);
-        card.appendChild(el('p', 'vresult__rule', (beyond ? L.validRuleStay : L.validRule) + ' ' + L.pages));
+        card.appendChild(el('p', 'vresult__rule', (schengen ? L.validRuleStay3 : beyond ? L.validRuleStay : L.validRule) + ' ' + L.pages));
       }
       if (d.destNotes[dest] && r.type !== 'blocked') card.appendChild(el('p', 'vresult__note', d.destNotes[dest]));
 
@@ -649,7 +687,7 @@
         var block = el('div', 'vresult__list');
         block.appendChild(el('p', 'eyebrow', L.checklist));
         var ul = el('ul', 'ticks');
-        checklist(r, pp, dest, biz).forEach(function (key) { ul.appendChild(el('li', '', d.docs[key])); });
+        checklist(r, pp, dest, biz).forEach(function (k) { ul.appendChild(el('li', '', d.docs[k])); });
         block.appendChild(ul);
         card.appendChild(block);
       }
@@ -660,10 +698,14 @@
       plan.addEventListener('click', function () {
         var box = $('[data-travel] input[name="destinations"][value="' + dest + '"]');
         if (box) box.checked = true;
+        else {
+          var msg = $('[data-travel] textarea[name="message"]');
+          if (msg && !msg.value.trim()) msg.value = L.tripTo + ' ' + name(dest);
+        }
       });
       acts.appendChild(plan);
       if (d.guides[dest]) {
-        var guide = el('a', 'btn btn--outline', fmt(L.guide, { country: d.destNames[dest] }));
+        var guide = el('a', 'btn btn--outline', fmt(L.guide, { country: name(dest) }));
         guide.href = d.guides[dest];
         acts.appendChild(guide);
       }
@@ -678,10 +720,23 @@
       card.appendChild(acts);
       out.appendChild(card);
     }
+
     form.addEventListener('input', render);
     form.addEventListener('change', render);
     form.addEventListener('submit', function (e) { e.preventDefault(); });
     render();
+
+    // the world table: every passport and destination, cached by its hashed file name
+    if (window.fetch && d.world) {
+      fetch(d.world).then(function (res) { return res.json(); }).then(function (w) {
+        world = w;
+        world.index = {};
+        w.codes.forEach(function (c, i) { world.index[c] = i; });
+        fill(form.elements.passport, wanted.passport && world.index[wanted.passport] != null ? wanted.passport : form.elements.passport.value);
+        fill(form.elements.dest, wanted.dest && world.index[wanted.dest] != null ? wanted.dest : form.elements.dest.value);
+        render();
+      }).catch(function () { /* the core corridors still work */ });
+    }
   }
 
   /* ── Tabs (portal preview); without JS every pane is listed in order ── */

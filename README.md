@@ -8,6 +8,7 @@ programme, market playbooks, an entry estimator, Expeditions and a Partner Porta
 | --- | --- |
 | `site/` | The production site: static, pre-rendered, built with the Python standard library. Copy, templates and styles live here — see [site/README.md](site/README.md). |
 | `api/` | Vercel functions. `lead.py` delivers partner applications by email and WhatsApp — setup in [site/README.md](site/README.md#lead-delivery-apilead). |
+| `data/` | Build-time data that is not part of the site's copy: the passport × destination base table for the visa check (MIT licence alongside). Read by `site/build.py`; not deployed as-is. |
 | `research/` | Market studies behind the content: the Canton Fair tour study (113 operators) for `/travel/china/`, and the India, Pakistan, Bangladesh and Philippines travel study (96 sources). Not deployed. |
 | `design/` | The "TGO Brands v3 Glass" Claude Design prototype the site was built from. Reference only; not deployed. |
 

@@ -10,8 +10,7 @@
       "AE",
       "US",
       "GB",
-      "EU",
-      "XX"
+      "DE"
     ],
     "destinations": [
       "PK",
@@ -75,13 +74,6 @@
           "stay": 30,
           "fee": 0,
           "lead": 0
-        },
-        "EU": {
-          "type": "free",
-          "note": "ph_free30",
-          "stay": 30,
-          "fee": 0,
-          "lead": 0
         }
       },
       "IN": {
@@ -138,13 +130,6 @@
           "stay": null,
           "fee": null,
           "lead": 7
-        },
-        "EU": {
-          "type": "evisa",
-          "note": "in_evisa",
-          "stay": null,
-          "fee": null,
-          "lead": 7
         }
       },
       "PK": {
@@ -191,13 +176,6 @@
           "lead": 14
         },
         "GB": {
-          "type": "evisa",
-          "note": "pk_evisa",
-          "stay": null,
-          "fee": null,
-          "lead": 14
-        },
-        "EU": {
           "type": "evisa",
           "note": "pk_evisa",
           "stay": null,
@@ -261,14 +239,6 @@
           "fee": null,
           "lead": 0,
           "leadBiz": 7
-        },
-        "EU": {
-          "type": "voa",
-          "note": "bd_voa",
-          "stay": 30,
-          "fee": null,
-          "lead": 0,
-          "leadBiz": 7
         }
       },
       "CN": {
@@ -315,13 +285,6 @@
           "lead": 28
         },
         "GB": {
-          "type": "free",
-          "note": "cn_free_2026",
-          "stay": 30,
-          "fee": 0,
-          "lead": 0
-        },
-        "EU": {
           "type": "free",
           "note": "cn_free_2026",
           "stay": 30,
@@ -378,15 +341,39 @@
           "stay": 30,
           "fee": 0,
           "lead": 0
-        },
-        "EU": {
-          "type": "free",
-          "note": "ae_free90",
-          "stay": 90,
-          "fee": 0,
-          "lead": 0
         }
       }
-    }
+    },
+    "schengen": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IS",
+      "IT",
+      "LV",
+      "LI",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "NO",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH"
+    ]
   }
 }

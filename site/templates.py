@@ -1325,37 +1325,38 @@ def travel_form(c, lang, preset=''):
 
 
 def visa_rule(c, passport, dest):
-    """The rule for one passport going to one destination, with home and unknown cases filled in."""
+    """The merged rule (world data, corrections, core corridors) for one passport and destination."""
     if passport == dest:
-        return {'type': 'home', 'note': 'home', 'stay': None, 'fee': None, 'lead': 0}
-    return c['visaRules']['rules'].get(dest, {}).get(passport) or {'type': 'check', 'note': 'check', 'stay': None, 'fee': None, 'lead': 0}
+        return {'type': 'home', 'note': 'home'}
+    return c['visaFinal'].get(passport, {}).get(dest) or {'type': 'check', 'note': 'check'}
 
 
 def visa_checker(c, lang):
-    """Passport and visa check: passport + destination (+ purpose, dates) → the visa needed, stay, fee,
-    apply-by date, passport validity and a checklist. Runs in the browser on the rules shipped in the
-    page; the table below it gives the same answers without JavaScript."""
+    """Passport and visa check for every passport and destination. The page carries TGO's core
+    corridor rules (with fees, lead times and business notes); the full world table loads as a
+    cached asset. The table below the tool covers the main routes without JavaScript."""
     k = c['checker']
     t = c['travel']
     vr = c['visaRules']
     pnames = dict(k['passports'])
     dnames = {d['code']: d['name'] for d in t['destinations']}
     dests = [d for d in vr['destinations'] if d in dnames]
+    core = {d: {p: r for p, r in per.items() if len(p) == 2} for d, per in vr['rules'].items()}
     payload = {
-        'rules': {d: {p: visa_rule(c, p, d) for p in vr['passports']} for d in dests},
-        'validity': vr['validityMonths'], 'beyondStay': vr['validityBeyondStay'],
+        'core': core, 'world': c['visaWorld'],
+        'validity': vr['validityMonths'], 'beyondStay': vr['validityBeyondStay'], 'schengen': vr['schengen'],
         'labels': {x: k[x] for x in ('types', 'stay', 'fee', 'applyBy', 'passportCheck', 'days', 'stayVaries', 'noFee',
                                      'feeOnArrival', 'feeFrom', 'feeVaries', 'noApply', 'beforeFly', 'addDates', 'valid',
-                                     'renew', 'validRule', 'validRuleStay', 'pages', 'checklist', 'plan', 'guide', 'whatsapp',
-                                     'late')},
+                                     'renew', 'validRule', 'validRuleStay', 'validRuleStay3', 'pages', 'checklist', 'plan',
+                                     'guide', 'whatsapp', 'late', 'groupTop', 'groupAll', 'tripTo')},
         'notes': k['notes'], 'destNotes': k['destNotes'], 'docs': k['docs'],
-        'destNames': dnames,
+        'destNames': dnames, 'featured': ['CN', 'PK', 'IN', 'BD', 'PH', 'AE'],
         'guides': {g['code']: href(lang, 'guide', g['slug']) for g in t['guides']},
         'hosts': TRAVEL_HOSTS, 'lang': lang,
     }
     data = json.dumps(payload, ensure_ascii=False).replace('</', '<\\/')
     opt = lambda pairs: ''.join(f'<option value="{e(v)}">{e(n)}</option>' for v, n in pairs)
-    passports = opt(k['passports'])
+    passports = opt(k['passports'])  # replaced by every passport once the world table loads
     destopts = opt([(d, dnames[d]) for d in dests])
     purposes = opt(k['purposes'])
     # the same answers as a table, for scanning and for readers without JavaScript
