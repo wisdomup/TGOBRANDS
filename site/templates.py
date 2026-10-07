@@ -23,6 +23,7 @@ PATHS = {
     'services': 'services/',
     'launch': 'launch/',
     'expeditions': 'expeditions/',
+    'travel': 'travel/',
     'estimator': 'tools/entry-estimator/',
     'portal': 'portal/',
 }
@@ -33,8 +34,9 @@ DETAIL = {
     'audience': 'for/{}/',
     'playbook': 'markets/{}/',
     'trip': 'expeditions/{}/',
+    'guide': 'travel/{}/',
 }
-NAV = ['services', 'launch', 'markets', 'expeditions', 'brands', 'founders', 'insights']
+NAV = ['services', 'launch', 'markets', 'travel', 'brands', 'founders', 'insights']
 
 PHOTO = '/assets/photo.jpg'
 WHATSAPP = {'Umer': '639772547666', 'Umair': '8615623305030', 'Aryan': '917645912074', 'Shamas': '971542971969'}
@@ -94,7 +96,7 @@ def pager(aria, prev=None, nxt=None, prev_label='', next_label=''):
 
 
 # the order a first-time visitor walks the site; ends on the conversion page
-SEQUENCE = ['home', 'what', 'services', 'launch', 'markets', 'expeditions', 'brands', 'founders', 'insights', 'partner']
+SEQUENCE = ['home', 'what', 'services', 'launch', 'markets', 'travel', 'expeditions', 'brands', 'founders', 'insights', 'partner']
 
 
 def site_pager(c, lang, page):
@@ -144,7 +146,7 @@ def bcard(c, lang, b):
 def nav(c, lang, page, alt_href):
     home = page == 'home'
     cur = {'brand': 'brands', 'post': 'insights', 'service': 'services', 'playbook': 'markets',
-           'trip': 'expeditions', 'what': 'services'}.get(page, page)
+           'trip': 'travel', 'expeditions': 'travel', 'guide': 'travel', 'what': 'services'}.get(page, page)
     current = ' aria-current="page"'
     links = ''.join(
         f'<a href="{href(lang, k)}"{current if cur == k else ""}>{e(c["nav"][k])}</a>'
@@ -170,7 +172,7 @@ def footer(c, lang):
     link = lambda url, label: f'<a href="{url}">{e(label)}</a>'
     services = ''.join(link(href(lang, 'services') + '#' + g['key'], g['name']) for g in svc['groups'])
     services += link(href(lang, 'services'), svc['labels']['all'])
-    programmes = ''.join(link(href(lang, k), n[k]) for k in ('launch', 'expeditions', 'estimator', 'portal', 'partner'))
+    programmes = ''.join(link(href(lang, k), n[k]) for k in ('launch', 'travel', 'expeditions', 'estimator', 'portal', 'partner'))
     company = ''.join(link(href(lang, k), n[k]) for k in ('what', 'brands', 'founders', 'markets', 'insights', 'contact'))
     legal = ''.join(action(x, '', cls='footer__pending') for x in f['legal'])
     return f'''<footer class="footer">
@@ -1059,6 +1061,9 @@ def page_playbook(c, lang, i):
     ML = c['markets']['labels']
     certs = ''.join(f'<tr><th scope="row">{e(name)}</th><td>{e(scope)}</td><td class="nowrap">{e(weeks)}</td></tr>'
                     for name, scope, weeks in x['certs'])
+    guide = next((g for g in c['travel']['guides'] if g['slug'] == x['slug']), None)
+    guide_link = (f'\n      <a class="btn btn--outline" href="{href(lang, "guide", x["slug"])}">{e(c["travel"]["labels"]["guide"])}</a>'
+                  if guide else '')
     estimate = href(lang, 'estimator') + '?market=' + x['code']
     prev = ((href(lang, 'playbook', books[i - 1]['slug']), c['markets']['items'][books[i - 1]['market']]['c']) if i > 0
             else (href(lang, 'markets'), L['all']))
@@ -1073,7 +1078,7 @@ def page_playbook(c, lang, i):
     {eyebrow(ML["lead"] + " — " + m["who"], "playbook__lead")}
     <div class="actions actions--row">
       <a class="btn btn--primary" href="{estimate}">{e(L["estimate"])}</a>
-      <a class="btn btn--outline" href="{href(lang, 'trip', x['trip'])}">{e(L["trip"])}</a>
+      <a class="btn btn--outline" href="{href(lang, 'trip', x['trip'])}">{e(L["trip"])}</a>{guide_link}
     </div>
   </section>
 
@@ -1175,9 +1180,6 @@ def trip_card(c, lang, x, kicker=None):
 def page_expeditions(c, lang):
     ex = c['expeditions']
     editions = ''.join(trip_card(c, lang, x) for x in ex['editions'])
-    types = ''.join(f'<div class="panel offer"><p class="offer__n">{n + 1:02d}</p><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>'
-                    for n, x in enumerate(ex['types']))
-    travel = ''.join(f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' for x in ex['travel'])
     interest = 'mailto:help@tgobrands.com?subject=' + ex['kicker'].replace(' ', '%20')
     return f'''<main id="main" class="page page--expeditions">
   {phead(ex["kicker"], ex["title"], ex["sub"])}
@@ -1191,15 +1193,9 @@ def page_expeditions(c, lang):
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(ex["typesKicker"])}<h2 class="sech">{e(ex["typesTitle"])}</h2></header>
-      <div class="grid grid--2">{types}</div>
+      <header class="shead">{eyebrow(c["travel"]["kicker"])}<h2 class="sech">{e(ex["labels"]["private"])}</h2><p class="lead" style="--mw:52ch">{e(c["travel"]["sub"])}</p></header>
+      <div class="actions"><a class="btn btn--primary" href="{href(lang, 'travel')}#plan">{e(c["travel"]["labels"]["plan"])}</a></div>
     </div>
-  </section>
-
-  <section class="wrap sec">
-    <header class="shead">{eyebrow(ex["travelKicker"])}<h2 class="sech">{e(ex["travelTitle"])}</h2></header>
-    <div class="grid grid--3">{travel}</div>
-    <div class="actions"><a class="btn btn--primary" href="{href(lang, 'service', 'travel-ground-support')}">{e(service_by_slug(c, "travel-ground-support")["name"])}</a></div>
   </section>
 
   <section class="poster">
@@ -1260,6 +1256,243 @@ def page_trip(c, lang, i):
   </section>
   {pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])}
 </main>'''
+
+
+# ── travel ────────────────────────────────────────────────────────────────
+
+TRAVEL_HOSTS = {'PK': 'Umair', 'IN': 'Aryan', 'PH': 'Umer', 'AE': 'Shamas', 'CN': 'Umair'}
+
+
+def attr(name, value):
+    return f' {name}="{e(value)}"' if value else ''
+
+
+def travel_form(c, lang, preset=''):
+    """The travel enquiry. Posts to /api/lead like the partner application and, when the
+    server cannot deliver it, hands off to WhatsApp or email."""
+    t = c['travel']
+    f = t['form']
+    opt = lambda kind, name, value, label, on=False: (
+        f'<label class="opt"><input type="{kind}" name="{name}" value="{e(value)}"{" checked" if on else ""}>'
+        f'<span>{e(label)}</span></label>')
+    dests = ''.join(opt('checkbox', 'destinations', d['code'], d['name'], d['code'] == preset) for d in t['destinations'])
+    purposes = ''.join(opt('radio', 'purpose', v, n) for v, n in f['purposes'])
+    bands = ''.join(opt('radio', 'travellers', v, n) for v, n in f['bands'])
+    fields = [('contact_name', 'name', 'text', 'name', ''), ('travel_from', 'from', 'text', 'off', f['fromHint']),
+              ('travel_when', 'when', 'text', 'off', f['whenHint']), ('contact_email', 'email', 'email', 'email', ''),
+              ('handle', 'handle', 'text', 'off', ''), ('contact_phone', 'phone', 'tel', 'tel', '')]
+    inputs = ''.join(
+        f'<div class="field"><label for="t-{k}">{e(f[label])}</label>'
+        f'<input class="input" id="t-{k}" name="{k}" type="{kind}" autocomplete="{ac}"{attr("placeholder", hint)}></div>'
+        for k, label, kind, ac, hint in fields)
+    payload = {
+        'labels': {k: f[k] for k in ('sending', 'needDest', 'needContact', 'subject', 'msg', 'people', 'dest', 'purpose',
+                                     'travellers', 'when', 'from', 'name', 'email', 'handle', 'phone', 'message')},
+        'dests': {d['code']: d['name'] for d in t['destinations']},
+        'purposes': dict(f['purposes']),
+        'hosts': TRAVEL_HOSTS,
+    }
+    data = json.dumps(payload, ensure_ascii=False).replace('</', '<\\/')
+    sep = ''  # the second half of each sentence carries its own punctuation
+    return f"""<section class="wrap sec" id="plan">
+    <header class="shead">{eyebrow(f["kicker"])}<h2 class="sech">{e(f["title"])}</h2><p class="lead">{e(f["sub"])}</p></header>
+    <form class="panel tform" data-travel data-endpoint="/api/lead" data-lang="{lang}" novalidate>
+      <script type="application/json" data-travel-text>{data}</script>
+      <div class="hp" aria-hidden="true"><label for="t-website">Website</label><input id="t-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <fieldset class="tform__group"><legend>{e(f["dest"])}</legend><div class="opts">{dests}</div></fieldset>
+      <fieldset class="tform__group"><legend>{e(f["purpose"])}</legend><div class="opts">{purposes}</div></fieldset>
+      <fieldset class="tform__group"><legend>{e(f["travellers"])}</legend><div class="opts">{bands}</div></fieldset>
+      <div class="fields">{inputs}</div>
+      <div class="field field--wide"><label for="t-message">{e(f["message"])}</label><textarea class="input" id="t-message" name="message" rows="3"></textarea></div>
+      <p class="survey__error is-in" role="alert" data-travel-error hidden></p>
+      <div class="tform__nav"><button class="btn btn--primary btn--lg" type="submit">{e(f["submit"])}</button></div>
+      <noscript><p class="note">{e(f["noscript"])}</p></noscript>
+    </form>
+    <div class="panel tdone" data-travel-done hidden>
+      <h3 class="tdone__title" tabindex="-1" data-mode="sent">{e(f["sentT"])}</h3>
+      <p data-mode="sent">{e(f["sentD"])} <strong data-who></strong>{sep}{e(f["sentD2"])}</p>
+      <h3 class="tdone__title" tabindex="-1" data-mode="handoff">{e(f["handoffT"])}</h3>
+      <p data-mode="handoff">{e(f["handoffD"])} <strong data-who></strong>{sep}{e(f["handoffD2"])}</p>
+      <div class="done__acts" data-mode="handoff">
+        <a class="btn btn--primary" data-wa href="#" target="_blank" rel="noopener">{WA_ICON}{e(f["wa"])}</a>
+        <a class="btn btn--outline" data-mail href="#">{e(f["email"])}</a>
+      </div>
+    </div>
+  </section>"""
+
+
+def dest_card(c, lang, d):
+    L = c['travel']['labels']
+    facts = ''.join(f'<div><dt class="eyebrow">{e(k)}</dt><dd>{e(v)}</dd></div>'
+                    for k, v in ((L['cities'], d['cities']), (L['best'], d['best']), (L['host'], d['host'])))
+    links = []
+    if d['guide']:
+        links.append(f'<a class="btn btn--primary" href="{href(lang, "guide", d["guide"])}">{e(L["guide"])}</a>')
+    if d['playbook']:
+        links.append(f'<a class="btn btn--link" href="{href(lang, "playbook", d["playbook"])}">{e(L["playbook"])}</a>')
+    if d['trip']:
+        links.append(f'<a class="btn btn--link" href="{href(lang, "trip", d["trip"])}">{e(L["trip"])}</a>')
+    return f"""
+        <article class="panel dest{' dest--guide' if d['guide'] else ''}">
+          <h3>{e(d["name"])}</h3>
+          <dl class="dest__facts">{facts}</dl>
+          <div class="dest__links">{''.join(links)}</div>
+        </article>"""
+
+
+def page_travel(c, lang):
+    t = c['travel']
+    who = ''.join(f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' for x in t['who'])
+    formats = ''.join(
+        f'<div class="panel offer"><p class="offer__n">{n + 1:02d}</p><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p>'
+        + (f'<a class="btn btn--link" href="{href(lang, x["link"])}">{e(t["tripsMore"])}</a>' if x.get('link') else '')
+        + '</div>' for n, x in enumerate(t['formats']))
+    services = ''.join(f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' for x in t['services'])
+    dests = ''.join(dest_card(c, lang, d) for d in t['destinations'])
+    how = ''.join(f'<li class="hstep"><span class="hstep__n">{n + 1:02d}</span><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></li>'
+                  for n, x in enumerate(t['how']))
+    trips = ''.join(trip_card(c, lang, x) for x in c['expeditions']['editions'][:4])
+    return f"""<main id="main" class="page page--travel">
+  {phead(t["kicker"], t["title"], t["sub"], extra=f'<div class="actions"><a class="btn btn--primary" href="#plan">{e(t["labels"]["plan"])}</a></div>')}
+
+  <section class="wrap sec" id="destinations">
+    <header class="shead">{eyebrow(t["destKicker"])}<h2 class="sech">{e(t["destTitle"])}</h2></header>
+    <div class="grid grid--2 dests">{dests}
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(t["whoKicker"])}<h2 class="sech">{e(t["whoTitle"])}</h2></header>
+      <div class="grid grid--3">{who}</div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <header class="shead">{eyebrow(t["formatsKicker"])}<h2 class="sech">{e(t["formatsTitle"])}</h2></header>
+    <div class="grid grid--3">{formats}</div>
+  </section>
+
+  <section class="band">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(t["servicesKicker"])}<h2 class="sech">{e(t["servicesTitle"])}</h2></header>
+      <div class="grid grid--3">{services}</div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <header class="shead">{eyebrow(t["howKicker"])}<h2 class="sech">{e(t["howTitle"])}</h2></header>
+    <ol class="hsteps">{how}</ol>
+  </section>
+
+  <section class="band">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(t["tripsKicker"])}<h2 class="sech">{e(t["tripsTitle"])}</h2></header>
+      <div class="grid grid--2 svc-cards">{trips}
+      </div>
+      <div class="actions"><a class="btn btn--link" href="{href(lang, 'expeditions')}">{e(t["tripsMore"])}</a></div>
+    </div>
+  </section>
+
+  {travel_form(c, lang)}
+  {site_pager(c, lang, 'travel')}
+</main>"""
+
+
+def page_guide(c, lang, i):
+    t = c['travel']
+    L = t['labels']
+    g = t['guides'][i]
+    d = next(x for x in t['destinations'] if x['code'] == g['code'])
+    panels = lambda items: ''.join(f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' for x in items)
+    facts = ''.join(f'<div class="fact">{eyebrow(k)}<p class="fact__v">{e(v)}</p></div>' for k, v in g['facts'])
+    islands = ''.join(f'<div class="panel isle">{eyebrow(x["time"])}<h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>'
+                      for x in g['islands'])
+    plans = ''.join(
+        f'<div class="panel plan">{eyebrow(x["len"])}<h3>{e(x["t"])}</h3><ol class="plan__days">'
+        + ''.join(f'<li><span>{e(L["day"].format(n=n + 1))}</span>{e(day)}</li>' for n, day in enumerate(x['days']))
+        + '</ol></div>' for x in g['plans'])
+    person = next((p for p in c['founders']['people'] if p['name'].split()[0] == d['host']), None)
+    host_name = person['name'] if person else d['host']
+    host = f"""<div class="panel host">
+          {eyebrow(L["host"])}
+          <h3>{e(host_name)}</h3>
+          <p>{e(g["hostNote"])}</p>
+          <a class="wa-link" href="https://wa.me/{WHATSAPP[d['host']]}" target="_blank" rel="noopener">WhatsApp {e(d["host"])}{WA_ICON}</a>
+        </div>"""
+    book = (f'<a class="btn btn--outline" href="{href(lang, "playbook", d["playbook"])}">{e(L["playbook"])}</a>'
+            if d['playbook'] else '')
+    prev = (href(lang, 'travel') + '#destinations', L['all'])
+    nxt = (href(lang, 'trip', d['trip']), c['expeditions']['editions'][[x['slug'] for x in c['expeditions']['editions']].index(d['trip'])]['title'])
+    return f"""<main id="main" class="page page--guide">
+  <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'travel')}#destinations">← {e(L["all"])}</a></section>
+  <section class="wrap svc-hero">
+    {eyebrow(g["kicker"])}
+    <h1 class="disp">{e(g["title"])}</h1>
+    <p class="lead" style="--mw:52ch">{e(g["sub"])}</p>
+    <div class="svc-facts guide-facts">{facts}</div>
+    <div class="actions actions--row">
+      <a class="btn btn--primary" href="#plan">{e(g["cta"])}</a>
+      {book}
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(g["entryKicker"])}<h2 class="sech">{e(g["entryTitle"])}</h2></header>
+      <div class="grid grid--2 svc-cards">{panels(g["entry"])}</div>
+      <p class="note">{e(g["entryNote"])} {e(L["checked"])}.</p>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <header class="shead">{eyebrow(g["flyKicker"])}<h2 class="sech">{e(g["flyTitle"])}</h2></header>
+    <div class="grid grid--2">{panels(g["fly"])}</div>
+  </section>
+
+  <section class="band">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(g["whereKicker"])}<h2 class="sech">{e(g["whereTitle"])}</h2></header>
+      <div class="grid grid--3">{panels(g["where"])}</div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <header class="shead">{eyebrow(g["moveKicker"])}<h2 class="sech">{e(g["moveTitle"])}</h2></header>
+    <div class="panel guide-tips">{ticks(g["move"])}</div>
+  </section>
+
+  <section class="band">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(g["chinaKicker"])}<h2 class="sech">{e(g["chinaTitle"])}</h2></header>
+      <div class="grid grid--3">{panels(g["china"])}</div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <header class="shead">{eyebrow(g["islandsKicker"])}<h2 class="sech">{e(g["islandsTitle"])}</h2></header>
+    <div class="grid grid--3">{islands}</div>
+  </section>
+
+  <section class="band">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(g["plansKicker"])}<h2 class="sech">{e(g["plansTitle"])}</h2></header>
+      <div class="grid grid--3 plans">{plans}</div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <header class="shead">{eyebrow(g["deskKicker"])}<h2 class="sech">{e(g["deskTitle"])}</h2></header>
+    <div class="grid grid--2 desk">
+      <div class="panel">{ticks(g["desk"])}</div>
+      {host}
+    </div>
+    <p class="note">{e(g["note"])}</p>
+  </section>
+
+  <div class="band">{travel_form(c, lang, g["code"])}</div>
+  {pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])}
+</main>"""
 
 
 # ── partner portal preview ────────────────────────────────────────────────
@@ -1344,6 +1577,7 @@ PAGES = {
     'services': page_services,
     'launch': page_launch,
     'expeditions': page_expeditions,
+    'travel': page_travel,
     'estimator': page_estimator,
     'portal': page_portal,
 }

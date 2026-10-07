@@ -1,7 +1,7 @@
-"""POST /api/lead — a partner application from /partner/.
+"""POST /api/lead — a partner application from /partner/ or a travel enquiry from /travel/.
 
 Delivers the lead twice: by email to the team (Resend) and on WhatsApp to the founder who
-covers the applicant's market (WhatsApp Cloud API). Each channel is on only when its
+covers the applicant's market or destination (WhatsApp Cloud API). Each channel is on only when its
 environment variables are set. With neither configured the function answers 503 and the
 page falls back to the applicant sending the application themselves, so no lead is lost
 while this is being set up. Standard library only, like the site build.
@@ -28,13 +28,16 @@ from urllib.parse import urlparse
 # Who covers which market, first match wins. Mirrors assignee() in site/static/site.js; the
 # numbers are the founders' public WhatsApp numbers (WHATSAPP in site/templates.py). The
 # recipient is always derived here, never taken from the request.
-COVERS = [('PK', 'Umair'), ('IN', 'Aryan'), ('PH', 'Umer'), ('AE', 'Shamas')]
+COVERS = [('PK', 'Umair'), ('IN', 'Aryan'), ('PH', 'Umer'), ('AE', 'Shamas'), ('CN', 'Umair')]
 DEFAULT_LEAD = 'Umair'
 WHATSAPP = {'Umer': '639772547666', 'Umair': '8615623305030', 'Aryan': '917645912074', 'Shamas': '971542971969'}
 
 PARTY = {'manufacturer': 'Manufacturer', 'brand_owner': 'Brand owner', 'distributor': 'Distributor / retailer',
          'creator': 'Creator', 'investor': 'Investor', 'other': 'Other'}
 MARKETS = {'PK': 'Pakistan', 'IN': 'India', 'PH': 'Philippines', 'AE': 'UAE', 'other': 'Other'}
+DESTINATIONS = {'PK': 'Pakistan', 'IN': 'India', 'PH': 'Philippines', 'AE': 'UAE', 'CN': 'China'}
+PURPOSE = {'business': 'Business meetings', 'fair': 'Trade fair or factory visits', 'group': 'Company or incentive group',
+           'leisure': 'Holiday', 'mix': 'Business and holiday'}
 
 LEAD_INBOX = 'help@tgobrands.com'
 LEAD_SENDER = 'TGO Brands <leads@tgobrands.com>'
@@ -42,10 +45,11 @@ LEAD_SENDER = 'TGO Brands <leads@tgobrands.com>'
 MAX_BODY = 32 * 1024
 TEXT_FIELDS = {'contact_name': 120, 'company_name': 160, 'company_country': 80, 'contact_email': 200,
                'contact_phone': 40, 'handle': 120, 'message': 2000, 'service': 80, 'source': 200,
-               'locale': 5, 'party_type': 40}
+               'locale': 5, 'party_type': 40, 'travel_when': 80, 'travel_from': 120, 'purpose': 20, 'travellers': 10}
 EMAIL = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 KEY = re.compile(r'^[a-z_]{1,40}$')
-NOT_ANSWERS = set(TEXT_FIELDS) | {'target_markets', 'score', 'summary', 'website', 'assigned_to', 'created_at'}
+NOT_ANSWERS = set(TEXT_FIELDS) | {'kind', 'target_markets', 'destinations', 'score', 'summary', 'website',
+                                   'assigned_to', 'created_at'}
 CONTROL = re.compile(r'[\x00-\x08\x0b-\x1f\x7f]')
 
 
@@ -74,8 +78,13 @@ def parse_lead(raw):
     if not isinstance(raw, dict):
         return None, 'expected a JSON object'
     lead = {k: clean(raw.get(k), n, multiline=(k == 'message')) for k, n in TEXT_FIELDS.items()}
+    lead['kind'] = 'travel' if raw.get('kind') == 'travel' else 'partner'
     markets = raw.get('target_markets') or []
     lead['target_markets'] = [m for m in MARKETS if isinstance(markets, list) and m in markets]
+    dests = raw.get('destinations') or []
+    lead['destinations'] = [d for d in DESTINATIONS if isinstance(dests, list) and d in dests]
+    if lead['kind'] == 'travel' and not lead['destinations']:
+        return None, 'a destination is required'
     try:
         lead['score'] = max(0, min(90, int(raw.get('score') or 0)))
     except (TypeError, ValueError):
@@ -95,7 +104,7 @@ def parse_lead(raw):
             lead['answers'][k] = [clean(x, 80) for x in v[:12] if isinstance(x, str)]
         elif isinstance(v, (str, int, float)) and not isinstance(v, bool):
             lead['answers'][k] = clean(v, 80)
-    lead['assigned_to'] = assignee(lead['target_markets'])
+    lead['assigned_to'] = assignee(lead['destinations'] if lead['kind'] == 'travel' else lead['target_markets'])
     lead['received_at'] = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
     return lead, None
 
@@ -122,6 +131,22 @@ def contact_line(lead):
     return ' · '.join(x for x in (lead['contact_email'], lead['contact_phone'], lead['handle']) if x)
 
 
+def kind_line(lead):
+    if lead['kind'] == 'travel':
+        return 'Travel enquiry'
+    return PARTY.get(lead['party_type'], lead['party_type'] or '-')
+
+
+def detail_line(lead):
+    if lead['kind'] == 'travel':
+        parts = [', '.join(DESTINATIONS[d] for d in lead['destinations']),
+                 f'{lead["travellers"]} people' if lead['travellers'] else '',
+                 lead['travel_when'], PURPOSE.get(lead['purpose'], '')]
+        return ' · '.join(p for p in parts if p)
+    markets = ', '.join(MARKETS[m] for m in lead['target_markets']) or '-'
+    return f'Markets: {markets} · lead score {lead["score"]}/90'
+
+
 def email_configured():
     return bool(os.environ.get('RESEND_API_KEY'))
 
@@ -131,11 +156,10 @@ def whatsapp_configured():
 
 
 def send_email(lead):
-    markets = ', '.join(MARKETS[m] for m in lead['target_markets']) or '-'
     record = {k: v for k, v in lead.items() if k != 'summary'}
     body = '\n'.join([
-        f'Routed to {lead["assigned_to"]} · lead score {lead["score"]} / 90 · received {lead["received_at"]}',
-        f'Type: {PARTY.get(lead["party_type"], lead["party_type"] or "-")} · Markets: {markets}',
+        f'Routed to {lead["assigned_to"]} · received {lead["received_at"]}',
+        f'{kind_line(lead)} · {detail_line(lead)}',
         f'Reply to: {contact_line(lead)}',
         '',
         lead['summary'] or '(no summary)',
@@ -146,7 +170,8 @@ def send_email(lead):
     payload = {
         'from': os.environ.get('LEAD_EMAIL_FROM') or LEAD_SENDER,
         'to': [a.strip() for a in (os.environ.get('LEAD_EMAIL_TO') or LEAD_INBOX).split(',') if a.strip()],
-        'subject': one_line(f'New lead for {lead["assigned_to"]}: {who_line(lead)}', 180),
+        'subject': one_line(f'New {"travel enquiry" if lead["kind"] == "travel" else "lead"} for '
+                            f'{lead["assigned_to"]}: {who_line(lead)}', 180),
         'text': body,
     }
     if lead['contact_email']:
@@ -159,10 +184,9 @@ def send_email(lead):
 
 
 def send_whatsapp(lead):
-    """Business-initiated messages must use an approved template; its six parameters are
-    the founder, the applicant, their type, markets, score and how to reply."""
-    params = [lead['assigned_to'], who_line(lead), PARTY.get(lead['party_type'], lead['party_type'] or '-'),
-              ', '.join(MARKETS[m] for m in lead['target_markets']) or '-', str(lead['score']), contact_line(lead)]
+    """Business-initiated messages must use an approved template; its five parameters are
+    the founder, the applicant, what kind of lead it is, the details and how to reply."""
+    params = [lead['assigned_to'], who_line(lead), kind_line(lead), detail_line(lead), contact_line(lead)]
     payload = {
         'messaging_product': 'whatsapp',
         'to': WHATSAPP[lead['assigned_to']],

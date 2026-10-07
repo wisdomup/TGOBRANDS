@@ -1,0 +1,519 @@
+{
+  "travel": {
+    "kicker": "Travel",
+    "title": "We get you there, and we stay with you.",
+    "sub": "Business delegations, buyers, investors, company groups and families — into Pakistan, India, the Philippines and the UAE, and to China the other way. Visas, flights, hotels, cars, interpreters and the meetings themselves, run by people who live where you are going.",
+    "whoKicker": "Who travels with us",
+    "whoTitle": "Six kinds of traveller.",
+    "who": [
+      {
+        "t": "Delegations from China",
+        "d": "Manufacturers and trade groups meeting distributors, retailers and regulators in our four markets."
+      },
+      {
+        "t": "Buyers going to China",
+        "d": "Distributors and retailers sourcing at the Canton Fair, in factories and in wholesale markets."
+      },
+      {
+        "t": "Investors and founders",
+        "d": "People who want to see the market, the partners and the shelves before they commit."
+      },
+      {
+        "t": "Company and incentive groups",
+        "d": "Dealer rewards, company trips and conference groups, planned end to end."
+      },
+      {
+        "t": "Creators and media",
+        "d": "Content trips to factories and markets, with permissions, fixers and interpreters arranged."
+      },
+      {
+        "t": "Families and private travellers",
+        "d": "Holidays with a local team behind them — and room for a meeting on day three."
+      }
+    ],
+    "formatsKicker": "Ways to travel",
+    "formatsTitle": "Six ways to travel with us.",
+    "formats": [
+      {
+        "t": "Market trips",
+        "d": "Dated group editions to each market: retail clusters, distributors, regulators and a debrief.",
+        "link": "expeditions"
+      },
+      {
+        "t": "Private business trips",
+        "d": "Your dates, your product, your meetings — built for you and your team."
+      },
+      {
+        "t": "Trade fairs and factory visits",
+        "d": "The Canton Fair and regional exhibitions, with factory and supplier visits around them."
+      },
+      {
+        "t": "Incentive and company groups",
+        "d": "Reward trips, conferences and dealer events: venues, programmes, coaches and hosts."
+      },
+      {
+        "t": "Leisure and island extensions",
+        "d": "A few days on the beach or in the mountains once the work is done."
+      },
+      {
+        "t": "Custom and one-off",
+        "d": "One city, one question, one week. Tell us what you need answered on the ground."
+      }
+    ],
+    "servicesKicker": "On the ground",
+    "servicesTitle": "Everything between the two airports.",
+    "services": [
+      {
+        "t": "Visas and letters",
+        "d": "Invitation letters, document checks and visa guidance for every traveller."
+      },
+      {
+        "t": "Flights",
+        "d": "International and domestic flights, booked around your meetings."
+      },
+      {
+        "t": "Hotels",
+        "d": "Near the markets you came to see; resorts when the work is done."
+      },
+      {
+        "t": "Meet and assist",
+        "d": "Someone waiting at arrivals, and airport fast-track where it is offered."
+      },
+      {
+        "t": "Cars and coaches",
+        "d": "A car with a driver every day; vans and coaches for groups."
+      },
+      {
+        "t": "Interpreters and guides",
+        "d": "Mandarin, Cantonese, Urdu, Hindi, Filipino, Arabic and English."
+      },
+      {
+        "t": "Meetings set up",
+        "d": "Distributors, dealers, regulators and chambers booked before you land."
+      },
+      {
+        "t": "Events and dinners",
+        "d": "Business dinners, launches, dealer nights and conference rooms."
+      },
+      {
+        "t": "A planner on call",
+        "d": "One person who knows the whole plan and answers the phone, day and night."
+      },
+      {
+        "t": "SIM, cash and apps",
+        "d": "A local SIM or eSIM, local currency and the apps you will need, ready on arrival."
+      },
+      {
+        "t": "Safety and insurance",
+        "d": "Travel-insurance guidance, emergency contacts and local advice for every city."
+      },
+      {
+        "t": "Debrief and follow-up",
+        "d": "A written debrief, and our team following up with the people you met."
+      }
+    ],
+    "destKicker": "Destinations",
+    "destTitle": "Five countries, one team.",
+    "destinations": [
+      {
+        "code": "PH",
+        "name": "Philippines",
+        "cities": "Manila · Cebu · Davao",
+        "best": "December to May",
+        "host": "Umer",
+        "guide": "philippines",
+        "playbook": "philippines",
+        "trip": "philippines-market-trip"
+      },
+      {
+        "code": "PK",
+        "name": "Pakistan",
+        "cities": "Karachi · Lahore · Islamabad",
+        "best": "October to March",
+        "host": "Umair",
+        "guide": "",
+        "playbook": "pakistan",
+        "trip": "pakistan-market-trip"
+      },
+      {
+        "code": "IN",
+        "name": "India",
+        "cities": "Delhi NCR · Patna · Mumbai",
+        "best": "October to March",
+        "host": "Aryan",
+        "guide": "",
+        "playbook": "india",
+        "trip": "india-market-trip"
+      },
+      {
+        "code": "AE",
+        "name": "UAE",
+        "cities": "Dubai · Sharjah · Abu Dhabi",
+        "best": "October to April",
+        "host": "Shamas",
+        "guide": "",
+        "playbook": "uae",
+        "trip": "uae-market-trip"
+      },
+      {
+        "code": "CN",
+        "name": "China",
+        "cities": "Guangzhou · Dongguan · Shenzhen",
+        "best": "April and October, for the Canton Fair",
+        "host": "Umair",
+        "guide": "",
+        "playbook": "",
+        "trip": "canton-fair-trip"
+      }
+    ],
+    "howKicker": "How a trip comes together",
+    "howTitle": "From a message to the airport.",
+    "how": [
+      {
+        "t": "Tell us",
+        "d": "Where, when, how many and why — the form below takes two minutes."
+      },
+      {
+        "t": "A first plan in two working days",
+        "d": "Itinerary, hotels, the meetings we would set up, and a price."
+      },
+      {
+        "t": "We book everything",
+        "d": "Visas, flights, hotels, cars and interpreters, confirmed in one place."
+      },
+      {
+        "t": "On the ground",
+        "d": "Your planner and our local team, from arrivals to departures."
+      },
+      {
+        "t": "Debrief",
+        "d": "What you saw, who you met and what happens next, in writing."
+      }
+    ],
+    "tripsKicker": "Upcoming expeditions",
+    "tripsTitle": "Or join a dated market trip.",
+    "tripsMore": "All expedition dates",
+    "labels": {
+      "cities": "Cities",
+      "best": "Best months",
+      "host": "Your host",
+      "guide": "Travel guide",
+      "playbook": "Market playbook",
+      "trip": "Next trip",
+      "plan": "Plan a trip",
+      "all": "All destinations",
+      "day": "Day {n}",
+      "days": "Days {a}–{b}",
+      "checked": "Checked October 2026"
+    },
+    "form": {
+      "kicker": "Plan a trip",
+      "title": "Tell us about your trip.",
+      "sub": "Two minutes. A person replies within two working days with a first plan.",
+      "dest": "Where to?",
+      "purpose": "What is the trip for?",
+      "purposes": [
+        [
+          "business",
+          "Business meetings"
+        ],
+        [
+          "fair",
+          "Trade fair or factory visits"
+        ],
+        [
+          "group",
+          "Company or incentive group"
+        ],
+        [
+          "leisure",
+          "Holiday"
+        ],
+        [
+          "mix",
+          "Business and holiday"
+        ]
+      ],
+      "travellers": "How many people?",
+      "bands": [
+        [
+          "1",
+          "1"
+        ],
+        [
+          "2-5",
+          "2–5"
+        ],
+        [
+          "6-15",
+          "6–15"
+        ],
+        [
+          "16+",
+          "16+"
+        ]
+      ],
+      "when": "When?",
+      "whenHint": "e.g. March 2027",
+      "from": "Travelling from",
+      "fromHint": "City, country",
+      "name": "Your name",
+      "email": "Send by email",
+      "handle": "WeChat ID / WhatsApp number",
+      "phone": "Phone",
+      "message": "Anything else — interests, meetings you want, who is coming",
+      "submit": "Send",
+      "sending": "Sending…",
+      "needDest": "Choose at least one destination.",
+      "needContact": "Add an email, a phone number or your WeChat / WhatsApp so we can reply.",
+      "sentT": "Thank you.",
+      "sentD": "Your trip went to",
+      "sentD2": ", who will reply within two working days with a first plan.",
+      "handoffT": "Almost there.",
+      "handoffD": "Your trip details are ready for",
+      "handoffD2": ". Send them on WhatsApp or by email and a person replies within two working days.",
+      "wa": "Send on WhatsApp",
+      "subject": "TGO Brands — travel enquiry",
+      "msg": "TGO Brands — travel enquiry",
+      "people": "people",
+      "noscript": "You can also write to us at help@tgobrands.com."
+    },
+    "guides": [
+      {
+        "slug": "philippines",
+        "code": "PH",
+        "name": "Philippines",
+        "kicker": "Philippines travel desk",
+        "title": "Meetings in Manila. Then the islands.",
+        "sub": "We host business visitors and holiday groups from China and around the world, from the arrivals hall to the departure gate — in Mandarin, English or Filipino. This is what we tell every client before they book a flight.",
+        "facts": [
+          [
+            "Fly into",
+            "Manila (NAIA) or Cebu (Mactan)"
+          ],
+          [
+            "From South China",
+            "About 2½ hours"
+          ],
+          [
+            "Time zone",
+            "Same as Beijing (UTC+8)"
+          ],
+          [
+            "Chinese passports",
+            "14 days visa-free"
+          ],
+          [
+            "Best months",
+            "December to May"
+          ],
+          [
+            "Business language",
+            "English"
+          ]
+        ],
+        "entryKicker": "Before you fly",
+        "entryTitle": "Visas and arrival, by passport.",
+        "entry": [
+          {
+            "t": "Chinese passports",
+            "d": "Since 16 January 2026, 14 days without a visa for tourism or business — but only when you land at Manila (NAIA) or Cebu (Mactan). The stay cannot be extended or changed to another visa. Bring a passport valid six months beyond your stay, your confirmed hotel booking and a return or onward ticket. Staying longer, or flying into Clark, Davao or another airport? Apply for a temporary visitor visa before you travel; we prepare the invitation letter and itinerary."
+          },
+          {
+            "t": "Indian passports",
+            "d": "14 days visa-free for tourism, or 30 days if you hold a valid US, Japanese, Australian, Canadian, Schengen, Singapore or UK visa or residence permit. Coming for business meetings? Tell us — the right visa depends on what you will be doing."
+          },
+          {
+            "t": "Pakistani passports",
+            "d": "A visa is needed before you travel, from a Philippine embassy or consulate. We send the invitation letter, hotel confirmation and itinerary the application asks for."
+          },
+          {
+            "t": "Other passports",
+            "d": "Many nationalities get 30 days visa-free on arrival; some need a visa first. Send us your passport country and we confirm what applies before you book."
+          },
+          {
+            "t": "Everyone: eTravel",
+            "d": "Register free at etravel.gov.ph within 72 hours before you land. You get a QR code that airline check-in and immigration will ask for. Any site that charges for it is not the government's."
+          }
+        ],
+        "entryNote": "Immigration officers do ask about your trip. Keep your hotel booking, return ticket and our itinerary letter on your phone or on paper. Entry rules change often — we confirm yours when you book.",
+        "flyKicker": "Getting there",
+        "flyTitle": "Direct from five Chinese cities.",
+        "fly": [
+          {
+            "t": "To Manila",
+            "d": "Direct flights from Beijing, Shanghai, Guangzhou, Shenzhen and Xiamen — about 2½ hours from South China, 4 to 4½ from Beijing."
+          },
+          {
+            "t": "To Cebu",
+            "d": "Direct from Shanghai, Guangzhou, Shenzhen and Quanzhou. Cebu is the better gateway for Bohol and the central islands."
+          },
+          {
+            "t": "From elsewhere",
+            "d": "Connections through Hong Kong, Singapore and Bangkok, and direct flights to Manila from Dubai and Abu Dhabi."
+          },
+          {
+            "t": "About Clark",
+            "d": "Clark International, two hours north of Manila, is quicker to get through — but the visa-free entry for Chinese passports does not apply there."
+          }
+        ],
+        "whereKicker": "Where business happens",
+        "whereTitle": "Manila is six cities in one.",
+        "where": [
+          {
+            "t": "Makati",
+            "d": "The established business district: banks, law firms, embassies and the long-standing hotels."
+          },
+          {
+            "t": "BGC",
+            "d": "Bonifacio Global City: newer towers, regional headquarters and the most walkable streets in Manila. Where most of our clients stay."
+          },
+          {
+            "t": "Ortigas",
+            "d": "Corporate and retail headquarters, and SM Megamall, one of the country's largest malls."
+          },
+          {
+            "t": "Binondo and Divisoria",
+            "d": "Founded in 1594 and often called the world's oldest Chinatown. Filipino-Chinese trading families, wholesalers and chambers — and the markets where you see what goods really sell for."
+          },
+          {
+            "t": "The bay area",
+            "d": "The convention centres — SMX and the World Trade Center — and the large resort hotels near the airport."
+          },
+          {
+            "t": "Beyond Manila",
+            "d": "Clark and Subic freeports to the north for logistics and light manufacturing; Cebu for furniture, export zones and the Visayas; Davao for agriculture and Mindanao."
+          }
+        ],
+        "moveKicker": "Getting around",
+        "moveTitle": "How we move you around Manila.",
+        "move": [
+          "Plan two meetings a day, three at most. A 10 km drive across Metro Manila can take over an hour at peak time.",
+          "A car and driver stay with you all day. The driver waits outside every meeting; nobody stands in a taxi queue.",
+          "Stay near your meetings — BGC or Makati for most weeks, closer to Binondo if your week is with the Filipino-Chinese trade.",
+          "Domestic flights and boat transfers get buffer time. On the islands the weather decides, not the timetable.",
+          "From June to November typhoons can close airports for a day. We build a spare day into trips in those months.",
+          "Grab works well if you want to move on your own; we set it up on your phone when you land."
+        ],
+        "chinaKicker": "Guests from China",
+        "chinaTitle": "The details that make the trip easy.",
+        "china": [
+          {
+            "t": "Mandarin on the ground",
+            "d": "Mandarin-speaking guides and interpreters every day of the trip; Cantonese and Hokkien on request — Hokkien is the home language of many Filipino-Chinese families."
+          },
+          {
+            "t": "The same clock as home",
+            "d": "The Philippines runs on UTC+8, like Beijing. Your office in China is awake when you are working."
+          },
+          {
+            "t": "Apps that work",
+            "d": "WeChat works normally. Filipino business runs on Viber and Messenger, so we set up the groups with your local contacts."
+          },
+          {
+            "t": "Paying",
+            "d": "Cards work in hotels and malls. Alipay and WeChat Pay are taken at some malls, hotels and duty-free shops — not everywhere. We arrange pesos and a local SIM or eSIM when you land."
+          },
+          {
+            "t": "Food",
+            "d": "Chinese restaurants we know in Binondo, Makati and BGC for the business dinners; Filipino food when you want it."
+          },
+          {
+            "t": "The Filipino-Chinese network",
+            "d": "Introductions to Filipino-Chinese trading families and chambers — often the fastest way into distribution."
+          }
+        ],
+        "islandsKicker": "Add the islands",
+        "islandsTitle": "Add three days. It is the part they talk about.",
+        "islands": [
+          {
+            "t": "Palawan: El Nido and Coron",
+            "time": "About an hour's flight from Manila",
+            "d": "Limestone lagoons, island hopping and some of Asia's best beaches. Our first choice for incentive groups."
+          },
+          {
+            "t": "Boracay",
+            "time": "About an hour's flight, then a short boat",
+            "d": "White Beach, sunsets and easy resorts. Good for families and first visits."
+          },
+          {
+            "t": "Bohol",
+            "time": "An hour from Manila, or two by ferry from Cebu",
+            "d": "The Chocolate Hills, tarsiers, river cruises and Panglao's beaches."
+          },
+          {
+            "t": "Cebu",
+            "time": "Direct flights from China",
+            "d": "Island hopping from Mactan, waterfalls and diving on the south coast; easy to pair with Bohol."
+          },
+          {
+            "t": "Siargao",
+            "time": "Under two hours from Manila",
+            "d": "Surf, palm forests and a slower pace."
+          },
+          {
+            "t": "Near Manila",
+            "time": "Day trips by road or ferry",
+            "d": "Tagaytay and Taal Volcano, the walled city of Intramuros, and Corregidor island."
+          }
+        ],
+        "plansKicker": "Sample itineraries",
+        "plansTitle": "Three ways we put it together.",
+        "plans": [
+          {
+            "t": "Business week in Manila",
+            "len": "5 days",
+            "days": [
+              "Arrive at NAIA, meet and assist, check in at BGC; briefing dinner.",
+              "Makati and BGC: distributors and retail chains.",
+              "Binondo and Divisoria: market walk, lunch with Filipino-Chinese traders.",
+              "Ortigas and Pasig: chain headquarters, warehouses and logistics.",
+              "Debrief and next steps; departure."
+            ]
+          },
+          {
+            "t": "Business and Palawan",
+            "len": "7 days",
+            "days": [
+              "Arrive in Manila; briefing dinner.",
+              "Meetings in Makati and BGC.",
+              "Binondo, Divisoria and the Filipino-Chinese trade.",
+              "Warehouses and partners; debrief.",
+              "Fly to El Nido; afternoon on the beach.",
+              "Island hopping in Bacuit Bay.",
+              "Fly back through Manila; departure."
+            ]
+          },
+          {
+            "t": "Incentive group, Cebu and Bohol",
+            "len": "6 days",
+            "days": [
+              "Arrive in Cebu; welcome dinner.",
+              "Island hopping from Mactan.",
+              "Ferry to Bohol: Chocolate Hills and Loboc river.",
+              "Beach day in Panglao.",
+              "Back to Cebu; gala dinner.",
+              "Departure."
+            ]
+          }
+        ],
+        "deskKicker": "Our Philippines desk",
+        "deskTitle": "What we handle, so you don't.",
+        "desk": [
+          "Invitation letters, eTravel help and documents for immigration",
+          "Meet and assist at Manila and Cebu airports",
+          "Hotels near your meetings, and resorts on the islands",
+          "Cars with drivers, vans and coaches for groups",
+          "Mandarin, Cantonese, Hokkien and English interpreters",
+          "Meetings with distributors, retailers, chambers and regulators",
+          "Domestic flights, boats and island transfers",
+          "Business dinners, launches and events",
+          "One planner on call, day and night, for the whole trip"
+        ],
+        "hostNote": "Based in the Philippines and runs our desk there — distribution, operations and the people you will meet.",
+        "cta": "Plan my Philippines trip",
+        "note": "Entry rules, flights and prices change. We confirm everything for your passport and dates when you book."
+      }
+    ]
+  }
+}

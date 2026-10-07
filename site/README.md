@@ -2,7 +2,8 @@
 
 v4: TGO as a senior brand operator and R&D partner taking Chinese brands into Pakistan, India, the
 Philippines and the UAE — a service catalogue, the Launch programme, audience pages, market playbooks,
-an entry estimator, Expeditions and a Partner Portal preview, built on the tightened v3 Glass design.
+an entry estimator, a Travel desk with destination guides, Expeditions and a Partner Portal preview, built on
+the tightened v3 Glass design.
 Static, pre-rendered, bilingual (`/` English, `/zh/` 中文). No framework and no dependencies:
 Python 3 standard library to build, plain HTML/CSS/JS out.
 
@@ -19,7 +20,7 @@ folders with an `index.html`, so no rewrites are needed.
 | Path | What it is |
 | --- | --- |
 | `content/en.json`, `content/zh.json` | Site-wide copy: nav, footer, home, the original pages, the application, insights. |
-| `content/<lang>/*.json` | One file per v4 module, same shape in both languages: `services`, `launch`, `audiences`, `playbooks`, `estimator`, `expeditions`, `portal`. |
+| `content/<lang>/*.json` | One file per v4 module, same shape in both languages: `services`, `launch`, `audiences`, `playbooks`, `estimator`, `expeditions`, `travel`, `portal`. |
 | `content/shared/*.json` | Language-neutral data — the estimator rules (category × market → approvals, weeks, duty band, tax, landed-cost factor, services). |
 | `templates.py` | Page templates (one function per page) and the shared head/nav/footer. |
 | `build.py` | Merges the content files (a key defined twice stops the build), renders every page for both locales, versions the CSS/JS, writes sitemap (with hreflang pairs), `robots.txt`, `llms.txt`. |
@@ -37,7 +38,9 @@ folders with an `index.html`, so no rewrites are needed.
 | `/for/<audience>/` | Manufacturers, distributors & retailers, creators, investors — each links into its own application branch (`/partner/?as=…`) |
 | `/markets/`, `/markets/<country>/` | The four markets and a playbook per country: approvals with typical weeks, customs and tax, channels, cities, visiting |
 | `/tools/entry-estimator/` | Product × market → approvals, weeks to the first shelf, duty band, import tax, landed-cost range, matching services. Accepts `?market=` and `?category=` |
-| `/expeditions/`, `/expeditions/<trip>/` | Trip types, travel support, and dated editions with a day-by-day itinerary |
+| `/travel/` | The travel desk: five destinations, who travels with us, six ways to travel, ground services, how a trip comes together, upcoming expeditions and the travel enquiry form |
+| `/travel/<country>/` | Destination guides (`travel.guides`), written as the local desk briefing a client: entry rules by passport, flights, where business happens, getting around, guests from China, island extensions, sample itineraries, the host and the enquiry form. The Philippines is the first; the market playbook links to it |
+| `/expeditions/`, `/expeditions/<trip>/` | Dated group editions with a day-by-day itinerary |
 | `/portal/` | Partner Portal preview: one sample partner's stages, approvals, shipments, sell-through, documents and messages — labelled as sample data |
 | `/partner/` | The application (below) |
 
@@ -68,13 +71,16 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
   lead, pre-filled with the answers, and an email fallback to help@tgobrands.com — no lead is lost
   either way. The first-touch source (utm tag or referrer) rides along. A hidden honeypot field
   catches form-filling bots. Without JavaScript every question is listed in order.
+- **Travel enquiry** (on `/travel/` and every destination guide, `#plan`) posts to `/api/lead` the same
+  way. It needs a destination and a way to reply, `?to=PH` preselects a destination, and if delivery is
+  not set up it hands off to the destination host's WhatsApp or to help@tgobrands.com.
 - **Entry estimator** reads its data from a JSON block in the page; with JavaScript off it says so and
   points to the market playbooks, which carry the same facts.
 - **Portal tabs** are ARIA tabs (arrow keys, Home, End); without JavaScript every pane is listed.
 - **Pagination.** Insights lists `insights.perPage` posts per page (6) at `/insights/`, `/insights/page/2/`,
   and per category at `/insights/category/<name>/` (`insights.catSlugs`). Each post has an article at
   `/insights/<slug>/` with Previous / Next links. Section pages end with Previous / Next cards in
-  this order: Home → What We Do → Services → Launch → Markets → Expeditions → Brands → Founders →
+  this order: Home → What We Do → Services → Launch → Markets → Travel → Expeditions → Brands → Founders →
   Insights → Partner With Us. Service, audience, brand, playbook and trip pages step between their siblings.
 - **Nav** merges with the page at the top and becomes a frosted capsule once scrolled; over the
   dark hero it switches to smoked glass with white links. On phones the links live in a
@@ -86,8 +92,9 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
 
 ## Lead delivery (`/api/lead`)
 
-`api/lead.py` at the repo root is a Vercel Python function (standard library only). For each
-application it sends an **email** to the team (via [Resend](https://resend.com)) with the readable
+`api/lead.py` at the repo root is a Vercel Python function (standard library only). It takes both
+partner applications and travel enquiries (`kind: "travel"`, routed by destination; China goes to
+Umair). For each one it sends an **email** to the team (via [Resend](https://resend.com)) with the readable
 application and the full record, reply-to set to the applicant, to help@tgobrands.com, and a **WhatsApp** message (via the
 WhatsApp Cloud API) to the founder who covers the applicant's market. The recipient is worked out on
 the server from the markets chosen; the founders' numbers are in `api/lead.py` and must match
@@ -113,13 +120,14 @@ records Resend shows (SPF and DKIM) where the domain's DNS is managed, then crea
 **WhatsApp setup (Meta).** In a Meta Business account, create an app with the WhatsApp product and
 add a sending number — a number not already registered in the WhatsApp or WhatsApp Business app.
 Create a system user with a permanent token. WhatsApp only lets a business start a conversation with
-an approved template, so submit this one (category Utility, language English, name `new_lead`):
+an approved template, so submit this one (category Utility, language English, name `new_lead`). It
+serves both partner applications and travel enquiries:
 
-> New TGO lead for {{1}}: {{2}}, {{3}}. Markets: {{4}}. Lead score {{5}}/90. Reply to {{6}}. The full
-> application is in the leads inbox.
+> New TGO enquiry for {{1}}: {{2}}, {{3}}. {{4}}. Reply to {{5}}. The full details are in the help inbox.
 
-Sample values for the review: `Umair`, `Li Wei (Shenzhen Power Co.)`, `Manufacturer`,
-`Pakistan, UAE`, `72`, `liwei@example.com`. Meta charges a small fee per template message. While the
+Sample values for the review: `Umer`, `Li Wei (Shenzhen Power Co.)`, `Travel enquiry`,
+`Philippines · 6-15 people · March 2027 · Business and holiday`, `liwei@example.com`. A partner
+application fills {{3}} with the applicant type and {{4}} with `Markets: Pakistan, UAE · lead score 72/90`. Meta charges a small fee per template message. While the
 app is in test mode, only numbers added to its recipient list receive messages.
 
 Testing: the function's outbound calls go through `post_json()`, so tests can replace it and inspect
@@ -135,6 +143,8 @@ Rendered as non-clickable placeholders, or marked as drafts, until filled in:
   market lead to verify; they move with every budget
 - Home figures (`home.proof`) and the Portal's sample partner, which is illustrative
 - Native review of all 中文 copy, the v4 modules especially
+- Travel: confirm the services promised (meet and assist, Cantonese and Hokkien interpreters, a planner
+  on call day and night) and re-check the Philippines entry rules and flights before each season
 - WeChat QR and the public WhatsApp number — `contact.channels.*.href` in the content files
 - Channel link (YouTube for EN, Bilibili for 中文 — never YouTube on `/zh/`) — `insights.videoHref`
 - Privacy and Terms pages (footer)

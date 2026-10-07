@@ -40,7 +40,7 @@ def routes(c):
     suffix = c['meta']['suffix']
     out = [('home', '', c['meta']['title'], c['meta']['description'], T.page_home, None)]
     for key in ('what', 'services', 'launch', 'brands', 'founders', 'markets', 'partner', 'contact',
-                'expeditions', 'estimator', 'portal'):
+                'expeditions', 'travel', 'estimator', 'portal'):
         out.append((key, T.PATHS[key], f'{c["nav"][key]} — {suffix}', c[key]['sub'], T.PAGES[key], None))
     for i, x in enumerate(c['services']['items']):
         render = lambda c, lang, i=i: T.page_service(c, lang, i)
@@ -67,6 +67,11 @@ def routes(c):
     for i, x in enumerate(c['expeditions']['editions']):
         render = lambda c, lang, i=i: T.page_trip(c, lang, i)
         out.append(('trip', T.DETAIL['trip'].format(x['slug']), f'{x["title"]} — {suffix}', x['one'], render, None))
+
+    for i, g in enumerate(c['travel']['guides']):
+        render = lambda c, lang, i=i: T.page_guide(c, lang, i)
+        out.append(('guide', T.DETAIL['guide'].format(g['slug']), f'{g["name"]} — {c["travel"]["labels"]["guide"]} — {suffix}',
+                    g['sub'], render, None))
 
     for i, brand in enumerate(c['brands']['items']):
         render = lambda c, lang, i=i: T.page_brand(c, lang, i)
@@ -155,16 +160,24 @@ def llms(c):
         '',
         '> TGO Brands Limited is a Hong Kong holding company that brings Chinese consumer-electronics '
         'brands into Pakistan, India, the Philippines and the UAE: distribution, brand building, '
-        'market entry and certification, sourcing, and on-the-ground market survey trips.',
+        'market entry and certification, sourcing, and on-the-ground market survey trips — and a travel desk '
+        'for business delegations, buyers, company groups and families travelling between China and those markets.',
         '',
         c['home']['premise'][2],
         '',
         '## Pages',
         '',
     ]
-    for key in ('what', 'brands', 'founders', 'markets', 'insights', 'partner', 'contact'):
+    for key in ('what', 'services', 'launch', 'markets', 'travel', 'expeditions', 'estimator', 'brands', 'founders',
+                'insights', 'partner', 'contact'):
         section = c[key]
         lines.append(f'- [{c["nav"][key]}]({T.SITE}{T.href("en", key)}): {section["sub"]}')
+    lines += ['', '## Services', '']
+    for x in c['services']['items']:
+        lines.append(f'- [{x["name"]}]({T.SITE}{T.href("en", "service", x["slug"])}): {x["one"]}')
+    lines += ['', '## Travel guides', '']
+    for g in c['travel']['guides']:
+        lines.append(f'- [{g["name"]}]({T.SITE}{T.href("en", "guide", g["slug"])}): {g["sub"]}')
     lines += ['', '## Brands', '']
     for b in c['brands']['items']:
         lines.append(f'- [{b["name"]}]({T.SITE}{T.href("en", "brand", b["slug"])}): {b["cat"]}. {b["pos"]}')

@@ -458,6 +458,109 @@
     render();
   }
 
+  /* ── Travel enquiry: delivered like the application — the server sends it to the
+     destination's host, or the traveller does on WhatsApp or by email ── */
+  function initTravel() {
+    var form = $('[data-travel]');
+    if (!form) return;
+    var text = JSON.parse($('[data-travel-text]', form).textContent);
+    var L = text.labels;
+    var done = $('[data-travel-done]', form.parentNode);
+    var submit = $('button[type="submit"]', form);
+    var error = $('[data-travel-error]', form);
+    var sending = false;
+
+    // ?to=PH preselects a destination
+    var to = new URLSearchParams(location.search).get('to');
+    $$('input[name="destinations"]', form).forEach(function (i) { if (i.value === to) i.checked = true; });
+
+    function host(dests) {
+      var order = ['PK', 'IN', 'PH', 'AE', 'CN'];
+      for (var i = 0; i < order.length; i++) if (dests.indexOf(order[i]) > -1) return text.hosts[order[i]];
+      return 'Umair';
+    }
+    function line(label, value) { return label.replace(/[?？]$/, '') + ': ' + value; }
+    function summary(lead) {
+      var lines = [L.msg, '', line(L.dest, lead.destinations.map(function (d) { return text.dests[d]; }).join(', '))];
+      if (lead.purpose) lines.push(line(L.purpose, text.purposes[lead.purpose]));
+      if (lead.travellers) lines.push(line(L.travellers, lead.travellers + ' ' + L.people));
+      [['travel_when', L.when], ['travel_from', L.from], ['contact_name', L.name], ['contact_email', L.email],
+        ['handle', L.handle], ['contact_phone', L.phone], ['message', L.message]].forEach(function (f) {
+        if (lead[f[0]].trim()) lines.push(line(f[1], lead[f[0]].trim()));
+      });
+      if (lead.source) lines.push('Source: ' + lead.source);
+      return lines.join('\n');
+    }
+    function finish(lead, mode) {
+      var who = lead.assigned_to;
+      var msg = summary(lead);
+      $$('[data-mode]', done).forEach(function (n) { n.hidden = n.getAttribute('data-mode') !== mode; });
+      $$('[data-who]', done).forEach(function (n) { n.textContent = who; });
+      $$('h3, p', done).forEach(function (n) { n.classList.add('is-in'); });
+      $('[data-wa]', done).href = 'https://wa.me/' + WHATSAPP[who] + '?text=' + encodeURIComponent(msg);
+      $('[data-mail]', done).href = 'mailto:help@tgobrands.com?subject=' + encodeURIComponent(L.subject) +
+        '&body=' + encodeURIComponent(msg);
+      form.hidden = true;
+      done.hidden = false;
+      done.scrollIntoView({ block: 'center' });
+      $('.tdone__title:not([hidden])', done).focus({ preventScroll: true });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (sending) return;
+      var data = new FormData(form);
+      var dests = data.getAll('destinations');
+      var reachable = ['contact_email', 'contact_phone', 'handle'].some(function (k) { return (data.get(k) || '').trim(); });
+      error.hidden = dests.length > 0 && reachable;
+      if (!dests.length) {
+        error.textContent = L.needDest;
+        return $('input[name="destinations"]', form).focus();
+      }
+      if (!reachable) {
+        error.textContent = L.needContact;
+        return $('#t-contact_email', form).focus();
+      }
+      var lead = {
+        kind: 'travel',
+        created_at: new Date().toISOString(),
+        locale: form.getAttribute('data-lang'),
+        source: source(),
+        website: data.get('website') || '',
+        destinations: dests,
+        purpose: data.get('purpose') || '',
+        travellers: data.get('travellers') || ''
+      };
+      ['travel_when', 'travel_from', 'contact_name', 'contact_email', 'contact_phone', 'handle', 'message']
+        .forEach(function (k) { lead[k] = data.get(k) || ''; });
+      lead.assigned_to = host(dests);
+
+      var endpoint = form.getAttribute('data-endpoint');
+      if (!endpoint || !window.fetch) return finish(lead, 'handoff');
+      sending = true;
+      var label = submit.textContent;
+      submit.disabled = true;
+      submit.textContent = L.sending;
+      var timer, timeout = new Promise(function (resolve, reject) { timer = setTimeout(reject, 15000); });
+      Promise.race([
+        fetch(endpoint, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.assign({ summary: summary(lead) }, lead))
+        }).then(function (r) { return r.ok ? r.json() : { ok: false }; }),
+        timeout
+      ]).then(function (res) {
+        if (res && res.ok && res.assigned_to) lead.assigned_to = res.assigned_to;
+        return res && res.ok ? 'sent' : 'handoff';
+      }, function () { return 'handoff'; }).then(function (mode) {
+        clearTimeout(timer);
+        sending = false;
+        submit.disabled = false;
+        submit.textContent = label;
+        finish(lead, mode);
+      });
+    });
+  }
+
   /* ── Tabs (portal preview); without JS every pane is listed in order ── */
   function initTabs() {
     $$('[data-tabs]').forEach(function (root) {
@@ -497,6 +600,7 @@
   initHow();
   initRegion();
   initSurvey();
+  initTravel();
   initEstimator();
   initTabs();
 })();

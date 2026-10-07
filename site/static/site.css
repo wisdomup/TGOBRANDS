@@ -972,6 +972,40 @@ html:lang(zh) {
 
 /* ── Responsive ──────────────────────────────────────────────────────── */
 /* laptop: the bar runs out of room before the links do */
+/* ── Travel: destinations, steps, guide, enquiry form ────────────────── */
+.dests .dest--guide { grid-column: 1 / -1; }
+.dest { display: flex; flex-direction: column; gap: 16px; }
+.dest h3 { font-size: var(--t-subhead); }
+.dest__facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 20px; margin: 0; }
+.dest__facts .eyebrow { margin-bottom: 4px; }
+.dest__facts dd { margin: 0; color: var(--text); font-size: 15px; font-weight: 500; line-height: 1.35; }
+.dest__links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; margin-top: auto; padding-top: 4px; }
+.hsteps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
+.hstep { padding-top: 16px; border-top: 2px solid var(--text); }
+.hstep__n { display: block; margin-bottom: 8px; color: var(--accent-deep); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.hstep h3 { margin-bottom: 8px; font-size: 18px; line-height: 1.25; }
+.hstep p { color: var(--ink-2); font-size: 15px; line-height: 1.45; }
+.guide-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.guide-tips { max-width: 760px; margin-inline: auto; }
+.isle > .eyebrow, .plan > .eyebrow { margin-bottom: 10px; }
+.plan h3 { margin-bottom: 14px; }
+.plan__days { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.plan__days li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 8px; color: var(--ink-2); font-size: 15px; line-height: 1.45; }
+.plan__days span { color: var(--accent-deep); font-size: 13px; font-weight: 600; line-height: 1.7; }
+.host p { color: var(--ink-2); }
+.host .wa-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; color: var(--accent-deep); }
+.tform { max-width: 760px; margin-inline: auto; text-align: left; }
+.tform__group { min-width: 0; margin: 0 0 24px; padding: 0; border: 0; }
+.tform__group legend { margin-bottom: 12px; padding: 0; color: var(--text); font-size: 17px; font-weight: 600; }
+.tform .opts { justify-content: flex-start; gap: 8px; margin-bottom: 0; }
+.tform .opt { display: inline-flex; flex: 0 1 auto; align-items: center; justify-content: center; min-width: 56px; min-height: 48px; padding: 0 16px; border-radius: 12px; font-size: 15px; }
+.tform .field--wide { margin-bottom: 20px; }
+.tform__nav { display: flex; justify-content: center; padding-top: 20px; border-top: 1px solid var(--line); }
+.tdone { max-width: 760px; margin-inline: auto; text-align: center; }
+.tdone__title { margin-bottom: 10px; font-size: var(--t-subhead); outline: none; }
+.tdone p { margin-bottom: 20px; color: var(--ink-2); }
+.tform:hover, .tdone:hover { transform: none; box-shadow: var(--surface-shadow); }
+
 @media (max-width: 1100px) and (min-width: 861px) {
   .nav__links > a:not(.btn) { font-size: 14px; }
   .nav__cta { gap: 10px; padding: 0 6px 0 16px; font-size: 14px; }
@@ -990,6 +1024,10 @@ html:lang(zh) {
     padding: 14px 0; border-top: 1px solid var(--line);
   }
   .lstage:last-child { border-bottom: 1px solid var(--line); }
+  .hsteps { grid-template-columns: minmax(0, 1fr); gap: 0; max-width: 640px; margin-inline: auto; }
+  .hstep { display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .hstep:last-child { border-bottom: 1px solid var(--line); }
+  .hstep__n { grid-row: 1 / span 2; margin: 0; line-height: 1.5; }
 }
 /* phone: the bar keeps one row; the links move into a drawer */
 @media (max-width: 860px) {
@@ -1067,6 +1105,10 @@ html:lang(zh) {
   .door h3 { font-size: 18px; }
   .door .explore__arrow { grid-column: 2; grid-row: 1 / span 2; margin: 0; padding: 0; }
   .tool__chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dest__facts { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .dest__facts > div { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+  .dest__facts .eyebrow { margin: 0; }
+  .tform .opt { flex: 1 1 calc(50% - 4px); }
   .actions { margin-top: 28px; }
 
   /* hero: sized to its content rather than forced to a full screen — a forced

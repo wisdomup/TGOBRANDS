@@ -3,8 +3,6 @@
     "kicker": "Expeditions",
     "title": "See the market before you commit to it.",
     "sub": "Small-group trips to Pakistan, India, the Philippines and the UAE — and the other way, to the factories of Guangzhou, Dongguan and Shenzhen. We plan it, take you round, translate, and stay with you until you fly home.",
-    "typesKicker": "Ways to travel",
-    "typesTitle": "Four kinds of trip.",
     "types": [
       {
         "t": "Group market trips",
@@ -21,34 +19,6 @@
       {
         "t": "Reverse trips to China",
         "d": "For buyers from Pakistan, India, the Philippines and the UAE: the Canton Fair, factory visits and sourcing meetings."
-      }
-    ],
-    "travelKicker": "Taken care of",
-    "travelTitle": "You fly in. We handle the rest.",
-    "travel": [
-      {
-        "t": "Visas",
-        "d": "Invitation letters and guidance for every traveller."
-      },
-      {
-        "t": "Hotels",
-        "d": "Booked near the markets you are there to see."
-      },
-      {
-        "t": "Pick and drop",
-        "d": "Airport transfers and a car with a driver for every day on the ground."
-      },
-      {
-        "t": "Interpreters",
-        "d": "Urdu, Hindi, Filipino, Arabic and Mandarin."
-      },
-      {
-        "t": "A planner on call",
-        "d": "One person who knows the plan and answers the phone."
-      },
-      {
-        "t": "Meetings set up",
-        "d": "Distributors, dealers, regulators and partners booked before you land."
       }
     ],
     "editionsKicker": "Upcoming editions",
@@ -68,7 +38,8 @@
       "interest": "Register interest",
       "all": "All expeditions",
       "playbook": "Read the market playbook",
-      "note": "Dates, itineraries and prices are confirmed with each edition. Seats are offered after a short application."
+      "note": "Dates, itineraries and prices are confirmed with each edition. Seats are offered after a short application.",
+      "private": "Need other dates? Plan a private trip."
     },
     "included": [
       "Trip planner and in-country team",

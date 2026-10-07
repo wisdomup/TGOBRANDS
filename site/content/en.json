@@ -43,7 +43,8 @@
     "launch": "Launch",
     "expeditions": "Expeditions",
     "estimator": "Entry estimator",
-    "portal": "Partner portal"
+    "portal": "Partner portal",
+    "travel": "Travel"
   },
   "route": {
     "origin": "Guangzhou",
