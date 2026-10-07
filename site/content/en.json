@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "TGO Brands — Take Chinese Brands Global | Pakistan, Philippines, India, UAE",
-    "description": "TGO Brands helps Chinese manufacturers and brands enter new markets — Pakistan, the Philippines, India and the UAE. Market entry, distribution, local company setup and on-the-ground market survey trips.",
+    "title": "TGO Brands — Take Chinese Brands to the World",
+    "description": "TGO Brands takes Chinese manufacturers and their brands to the world: market research, approvals, company set-up, distribution and trips on the ground, from one operator.",
     "ogTitle": "TGO Brands — We take you global",
-    "ogDescription": "Market entry and distribution for Chinese brands in Pakistan, the Philippines, India and the UAE.",
+    "ogDescription": "Market entry and distribution for Chinese brands, worldwide.",
     "suffix": "TGO Brands",
     "langName": "English"
   },
@@ -67,13 +67,14 @@
   "home": {
     "h1a": "We take Chinese brands",
     "h1b": "to the world.",
-    "sub": "One operator, from the first study to full shelves, in Pakistan, India, the Philippines and the UAE.",
+    "sub": "One operator for the whole journey, from the first market study to full shelves.",
+    "routeLine": "From Guangzhou to the world",
     "cta": "Tell us about your business",
     "cta2": "How we work",
     "premiseKicker": "The premise",
     "premise": [
-      "A manufacturer in Dongguan can find an agent in an office in Karachi tomorrow. What is hard to find is someone who will be standing in the shop when the first container lands, and again when the third one does.",
-      "We are three people who met in Guangzhou and then spent fifteen years apart — building electronics, solar and retail businesses in Pakistan, India, the Philippines, and now the UAE. We know what a phone shop in Saddar will actually stock, and why a battery that sells in Manila fails in Bihar.",
+      "A factory in Dongguan can find an agent on the other side of the world tomorrow. What is hard to find is someone who will be standing in the shop when the first container lands, and again when the third one does.",
+      "We are three people who met in Guangzhou in 2006, went our separate ways, and spent the years since building electronics, solar, distribution and retail businesses on the ground. We know what a phone shop will actually stock, and why a product that sells in one city fails in the next.",
       "TGO owns and builds the brands, handles certification and channel, and carries the warranty. The parent stays invisible. The brands do the talking."
     ],
     "proofKicker": "Where the credibility comes from",
@@ -97,7 +98,7 @@
     ],
     "proofNote": "Figures as of Q3 2026, across TGO founder operations. No published financials.",
     "brandsKicker": "Our brands",
-    "brandsNote": "A house of brands, in the model of BBK Electronics: an invisible parent, visible brands.",
+    "brandsNote": "A house of brands: the parent stays in the background, the brands carry their own names.",
     "foundersKicker": "The founders",
     "routeKicker": "From the route",
     "routeNote": "Weekly notes and the founder-led channel.",
@@ -138,7 +139,7 @@
         "n": "01",
         "t": "Distribution",
         "w": "For manufacturers and brand owners with a product that already sells somewhere.",
-        "d": "We put Chinese products into shops in Pakistan, India, the Philippines, and now the UAE — the real channel, not a warehouse. Modern trade where it exists, and the ten-thousand-shop informal trade where it does not, which in our markets is most of it."
+        "d": "We put Chinese products into shops in new markets — the real channel, not a warehouse. Modern trade where it exists, and the ten-thousand-shop informal trade where it does not, which in most of the world is most of it."
       },
       {
         "n": "02",
@@ -150,7 +151,7 @@
         "n": "03",
         "t": "Market entry",
         "w": "For anyone who has been told \"just find a distributor\".",
-        "d": "Certification (BIS in India, PSQCA in Pakistan, BPS in the Philippines, plus UAE market entry), duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth."
+        "d": "Certification with each market’s standards body, duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth."
       },
       {
         "n": "04",
@@ -162,7 +163,7 @@
         "n": "05",
         "t": "Market survey trips",
         "w": "For teams who need to see a market before they commit to it.",
-        "d": "We take your team on the ground in Pakistan, India, the Philippines or the UAE to survey the real conditions — retail, competition, pricing — then help set up the local company needed to expand there."
+        "d": "We take your team on the ground in the market you are entering to survey the real conditions — retail, competition, pricing — then help set up the local company needed to expand there."
       }
     ],
     "startKicker": "How a partnership actually starts",
@@ -400,7 +401,7 @@
         "d": "2026-08-04",
         "c": "Building TGO",
         "t": "Why the parent company stays invisible",
-        "ex": "BBK sells more phones than almost anyone and nobody asks for a BBK. Why we structured TGO the same way.",
+        "ex": "Our brands carry their own names and TGO stays behind them. Why we built the company that way.",
         "lang": "EN only",
         "slug": "why-the-parent-stays-invisible",
         "body": []
@@ -417,7 +418,7 @@
     ],
     "videoKicker": "The channel",
     "videoTitle": "Founder-led, weekly.",
-    "videoNote": "Filmed on the road — factories in Dongguan, shops in Karachi, a warehouse in Manila, and an office in the UAE. YouTube on the English site; Bilibili on the 中文 site — no YouTube embeds there.",
+    "videoNote": "Filmed on the road — in the factories, shops, warehouses and offices where the work happens.",
     "videoBtn": "Watch on YouTube",
     "videoHref": "",
     "perPage": 6,
@@ -868,6 +869,6 @@
       "programmes": "Programmes",
       "company": "Company"
     },
-    "about": "TGO Brands is a Hong Kong company that takes Chinese manufacturers and their brands into Pakistan, India, the Philippines and the UAE — research, set-up, selling and the systems behind it."
+    "about": "TGO Brands is a Hong Kong company that takes Chinese manufacturers and their brands to the world — research, set-up, selling and the systems behind it."
   }
 }

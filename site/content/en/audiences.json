@@ -6,11 +6,11 @@
       {
         "slug": "manufacturers", "as": "manufacturer",
         "name": "Manufacturers",
-        "title": "Your factory, on shelves in four new markets.",
-        "sub": "You make well and already export. We take your product into four new markets — approvals, channel and warranty — and stay on after the first container lands.",
+        "title": "Your factory, on shelves in new markets.",
+        "sub": "You make well and already export. We take your product into new markets — approvals, channel and warranty — and stay on after the first container lands.",
         "pains": [
           {"t": "Agents who disappear", "d": "An agent in an office takes the order and the commission. Nobody is in the shop when the third container arrives."},
-          {"t": "Approvals that stall everything", "d": "BIS, PSQCA, BPS and UAE approvals each run on their own clock. Start late and the market waits months."},
+          {"t": "Approvals that stall everything", "d": "Every market’s approvals run on their own clock. Start late and the market waits months."},
           {"t": "Margins lost in the paperwork", "d": "Duty, clearance and freight surprises turn a priced container into a loss."}
         ],
         "offer": [
@@ -67,7 +67,7 @@
         "sub": "Emerging-market consumer brands are hard to vet from abroad. Back our brands, trial shipments or distributors — with the stage-by-stage reporting our partners get.",
         "pains": [
           {"t": "Hard to see into", "d": "Informal trade, cash channels and thin data make these markets difficult to underwrite from a distance."},
-          {"t": "Operators are scarce", "d": "Capital is easier to find than people who have actually sold in Saddar, Patna and Manila."},
+          {"t": "Operators are scarce", "d": "Capital is easier to find than people who have actually sold on the shop floor."},
           {"t": "Cash tied up in stock", "d": "Good brands stall waiting for inventory and letters of credit."}
         ],
         "offer": [

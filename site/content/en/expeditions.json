@@ -2,7 +2,7 @@
   "expeditions": {
     "kicker": "Expeditions",
     "title": "See the market before you commit to it.",
-    "sub": "Small-group trips into our four markets, or to the factories of south China. We plan, guide and translate, and stay with you until you fly home.",
+    "sub": "Small-group trips into the markets we work in, or to the factories of south China. We plan, guide and translate, and stay with you until you fly home.",
     "types": [
       {
         "t": "Group market trips",
@@ -18,7 +18,7 @@
       },
       {
         "t": "Reverse trips to China",
-        "d": "For buyers from Pakistan, India, the Philippines and the UAE: the Canton Fair, factory visits and sourcing meetings."
+        "d": "For buyers from around the world: the Canton Fair, factory visits and sourcing meetings."
       }
     ],
     "editionsKicker": "Upcoming editions",

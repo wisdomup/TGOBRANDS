@@ -30,18 +30,18 @@
         "slug": "research-development", "group": "enter",
         "name": "调研与研发",
         "one": "市场与产品调研：在发出第一件货之前，告诉您什么能卖、卖什么价。",
-        "problem": "多数工厂靠表格选市场。真正的答案在 Saddar、巴特那或 Divisoria 的柜台上：摆了什么、卖多少钱、店主坚决不进什么。",
+        "problem": "多数工厂靠表格选市场。真正的答案在门店柜台上：摆了什么、卖多少钱、店主坚决不进什么。",
         "deliverables": ["目标城市的货架与价格调研", "竞品产品线与价格地图", "针对当地市场的产品与规格调整建议", "是否进入的结论报告与推荐进入路径"],
-        "timeline": "2–4 周", "model": ["fixed"], "lead": "Umair", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "2–4 周", "model": ["fixed"], "lead": "Umair", "markets": "全球",
         "related": ["market-survey-trips", "certification-compliance", "brand-building"]
       },
       {
         "slug": "market-survey-trips", "group": "enter",
         "name": "市场考察团",
         "one": "带您的团队实地走访目标市场：门店、分销商、仓库与监管机构。",
-        "problem": "在深圳办公室做的决定，往往漏掉在卡拉奇手机市场待一小时就能看清的事：价格到底由谁定，谁值得信任。",
+        "problem": "在深圳办公室做的决定，往往漏掉在当地市场待一小时就能看清的事：价格到底由谁定，谁值得信任。",
         "deliverables": ["包含零售集群与分销商会面的行程规划", "引荐经过审核的分销商与合作方", "现场的认证与清关说明会", "书面复盘与下一步计划"],
-        "timeline": "实地 4–7 天", "model": ["fixed"], "lead": "Umer", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "实地 4–7 天", "model": ["fixed"], "lead": "Umer", "markets": "全球",
         "related": ["travel-ground-support", "research-development", "company-registration"]
       },
       {
@@ -50,7 +50,7 @@
         "one": "签证、酒店、接送、翻译和行程管家——适合团队、个人与企业主。",
         "problem": "第一次去新市场，签证、交通和语言就会耗掉好几天。我们把这些摩擦拿掉，让时间都用在会面上。",
         "deliverables": ["签证邀请函与办理指引", "酒店与当地交通，包括机场接送", "乌尔都语、印地语、菲律宾语、阿拉伯语与中文翻译", "全程随时联系的行程管家"],
-        "timeline": "1–2 周内安排完成", "model": ["fixed"], "lead": "Umer", "markets": "巴 · 印 · 菲 · 阿联酋 · 中国",
+        "timeline": "1–2 周内安排完成", "model": ["fixed"], "lead": "Umer", "markets": "全球",
         "related": ["market-survey-trips", "company-registration", "research-development"]
       },
       {
@@ -59,7 +59,7 @@
         "one": "规范地设立当地公司、银行账户和办公室，以您自己的名义开展贸易。",
         "problem": "没有当地主体，就只能依赖别人的执照。从海外远程设立公司，既慢又容易出错。",
         "deliverables": ["主体类型与架构建议", "注册、税号与进口许可", "银行账户与当地办公室设立", "首年代理与合规支持"],
-        "timeline": "每个市场 3–8 周", "model": ["fixed"], "lead": "由所在市场负责人牵头", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "每个市场 3–8 周", "model": ["fixed"], "lead": "由所在市场负责人牵头", "markets": "全球",
         "related": ["customs-taxation", "it-solutions", "market-survey-trips"]
       },
       {
@@ -68,16 +68,16 @@
         "one": "关税、销售税与进口单证一并处理，给您一个可以用来定价的到岸成本。",
         "problem": "关税结构随财政预算而变，一个申报错误的 HS 编码就能让货柜滞留数周。利润就消失在单证里。",
         "deliverables": ["HS 归类与关税规划", "销售税 / 增值税 / GST 登记与申报", "进口许可与清关文件", "随规则变化的月度合规检查"],
-        "timeline": "持续服务", "model": ["retainer"], "lead": "Umair", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "持续服务", "model": ["retainer"], "lead": "Umair", "markets": "全球",
         "related": ["logistics-landed-cost", "company-registration", "certification-compliance"]
       },
       {
         "slug": "certification-compliance", "group": "enter",
         "name": "认证与合规",
-        "one": "PSQCA、BIS、BPS 与阿联酋认证由我方申报和承担，并行推进而不是排队等待。",
-        "problem": "在印度，BIS 注册是强制的且耗时较长；没有它就根本没有市场。每个市场都有自己的时间表，而大多数品牌启动得太晚。",
+        "one": "产品认证由我方申报和承担，并行推进而不是排队等待。",
+        "problem": "在许多市场，产品注册是强制的且耗时较长；没有它就根本没有市场。每个市场都有自己的时间表，而大多数品牌启动得太晚。",
         "deliverables": ["针对产品与市场的认证路线图", "实验室检测与文件准备", "向监管机构申报并跟进", "续证与型号变更更新"],
-        "timeline": "BIS 8–16 周 · 其他市场 4–10 周", "model": ["fixed"], "lead": "Aryan", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "BIS 8–16 周 · 其他市场 4–10 周", "model": ["fixed"], "lead": "Aryan", "markets": "全球",
         "related": ["research-development", "customs-taxation", "company-registration"]
       },
       {
@@ -86,7 +86,7 @@
         "one": "真实的渠道：有现代零售的地方走现代零售，没有的地方走成千上万家小店的传统渠道。",
         "problem": "仓库不等于分销。产品要卖得动，需要经销商进货、店主推荐，并且下个月还有人再去拜访。",
         "deliverables": ["每个城市的经销与分销网络", "按渠道的价格、利润与账期", "地推团队与门店拜访", "月度动销与库存报告"],
-        "timeline": "从第一个货柜开始", "model": ["share"], "lead": "Umer", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "从第一个货柜开始", "model": ["share"], "lead": "Umer", "markets": "全球",
         "related": ["marketplaces", "warranty-after-sales", "logistics-landed-cost"]
       },
       {
@@ -95,7 +95,7 @@
         "one": "让您的产品在 Daraz、Flipkart、Amazon.in、Lazada、Shopee、Noon 和 Amazon.ae 上线并卖起来。",
         "problem": "每个平台都有自己的上架规则、履约模式和广告系统。店铺健康度、评价和广告投放需要天天盯着。",
         "deliverables": ["当地语言的店铺搭建与商品上架", "履约设置（FBA、FBN、Daraz/Lazada 仓）", "广告、促销与评价管理", "每周业绩报告"],
-        "timeline": "4–6 周上线", "model": ["retainer", "share"], "lead": "Shamas", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "4–6 周上线", "model": ["retainer", "share"], "lead": "Shamas", "markets": "全球",
         "related": ["brand-scaling", "distribution-sales", "brand-building"]
       },
       {
@@ -104,7 +104,7 @@
         "one": "命名、包装、价格体系与保修条款——为它所在的货架而打造的品牌。",
         "problem": "做得好的工厂往往不擅长营销。在这些市场，包装盒、价位和保修卡承担了大部分的销售工作。",
         "deliverables": ["定位、命名与视觉识别", "包装与保修卡体系", "分渠道价格体系", "终端培训资料与上市物料"],
-        "timeline": "6–10 周", "model": ["fixed"], "lead": "Umair", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "6–10 周", "model": ["fixed"], "lead": "Umair", "markets": "全球",
         "related": ["brand-scaling", "research-development", "marketplaces"]
       },
       {
@@ -113,7 +113,7 @@
         "one": "第一个市场跑通之后，增加市场、渠道与产品线的增长计划。",
         "problem": "第一个市场证明了产品。要继续增长，就需要新渠道、新 SKU，以及一个不必事事等创始人拍板的团队。",
         "deliverables": ["带目标的季度增长计划", "新渠道与新市场的铺开", "产品线延伸与价格复盘", "效果类创意与促销活动"],
-        "timeline": "按季度推进", "model": ["share"], "lead": "Shamas", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "按季度推进", "model": ["share"], "lead": "Shamas", "markets": "全球",
         "related": ["marketplaces", "senior-brand-operator", "distribution-sales"]
       },
       {
@@ -122,7 +122,7 @@
         "one": "由 TGO 的资深操盘手担任您品牌在当地市场的负责人——兼职投入，全面负责。",
         "problem": "市场还没跑通就招聘国家负责人，成本高、风险大。您需要的是从第一天起就熟悉市场的资深人选。",
         "deliverables": ["指定一位 TGO 操盘手担任该市场的品牌负责人", "与您团队的每周经营复盘", "负责损益计划、渠道与团队", "在您准备好时交接给当地招聘的人选"],
-        "timeline": "6–12 个月", "model": ["retainer"], "lead": "Umair", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "6–12 个月", "model": ["retainer"], "lead": "Umair", "markets": "全球",
         "related": ["brand-scaling", "distribution-sales", "brand-building"]
       },
       {
@@ -131,7 +131,7 @@
         "one": "为新办公室或分销业务提供网站、电商、硬件与网络。",
         "problem": "新市场团队第一天就需要能用的系统：邮箱、设备、当地语言的网站，以及能收当地付款的网店。",
         "deliverables": ["当地语言的网站与电商", "当地支付通道与货到付款设置", "办公室 IT、设备与网络", "运维与支持"],
-        "timeline": "2–8 周", "model": ["fixed"], "lead": "Aryan", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "2–8 周", "model": ["fixed"], "lead": "Aryan", "markets": "全球",
         "related": ["erp-crm-integration", "company-registration", "marketplaces"]
       },
       {
@@ -140,7 +140,7 @@
         "one": "库存、订单、经销商与客户放进同一个互联系统——适用于制造商与分销商。",
         "problem": "库存在一张表里，经销商在另一张表里，订单在 WhatsApp 上。规模一上来就会乱；看不见的东西就管不了。",
         "deliverables": ["系统选型（Odoo、Zoho、HubSpot 等）", "库存、订单、经销商与开票的配置", "与电商平台、财务和 WhatsApp 的集成", "团队培训与持续支持"],
-        "timeline": "4–12 周", "model": ["fixed", "retainer"], "lead": "Aryan", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "4–12 周", "model": ["fixed", "retainer"], "lead": "Aryan", "markets": "全球",
         "related": ["it-solutions", "distribution-sales", "logistics-landed-cost"]
       },
       {
@@ -149,7 +149,7 @@
         "one": "从中国到货架的运输，拼柜或整柜，在您下单之前给出每件产品真实的到岸成本。",
         "problem": "运费、关税、清关与末端配送，是试单利润流失的地方——而且通常事后才发现。",
         "deliverables": ["按 SKU 和市场的到岸成本模型", "拼柜与整柜的集运", "清关、仓储与末端配送", "货运跟踪与成本报告"],
-        "timeline": "按批次", "model": ["fixed"], "lead": "Umer", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "按批次", "model": ["fixed"], "lead": "Umer", "markets": "全球",
         "related": ["customs-taxation", "distribution-sales", "erp-crm-integration"]
       },
       {
@@ -158,7 +158,7 @@
         "one": "当地换新、维修与备件——让品牌兑现保修，并因此被记住。",
         "problem": "这些市场的保修文化很薄弱，这恰恰是兑现保修的品牌能胜出的原因。没有当地服务，退货就会堆在经销商那里。",
         "deliverables": ["保修条款与理赔流程", "当地换新与维修合作方", "备件库存与退货物流", "向工厂回传的缺陷报告"],
-        "timeline": "从上市开始", "model": ["retainer"], "lead": "Umair", "markets": "巴 · 印 · 菲 · 阿联酋",
+        "timeline": "从上市开始", "model": ["retainer"], "lead": "Umair", "markets": "全球",
         "related": ["distribution-sales", "brand-building", "logistics-landed-cost"]
       }
     ]

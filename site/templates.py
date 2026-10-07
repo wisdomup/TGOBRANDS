@@ -271,7 +271,7 @@ def stations(c, leads=True):
 def page_home(c, lang):
     h = c['home']
     hd = h['headings']
-    route_line = ' → '.join([c['route']['origin']] + c['route']['stations'])
+    route_line = c['home']['routeLine']
     how = href(lang, 'what') + '#start'
 
     names = ''.join(f'<span class="ticker__item">{e(n)}<span class="ticker__dot"></span></span>' for n in h['marquee'])
@@ -1784,8 +1784,8 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
     extra_ld = ''.join(f'\n<script type="application/ld+json">{x}</script>' for x in (ld or []))
     org = ('{"@context":"https://schema.org","@type":"Organization","name":"TGO Brands",'
            '"alternateName":"TGO优选","url":"' + SITE + '/",'
-           '"description":"Market entry, distribution and local company setup for Chinese brands in Pakistan, the Philippines, India and the UAE.",'
-           '"areaServed":["PK","PH","IN","AE","CN"]}')
+           '"description":"Market entry, distribution and local company setup that takes Chinese brands to the world.",'
+           '"areaServed":"Worldwide"}')
     return f'''<!doctype html>
 <html lang="{'zh-CN' if zh else 'en'}">
 <head>
