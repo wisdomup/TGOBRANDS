@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "python3 site/build.py --out dist",
+  "outputDirectory": "dist"
+}

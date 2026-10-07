@@ -9,3 +9,11 @@
 # Local artifacts
 *.log
 .thumbnail
+
+# Build output (Vercel rebuilds it from site/)
+dist/
+__pycache__/
+
+# Working material that stays local
+uploads/
+.claude/
