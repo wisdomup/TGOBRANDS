@@ -111,6 +111,12 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
   `popover` drawer, which works without JavaScript.
 - **How we work** opens as a dialog; its links fall back to `/what-we-do/#start`.
 - **Reveal, marquees, hero video** respect `prefers-reduced-motion`; the video also skips Save-Data.
+- **Scrolling.** In-page links glide (`scroll-behavior: smooth`, off under reduced motion) and land
+  below the fixed nav (`scroll-padding-top`). The nav writes its shrink values on itself, only when
+  they change, never on the root (which would restyle the whole page each frame). On touch screens
+  the reveal is a rise and fade without the blur filter, which phones pay for while scrolling.
+- **Separators.** `keep_dots()` puts a no-break space before every ` · ` in the page body, so a
+  middle dot never starts a line.
 - **Light / dark.** The site follows the device setting until the visitor picks a theme with the
   switch in the nav (sun / moon) or in the footer; the choice is kept in `localStorage` (`tgo-theme`).
   A one-line head script sets `data-theme` before first paint, so there is no flash. Light is the v3

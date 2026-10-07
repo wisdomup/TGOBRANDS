@@ -7,7 +7,7 @@
         "slug": "manufacturers", "as": "manufacturer",
         "name": "Manufacturers",
         "title": "Your factory, on shelves in four new markets.",
-        "sub": "You make well and you already export somewhere. We take the product into Pakistan, India, the Philippines and the UAE — research, approvals, channel and warranty — and stay on the ground after the first container lands.",
+        "sub": "You make well and already export. We take your product into four new markets — approvals, channel and warranty — and stay on after the first container lands.",
         "pains": [
           {"t": "Agents who disappear", "d": "An agent in an office takes the order and the commission. Nobody is in the shop when the third container arrives."},
           {"t": "Approvals that stall everything", "d": "BIS, PSQCA, BPS and UAE approvals each run on their own clock. Start late and the market waits months."},
@@ -25,8 +25,8 @@
       {
         "slug": "distributors", "as": "distributor",
         "name": "Distributors & retailers",
-        "title": "Stock brands with a parent company behind them.",
-        "sub": "For dealers, distributors and retailers in Pakistan, India, the Philippines and the UAE: brands that arrive certified, priced for your channel, and backed by a warranty someone actually honours.",
+        "title": "Stock brands with real backing.",
+        "sub": "Brands that arrive certified, priced for your channel and backed by a warranty someone honours.",
         "pains": [
           {"t": "Supply you cannot count on", "d": "The importer changes, the quality drifts, the next batch arrives late — and your customers blame you."},
           {"t": "Warranty that lands on you", "d": "When the brand will not stand behind the product, returns pile up at your counter."},
@@ -44,8 +44,8 @@
       {
         "slug": "creators", "as": "creator",
         "name": "Creators",
-        "title": "Your own product line, made in China, sold where your audience lives.",
-        "sub": "Brand deals pay once. A product of your own keeps paying. We develop, manufacture, brand, launch and fulfil it with you — end to end, in the markets your audience is in.",
+        "title": "Your own product line, sold where your audience lives.",
+        "sub": "Brand deals pay once; your own product keeps paying. We develop, make, launch and ship it with you.",
         "pains": [
           {"t": "Sponsorships end", "d": "Your audience trusts you, but every deal is someone else's product and someone else's margin."},
           {"t": "Factories are a black box", "d": "Sourcing from China without a team on the ground means samples that drift and timelines that slip."},
@@ -63,8 +63,8 @@
       {
         "slug": "investors", "as": "investor",
         "name": "Investors",
-        "title": "Back brands and shipments in markets you can see into.",
-        "sub": "Emerging-market consumer businesses are hard to diligence from abroad. We give investors a way in: brands we build, inventory for trial shipments and distribution businesses — with the same stage-by-stage reporting our partners get.",
+        "title": "Invest in markets you can see into.",
+        "sub": "Emerging-market consumer brands are hard to vet from abroad. Back our brands, trial shipments or distributors — with the stage-by-stage reporting our partners get.",
         "pains": [
           {"t": "Hard to see into", "d": "Informal trade, cash channels and thin data make these markets difficult to underwrite from a distance."},
           {"t": "Operators are scarce", "d": "Capital is easier to find than people who have actually sold in Saddar, Patna and Manila."},
@@ -77,7 +77,7 @@
           {"t": "Reporting you can read", "d": "Stage, shipment and sell-through reporting from the partner portal."}
         ],
         "services": ["brand-building", "distribution-sales", "brand-scaling"],
-        "cta": "Request the investor conversation"
+        "cta": "Book an investor call"
       }
     ]
   }

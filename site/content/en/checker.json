@@ -2,7 +2,7 @@
   "checker": {
     "kicker": "Visa and passport check",
     "title": "Any passport. Anywhere in the world.",
-    "sub": "Choose your passport and destination — every country and territory. We show the visa you need, how long you can stay, when to apply, whether your passport is valid long enough, and what to bring.",
+    "sub": "Any passport, any country. See the visa you need, how long you can stay, when to apply and what to bring.",
     "cta": "Check my passport",
     "passport": "Your passport",
     "dest": "Going to",
@@ -90,7 +90,7 @@
     "feeFrom": "From US${n}",
     "feeVaries": "Varies by visa",
     "noApply": "No application needed",
-    "beforeFly": "At least {n} days before you fly",
+    "beforeFly": "{n}+ days before you fly",
     "addDates": "Add your dates",
     "valid": "Valid for this trip",
     "renew": "Renew before you travel",

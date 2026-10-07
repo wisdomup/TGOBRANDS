@@ -11,22 +11,30 @@
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
   /* ── Nav: merged with the page at the top, a capsule once scrolled ──
-     Scale tracks scroll continuously over 0–320px and is written straight to
-     custom properties, so nothing re-renders per frame. */
+     Scale tracks scroll continuously over 0–320px. The values are written on
+     the nav itself (not the root, which would restyle the whole page every
+     frame) and only when they change, so scrolling stays smooth on phones. */
   function initNav() {
     var nav = $('.nav');
     if (!nav) return;
     var overHero = nav.getAttribute('data-hero') === '1';
-    var raf = 0;
+    var raf = 0, last = -1, state = '';
     function update() {
       raf = 0;
       var y = window.scrollY;
       var p = Math.min(1, Math.max(0, y / 320));
-      var eased = p * p * (3 - 2 * p);
-      doc.style.setProperty('--nav-scale', (1 - 0.14 * eased).toFixed(4));
-      doc.style.setProperty('--nav-top', (22 - 10 * eased).toFixed(2) + 'px');
-      nav.setAttribute('data-scrolled', y > 24 ? '1' : '0');
-      if (overHero) nav.setAttribute('data-dark', y < window.innerHeight * 0.88 ? '1' : '0');
+      if (p !== last) {
+        last = p;
+        var eased = p * p * (3 - 2 * p);
+        nav.style.setProperty('--nav-scale', (1 - 0.14 * eased).toFixed(4));
+        nav.style.setProperty('--nav-top', (22 - 10 * eased).toFixed(2) + 'px');
+      }
+      var next = (y > 24 ? '1' : '0') + (overHero && y < window.innerHeight * 0.88 ? '1' : '0');
+      if (next !== state) {
+        state = next;
+        nav.setAttribute('data-scrolled', next[0]);
+        if (overHero) nav.setAttribute('data-dark', next[1]);
+      }
     }
     window.addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
     window.addEventListener('resize', function () { if (!raf) raf = requestAnimationFrame(update); });
@@ -240,7 +248,7 @@
       }
       target.setAttribute('tabindex', '-1');
       target.focus({ preventScroll: true });
-      window.scrollTo({ top: 0 });
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
     function forward() {
       if (seq[pos] && seq[pos].getAttribute('data-key') === 'party_type') rebuild();
@@ -295,7 +303,7 @@
       $('[data-score]', done).textContent = lead.score;
       form.hidden = true;
       done.hidden = false;
-      window.scrollTo({ top: 0 });
+      window.scrollTo({ top: 0, behavior: 'instant' });
       $('.done__title:not([hidden])', done).focus({ preventScroll: true });
     }
 

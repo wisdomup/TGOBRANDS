@@ -2,7 +2,7 @@
   "expeditions": {
     "kicker": "Expeditions",
     "title": "See the market before you commit to it.",
-    "sub": "Small-group trips to Pakistan, India, the Philippines and the UAE — and the other way, to the factories of Guangzhou, Dongguan and Shenzhen. We plan it, take you round, translate, and stay with you until you fly home.",
+    "sub": "Small-group trips into our four markets, or to the factories of south China. We plan, guide and translate, and stay with you until you fly home.",
     "types": [
       {
         "t": "Group market trips",
@@ -191,9 +191,9 @@
         "type": 3,
         "market": "CN",
         "playbook": "",
-        "title": "Five-City Sourcing Tour: Canton Fair, Foshan, Dongguan, Shenzhen, Yiwu",
+        "title": "Canton Fair & Five-City Sourcing Tour",
         "one": "The Canton Fair and the factories and markets behind it — twelve days, five cities, with flights, visa and living included.",
-        "when": "Spring 2027 · built around Phase 1, 2 or 3",
+        "when": "Spring 2027 · any phase",
         "length": "12 days",
         "group": "10–20 people",
         "lead": "Umair",

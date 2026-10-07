@@ -2,7 +2,7 @@
   "travel": {
     "kicker": "Travel",
     "title": "We get you there, and we stay with you.",
-    "sub": "Business delegations, buyers, investors, company groups and families — into Pakistan, India, Bangladesh, the Philippines and the UAE, and to China the other way. Visas, flights, hotels, cars, interpreters and the meetings themselves, run by people who know where you are going.",
+    "sub": "Business trips and family travel into Pakistan, India, Bangladesh, the Philippines and the UAE — or to China. Visas, hotels, cars, interpreters and meetings, run by people who live there.",
     "whoKicker": "Who travels with us",
     "whoTitle": "Six kinds of traveller.",
     "who": [
@@ -295,11 +295,11 @@
         "name": "Philippines",
         "kicker": "Philippines travel desk",
         "title": "Meetings in Manila. Then the islands.",
-        "sub": "We host business visitors and holiday groups from China and around the world, from the arrivals hall to the departure gate — in Mandarin, English or Filipino. This is what we tell every client before they book a flight.",
+        "sub": "Business visitors and holiday groups, met at arrivals and seen off at departures — in Mandarin, English or Filipino. Here is what we tell every client before they book.",
         "facts": [
           [
             "Fly into",
-            "Manila (NAIA) or Cebu (Mactan)"
+            "Manila or Cebu"
           ],
           [
             "From South China",
@@ -307,7 +307,7 @@
           ],
           [
             "Time zone",
-            "Same as Beijing (UTC+8)"
+            "Same as Beijing"
           ],
           [
             "Chinese passports",
@@ -721,8 +721,8 @@
         "code": "CN",
         "name": "China",
         "kicker": "China travel desk · Canton Fair",
-        "title": "The Canton Fair, and the five cities behind it.",
-        "sub": "Twice a year we take buyers from Pakistan, India, the Philippines, the Gulf and beyond to Guangzhou — and on to the factories and markets of Foshan, Dongguan, Shenzhen and Yiwu. Visa, flights, hotels, meals, interpreters and booked factory meetings, run by a team in China and in your market.",
+        "title": "The Canton Fair, and five cities beyond.",
+        "sub": "Twice a year we take buyers to Guangzhou, then on to the factories of Foshan, Dongguan, Shenzhen and Yiwu. Visa, hotels, meals, interpreters and factory meetings, all arranged.",
         "facts": [
           [
             "Next fair",
@@ -947,7 +947,7 @@
           {
             "type": "cards",
             "kicker": "Buyers from our markets",
-            "title": "Built for buyers from Pakistan, India, the Philippines and the Gulf.",
+            "title": "Built for buyers from South Asia, the Philippines and the Gulf.",
             "cols": 3,
             "items": [
               {
@@ -1075,7 +1075,7 @@
         "name": "India",
         "kicker": "India travel desk",
         "title": "Delhi to decide. Then the rest of India.",
-        "sub": "We plan market weeks, trade-fair visits and plant tours across Delhi NCR, Mumbai, Bengaluru, Chennai and the east — and the Taj Mahal when the work is done. Visas, flights, cars, interpreters and the meetings themselves, from a team that sells in India every day.",
+        "sub": "Market weeks, trade fairs and plant tours across Delhi, Mumbai, Bengaluru and Chennai — and the Taj Mahal when the work is done. Run by a team that sells in India every day.",
         "facts": [
           [
             "Fly into",
@@ -1083,11 +1083,11 @@
           ],
           [
             "From China",
-            "Direct from Shanghai, Beijing, Guangzhou, Kunming"
+            "Shanghai, Beijing, Guangzhou, Kunming"
           ],
           [
             "Chinese passports",
-            "e-Tourist visa from US$25; business visas again"
+            "e-Visa from US$25"
           ],
           [
             "Best months",
@@ -1099,7 +1099,7 @@
           ],
           [
             "Time zone",
-            "UTC+5:30 — 2½ hours behind Beijing"
+            "2½ hours behind Beijing"
           ]
         ],
         "cta": "Plan my India trip",
@@ -1529,7 +1529,7 @@
         "name": "Pakistan",
         "kicker": "Pakistan travel desk",
         "title": "Karachi sets the price. Lahore sets the trend.",
-        "sub": "We host manufacturers, buyers and investors in Karachi, Lahore, Islamabad and the export towns of Punjab — Faisalabad, Sialkot and Gujranwala — and take them north to the mountains when there is time. Visas, security, cars, interpreters and the meetings, from a team that lives here.",
+        "sub": "Manufacturers, buyers and investors in Karachi, Lahore, Islamabad and the export towns of Punjab — and the northern mountains when time allows. Run by a team that lives here.",
         "facts": [
           [
             "Fly into",
@@ -1541,11 +1541,11 @@
           ],
           [
             "Chinese passports",
-            "Online visa; security protocol applies"
+            "Online visa + security rules"
           ],
           [
             "Best months",
-            "October to March (cities); April to October (north)"
+            "Oct–Mar cities, Apr–Oct north"
           ],
           [
             "Business language",
@@ -1553,7 +1553,7 @@
           ],
           [
             "Time zone",
-            "UTC+5 — 3 hours behind Beijing"
+            "3 hours behind Beijing"
           ]
         ],
         "cta": "Plan my Pakistan trip",
@@ -2003,8 +2003,8 @@
         "code": "BD",
         "name": "Bangladesh",
         "kicker": "Bangladesh travel desk",
-        "title": "The world's tailor. And a market of 170 million.",
-        "sub": "Buyers come to Bangladesh for garments and textiles; brands come for one of Asia's largest consumer markets. We plan factory weeks in Dhaka, Gazipur, Narayanganj and Chattogram, trade-fair visits, and the tea hills and mangroves when there is time — with visas, cars, interpreters and the meetings arranged.",
+        "title": "The world's tailor, and 170 million shoppers.",
+        "sub": "Buyers come for garments; brands come for 170 million shoppers. Factory weeks in Dhaka, Gazipur and Chattogram, trade fairs, and the tea hills when time allows — all arranged.",
         "facts": [
           [
             "Fly into",
@@ -2012,7 +2012,7 @@
           ],
           [
             "From China",
-            "About 4 hours from Guangzhou, 2½ from Kunming"
+            "About 4 hours from Guangzhou"
           ],
           [
             "Chinese passports",

@@ -1548,7 +1548,7 @@ def guide_section(c, lang, g, sec):
             f'<li class="day"><p class="day__n">{e(day.format(n=n + 1))}</p><div><h3>{e(city)}</h3><p>{e(what)}</p></div></li>'
             for n, (city, what) in enumerate(x['days']))
         body = (f'<ol class="itinerary">{days}</ol>'
-                f'<div class="actions"><a class="btn btn--outline" href="{href(lang, "trip", x["slug"])}">{e(x["title"])}</a></div>')
+                f'<div class="actions"><a class="btn btn--outline" href="{href(lang, "trip", x["slug"])}">{e(c["expeditions"]["labels"]["apply"])}</a></div>')
     elif kind == 'desk':
         d = next(x for x in t['destinations'] if x['code'] == g['code'])
         person = next((p for p in c['founders']['people'] if p['name'].split()[0] == d['host']), None)
@@ -1702,6 +1702,11 @@ PAGES = {
 
 # ── document ──────────────────────────────────────────────────────────────
 
+def keep_dots(html):
+    """A no-break space before every ' · ' so a separator never starts a line."""
+    return html.replace(' · ', '\u00a0· ')
+
+
 def document(c, lang, page, body, path, alt_path, title, description, version, ld=None):
     m = c['meta']
     zh = lang == 'zh'
@@ -1745,8 +1750,8 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
 <body data-page="{page}">
 <a class="skip" href="#main">{e(c["ui"]["skip"])}</a>
 {nav(c, lang, page, alt_path)}
-{body}
-{footer(c, lang)}
+{keep_dots(body)}
+{keep_dots(footer(c, lang))}
 </body>
 </html>
 '''

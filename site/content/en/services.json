@@ -2,7 +2,7 @@
   "services": {
     "kicker": "Services",
     "title": "One operator for the whole journey.",
-    "sub": "Fifteen services, from the first market study to the warranty desk. Use one, or let us run all of it. Early stages are fixed fees; once your product sells through us, we earn on what sells.",
+    "sub": "Fifteen services, from the first market study to the warranty desk. Use one or all. Fixed fees up front; once you sell through us, we earn on what sells.",
     "groups": [
       {"key": "enter", "name": "Enter the market", "intro": "Know the market, get there, and get legal — before the first container."},
       {"key": "grow", "name": "Sell and grow", "intro": "Put the product on real shelves and marketplaces, then build the brand that keeps it there."},
@@ -55,7 +55,7 @@
       },
       {
         "slug": "company-registration", "group": "enter",
-        "name": "Company registration & business establishment",
+        "name": "Company registration & set-up",
         "one": "A local company, bank account and office set up properly, so you can trade in your own name.",
         "problem": "Without a local entity you depend on someone else's licence. Setting one up from abroad is slow and easy to get wrong.",
         "deliverables": ["Entity choice and structure advice", "Registration, tax numbers and import licences", "Bank account and local office set-up", "Nominee and compliance support for the first year"],
@@ -109,7 +109,7 @@
       },
       {
         "slug": "brand-scaling", "group": "grow",
-        "name": "Brand scaling & revenue growth",
+        "name": "Brand scaling & growth",
         "one": "Growth plans that add markets, channels and range once the first market works.",
         "problem": "The first market proves the product. Growing beyond it means new channels, new SKUs and a team that can run without the founder in every decision.",
         "deliverables": ["Quarterly growth plan with targets", "New channel and new market roll-out", "Range extension and pricing reviews", "Performance creative and promotions"],

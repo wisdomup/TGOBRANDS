@@ -2,7 +2,7 @@
   "estimator": {
     "kicker": "Entry estimator",
     "title": "What it takes to enter, before you commit.",
-    "sub": "Pick a product and a market. You get the approvals you will need, a realistic time to the first shelf, the duty and tax picture, and a landed-cost range — then the services that cover it.",
+    "sub": "Pick a product and a market. See the approvals, time to shelf, duties and landed cost — and the services that cover them.",
     "labels": {
       "category": "Product",
       "market": "Market",
@@ -10,11 +10,11 @@
       "fobHint": "Ex-works or FOB. Leave empty to see the multiplier only.",
       "approvals": "Approvals",
       "weeks": "weeks",
-      "time": "Typical time to the first shelf",
+      "time": "Time to shelf",
       "duty": "Import duty",
       "tax": "Tax at import",
-      "landed": "Landed cost per unit",
-      "landedFactor": "of the factory price",
+      "landed": "Landed cost",
+      "landedFactor": "factory price",
       "services": "Services that cover it",
       "playbook": "Read the full market playbook",
       "none": "No product-specific approvals listed — your market lead maps them for your product.",

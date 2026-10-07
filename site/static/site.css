@@ -58,7 +58,9 @@
 
 /* ── Base ────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--nav-space) + 12px); }
+/* in-page links (#check, #plan, the service groups) glide instead of jumping */
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0; min-height: 100svh;
   background: var(--bg); color: var(--text);
@@ -139,7 +141,7 @@ a.is-pending, a.is-pending:hover { cursor: default; text-decoration: none; color
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 46px; padding: 0 22px;
   border: 0; border-radius: 980px; background: transparent;
-  font-family: var(--font-text); font-size: 17px; font-weight: 400; line-height: 1; letter-spacing: -0.01em;
+  font-family: var(--font-text); font-size: 17px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em;
   text-align: center; text-decoration: none; cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
@@ -666,7 +668,7 @@ a:hover .photo img, article:hover .photo img { transform: scale(1.05); }
 .svc-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 36px; text-align: left; }
 .fact { padding: 16px 18px; border-radius: 14px; background: var(--surface); box-shadow: var(--surface-shadow); }
 .fact .eyebrow { margin-bottom: 6px; }
-.page .fact__v { color: var(--text); font-size: 16px; font-weight: 600; line-height: 1.35; }
+.page .fact__v { color: var(--text); font-size: 16px; font-weight: 600; line-height: 1.35; overflow-wrap: anywhere; }
 .fact__v .badge { margin: 2px 4px 2px 0; }
 .svc-body { padding-bottom: var(--sec-y); }
 .svc-body .eyebrow { margin-bottom: 14px; }
@@ -1167,7 +1169,9 @@ html:lang(zh) {
   .checker__fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dest__facts > div { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; align-items: baseline; }
   .dest__facts .eyebrow { margin: 0; }
-  .tform .opt { flex: 1 1 calc(50% - 4px); }
+  .tform .opt { flex: 1 0 auto; min-width: calc(50% - 4px); max-width: 100%; }
+  /* paired actions stack as equal full-width buttons instead of two ragged rows */
+  :is(.actions--row, .est-links) { flex-direction: column; align-items: stretch; width: 100%; max-width: 360px; margin-inline: auto; }
   .actions { margin-top: 28px; }
 
   /* hero: sized to its content rather than forced to a full screen — a forced
@@ -1207,6 +1211,10 @@ html:lang(zh) {
   .office p:not(.office__city) { color: var(--ink-3); font-size: 15px; text-align: right; }
 
   .svc-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* destination facts read as rows: label on the left, the value beside it */
+  .guide-facts { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .guide-facts .fact { display: grid; grid-template-columns: 116px minmax(0, 1fr); align-items: baseline; gap: 12px; padding: 14px 16px; }
+  .guide-facts .fact .eyebrow { margin: 0; }
   .estimator__fields, .est-grid { grid-template-columns: minmax(0, 1fr); }
   .est-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .day { grid-template-columns: minmax(0, 1fr); }
@@ -1220,7 +1228,9 @@ html:lang(zh) {
   .faq__item summary { font-size: 17px; }
   .footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; padding-top: 36px; }
   .footer__brand { grid-column: 1 / -1; }
-  .pager { gap: 10px; }
+  /* previous / next stack full width, so long trip and service names keep to one or two lines */
+  .pager { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .pager__link--next { grid-column: 1; }
   .pager__link { padding: 16px 18px; }
   .pager__title { font-size: 18px; }
   .post-body p { font-size: 17px; }
@@ -1282,6 +1292,13 @@ html:lang(zh) {
   }
   .js :where(.page > section:not(.hero), .page .survey) :where(h1, h2, h3, p):not(.is-in, .marq *, [aria-live] *) {
     opacity: 0; transform: translateY(20px); filter: blur(9px);
+  }
+  /* phones and tablets: rise and fade only; a blur on every block costs frames while scrolling */
+  @media (hover: none), (max-width: 860px) {
+    .js :where(.page > section:not(.hero), .page .survey) :where(h1, h2, h3, p):not(.is-in, .marq *, [aria-live] *) { filter: none; }
+    .js :where(.page > section:not(.hero), .page .survey) :where(h1, h2, h3, p, article, figure, .figs):not(.marq *, [aria-live] *) {
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
   }
   /* structural blocks resolve without the blur — only type unblurs */
   .js :where(.page > section:not(.hero), .page .survey) :where(article, figure, .figs):not(.is-in, .marq *, [aria-live] *) {
@@ -1425,7 +1442,6 @@ html:lang(zh)[data-theme="dark"] {
 [data-theme="dark"] .eyebrow {
   color: var(--accent); font-weight: 400; font-size: 14px; letter-spacing: 0; text-transform: none;
 }
-[data-theme="dark"] :is(.shead, .phead) > .eyebrow, [data-theme="dark"] .hero__eyebrow { text-transform: capitalize; }
 [data-theme="dark"] :is(.shead, .phead) > .eyebrow,
 [data-theme="dark"] .hero__eyebrow {
   display: inline-flex; align-items: center; gap: 12px;
@@ -1439,6 +1455,11 @@ html:lang(zh)[data-theme="dark"] {
   [data-theme="dark"] :is(.shead, .phead) > .eyebrow::before, [data-theme="dark"] .hero__eyebrow::before,
   [data-theme="dark"] :is(.shead, .phead) > .eyebrow::after, [data-theme="dark"] .hero__eyebrow::after { width: 24px; }
   [data-theme="dark"] :is(.shead, .phead) > .eyebrow, [data-theme="dark"] .hero__eyebrow { gap: 8px; max-width: 100%; }
+}
+/* Work Sans runs wider than the system face: on phones the hero title scales
+   with the screen so "Chinese brands" keeps its line down to 320px */
+@media (max-width: 680px) {
+  [data-theme="dark"] .hero__title { font-size: clamp(36px, 11.6vw, 46px); }
 }
 @media (max-width: 380px) {
   [data-theme="dark"] :is(.shead, .phead) > .eyebrow::before, [data-theme="dark"] .hero__eyebrow::before,
@@ -1538,7 +1559,7 @@ html:lang(zh)[data-theme="dark"] {
 
 /* the closing poster becomes a lit black stage instead of an inverted slab */
 [data-theme="dark"] .poster {
-  background: radial-gradient(60% 80% at 50% 115%, rgba(0, 85, 255, 0.28), rgba(0, 0, 0, 0) 70%), #000;
+  background: radial-gradient(70% 42% at 50% 62%, rgba(0, 85, 255, 0.24), rgba(0, 0, 0, 0)), #000;
   color: #fff; border-top: 1px solid var(--line);
 }
 [data-theme="dark"] .poster .title { color: #fff; }
@@ -1586,7 +1607,7 @@ html:lang(zh)[data-theme="dark"] {
 [data-theme="dark"] .footer__top + .footer__in { border-top-color: rgba(65, 65, 65, 0.51); }
 [data-theme="dark"] .footer__col a { color: #cbcbcb; }
 [data-theme="dark"] .footer__col a:hover { color: #fff; }
-[data-theme="dark"] .footer__h { color: #fff; font-size: 15px; font-weight: 400; text-transform: capitalize; }
+[data-theme="dark"] .footer__h { color: #fff; font-size: 15px; font-weight: 400; }
 [data-theme="dark"] .band .vresult .fact { background: linear-gradient(#151515, #151515) padding-box, var(--edge) border-box; }
 
 /* ── Dark theme: the rest of the Obsidian system ─────────────────────────
@@ -1594,7 +1615,6 @@ html:lang(zh)[data-theme="dark"] {
    chrome, LineEyebrow casing, the hairline footer grid, and every status
    colour re-tuned for black. */
 [data-theme="dark"] .lead { color: var(--ink-2); }
-[data-theme="dark"] :is(.btn--primary, .btn--light, .btn--outline, .btn--glass), [data-theme="dark"] .nav__links > a:not(.btn) { text-transform: capitalize; }
 
 /* PrimaryButton: label, then a square chip with the blue gradient and a white arrow */
 [data-theme="dark"] .btn--primary { gap: 12px; padding: 0 7px 0 20px; letter-spacing: -0.02em; font-weight: 500; }
@@ -1615,6 +1635,7 @@ html:lang(zh)[data-theme="dark"] {
 [data-theme="dark"] .nav__theme:hover { background: #282828; }
 @media (max-width: 860px) {
   [data-theme="dark"] .nav__links[popover] { border-radius: 16px; }
+  [data-theme="dark"] .nav__links > a:not(.btn) { border-radius: 0; }
   [data-theme="dark"] .nav__links > a:first-child { border-radius: 16px 16px 0 0; }
 }
 
@@ -1675,7 +1696,6 @@ html:lang(zh)[data-theme="dark"] {
 [data-theme="dark"] .ticker__dot { background: var(--accent); }
 
 /* footer: the link columns are divided by line-soft hairlines */
-[data-theme="dark"] .footer__col a { text-transform: capitalize; }
 @media (min-width: 681px) {
   [data-theme="dark"] .footer__col { padding-left: 24px; border-left: 1px solid var(--line-soft); }
 }
