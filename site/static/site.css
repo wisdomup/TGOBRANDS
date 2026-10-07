@@ -868,6 +868,16 @@ html:not(.js) .pane__title { position: static; width: auto; height: auto; clip-p
 .input:hover { border-color: color-mix(in srgb, var(--text) 45%, transparent); }
 .input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.16); }
 textarea.input { display: block; min-height: 90px; resize: vertical; }
+/* a grid cell may shrink below its content, so no field can push past its column */
+.field, .input { min-width: 0; }
+/* iOS Safari draws date fields natively: a fixed intrinsic width that ignores the
+   column, its own height and a centred value. Strip that so they line up with the
+   text fields and selects beside them. */
+.input[type="date"] {
+  -webkit-appearance: none; appearance: none; display: block; max-width: 100%;
+  height: calc(17px * 1.55 + 30px); text-align: left;
+}
+.input[type="date"]::-webkit-date-and-time-value { min-height: calc(17px * 1.55); margin: 0; text-align: left; }
 
 /* the survey runs as a stepper only when scripting is on; without it every
    question is listed in order and the form still reads top to bottom */
@@ -1252,6 +1262,10 @@ html:lang(zh) {
   .footer__links { gap: 0 28px; margin-top: 8px; }
   .footer__links a { padding-block: 12px; }
   .footer__links a::after { display: none; }
+}
+@media (max-width: 380px) {
+  /* the smallest phones: one field per row, so a full date fits */
+  .checker__fields { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 520px) {
   /* content photographs take a shorter phone crop */
