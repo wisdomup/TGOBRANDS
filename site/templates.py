@@ -189,6 +189,14 @@ def footer(c, lang):
     <p>{e(f["tag"])}</p>
     <p>{e(f["note"])}</p>
     <div class="footer__links">{legal}</div>
+    <button class="theme-switch" type="button" role="switch" aria-checked="false" data-theme-toggle>
+      <span class="theme-switch__label">{e(c["ui"]["themeDark"])}</span>
+      <span class="theme-switch__track" aria-hidden="true">
+        <svg class="theme-switch__sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></svg>
+        <svg class="theme-switch__moon" viewBox="0 0 16 16"><path d="M13.6 10.2A5.8 5.8 0 0 1 5.8 2.4a5.8 5.8 0 1 0 7.8 7.8z"/></svg>
+        <span class="theme-switch__thumb"></span>
+      </span>
+    </button>
   </div>
 </footer>'''
 
@@ -1703,7 +1711,8 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
 <link rel="alternate" hreflang="en" href="{SITE}{en_path}">
 <link rel="alternate" hreflang="zh-CN" href="{SITE}{zh_path}">
 <link rel="alternate" hreflang="x-default" href="{SITE}{en_path}">
-<meta name="theme-color" content="#1d1d1f">
+<meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta name="format-detection" content="telephone=no">
 <meta property="og:type" content="{'article' if page == 'post' else 'website'}">
 <meta property="og:site_name" content="TGO Brands">
@@ -1715,6 +1724,10 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
 <meta property="og:locale:alternate" content="{'en_US' if zh else 'zh_CN'}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">{preload}
+<script>(function(){{var d=document.documentElement,s=null;try{{s=localStorage.getItem('tgo-theme')}}catch(e){{}}if(s!=='dark'&&s!=='light')s=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',s)}})()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300..700&amp;display=swap">
 <link rel="stylesheet" href="/assets/site.css?v={version}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/assets/site.js?v={version}" defer onerror="document.documentElement.classList.remove('js')"></script>

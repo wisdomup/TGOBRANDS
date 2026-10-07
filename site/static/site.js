@@ -771,7 +771,35 @@
     });
   }
 
+  /* ── Theme: follows the device until the visitor picks one in the footer ──
+     The head script sets data-theme before first paint; this keeps the switch,
+     the stored choice and live device changes in step. */
+  function initTheme() {
+    var KEY = 'tgo-theme';
+    var media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    var stored = function () { try { var v = localStorage.getItem(KEY); return v === 'dark' || v === 'light' ? v : null; } catch (e) { return null; } };
+    var switches = $$('[data-theme-toggle]');
+    function apply(mode) {
+      doc.setAttribute('data-theme', mode);
+      switches.forEach(function (b) { b.setAttribute('aria-checked', mode === 'dark' ? 'true' : 'false'); });
+    }
+    apply(stored() || (media && media.matches ? 'dark' : 'light'));
+    switches.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var next = doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        doc.classList.add('theme-swap');
+        apply(next);
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+        setTimeout(function () { doc.classList.remove('theme-swap'); }, 400);
+      });
+    });
+    if (media && media.addEventListener) {
+      media.addEventListener('change', function (e) { if (!stored()) apply(e.matches ? 'dark' : 'light'); });
+    }
+  }
+
   initSource();
+  initTheme();
   initNav();
   initHeroVideo();
   initReveal();
