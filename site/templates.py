@@ -143,9 +143,9 @@ def bcard(c, lang, b):
 
 # ── chrome ────────────────────────────────────────────────────────────────
 
-# the dark theme's face. Loaded by script, print-media first, so it never blocks
-# the first paint; skipped on 中文 pages because Google Fonts is blocked in
-# mainland China (those pages keep the system fallbacks).
+# the Obsidian face, in both themes. Loaded by script, print-media first, so it
+# never blocks the first paint; skipped on 中文 pages because Google Fonts is
+# blocked in mainland China (those pages use the CJK system faces).
 FONT_CSS = 'https://fonts.googleapis.com/css2?family=Work+Sans:wght@300..900&display=swap'
 
 # line icons for the theme switches: 1.5px stroke on a 16px grid
@@ -1728,7 +1728,7 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
 <link rel="alternate" hreflang="en" href="{SITE}{en_path}">
 <link rel="alternate" hreflang="zh-CN" href="{SITE}{zh_path}">
 <link rel="alternate" hreflang="x-default" href="{SITE}{en_path}">
-<meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta name="format-detection" content="telephone=no">
 <meta property="og:type" content="{'article' if page == 'post' else 'website'}">
@@ -1741,7 +1741,7 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
 <meta property="og:locale:alternate" content="{'en_US' if zh else 'zh_CN'}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">{preload}
-<script>(function(){{var d=document.documentElement,s=null;try{{s=localStorage.getItem('tgo-theme')}}catch(e){{}}if(s!=='dark'&&s!=='light')s=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',s);window.tgoFont=function(){{if(d.lang!=='en'||document.getElementById('tgo-font'))return;var l=document.createElement('link');l.id='tgo-font';l.rel='stylesheet';l.media='print';l.onload=function(){{l.media='all'}};l.href='{FONT_CSS}';document.head.appendChild(l)}};if(s==='dark')window.tgoFont()}})()</script>
+<script>(function(){{var d=document.documentElement,s=null;try{{s=localStorage.getItem('tgo-theme')}}catch(e){{}}if(s!=='dark'&&s!=='light')s=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',s);window.tgoFont=function(){{if(d.lang!=='en'||document.getElementById('tgo-font'))return;var l=document.createElement('link');l.id='tgo-font';l.rel='stylesheet';l.media='print';l.onload=function(){{l.media='all'}};l.href='{FONT_CSS}';document.head.appendChild(l)}};window.tgoFont()}})()</script>
 <link rel="stylesheet" href="/assets/site.css?v={version}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/assets/site.js?v={version}" defer onerror="document.documentElement.classList.remove('js')"></script>

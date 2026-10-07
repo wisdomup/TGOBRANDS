@@ -792,8 +792,7 @@
       doc.setAttribute('data-theme', mode);
       switches.forEach(function (b) { b.setAttribute('aria-checked', mode === 'dark' ? 'true' : 'false'); });
       // the browser bar follows the chosen theme, not only the device setting
-      bars.forEach(function (m) { m.setAttribute('content', mode === 'dark' ? '#000000' : '#1d1d1f'); });
-      if (mode === 'dark' && window.tgoFont) window.tgoFont();
+      bars.forEach(function (m) { m.setAttribute('content', mode === 'dark' ? '#000000' : '#ffffff'); });
     }
     apply(stored() || (media && media.matches ? 'dark' : 'light'));
     switches.forEach(function (b) {
