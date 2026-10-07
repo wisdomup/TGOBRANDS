@@ -1,0 +1,92 @@
+{
+  "terms": {
+    "name": "Terms of use",
+    "kicker": "Terms",
+    "title": "Terms of use.",
+    "sub": "The rules for using this website, what its information is and is not, and the law that applies.",
+    "updated": "Last updated 8 October 2026",
+    "tocLabel": "On this page",
+    "sections": [
+      {
+        "id": "about",
+        "h": "About these terms",
+        "body": [
+          "These terms cover your use of tgobrands.com, run by TGO Brands Limited, a company in Hong Kong. By using the site you accept them.",
+          "Our services and trips are provided under a separate written agreement or quote. These terms do not replace it."
+        ]
+      },
+      {
+        "id": "information",
+        "h": "General information, not advice",
+        "body": [
+          "Market notes, playbooks, the entry estimator, duty and cost figures, approval timelines and the visa and passport check are general guidance. We prepare them with care and check them against official sources, but rules and rates change. They are not legal, tax, customs, immigration or investment advice.",
+          "Always confirm visa and entry rules with the official government portal or embassy before you travel. Entry is decided by the authorities at the border, not by us."
+        ]
+      },
+      {
+        "id": "prices",
+        "h": "Prices, dates and availability",
+        "body": [
+          "Trip prices, dates, package contents and service models on this site are indicative. They are binding only once we confirm them to you in writing.",
+          "Sending an application or an enquiry does not create a contract, and we may decline any request.",
+          "The partner portal preview shows sample data, not a real partner’s information."
+        ]
+      },
+      {
+        "id": "use",
+        "h": "Using the site",
+        "body": [
+          [
+            "Use the site lawfully, to learn about us or to contact us.",
+            "Give accurate information in forms, and share details about other people only with their permission.",
+            "Do not disrupt the site, probe its security, overload it, or send automated or bulk submissions.",
+            "Do not copy the site’s content wholesale or present it as your own."
+          ]
+        ]
+      },
+      {
+        "id": "ip",
+        "h": "Our content and names",
+        "body": [
+          "The site’s text, design and images, and the TGO, TGO优选, Lightspeed International and ZIG ZAG names and marks, belong to TGO Brands Limited, its group companies or their owners. You may link to any page and quote short passages with credit. Anything more needs our written permission."
+        ]
+      },
+      {
+        "id": "links",
+        "h": "Other websites",
+        "body": [
+          "The site links to government portals, WhatsApp, WeChat and other services we do not control. We are not responsible for their content or for how they handle your data."
+        ]
+      },
+      {
+        "id": "liability",
+        "h": "Our liability",
+        "body": [
+          "As far as the law allows, we are not liable for loss that comes from relying on the site’s general information, from the site being unavailable, or from websites we link to.",
+          "Nothing in these terms limits liability that the law does not allow to be limited, including for death or personal injury caused by negligence, or for fraud."
+        ]
+      },
+      {
+        "id": "law",
+        "h": "Governing law",
+        "body": [
+          "These terms are governed by the laws of the Hong Kong Special Administrative Region, and the courts of Hong Kong decide any dispute. This does not take away consumer protections that the law where you live gives you."
+        ]
+      },
+      {
+        "id": "language",
+        "h": "Language",
+        "body": [
+          "These terms and our privacy notice are published in English and Chinese. If the two versions differ, the English version applies."
+        ]
+      },
+      {
+        "id": "changes",
+        "h": "Changes and contact",
+        "body": [
+          "We may update these terms; the date at the top shows the current version. Questions go to hello@tgobrands.com."
+        ]
+      }
+    ]
+  }
+}

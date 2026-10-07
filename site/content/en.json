@@ -12,6 +12,8 @@
     "close": "Close",
     "skip": "Skip to content",
     "themeDark": "Dark mode",
+    "privacyNote": "We use these details only to reply to you and plan the work.",
+    "privacyLink": "Privacy notice",
     "langSwitch": "中文",
     "langSwitchLabel": "切换到中文",
     "route": "The route",

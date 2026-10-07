@@ -224,7 +224,12 @@ Rendered as non-clickable placeholders, or marked as drafts, until filled in:
   on call day and night) and re-check the Philippines entry rules and flights before each season
 - WeChat QR and the public WhatsApp number — `contact.channels.*.href` in the content files
 - Channel link (YouTube for EN, Bilibili for 中文 — never YouTube on `/zh/`) — `insights.videoHref`
-- Privacy and Terms pages (footer)
+- Privacy notice and terms of use (`/privacy/`, `/terms/`, content in `content/<lang>/privacy.json` and
+  `terms.json`): have a Hong Kong lawyer review both, and confirm the commitments they make — the
+  24-month deletion of enquiries that do not lead to work, the seven-year record retention, the 40-day
+  reply to access requests, hello@tgobrands.com as the privacy contact, and the list of providers
+  (Vercel, Resend, Meta/WhatsApp, your email provider, Google Fonts). Update the notice if analytics,
+  cookies or a lead database are ever added. Each form shows a one-line collection notice linked to it.
 - Real photography and founder portraits (every image is currently `photo.jpg`)
 - Resend and WhatsApp credentials for lead delivery (above)
 - The rest of Phase 2: a database for leads, the live Portal with sign-in, investor deck uploads

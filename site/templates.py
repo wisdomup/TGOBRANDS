@@ -6,6 +6,7 @@ static/site.js only enhances it (nav state, reveal, the survey stepper, the
 how-we-work dialog), so every page reads correctly with scripting off.
 """
 import json
+import re
 from html import escape
 
 SITE = 'https://tgobrands.com'
@@ -26,6 +27,8 @@ PATHS = {
     'travel': 'travel/',
     'estimator': 'tools/entry-estimator/',
     'portal': 'portal/',
+    'privacy': 'privacy/',
+    'terms': 'terms/',
 }
 # detail pages: key -> path pattern under the locale root
 DETAIL = {
@@ -186,7 +189,7 @@ def footer(c, lang):
     services += link(href(lang, 'services'), svc['labels']['all'])
     programmes = ''.join(link(href(lang, k), n[k]) for k in ('launch', 'travel', 'expeditions', 'estimator', 'portal', 'partner'))
     company = ''.join(link(href(lang, k), n[k]) for k in ('what', 'brands', 'founders', 'markets', 'insights', 'contact'))
-    legal = ''.join(action(x, '', cls='footer__pending') for x in f['legal'])
+    legal = ''.join(f'<a href="{href(lang, k)}">{e(label)}</a>' for k, label in zip(('privacy', 'terms'), f['legal']))
     return f'''<footer class="footer">
   <div class="footer__top">
     <div class="footer__brand">
@@ -761,11 +764,12 @@ def page_partner(c, lang):
     def nav_row(last=False):
         nxt = (f'<button class="btn btn--primary" type="submit">{e(p["submit"])}</button>' if last
                else f'<button class="btn btn--primary" type="button" data-next>{e(p["next"])}</button>')
+        note = privacy_note(c, lang) if last else ''
         return f'''
         <div class="survey__nav">
           <button class="btn btn--link" type="button" data-back>{e(p["back"])}</button>
           {nxt}
-        </div>'''
+        </div>{note}'''
 
     steps = ''
     for i, q in enumerate(qs):
@@ -1329,6 +1333,7 @@ def travel_form(c, lang, preset=''):
       <div class="field field--wide"><label for="t-message">{e(f["message"])}</label><textarea class="input" id="t-message" name="message" rows="3"></textarea></div>
       <p class="survey__error is-in" role="alert" data-travel-error hidden></p>
       <div class="tform__nav"><button class="btn btn--primary btn--lg" type="submit">{e(f["submit"])}</button></div>
+      {privacy_note(c, lang)}
       <noscript><p class="note">{e(f["noscript"])}</p></noscript>
     </form>
     <div class="panel tdone" data-travel-done hidden>
@@ -1614,6 +1619,47 @@ def page_guide(c, lang, i):
 
 # ── partner portal preview ────────────────────────────────────────────────
 
+def privacy_note(c, lang):
+    """The collection notice under a form's send button, linked to the privacy notice."""
+    u = c['ui']
+    return f'<p class="form-note">{e(u["privacyNote"])} <a href="{href(lang, "privacy")}">{e(u["privacyLink"])}</a></p>'
+
+
+EMAIL_RE = re.compile(r'[\w.+-]+@[\w-]+(?:\.[\w-]+)+')
+
+
+def linked(text):
+    """Escaped text with any email address turned into a mailto link."""
+    return EMAIL_RE.sub(lambda m: f'<a href="mailto:{m.group(0)}">{m.group(0)}</a>', e(text))
+
+
+def page_legal(c, lang, key):
+    d = c[key]
+    other = 'terms' if key == 'privacy' else 'privacy'
+    toc = ''.join(f'<li><a href="#{s["id"]}">{e(s["h"])}</a></li>' for s in d['sections'])
+
+    def block(b):
+        if isinstance(b, list):
+            return '<ul class="legal__list">' + ''.join(f'<li>{linked(x)}</li>' for x in b) + '</ul>'
+        return f'<p>{linked(b)}</p>'
+    sections = ''.join(f'''
+    <section class="legal__sec" id="{s["id"]}">
+      <h2>{e(s["h"])}</h2>
+      {''.join(block(b) for b in s["body"])}
+    </section>''' for s in d['sections'])
+    return f'''<main id="main" class="page page--legal">
+  {phead(d["kicker"], d["title"], d["sub"])}
+  <div class="wrap legal">
+    <p class="legal__updated">{e(d["updated"])}</p>
+    <nav class="panel legal__toc" aria-label="{e(d["tocLabel"])}">
+      <p class="eyebrow">{e(d["tocLabel"])}</p>
+      <ol>{toc}</ol>
+    </nav>{sections}
+    <p class="legal__other"><a class="btn btn--link" href="{href(lang, other)}">{e(c[other]["name"])} →</a></p>
+  </div>
+</main>'''
+
+
 def page_portal(c, lang):
     p = c['portal']
     tabs = p['tabs']
@@ -1683,6 +1729,8 @@ def page_portal(c, lang):
 
 
 PAGES = {
+    'privacy': lambda c, lang: page_legal(c, lang, 'privacy'),
+    'terms': lambda c, lang: page_legal(c, lang, 'terms'),
     'home': page_home,
     'what': page_what,
     'brands': page_brands,

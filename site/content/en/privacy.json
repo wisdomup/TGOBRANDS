@@ -1,0 +1,118 @@
+{
+  "privacy": {
+    "name": "Privacy notice",
+    "kicker": "Privacy",
+    "title": "Your details, used to reply to you.",
+    "sub": "What we collect when you contact us, why, who handles it, and how to see, correct or delete it.",
+    "updated": "Last updated 8 October 2026",
+    "tocLabel": "On this page",
+    "sections": [
+      {
+        "id": "who",
+        "h": "Who we are",
+        "body": [
+          "TGO Brands Limited (“TGO”, “we”) is a company in Hong Kong. We decide how the personal data described here is used. Our founders and team work from China, Pakistan, India, the Philippines and the UAE.",
+          "Questions about this notice, or about your data, go to hello@tgobrands.com."
+        ]
+      },
+      {
+        "id": "collect",
+        "h": "What we collect",
+        "body": [
+          "When you apply to work with us or ask us to plan a trip, you give us:",
+          [
+            "your name, company and country;",
+            "your email address, phone number, and WeChat or WhatsApp contact;",
+            "your answers — the kind of business you run, the markets you want, volumes or outlets, and timing;",
+            "for trips: destinations, dates, purpose, group size and where you travel from;",
+            "anything you write in the message box."
+          ],
+          "With the form we also record the language you used, how you reached us (the campaign tag in the link, or the website that sent you, if any) and a fit score that the form works out from your answers.",
+          "If you write to us by email, WhatsApp or WeChat, we receive what you send through that service.",
+          "We do not ask for passport numbers, payment details or identity documents on this website. If a trip needs them, we ask separately and explain how they are used."
+        ]
+      },
+      {
+        "id": "device",
+        "h": "What stays on your device",
+        "body": [
+          "The visa and passport check and the entry estimator run in your browser. The passport, destination and dates you enter there are not sent to us unless you then send the trip form.",
+          "Your browser keeps two small items: your light or dark theme choice, until you clear it, and — for the current visit only — how you reached the site, so it can be added to an enquiry you send.",
+          "We use no cookies, no analytics and no advertising trackers."
+        ]
+      },
+      {
+        "id": "use",
+        "h": "How we use it",
+        "body": [
+          [
+            "to reply to you and arrange a call, a meeting or a trip;",
+            "to assess fit and pass your enquiry to the founder who covers your market;",
+            "to prepare the proposals, quotes, invitation letters and itineraries you ask for;",
+            "to keep a record of what we agreed and meet our legal, tax and accounting duties."
+          ],
+          "We do not sell your data. We do not use it for direct marketing unless you agree first, and you can withdraw that agreement at any time."
+        ]
+      },
+      {
+        "id": "share",
+        "h": "Who handles it",
+        "body": [
+          "Your enquiry reaches our team by email, and the founder who covers your market by WhatsApp. These providers process it for us:",
+          [
+            "Vercel — hosts this website and runs the form;",
+            "Resend — delivers the enquiry email to our inbox;",
+            "Meta (WhatsApp Business) — delivers the alert to our founder;",
+            "our email provider — keeps the inbox the enquiry lands in;",
+            "Google Fonts — serves the typeface on English pages, so your browser sends your IP address to Google. Chinese pages do not use it."
+          ],
+          "If you choose to message us on WhatsApp, WeChat or email from a link on this site, that service’s own terms and privacy policy apply.",
+          "When you ask us to, we share what is needed with the people who deliver the work — for example hotels, drivers, interpreters, fair organisers, certification bodies and company-registration agents — and with authorities where the law requires it."
+        ]
+      },
+      {
+        "id": "transfer",
+        "h": "Across borders",
+        "body": [
+          "Our team works in several countries and our providers run servers in others, including the United States. Your data may therefore be handled outside the place where you live. We use providers that protect it, and give each one only what it needs."
+        ]
+      },
+      {
+        "id": "keep",
+        "h": "How long we keep it",
+        "body": [
+          "We keep an enquiry while we are talking to you. If it does not lead to work, we delete it within 24 months of our last contact. If it does, we keep the records for as long as the work lasts, then for as long as Hong Kong tax and company law requires — usually seven years."
+        ]
+      },
+      {
+        "id": "security",
+        "h": "How we protect it",
+        "body": [
+          "The form is sent over an encrypted connection. Our server passes the enquiry on and keeps no copy of it, and its request logs are switched off. Your enquiry then sits in our inbox and on the founder’s WhatsApp, which only our team can open."
+        ]
+      },
+      {
+        "id": "rights",
+        "h": "Your choices and rights",
+        "body": [
+          "You can ask for a copy of the personal data we hold about you, ask us to correct or delete it, or tell us to stop contacting you. Write to hello@tgobrands.com. We reply within 40 days, as Hong Kong law requires, and usually much sooner.",
+          "Depending on where you live, your local law may give you further rights — for example in mainland China, the Philippines, India or the European Union. You can also complain to a data protection authority, such as the Office of the Privacy Commissioner for Personal Data in Hong Kong."
+        ]
+      },
+      {
+        "id": "children",
+        "h": "Children",
+        "body": [
+          "This website is for businesses and adult travellers. We do not knowingly collect data from children under 18. If a trip includes children, a parent or guardian gives us their details."
+        ]
+      },
+      {
+        "id": "changes",
+        "h": "Changes to this notice",
+        "body": [
+          "When the way we handle data changes, we update this notice and the date at the top."
+        ]
+      }
+    ]
+  }
+}

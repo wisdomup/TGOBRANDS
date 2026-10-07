@@ -822,6 +822,28 @@ html:not(.js) .pane__title { position: static; width: auto; height: auto; clip-p
 .office { flex: 0 1 150px; }
 .office__city { margin-bottom: 8px; font-weight: 600; }
 
+/* ── Legal pages: privacy notice, terms of use ──────────────────────── */
+.wrap.legal { max-width: calc(760px + 2 * var(--gutter)); padding-bottom: var(--sec-y); }
+.page .legal__updated { margin-bottom: 24px; color: var(--ink-3); font-size: var(--t-caption); text-align: center; }
+.legal__toc { margin-bottom: 8px; }
+.legal__toc .eyebrow { margin-bottom: 12px; }
+.legal__toc ol { display: grid; gap: 4px 32px; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-left: 22px; }
+.legal__toc li { color: var(--ink-3); font-size: 15px; }
+.legal__toc a { display: inline-block; padding: 4px 0; font-size: 15px; }
+.legal__toc:hover { transform: none; }
+.legal__sec { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
+.legal__sec h2 { margin-bottom: 14px; font-size: var(--t-subhead); line-height: 1.2; }
+.legal__sec p + p, .legal__sec p + ul, .legal__sec ul + p { margin-top: 12px; }
+.legal__list { display: grid; gap: 8px; margin: 12px 0 0; padding-left: 22px; color: var(--ink-2); font-size: var(--t-body); line-height: 1.5; }
+.legal__list li::marker { color: var(--accent); }
+.legal__other { margin-top: 44px; text-align: center; }
+/* the collection notice under a form's send button */
+.page .form-note { margin-top: 14px; color: var(--ink-3); font-size: var(--t-caption); line-height: 1.5; text-align: center; }
+@media (max-width: 680px) {
+  .legal__toc ol { grid-template-columns: minmax(0, 1fr); }
+  .legal__toc a { display: flex; align-items: center; min-height: 44px; padding: 0; }
+}
+
 /* ── Partner survey: a centred sheet, one question per screen ────────── */
 .page--partner { min-height: calc(70vh + var(--nav-space)); }
 .survey__intro, .survey__step, .done {
@@ -1260,7 +1282,7 @@ html:lang(zh) {
   /* footer: stacked, links on one row with full-size touch targets */
   .footer__in { flex-direction: column; align-items: flex-start; gap: 4px; padding-block: 28px 20px; }
   .footer__links { gap: 0 28px; margin-top: 8px; }
-  .footer__links a { padding-block: 12px; }
+  .footer__links a { display: inline-block; min-width: 44px; padding-block: 12px; }
   .footer__links a::after { display: none; }
 }
 @media (max-width: 380px) {
