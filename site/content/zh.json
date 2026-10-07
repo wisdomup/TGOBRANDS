@@ -764,7 +764,8 @@
       "phone": "电话",
       "channel": "首选联系方式",
       "handle": "微信号 / WhatsApp 号码",
-      "message": "还有什么需要我们知道的"
+      "message": "还有什么需要我们知道的",
+      "need": "请至少留下邮箱、电话或微信 / WhatsApp，方便我们回复。"
     },
     "done": {
       "t": "收到，谢谢。",
@@ -785,7 +786,8 @@
         "source": "来源",
         "scoreLine": "线索评分"
       }
-    }
+    },
+    "sending": "正在发送…"
   },
   "contact": {
     "title": "找个真人聊。",

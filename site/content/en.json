@@ -764,7 +764,8 @@
       "phone": "Phone",
       "channel": "Preferred channel",
       "handle": "WeChat ID / WhatsApp number",
-      "message": "Anything else we should know"
+      "message": "Anything else we should know",
+      "need": "Add an email, a phone number or your WeChat / WhatsApp so we can reply."
     },
     "done": {
       "t": "Got it. Thank you.",
@@ -785,7 +786,8 @@
         "source": "Source",
         "scoreLine": "Lead score"
       }
-    }
+    },
+    "sending": "Sending…"
   },
   "contact": {
     "title": "Talk to a person.",

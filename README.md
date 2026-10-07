@@ -7,6 +7,7 @@ programme, market playbooks, an entry estimator, Expeditions and a Partner Porta
 | Folder | What it is |
 | --- | --- |
 | `site/` | The production site: static, pre-rendered, built with the Python standard library. Copy, templates and styles live here — see [site/README.md](site/README.md). |
+| `api/` | Vercel functions. `lead.py` delivers partner applications by email and WhatsApp — setup in [site/README.md](site/README.md#lead-delivery-apilead). |
 | `design/` | The "TGO Brands v3 Glass" Claude Design prototype the site was built from. Reference only; not deployed. |
 
 ```bash

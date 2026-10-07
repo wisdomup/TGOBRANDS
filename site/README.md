@@ -61,11 +61,13 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
   branches on the first answer (manufacturer, distributor/retailer, creator, investor), with
   questions and wording per audience. `?as=<audience>` preselects the branch and `?service=<slug>`
   notes the service the visitor came from. It scores the lead and routes it by market (PK → Umair,
-  IN → Aryan, PH → Umer, AE → Shamas, otherwise Umair). While the site is static the done screen hands
-  off: a WhatsApp message to that person, pre-filled with the answers, and an email fallback to
-  hello@tgobrands.com. The first-touch source (utm tag or referrer) rides along in the message. To send
-  leads to a backend instead, set `data-endpoint` on the form in `templates.py`; `site.js` then POSTs
-  the lead as JSON. Without JavaScript every question is listed in order.
+  IN → Aryan, PH → Umer, AE → Shamas, otherwise Umair). The last screen needs at least one way to
+  reply (email, phone or WeChat / WhatsApp). On submit the page POSTs the lead to `/api/lead`
+  (below); when the server confirms delivery the applicant sees "Got it". If delivery is not set up,
+  fails, or takes more than 15 seconds, the page hands off instead: a WhatsApp message to the market
+  lead, pre-filled with the answers, and an email fallback to help@tgobrands.com — no lead is lost
+  either way. The first-touch source (utm tag or referrer) rides along. A hidden honeypot field
+  catches form-filling bots. Without JavaScript every question is listed in order.
 - **Entry estimator** reads its data from a JSON block in the page; with JavaScript off it says so and
   points to the market playbooks, which carry the same facts.
 - **Portal tabs** are ARIA tabs (arrow keys, Home, End); without JavaScript every pane is listed.
@@ -82,6 +84,47 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
 - **Fonts** are system fonts only (SF / PingFang / YaHei) — nothing loads from Google Fonts, so the
   中文 site is not blocked in the mainland.
 
+## Lead delivery (`/api/lead`)
+
+`api/lead.py` at the repo root is a Vercel Python function (standard library only). For each
+application it sends an **email** to the team (via [Resend](https://resend.com)) with the readable
+application and the full record, reply-to set to the applicant, to help@tgobrands.com, and a **WhatsApp** message (via the
+WhatsApp Cloud API) to the founder who covers the applicant's market. The recipient is worked out on
+the server from the markets chosen; the founders' numbers are in `api/lead.py` and must match
+`WHATSAPP` in `templates.py` and `site.js`. Each channel switches on when its environment variables are
+set; with neither, the function answers 503 and the page hands off as above.
+
+Set these in Vercel → Project → Settings → Environment Variables (Production), then redeploy:
+
+| Variable | Value |
+| --- | --- |
+| `RESEND_API_KEY` | API key from Resend — the only one email needs |
+| `LEAD_EMAIL_FROM` | Optional; sender on the verified domain, default `TGO Brands <leads@tgobrands.com>` |
+| `LEAD_EMAIL_TO` | Optional; inboxes for every lead, comma-separated, default `help@tgobrands.com` |
+| `WHATSAPP_TOKEN` | A permanent system-user token with `whatsapp_business_messaging` |
+| `WHATSAPP_PHONE_ID` | The phone-number ID of the WhatsApp Business sending number |
+| `WHATSAPP_TEMPLATE` | Optional; template name, default `new_lead` |
+| `WHATSAPP_LANG` | Optional; template language code, default `en` |
+| `WHATSAPP_API_VERSION` | Optional; Graph API version, default `v23.0` |
+
+**Email setup (Resend).** Create an account, add the domain `tgobrands.com` and publish the DNS
+records Resend shows (SPF and DKIM) where the domain's DNS is managed, then create an API key.
+
+**WhatsApp setup (Meta).** In a Meta Business account, create an app with the WhatsApp product and
+add a sending number — a number not already registered in the WhatsApp or WhatsApp Business app.
+Create a system user with a permanent token. WhatsApp only lets a business start a conversation with
+an approved template, so submit this one (category Utility, language English, name `new_lead`):
+
+> New TGO lead for {{1}}: {{2}}, {{3}}. Markets: {{4}}. Lead score {{5}}/90. Reply to {{6}}. The full
+> application is in the leads inbox.
+
+Sample values for the review: `Umair`, `Li Wei (Shenzhen Power Co.)`, `Manufacturer`,
+`Pakistan, UAE`, `72`, `liwei@example.com`. Meta charges a small fee per template message. While the
+app is in test mode, only numbers added to its recipient list receive messages.
+
+Testing: the function's outbound calls go through `post_json()`, so tests can replace it and inspect
+exactly what would be sent to Resend and Meta.
+
 ## Still to supply
 
 Rendered as non-clickable placeholders, or marked as drafts, until filled in:
@@ -96,7 +139,8 @@ Rendered as non-clickable placeholders, or marked as drafts, until filled in:
 - Channel link (YouTube for EN, Bilibili for 中文 — never YouTube on `/zh/`) — `insights.videoHref`
 - Privacy and Terms pages (footer)
 - Real photography and founder portraits (every image is currently `photo.jpg`)
-- A backend (Phase 2) for stored leads, the live Portal and investor deck uploads
+- Resend and WhatsApp credentials for lead delivery (above)
+- The rest of Phase 2: a database for leads, the live Portal with sign-in, investor deck uploads
 
 ## What changed from the v3 prototype
 

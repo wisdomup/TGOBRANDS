@@ -279,14 +279,41 @@
       return lines.join('\n');
     }
 
+    var submit = $('button[type="submit"]', form);
+    var contactError = $('[data-contact-error]', form);
+    var sending = false;
+
+    function finish(lead, mode) {
+      var who = lead.assigned_to;
+      var msg = summary(lead);
+      $$('[data-mode]', done).forEach(function (el) { el.hidden = el.getAttribute('data-mode') !== mode; });
+      $$('[data-assignee]', done).forEach(function (el) { el.textContent = who; });
+      $$('[data-assignee-link]', done).forEach(function (a) { a.href = 'https://wa.me/' + WHATSAPP[who]; });
+      $('[data-wa]', done).href = 'https://wa.me/' + WHATSAPP[who] + '?text=' + encodeURIComponent(msg);
+      $('[data-mail]', done).href = 'mailto:help@tgobrands.com?subject=' + encodeURIComponent(text.labels.subject) +
+        '&body=' + encodeURIComponent(msg);
+      $('[data-score]', done).textContent = lead.score;
+      form.hidden = true;
+      done.hidden = false;
+      window.scrollTo({ top: 0 });
+      $('.done__title:not([hidden])', done).focus({ preventScroll: true });
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (sending) return;
       var data = new FormData(form);
+      // a lead the team cannot answer is no lead: ask for one way to reply
+      var reachable = ['contact_email', 'contact_phone', 'handle'].some(function (k) { return (data.get(k) || '').trim(); });
+      contactError.hidden = reachable;
+      if (!reachable) { $('#f-contact_email', form).focus(); return; }
+
       var lead = {
         created_at: new Date().toISOString(),
         locale: form.getAttribute('data-lang'),
         service: data.get('service') || '',
-        source: source()
+        source: source(),
+        website: data.get('website') || ''
       };
       // answers from the steps this applicant actually saw
       seq.forEach(function (step) {
@@ -299,30 +326,31 @@
         .forEach(function (k) { lead[k] = data.get(k) || ''; });
       lead.score = score(lead);
       lead.assigned_to = assignee(lead);
-      var who = lead.assigned_to;
 
-      // with a backend (data-endpoint set) the lead is sent; until then the
-      // applicant sends it themselves on WhatsApp or by email
+      // the server delivers the lead by email and WhatsApp; if it is not set up, cannot be
+      // reached or says no, the applicant sends it themselves — nothing is lost either way
       var endpoint = form.getAttribute('data-endpoint');
-      var mode = endpoint && window.fetch ? 'sent' : 'handoff';
-      if (mode === 'sent') {
-        fetch(endpoint, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(lead), keepalive: true
-        }).catch(function () {});
-      }
-      var msg = summary(lead);
-      $$('[data-mode]', done).forEach(function (el) { el.hidden = el.getAttribute('data-mode') !== mode; });
-      $$('[data-assignee]', done).forEach(function (el) { el.textContent = who; });
-      $$('[data-assignee-link]', done).forEach(function (a) { a.href = 'https://wa.me/' + WHATSAPP[who]; });
-      $('[data-wa]', done).href = 'https://wa.me/' + WHATSAPP[who] + '?text=' + encodeURIComponent(msg);
-      $('[data-mail]', done).href = 'mailto:hello@tgobrands.com?subject=' + encodeURIComponent(text.labels.subject) +
-        '&body=' + encodeURIComponent(msg);
-      $('[data-score]', done).textContent = lead.score;
-      form.hidden = true;
-      done.hidden = false;
-      window.scrollTo({ top: 0 });
-      $('.done__title:not([hidden])', done).focus({ preventScroll: true });
+      if (!endpoint || !window.fetch) return finish(lead, 'handoff');
+      sending = true;
+      var label = submit.textContent;
+      submit.disabled = true;
+      submit.textContent = text.labels.sending;
+      var timer, timeout = new Promise(function (resolve, reject) { timer = setTimeout(reject, 15000); });
+      var body = JSON.stringify(Object.assign({ summary: summary(lead) }, lead));
+      Promise.race([
+        fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body })
+          .then(function (r) { return r.ok ? r.json() : { ok: false }; }),
+        timeout
+      ]).then(function (res) {
+        if (res && res.ok && res.assigned_to) lead.assigned_to = res.assigned_to;
+        return res && res.ok ? 'sent' : 'handoff';
+      }, function () { return 'handoff'; }).then(function (mode) {
+        clearTimeout(timer);
+        sending = false;
+        submit.disabled = false;
+        submit.textContent = label;
+        finish(lead, mode);
+      });
     });
 
     if (done) {

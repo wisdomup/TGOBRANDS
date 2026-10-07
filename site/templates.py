@@ -777,11 +777,13 @@ def page_partner(c, lang):
     d = p['done']
     h = d['handoff']
     services = {x['slug']: x['name'] for x in c['services']['items']}
-    labels = {'service': h['service'], 'source': h['source'], 'score': h['scoreLine'], 'msg': h['msg'], 'subject': h['subject']}
+    labels = {'service': h['service'], 'source': h['source'], 'score': h['scoreLine'], 'msg': h['msg'], 'subject': h['subject'],
+              'sending': p['sending']}
     return f'''<main id="main" class="page page--partner">
-  <form class="survey" method="post" data-survey data-state="intro" data-endpoint="" data-lang="{lang}" data-of="{e(p["of"])}" novalidate>
+  <form class="survey" method="post" data-survey data-state="intro" data-endpoint="/api/lead" data-lang="{lang}" data-of="{e(p["of"])}" novalidate>
     <script type="application/json" data-survey-text>{json.dumps({"services": services, "labels": labels}, ensure_ascii=False)}</script>
     <input type="hidden" name="service" value="">
+    <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
     <section class="survey__intro" data-step="intro">
       {eyebrow(p["kicker"])}
       <h1 class="disp">{e(p["title"])}</h1>
@@ -795,7 +797,8 @@ def page_partner(c, lang):
         <p class="lead">{e(ct["h"])}</p>
         <div class="fields">{inputs}
         </div>
-        <div class="field field--wide"><label for="f-message">{e(ct["message"])}</label><textarea class="input" id="f-message" name="message" rows="4"></textarea></div>{nav_row(last=True)}
+        <div class="field field--wide"><label for="f-message">{e(ct["message"])}</label><textarea class="input" id="f-message" name="message" rows="4"></textarea></div>
+        <p class="survey__error is-in" role="alert" data-contact-error hidden>{e(ct["need"])}</p>{nav_row(last=True)}
       </div>
     </div>
   </form>
@@ -1175,7 +1178,7 @@ def page_expeditions(c, lang):
     types = ''.join(f'<div class="panel offer"><p class="offer__n">{n + 1:02d}</p><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>'
                     for n, x in enumerate(ex['types']))
     travel = ''.join(f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' for x in ex['travel'])
-    interest = 'mailto:hello@tgobrands.com?subject=' + ex['kicker'].replace(' ', '%20')
+    interest = 'mailto:help@tgobrands.com?subject=' + ex['kicker'].replace(' ', '%20')
     return f'''<main id="main" class="page page--expeditions">
   {phead(ex["kicker"], ex["title"], ex["sub"])}
 
