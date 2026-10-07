@@ -140,6 +140,20 @@ def face(c, name):
     return f'<img class="host__face" src="{p["face"]}" width="64" height="64" alt="" loading="lazy" decoding="async">' if p else ''
 
 
+def target(c, lang, ref):
+    """(url, name) for a cross-link given as {"service": slug}, {"brand": slug} or {"page": key}."""
+    if 'service' in ref:
+        x = service_by_slug(c, ref['service'])
+        return href(lang, 'service', x['slug']), x['name']
+    if 'brand' in ref:
+        b = next(b for b in c['brands']['items'] if b['slug'] == ref['brand'])
+        return href(lang, 'brand', b['slug']), b['name']
+    key = ref['page']
+    pages = {'packages': 'packagesPage', 'visas': 'visasPage', 'booking': 'bookingPage'}
+    name = c['travel'][pages[key]]['name'] if key in pages else c['nav'][key]
+    return href(lang, key), name
+
+
 def eyebrow(text, cls=''):
     return f'<p class="eyebrow{" " + cls if cls else ""}">{e(text)}</p>'
 
@@ -205,29 +219,46 @@ def nav(c, lang, page, alt_href):
 
 
 def footer(c, lang):
+    """The footer is a compact site map: every page, grouped as the site is, in small type."""
     f, n = c['footer'], c['nav']
     cols = f['cols']
-    svc = c['services']
-    link = lambda url, label: f'<a href="{url}">{e(label)}</a>'
-    services = ''.join(link(href(lang, 'services') + '#' + g['key'], g['name']) for g in svc['groups'])
-    services += link(href(lang, 'services'), svc['labels']['all'])
-    programmes = ''.join(link(href(lang, k), n[k]) for k in ('launch', 'travel', 'expeditions', 'estimator', 'portal', 'partner'))
-    company = ''.join(link(href(lang, k), n[k]) for k in ('what', 'brands', 'founders', 'markets', 'insights', 'contact'))
-    legal = ''.join(f'<a href="{href(lang, k)}">{e(label)}</a>' for k, label in zip(('privacy', 'terms'), f['legal']))
+    t = c['travel']
+
+    def col(title, items, head=None, wide=False):
+        h = f'<a class="footer__h" href="{head}">{e(title)}</a>' if head else f'<p class="footer__h">{e(title)}</p>'
+        links = ''.join(f'<a href="{u}">{e(label)}</a>' for u, label in items)
+        cls = 'footer__col footer__col--wide' if wide else 'footer__col'
+        return f'\n      <nav class="{cls}" aria-label="{e(title)}">{h}<div class="footer__list">{links}</div></nav>'
+
+    services = [(href(lang, 'service', x['slug']), x['name']) for x in c['services']['items']]
+    travel = ([(href(lang, k), t[p]['name']) for k, p in (('packages', 'packagesPage'), ('visas', 'visasPage'), ('booking', 'bookingPage'))]
+              + [(href(lang, 'expeditions'), n['expeditions'])]
+              + [(href(lang, 'guide', g['slug']), g['name']) for g in t['guides']])
+    markets = ([(href(lang, 'playbook', b['slug']), c['markets']['items'][b['market']]['c']) for b in c['playbooks']['items']]
+               + [(href(lang, 'estimator'), n['estimator'])])
+    who = ([(href(lang, 'audience', a['slug']), a['name']) for a in c['audiences']['items']]
+           + [(href(lang, 'launch'), n['launch']), (href(lang, 'portal'), n['portal'])])
+    brands = [(href(lang, 'brand', b['slug']), b['name']) for b in c['brands']['items']]
+    company = ([(href(lang, k), n[k]) for k in ('what', 'founders', 'insights', 'contact', 'partner')]
+               + [(href(lang, 'privacy'), c['privacy']['name']), (href(lang, 'terms'), c['terms']['name'])])
+    sitemap = (col(cols['services'], services, href(lang, 'services'), wide=True)
+               + col(cols['travel'], travel, href(lang, 'travel'))
+               + col(cols['markets'], markets, href(lang, 'markets'))
+               + col(cols['who'], who)
+               + col(cols['brands'], brands, href(lang, 'brands'))
+               + col(cols['company'], company))
     return f'''<footer class="footer">
   <div class="footer__top">
     <div class="footer__brand">
       <a class="footer__logo" href="{href(lang, 'home')}">TGO<span>Brands</span></a>
       <p>{e(f["about"])}</p>
     </div>
-    <nav class="footer__col" aria-label="{e(cols["services"])}"><p class="footer__h">{e(cols["services"])}</p>{services}</nav>
-    <nav class="footer__col" aria-label="{e(cols["programmes"])}"><p class="footer__h">{e(cols["programmes"])}</p>{programmes}</nav>
-    <nav class="footer__col" aria-label="{e(cols["company"])}"><p class="footer__h">{e(cols["company"])}</p>{company}</nav>
+    <div class="footer__map" role="group" aria-label="{e(cols["sitemap"])}">{sitemap}
+    </div>
   </div>
   <div class="footer__in">
     <p>{e(f["tag"])}</p>
     <p>{e(f["note"])}</p>
-    <div class="footer__links">{legal}</div>
     <button class="theme-switch" type="button" role="switch" aria-checked="false" data-theme-toggle>
       <span class="theme-switch__label">{e(c["ui"]["themeDark"])}</span>
       <span class="theme-switch__track" aria-hidden="true">
@@ -394,12 +425,18 @@ def page_home(c, lang):
   <section class="band">
     <div class="wrap sec">
       <header class="shead">{eyebrow(h["toolsKicker"])}<h2 class="sech">{e(h["toolsTitle"])}</h2></header>
-      <div class="grid grid--2 tools">
+      <div class="grid grid--3 tools">
         <div class="panel tool">
           {eyebrow(c["nav"]["estimator"])}
           <h3>{e(est["title"])}</h3>
           <p>{e(h["estimatorNote"])}</p>
           <div class="tool__chips">{est_chips}</div>
+        </div>
+        <div class="panel tool">
+          {eyebrow(h["visaTool"]["kicker"])}
+          <h3>{e(h["visaTool"]["title"])}</h3>
+          <p>{e(h["visaTool"]["d"])}</p>
+          <a class="btn btn--outline tool__cta" href="{href(lang, 'travel')}#check">{e(c["checker"]["cta"])}</a>
         </div>{trip_card(c, lang, c['expeditions']['editions'][0], h['tripKicker'])}
       </div>
     </div>
@@ -463,11 +500,18 @@ def poster(c, lang):
 
 def page_what(c, lang):
     w = c['what']
+
+    def pillar_link(p):
+        if not p.get('link'):
+            return ''
+        url, name = target(c, lang, p['link'])
+        return f'\n      <a class="btn btn--link" href="{url}">{e(name)} →</a>'
+
     pillars = ''.join(f'''
     <div class="pillar-row">
       <p class="pillar__n">{e(p["n"])}</p>
       <div><h2>{e(p["t"])}</h2><p class="pillar-row__who">{e(p["w"])}</p></div>
-      <p class="pillar-row__d">{e(p["d"])}</p>
+      <p class="pillar-row__d">{e(p["d"])}</p>{pillar_link(p)}
     </div>''' for p in w['pillars'])
     steps = ''.join(f'''
           <div class="step"><p class="step__n">{e(s["n"])}</p><h3>{e(s["t"])}</h3><p>{e(s["d"])}</p></div>''' for s in w['steps'])
@@ -570,8 +614,10 @@ def brand_pager(c, lang, i):
     return pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])
 
 
-def person(c, p, team=False):
-    tags = ''.join(f'<span class="tag tag--outline">{e(v)}</span>' for v in p['v'])
+def person(c, lang, p, team=False):
+    brands = {b['name']: b['slug'] for b in c['brands']['items']}
+    tags = ''.join(f'<a class="tag tag--outline tag--link" href="{href(lang, "brand", brands[v])}">{e(v)}</a>' if v in brands
+                   else f'<span class="tag tag--outline">{e(v)}</span>' for v in p['v'])
     photo = '' if team else portrait(c, p['name'], alt=p['name'])
     contact = f'<a class="person__contact" href="{e(p["waHref"])}" target="_blank" rel="noopener">{e(p["contact"])}</a>' if team else ''
     return f'''
@@ -592,8 +638,8 @@ def page_founders(c, lang):
     f = c['founders']
     acts = ''.join(f'''
           <div class="act">{eyebrow(a["n"])}<h2>{e(a["t"])}</h2><p>{e(a["d"])}</p></div>''' for a in f['acts'])
-    people = ''.join(person(c, p) for p in f['people'])
-    team = ''.join(person(c, p, team=True) for p in f['team'])
+    people = ''.join(person(c, lang, p) for p in f['people'])
+    team = ''.join(person(c, lang, p, team=True) for p in f['team'])
     return f'''<main id="main" class="page page--founders">
   <section class="band band--ruled">
     <div class="wrap story">
@@ -728,6 +774,10 @@ def page_post(c, lang, i):
     p = posts[i]
     ui = c['ui']
     body = ''.join(f'<p>{e(x)}</p>' for x in p.get('body', [])) or f'<p class="post-body__soon">{e(ui["articleSoon"])}</p>'
+    related = ''
+    if p.get('rel'):
+        url, name = target(c, lang, p['rel'])
+        related = f'\n    <p class="post-rel">{eyebrow(ui["related"])}<a class="btn btn--outline" href="{url}">{e(name)} →</a></p>'
     prev = (href_post(lang, posts[i - 1]['slug']), posts[i - 1]['t']) if i > 0 else None
     nxt = (href_post(lang, posts[i + 1]['slug']), posts[i + 1]['t']) if i + 1 < len(posts) else None
     return f'''<main id="main" class="page page--post">
@@ -741,7 +791,7 @@ def page_post(c, lang, i):
 
   <section class="wrap post-body">
     {img('16x9')}
-    {body}
+    {body}{related}
   </section>
   {pager(ui["allInsights"], prev, nxt, ui["prevArticle"], ui["nextArticle"])}
 </main>'''
@@ -971,6 +1021,10 @@ def page_service(c, lang, i):
     deliver = ''.join(f'<li>{e(d)}</li>' for d in x['deliverables'])
     related = ''.join(service_card(c, lang, service_by_slug(c, r)) for r in x['related'])
     catalog = service_catalog(c, lang, x['catalog']) if x.get('catalog') else ''
+    also = ''
+    if x.get('links'):
+        also_links = ''.join(f'<a class="btn btn--link" href="{u}">{e(nm)} →</a>' for u, nm in (target(c, lang, {'page': k}) for k in x['links']))
+        also = f'\n    <div class="svc-also">{eyebrow(L["also"])}{also_links}</div>'
     prev = ((href(lang, 'service', items[i - 1]['slug']), items[i - 1]['name']) if i > 0
             else (href(lang, 'services'), L['all']))
     nxt = ((href(lang, 'service', items[i + 1]['slug']), items[i + 1]['name']) if i + 1 < len(items)
@@ -989,7 +1043,7 @@ def page_service(c, lang, i):
       <div class="panel svc-problem">{eyebrow(L["problem"])}<p>{e(x["problem"])}</p></div>
       <div class="panel svc-deliver">{eyebrow(L["deliverables"])}<ul class="ticks">{deliver}</ul></div>
     </div>
-    <p class="note">{e(L["indicative"])}</p>
+    <p class="note">{e(L["indicative"])}</p>{also}
   </section>{catalog}
 
   <section class="band">

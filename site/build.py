@@ -227,10 +227,10 @@ def llms(c):
     lines = [
         '# TGO Brands',
         '',
-        '> TGO Brands Limited is a Hong Kong holding company that brings Chinese consumer-electronics '
-        'brands into Pakistan, India, the Philippines and the UAE: distribution, brand building, '
-        'market entry and certification, sourcing, and on-the-ground market survey trips — and a travel desk '
-        'for business delegations, buyers, company groups and families travelling between China and those markets.',
+        '> TGO Brands Limited is a Hong Kong company that takes Chinese manufacturers and their brands to the '
+        'world: distribution, brand building, market entry and certification, sourcing, market survey trips, '
+        'and IT and systems (software, cloud, data, AI, security, ERP and CRM) — with a travel agency for '
+        'business trips, trade fairs, holidays, visas and documents.',
         '',
         c['home']['premise'][2],
         '',
@@ -241,6 +241,11 @@ def llms(c):
                 'insights', 'partner', 'contact'):
         section = c[key]
         lines.append(f'- [{c["nav"][key]}]({T.SITE}{T.href("en", key)}): {section["sub"]}')
+    for key, page in (('packages', 'packagesPage'), ('visas', 'visasPage'), ('booking', 'bookingPage')):
+        p = c['travel'][page]
+        lines.append(f'- [{p["name"]}]({T.SITE}{T.href("en", key)}): {p["sub"]}')
+    for key in ('privacy', 'terms'):
+        lines.append(f'- [{c[key]["name"]}]({T.SITE}{T.href("en", key)}): {c[key]["sub"]}')
     lines += ['', '## Services', '']
     for x in c['services']['items']:
         lines.append(f'- [{x["name"]}]({T.SITE}{T.href("en", "service", x["slug"])}): {x["one"]}')

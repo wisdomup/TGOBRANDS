@@ -18,7 +18,7 @@
       "problem": "The problem",
       "all": "All services",
       "cta": "Start with this service",
-      "indicative": "Timelines are typical ranges; your market lead confirms them for your product."
+      "also": "See also", "indicative": "Timelines are typical ranges; your market lead confirms them for your product."
     },
     "models": {
       "fixed": "Fixed fee",
@@ -42,7 +42,7 @@
         "problem": "Decisions made from a desk in Shenzhen miss what a day in the local market shows in an hour: who really sets the price, and who you can trust.",
         "deliverables": ["Planned itinerary with retail clusters and distributor meetings", "Introductions to vetted distributors and partners", "Certification and customs briefing on the ground", "Written debrief and next-step plan"],
         "timeline": "4–7 days on the ground", "model": ["fixed"], "lead": "Umer", "markets": "Worldwide",
-        "related": ["travel-ground-support", "research-development", "company-registration"]
+        "related": ["travel-ground-support", "research-development", "company-registration"], "links": ["expeditions", "packages"]
       },
       {
         "slug": "travel-ground-support", "group": "enter",
@@ -51,7 +51,7 @@
         "problem": "A first trip to a new market loses days to visas, transport and translation. We remove that friction so the time goes to meetings.",
         "deliverables": ["Visa invitation letters and guidance", "Hotels and in-country transport, including airport pick and drop", "Interpreters for Urdu, Hindi, Filipino, Arabic and Mandarin", "A trip planner on call for the whole visit"],
         "timeline": "Booked in 1–2 weeks", "model": ["fixed"], "lead": "Umer", "markets": "Worldwide",
-        "related": ["market-survey-trips", "company-registration", "research-development"]
+        "related": ["market-survey-trips", "company-registration", "research-development"], "links": ["packages", "visas", "booking"]
       },
       {
         "slug": "company-registration", "group": "enter",

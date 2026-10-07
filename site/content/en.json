@@ -31,7 +31,8 @@
     "pages": "Insights pages",
     "pageN": "Page {n}",
     "continue": "Keep exploring",
-    "articleSoon": "The full article is coming soon."
+    "articleSoon": "The full article is coming soon.",
+    "related": "Related"
   },
   "dir": "latin",
   "nav": {
@@ -128,30 +129,44 @@
     "toolsKicker": "Before you commit",
     "toolsTitle": "Check the market first. Then go and see it.",
     "estimatorNote": "Pick a product and a market: approvals, time to the first shelf, duties and a landed-cost range in seconds.",
-    "tripKicker": "Next expedition"
+    "tripKicker": "Next expedition",
+    "visaTool": {
+      "kicker": "Visa check",
+      "title": "Any passport, any country.",
+      "d": "The visa you need, how long you can stay and when to apply — checked in seconds."
+    }
   },
   "what": {
     "title": "The bridge.",
     "kicker": "What we do",
-    "sub": "Five things, described plainly. If one of them is what you need, the next section tells you exactly how it starts.",
+    "sub": "Seven things, described plainly. If one of them is what you need, the next section tells you exactly how it starts.",
     "pillars": [
       {
         "n": "01",
         "t": "Distribution",
         "w": "For manufacturers and brand owners with a product that already sells somewhere.",
-        "d": "We put Chinese products into shops in new markets — the real channel, not a warehouse. Modern trade where it exists, and the ten-thousand-shop informal trade where it does not, which in most of the world is most of it."
+        "d": "We put Chinese products into shops in new markets — the real channel, not a warehouse. Modern trade where it exists, and the ten-thousand-shop informal trade where it does not, which in most of the world is most of it.",
+        "link": {
+          "service": "distribution-sales"
+        }
       },
       {
         "n": "02",
         "t": "Brand building",
         "w": "For factories that make well and market badly.",
-        "d": "We build and own brands under TGO: naming, packaging, price architecture, warranty terms, retail training. You keep making the product. The brand belongs to the market it sells in."
+        "d": "We build and own brands under TGO: naming, packaging, price architecture, warranty terms, retail training. You keep making the product. The brand belongs to the market it sells in.",
+        "link": {
+          "service": "brand-building"
+        }
       },
       {
         "n": "03",
         "t": "Market entry",
         "w": "For anyone who has been told \"just find a distributor\".",
-        "d": "Certification with each market’s standards body, duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth."
+        "d": "Certification with each market’s standards body, duty and landed-cost modelling, channel strategy, warranty and after-sales structure. This is the work that decides whether the first shipment becomes the tenth.",
+        "link": {
+          "service": "certification-compliance"
+        }
       },
       {
         "n": "04",
@@ -163,7 +178,28 @@
         "n": "05",
         "t": "Market survey trips",
         "w": "For teams who need to see a market before they commit to it.",
-        "d": "We take your team on the ground in the market you are entering to survey the real conditions — retail, competition, pricing — then help set up the local company needed to expand there."
+        "d": "We take your team on the ground in the market you are entering to survey the real conditions — retail, competition, pricing — then help set up the local company needed to expand there.",
+        "link": {
+          "service": "market-survey-trips"
+        }
+      },
+      {
+        "n": "06",
+        "t": "IT & systems",
+        "w": "For manufacturers and distributors whose systems have not kept up with their growth.",
+        "d": "Websites and online stores, ERP and CRM, cloud, data, AI and security — designed, built and run by one team, from a launch website to the systems a whole distribution business runs on.",
+        "link": {
+          "service": "it-solutions"
+        }
+      },
+      {
+        "n": "07",
+        "t": "Travel & visas",
+        "w": "For delegations, buyers, company groups and families.",
+        "d": "Business weeks, trade fairs and holidays, and the visas and documents behind them — planned, booked and hosted by people who live where you are going.",
+        "link": {
+          "page": "travel"
+        }
       }
     ],
     "startKicker": "How a partnership actually starts",
@@ -294,8 +330,8 @@
       {
         "name": "Umair Shad",
         "city": "Pakistan",
-        "role": "Brand building · electronics · solar & lithium",
-        "bio": "Fronts the TGO channel and runs the Pakistan market. Built and operates Bulk Gurus and Group ventures across electronics, solar and lithium storage. Handles manufacturer relationships in China and anything to do with putting a brand on a shelf for the first time.",
+        "role": "Brand building · IT & systems · electronics & solar",
+        "bio": "Fronts the TGO channel and runs the Pakistan market. Built and operates Bulk Gurus and Group ventures across electronics, solar and lithium storage. Handles manufacturer relationships in China and anything to do with putting a brand on a shelf for the first time. Leads TGO’s IT and systems work, from launch websites to ERP.",
         "v": [
           "Bulk Gurus",
           "Group / Pakistan"
@@ -394,9 +430,35 @@
       "All",
       "Market notes",
       "Manufacturing",
-      "Building TGO"
+      "Building TGO",
+      "Systems",
+      "Travel"
     ],
     "posts": [
+      {
+        "d": "2026-09-29",
+        "c": "Travel",
+        "t": "Check the visa before you book the flight",
+        "ex": "Why the visa should decide the dates, not the other way round — and how far ahead each kind of visa needs planning.",
+        "lang": "EN · 中文",
+        "slug": "check-the-visa-first",
+        "body": [],
+        "rel": {
+          "page": "visas"
+        }
+      },
+      {
+        "d": "2026-09-15",
+        "c": "Systems",
+        "t": "Field sales you can prove",
+        "ex": "Visits checked against the shop’s location, orders and stock on one ledger: what changes when a distributor can see what the field team actually did.",
+        "lang": "EN · 中文",
+        "slug": "field-sales-you-can-prove",
+        "body": [],
+        "rel": {
+          "brand": "seetrack"
+        }
+      },
       {
         "d": "2026-08-18",
         "c": "Market notes",
@@ -404,7 +466,10 @@
         "ex": "Six SKUs, and none of them are the one your marketing deck is built around. A morning spent counting what is on the counter.",
         "lang": "EN · 中文",
         "slug": "saddar-phone-shop",
-        "body": []
+        "body": [],
+        "rel": {
+          "service": "distribution-sales"
+        }
       },
       {
         "d": "2026-08-11",
@@ -413,7 +478,10 @@
         "ex": "How golden samples drift, why it is usually not dishonesty, and the two checks that catch it before the shipment.",
         "lang": "EN · 中文",
         "slug": "sample-passes-container-fails",
-        "body": []
+        "body": [],
+        "rel": {
+          "page": "launch"
+        }
       },
       {
         "d": "2026-08-04",
@@ -422,7 +490,10 @@
         "ex": "Our brands carry their own names and TGO stays behind them. Why we built the company that way.",
         "lang": "EN only",
         "slug": "why-the-parent-stays-invisible",
-        "body": []
+        "body": [],
+        "rel": {
+          "service": "brand-building"
+        }
       },
       {
         "d": "2026-07-28",
@@ -431,7 +502,10 @@
         "ex": "What the India certification clock actually looks like, and how to run it in parallel instead of in sequence.",
         "lang": "EN · 中文",
         "slug": "bis-is-a-calendar",
-        "body": []
+        "body": [],
+        "rel": {
+          "service": "certification-compliance"
+        }
       }
     ],
     "videoKicker": "The channel",
@@ -444,7 +518,9 @@
       "",
       "market-notes",
       "manufacturing",
-      "building-tgo"
+      "building-tgo",
+      "systems",
+      "travel"
     ]
   },
   "partner": {
@@ -885,7 +961,12 @@
     "cols": {
       "services": "Services",
       "programmes": "Programmes",
-      "company": "Company"
+      "company": "Company",
+      "travel": "Travel",
+      "markets": "Markets",
+      "who": "Who we work with",
+      "brands": "Brands",
+      "sitemap": "Site map"
     },
     "about": "TGO Brands is a Hong Kong company that takes Chinese manufacturers and their brands to the world — research, set-up, selling and the systems behind it."
   }

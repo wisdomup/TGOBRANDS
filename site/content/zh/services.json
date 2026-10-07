@@ -18,7 +18,7 @@
       "problem": "要解决的问题",
       "all": "全部服务",
       "cta": "从这项服务开始",
-      "indicative": "周期为通常范围，具体以您的市场负责人针对产品确认为准。"
+      "also": "另见", "indicative": "周期为通常范围，具体以您的市场负责人针对产品确认为准。"
     },
     "models": {
       "fixed": "固定费用",
@@ -42,7 +42,7 @@
         "problem": "在深圳办公室做的决定，往往漏掉在当地市场待一小时就能看清的事：价格到底由谁定，谁值得信任。",
         "deliverables": ["包含零售集群与分销商会面的行程规划", "引荐经过审核的分销商与合作方", "现场的认证与清关说明会", "书面复盘与下一步计划"],
         "timeline": "实地 4–7 天", "model": ["fixed"], "lead": "Umer", "markets": "全球",
-        "related": ["travel-ground-support", "research-development", "company-registration"]
+        "related": ["travel-ground-support", "research-development", "company-registration"], "links": ["expeditions", "packages"]
       },
       {
         "slug": "travel-ground-support", "group": "enter",
@@ -51,7 +51,7 @@
         "problem": "第一次去新市场，签证、交通和语言就会耗掉好几天。我们把这些摩擦拿掉，让时间都用在会面上。",
         "deliverables": ["签证邀请函与办理指引", "酒店与当地交通，包括机场接送", "乌尔都语、印地语、菲律宾语、阿拉伯语与中文翻译", "全程随时联系的行程管家"],
         "timeline": "1–2 周内安排完成", "model": ["fixed"], "lead": "Umer", "markets": "全球",
-        "related": ["market-survey-trips", "company-registration", "research-development"]
+        "related": ["market-survey-trips", "company-registration", "research-development"], "links": ["packages", "visas", "booking"]
       },
       {
         "slug": "company-registration", "group": "enter",
