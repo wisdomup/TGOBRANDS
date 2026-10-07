@@ -131,7 +131,7 @@
         "one": "Design, software, cloud, data, AI and security from one team — from a launch website to the systems a whole distribution business runs on.",
         "problem": "A new market needs new systems all at once: a site in the local language, a shop that takes local payments, devices, data and security. Bought from five vendors, they rarely work together.",
         "deliverables": ["One technical lead for every project", "Written scope, fixed price or a monthly retainer", "Security and backups set up from day one", "Documentation and handover, so you own every system"],
-        "timeline": "2–16 weeks per project", "model": ["fixed", "retainer"], "lead": "Aryan", "markets": "Worldwide",
+        "timeline": "2–16 weeks per project", "model": ["fixed", "retainer"], "lead": "Umair", "markets": "Worldwide",
         "related": ["erp-crm-integration", "marketplaces", "brand-building"],
         "catalog": {
           "kicker": "What we build and run", "title": "Nine practices, one team.",
@@ -164,7 +164,7 @@
         "one": "Inventory, orders, dealers and customers in one connected system — for manufacturers and distributors.",
         "problem": "Stock in one spreadsheet, dealers in another and orders on WhatsApp. Growth breaks it; you cannot manage what you cannot see.",
         "deliverables": ["System choice (Odoo, Zoho, HubSpot and others)", "Set-up for inventory, orders, dealers and invoicing", "Integration with marketplaces, accounting and WhatsApp", "Team training and ongoing support"],
-        "timeline": "4–12 weeks", "model": ["fixed", "retainer"], "lead": "Aryan", "markets": "Worldwide",
+        "timeline": "4–12 weeks", "model": ["fixed", "retainer"], "lead": "Umair", "markets": "Worldwide",
         "related": ["it-solutions", "distribution-sales", "logistics-landed-cost"]
       },
       {

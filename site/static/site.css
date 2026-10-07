@@ -552,6 +552,7 @@ a:hover .photo img, article:hover .photo img { transform: scale(1.05); }
 .brand-hero .lead { margin-inline: 0; text-align: left; }
 .brand-hero .eyebrow { margin-bottom: 16px; }
 .brand-hero h1 { margin-bottom: 24px; }
+.brand-hero__site { margin-top: 28px; }
 .spec { padding-top: 16px; border-top: 1px solid var(--line); }
 .spec .eyebrow { margin-bottom: 16px; }
 .spec__item { margin-bottom: 8px; }

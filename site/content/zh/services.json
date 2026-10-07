@@ -131,7 +131,7 @@
         "one": "设计、软件、云、数据、AI 与安全，由同一个团队完成——从上市官网，到支撑整个分销业务的系统。",
         "problem": "进入新市场，需要一次到位的整套系统：当地语言的网站、能收当地付款的网店、设备、数据与安全。分别从五家供应商采购，往往彼此不通。",
         "deliverables": ["每个项目一位技术负责人", "书面范围，固定报价或按月服务", "从第一天起配置安全与备份", "完整文档与交接，每个系统都归您所有"],
-        "timeline": "每个项目 2–16 周", "model": ["fixed", "retainer"], "lead": "Aryan", "markets": "全球",
+        "timeline": "每个项目 2–16 周", "model": ["fixed", "retainer"], "lead": "Umair", "markets": "全球",
         "related": ["erp-crm-integration", "marketplaces", "brand-building"],
         "catalog": {
           "kicker": "我们构建与运维的", "title": "九项能力，一个团队。",
@@ -164,7 +164,7 @@
         "one": "库存、订单、经销商与客户放进同一个互联系统——适用于制造商与分销商。",
         "problem": "库存在一张表里，经销商在另一张表里，订单在 WhatsApp 上。规模一上来就会乱；看不见的东西就管不了。",
         "deliverables": ["系统选型（Odoo、Zoho、HubSpot 等）", "库存、订单、经销商与开票的配置", "与电商平台、财务和 WhatsApp 的集成", "团队培训与持续支持"],
-        "timeline": "4–12 周", "model": ["fixed", "retainer"], "lead": "Aryan", "markets": "全球",
+        "timeline": "4–12 周", "model": ["fixed", "retainer"], "lead": "Umair", "markets": "全球",
         "related": ["it-solutions", "distribution-sales", "logistics-landed-cost"]
       },
       {

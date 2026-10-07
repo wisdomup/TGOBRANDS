@@ -529,13 +529,19 @@ def page_brand(c, lang, i):
     it = b['items'][i]
     L = b['labels']
     rng = ''.join(f'<p class="spec__item">{e(r)}</p>' for r in it['range'])
+    # a brand with its own website gets a way out to it
+    site = ''
+    if it.get('url'):
+        domain = it['url'].split('//', 1)[-1].rstrip('/')
+        site = (f'\n      <p class="brand-hero__site"><a class="btn btn--outline" href="{e(it["url"])}" target="_blank" rel="noopener">'
+                f'{e(L["site"].format(domain=domain))} ↗</a></p>')
     return f'''<main id="main" class="page page--brand">
   <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'brands')}">← {e(L["back"])}</a></section>
   <section class="wrap brand-hero">
     <div>
       {eyebrow(it["cat"])}
       <h1 class="disp">{e(it["name"])}</h1>
-      <p class="lead" style="--mw:48ch">{e(it["pos"])}</p>
+      <p class="lead" style="--mw:48ch">{e(it["pos"])}</p>{site}
     </div>
     {img('4x3')}
   </section>

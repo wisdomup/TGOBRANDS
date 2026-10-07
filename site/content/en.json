@@ -238,6 +238,23 @@
         "channel": "Mobile retail, general trade, e-commerce marketplaces",
         "note": "Packaging and warranty card system in design; first retail training pack ships with the trial container.",
         "slug": "zig-zag"
+      },
+      {
+        "name": "SeeTrack",
+        "cat": "Field sales & distribution software",
+        "mk": "PK",
+        "st": "Live · demos open",
+        "pos": "Proof of what the field team did, not a report of what they said. Every visit is GPS-checked against the shop, and every order, stock move and return lands on one ledger — in the phone’s browser, with nothing to install.",
+        "range": [
+          "Shop visits with GPS check-in and photo proof",
+          "Routes, orders and invoicing",
+          "Warehouse stock, returns and daily reconciliation",
+          "Targets, attendance and 16 reports"
+        ],
+        "channel": "FMCG and pharmaceutical distributors, wholesalers and field sales teams",
+        "note": "Runs in the phone’s browser with no app to install. Seven roles, with permissions enforced on the server; stock is reconciled against the ledger every day.",
+        "slug": "seetrack",
+        "url": "https://seetrack.co"
       }
     ],
     "detailKicker": "Brand detail",
@@ -247,7 +264,8 @@
       "channel": "Target channel",
       "mk": "Market availability",
       "st": "Status",
-      "back": "All brands"
+      "back": "All brands",
+      "site": "Visit {domain}"
     }
   },
   "founders": {
