@@ -771,17 +771,21 @@
     });
   }
 
-  /* ── Theme: follows the device until the visitor picks one in the footer ──
-     The head script sets data-theme before first paint; this keeps the switch,
-     the stored choice and live device changes in step. */
+  /* ── Theme: follows the device until the visitor picks one (nav or footer) ──
+     The head script sets data-theme before first paint; this keeps both
+     switches, the stored choice and live device changes in step. */
   function initTheme() {
     var KEY = 'tgo-theme';
     var media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
     var stored = function () { try { var v = localStorage.getItem(KEY); return v === 'dark' || v === 'light' ? v : null; } catch (e) { return null; } };
     var switches = $$('[data-theme-toggle]');
+    var bars = $$('meta[name="theme-color"]');
     function apply(mode) {
       doc.setAttribute('data-theme', mode);
       switches.forEach(function (b) { b.setAttribute('aria-checked', mode === 'dark' ? 'true' : 'false'); });
+      // the browser bar follows the chosen theme, not only the device setting
+      bars.forEach(function (m) { m.setAttribute('content', mode === 'dark' ? '#000000' : '#1d1d1f'); });
+      if (mode === 'dark' && window.tgoFont) window.tgoFont();
     }
     apply(stored() || (media && media.matches ? 'dark' : 'light'));
     switches.forEach(function (b) {

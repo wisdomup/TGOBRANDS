@@ -3,7 +3,7 @@
 v4: TGO as a senior brand operator and R&D partner taking Chinese brands into Pakistan, India, the
 Philippines and the UAE — a service catalogue, the Launch programme, audience pages, market playbooks,
 an entry estimator, a Travel desk with destination guides, Expeditions and a Partner Portal preview, built on
-the tightened v3 Glass design.
+the tightened v3 Glass design (light) and the Obsidian design system (dark).
 Static, pre-rendered, bilingual (`/` English, `/zh/` 中文). No framework and no dependencies:
 Python 3 standard library to build, plain HTML/CSS/JS out.
 
@@ -111,8 +111,20 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
   `popover` drawer, which works without JavaScript.
 - **How we work** opens as a dialog; its links fall back to `/what-we-do/#start`.
 - **Reveal, marquees, hero video** respect `prefers-reduced-motion`; the video also skips Save-Data.
-- **Fonts** are system fonts only (SF / PingFang / YaHei) — nothing loads from Google Fonts, so the
-  中文 site is not blocked in the mainland.
+- **Light / dark.** The site follows the device setting until the visitor picks a theme with the
+  switch in the nav (sun / moon) or in the footer; the choice is kept in `localStorage` (`tgo-theme`).
+  A one-line head script sets `data-theme` before first paint, so there is no flash. Light is the v3
+  Glass design. Dark is the **Obsidian** design system: black ground, white Work Sans headings at 500,
+  `#cbcbcb` body, one blue accent (`#6289ff`), GlowCards (gradient hairline edge, two neutral corner
+  shades, no shadows), white primary buttons with a blue gradient arrow chip, line eyebrows between
+  diamond-ended rules, broken-outline fields, a squarer frosted nav and a hairline footer grid lit by a
+  grey and a blue glow. Every dark rule lives under `[data-theme="dark"]` at the end of `site.css`, so
+  the light theme is untouched by it. Without JavaScript both switches hide and the page stays light.
+- **Fonts.** Light is system fonts only (SF / PingFang / YaHei). Dark loads Work Sans from Google
+  Fonts on English pages only, by script and as a print stylesheet first, so it never blocks the
+  first paint. 中文 pages never request it (Google Fonts is blocked in mainland China) and use the
+  CJK system faces, then Helvetica Neue / Arial. To remove the Google dependency entirely, self-host
+  Work Sans (OFL) under `static/` and point `FONT_CSS` in `templates.py` at it.
 
 ## Lead delivery (`/api/lead`)
 

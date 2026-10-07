@@ -143,6 +143,17 @@ def bcard(c, lang, b):
 
 # ── chrome ────────────────────────────────────────────────────────────────
 
+# the dark theme's face. Loaded by script, print-media first, so it never blocks
+# the first paint; skipped on 中文 pages because Google Fonts is blocked in
+# mainland China (those pages keep the system fallbacks).
+FONT_CSS = 'https://fonts.googleapis.com/css2?family=Work+Sans:wght@300..900&display=swap'
+
+# line icons for the theme switches: 1.5px stroke on a 16px grid
+SUN = ('<svg class="{}" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3"/>'
+       '<path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></svg>')
+MOON = '<svg class="{}" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.6 10.2A5.8 5.8 0 0 1 5.8 2.4a5.8 5.8 0 1 0 7.8 7.8z"/></svg>'
+
+
 def nav(c, lang, page, alt_href):
     home = page == 'home'
     cur = {'brand': 'brands', 'post': 'insights', 'service': 'services', 'playbook': 'markets',
@@ -160,6 +171,7 @@ def nav(c, lang, page, alt_href):
     <a class="btn nav__cta nav__cta--drawer" href="{href(lang, 'partner')}">{cta}</a>
   </nav>
   <a class="nav__lang" href="{alt_href}" hreflang="{other}" lang="{other}" aria-label="{e(c["ui"]["langSwitchLabel"])}">{e(c["ui"]["langSwitch"])}</a>
+  <button class="nav__theme" type="button" role="switch" aria-checked="false" aria-label="{e(c["ui"]["themeDark"])}" title="{e(c["ui"]["themeDark"])}" data-theme-toggle>{MOON.format('nav__moon')}{SUN.format('nav__sun')}</button>
   <a class="btn nav__cta" href="{href(lang, 'partner')}">{cta}</a>
   <button class="nav__burger" type="button" popovertarget="site-menu" aria-label="{e(c["ui"]["menu"])}"><span></span><span></span><span></span></button>
 </header>'''
@@ -192,8 +204,8 @@ def footer(c, lang):
     <button class="theme-switch" type="button" role="switch" aria-checked="false" data-theme-toggle>
       <span class="theme-switch__label">{e(c["ui"]["themeDark"])}</span>
       <span class="theme-switch__track" aria-hidden="true">
-        <svg class="theme-switch__sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></svg>
-        <svg class="theme-switch__moon" viewBox="0 0 16 16"><path d="M13.6 10.2A5.8 5.8 0 0 1 5.8 2.4a5.8 5.8 0 1 0 7.8 7.8z"/></svg>
+        {SUN.format('theme-switch__sun')}
+        {MOON.format('theme-switch__moon')}
         <span class="theme-switch__thumb"></span>
       </span>
     </button>
@@ -1724,10 +1736,7 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
 <meta property="og:locale:alternate" content="{'en_US' if zh else 'zh_CN'}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">{preload}
-<script>(function(){{var d=document.documentElement,s=null;try{{s=localStorage.getItem('tgo-theme')}}catch(e){{}}if(s!=='dark'&&s!=='light')s=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',s)}})()</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300..700&amp;display=swap">
+<script>(function(){{var d=document.documentElement,s=null;try{{s=localStorage.getItem('tgo-theme')}}catch(e){{}}if(s!=='dark'&&s!=='light')s=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',s);window.tgoFont=function(){{if(d.lang!=='en'||document.getElementById('tgo-font'))return;var l=document.createElement('link');l.id='tgo-font';l.rel='stylesheet';l.media='print';l.onload=function(){{l.media='all'}};l.href='{FONT_CSS}';document.head.appendChild(l)}};if(s==='dark')window.tgoFont()}})()</script>
 <link rel="stylesheet" href="/assets/site.css?v={version}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/assets/site.js?v={version}" defer onerror="document.documentElement.classList.remove('js')"></script>
