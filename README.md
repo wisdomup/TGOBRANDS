@@ -1,6 +1,8 @@
 # TGO Brands
 
-The TGO Brands website — English at `/`, 中文 at `/zh/`.
+The TGO Brands website — English at `/`, 中文 at `/zh/`. v4 positions TGO as a senior brand operator and
+R&D partner for Chinese brands entering Pakistan, India, the Philippines and the UAE: services, the Launch
+programme, market playbooks, an entry estimator, Expeditions and a Partner Portal preview.
 
 | Folder | What it is |
 | --- | --- |

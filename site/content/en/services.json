@@ -1,0 +1,166 @@
+{
+  "services": {
+    "kicker": "Services",
+    "title": "One operator for the whole journey.",
+    "sub": "Fifteen services, from the first market study to the warranty desk. Use one, or let us run all of it. Early stages are fixed fees; once your product sells through us, we earn on what sells.",
+    "groups": [
+      {"key": "enter", "name": "Enter the market", "intro": "Know the market, get there, and get legal — before the first container."},
+      {"key": "grow", "name": "Sell and grow", "intro": "Put the product on real shelves and marketplaces, then build the brand that keeps it there."},
+      {"key": "run", "name": "Run it", "intro": "The systems, freight and after-sales that make the tenth shipment as smooth as the first."}
+    ],
+    "labels": {
+      "deliverables": "What you get",
+      "timeline": "Typical timeline",
+      "model": "How it is priced",
+      "lead": "Led by",
+      "markets": "Markets",
+      "related": "Often paired with",
+      "problem": "The problem",
+      "all": "All services",
+      "cta": "Start with this service",
+      "indicative": "Timelines are typical ranges; your market lead confirms them for your product."
+    },
+    "models": {
+      "fixed": "Fixed fee",
+      "retainer": "Monthly retainer",
+      "share": "Revenue share"
+    },
+    "items": [
+      {
+        "slug": "research-development", "group": "enter",
+        "name": "Research & development",
+        "one": "Market and product research that tells you what will sell, at what price, before you ship a single unit.",
+        "problem": "Most factories pick a market from a spreadsheet. The real answer is on the counter in Saddar, Patna or Divisoria — what is stocked, what it costs, and what the shopkeeper will not touch.",
+        "deliverables": ["Shelf and price survey in the target cities", "Competitor range and pricing map", "Product fit and spec changes for the market", "Go / no-go report with a recommended entry route"],
+        "timeline": "2–4 weeks", "model": ["fixed"], "lead": "Umair", "markets": "PK · IN · PH · UAE",
+        "related": ["market-survey-trips", "certification-compliance", "brand-building"]
+      },
+      {
+        "slug": "market-survey-trips", "group": "enter",
+        "name": "Market survey trips",
+        "one": "We take your team on the ground to see the market first-hand — shops, distributors, warehouses and regulators.",
+        "problem": "Decisions made from a desk in Shenzhen miss what a day in Karachi's mobile market shows in an hour: who really sets the price, and who you can trust.",
+        "deliverables": ["Planned itinerary with retail clusters and distributor meetings", "Introductions to vetted distributors and partners", "Certification and customs briefing on the ground", "Written debrief and next-step plan"],
+        "timeline": "4–7 days on the ground", "model": ["fixed"], "lead": "Umer", "markets": "PK · IN · PH · UAE",
+        "related": ["travel-ground-support", "research-development", "company-registration"]
+      },
+      {
+        "slug": "travel-ground-support", "group": "enter",
+        "name": "Travel & ground support",
+        "one": "Visas, hotels, pick and drop, interpreters and a planner — for groups, individuals and business owners.",
+        "problem": "A first trip to a new market loses days to visas, transport and translation. We remove that friction so the time goes to meetings.",
+        "deliverables": ["Visa invitation letters and guidance", "Hotels and in-country transport, including airport pick and drop", "Interpreters for Urdu, Hindi, Filipino, Arabic and Mandarin", "A trip planner on call for the whole visit"],
+        "timeline": "Booked in 1–2 weeks", "model": ["fixed"], "lead": "Umer", "markets": "PK · IN · PH · UAE · CN",
+        "related": ["market-survey-trips", "company-registration", "research-development"]
+      },
+      {
+        "slug": "company-registration", "group": "enter",
+        "name": "Company registration & business establishment",
+        "one": "A local company, bank account and office set up properly, so you can trade in your own name.",
+        "problem": "Without a local entity you depend on someone else's licence. Setting one up from abroad is slow and easy to get wrong.",
+        "deliverables": ["Entity choice and structure advice", "Registration, tax numbers and import licences", "Bank account and local office set-up", "Nominee and compliance support for the first year"],
+        "timeline": "3–8 weeks per market", "model": ["fixed"], "lead": "Your market lead", "markets": "PK · IN · PH · UAE",
+        "related": ["customs-taxation", "it-solutions", "market-survey-trips"]
+      },
+      {
+        "slug": "customs-taxation", "group": "enter",
+        "name": "Customs & taxation",
+        "one": "Duties, sales tax and import paperwork handled, with a landed cost you can price from.",
+        "problem": "Duty structures change with budgets, and a mis-declared HS code can strand a container for weeks. Margin disappears in the paperwork.",
+        "deliverables": ["HS classification and duty planning", "Sales tax / VAT / GST registration and filings", "Import licences and clearance documents", "Monthly compliance check as rules change"],
+        "timeline": "Ongoing", "model": ["retainer"], "lead": "Umair", "markets": "PK · IN · PH · UAE",
+        "related": ["logistics-landed-cost", "company-registration", "certification-compliance"]
+      },
+      {
+        "slug": "certification-compliance", "group": "enter",
+        "name": "Certification & compliance",
+        "one": "PSQCA, BIS, BPS and UAE approvals filed and carried by us, run in parallel rather than in sequence.",
+        "problem": "In India, BIS registration is mandatory and slow; without it there is no market at all. Every market has its own clock, and most brands start it too late.",
+        "deliverables": ["Certification map for your product and markets", "Lab testing and document preparation", "Filing and follow-up with the regulator", "Renewals and change-of-model updates"],
+        "timeline": "8–16 weeks for BIS · 4–10 weeks elsewhere", "model": ["fixed"], "lead": "Aryan", "markets": "PK · IN · PH · UAE",
+        "related": ["research-development", "customs-taxation", "company-registration"]
+      },
+      {
+        "slug": "distribution-sales", "group": "grow",
+        "name": "Distribution & sales",
+        "one": "The real channel: modern trade where it exists, and the ten-thousand-shop informal trade where it does not.",
+        "problem": "A warehouse is not distribution. Products sell when dealers stock them, shopkeepers recommend them and someone visits again next month.",
+        "deliverables": ["Dealer and distributor network in each city", "Pricing, margins and credit terms by channel", "Field sales team and shop visits", "Monthly sell-through and stock reports"],
+        "timeline": "From the first container", "model": ["share"], "lead": "Umer", "markets": "PK · IN · PH · UAE",
+        "related": ["marketplaces", "warranty-after-sales", "logistics-landed-cost"]
+      },
+      {
+        "slug": "marketplaces", "group": "grow",
+        "name": "Marketplaces",
+        "one": "Your range live and selling on Daraz, Flipkart, Amazon.in, Lazada, Shopee, Noon and Amazon.ae.",
+        "problem": "Each marketplace has its own listing rules, fulfilment model and ad system. Account health, reviews and ad spend need daily attention.",
+        "deliverables": ["Store set-up and listings in local languages", "Fulfilment set-up (FBA, FBN, Daraz/Lazada warehouses)", "Ads, promotions and review management", "Weekly performance reporting"],
+        "timeline": "Live in 4–6 weeks", "model": ["retainer", "share"], "lead": "Shamas", "markets": "PK · IN · PH · UAE",
+        "related": ["brand-scaling", "distribution-sales", "brand-building"]
+      },
+      {
+        "slug": "brand-building", "group": "grow",
+        "name": "Brand building",
+        "one": "Naming, packaging, price architecture and warranty terms — a brand built for the shelf it sells from.",
+        "problem": "Factories that make well often market badly. In these markets the box, the price point and the warranty card do most of the selling.",
+        "deliverables": ["Positioning, name and identity", "Packaging and warranty card system", "Price architecture by channel", "Retail training pack and launch materials"],
+        "timeline": "6–10 weeks", "model": ["fixed"], "lead": "Umair", "markets": "PK · IN · PH · UAE",
+        "related": ["brand-scaling", "research-development", "marketplaces"]
+      },
+      {
+        "slug": "brand-scaling", "group": "grow",
+        "name": "Brand scaling & revenue growth",
+        "one": "Growth plans that add markets, channels and range once the first market works.",
+        "problem": "The first market proves the product. Growing beyond it means new channels, new SKUs and a team that can run without the founder in every decision.",
+        "deliverables": ["Quarterly growth plan with targets", "New channel and new market roll-out", "Range extension and pricing reviews", "Performance creative and promotions"],
+        "timeline": "Quarterly cycles", "model": ["share"], "lead": "Shamas", "markets": "PK · IN · PH · UAE",
+        "related": ["marketplaces", "senior-brand-operator", "distribution-sales"]
+      },
+      {
+        "slug": "senior-brand-operator", "group": "grow",
+        "name": "Senior brand operator",
+        "one": "A senior operator from TGO runs your brand in a market as its head — part-time, with full accountability.",
+        "problem": "Hiring a country head before the market works is expensive and risky. You need someone senior who already knows the market, from day one.",
+        "deliverables": ["A named TGO operator as head of brand for the market", "Weekly operating reviews with your team", "Ownership of the P&L plan, channel and team", "Hand-over to a local hire when you are ready"],
+        "timeline": "6–12 month engagements", "model": ["retainer"], "lead": "Umair", "markets": "PK · IN · PH · UAE",
+        "related": ["brand-scaling", "distribution-sales", "brand-building"]
+      },
+      {
+        "slug": "it-solutions", "group": "run",
+        "name": "IT solutions",
+        "one": "Websites, e-commerce, hardware and connectivity for a new office or distribution operation.",
+        "problem": "A new market team needs working systems on day one — email, devices, a site in the local language and a shop that takes local payments.",
+        "deliverables": ["Website and e-commerce in local languages", "Local payment gateways and COD set-up", "Office IT, devices and connectivity", "Support and maintenance"],
+        "timeline": "2–8 weeks", "model": ["fixed"], "lead": "Aryan", "markets": "PK · IN · PH · UAE",
+        "related": ["erp-crm-integration", "company-registration", "marketplaces"]
+      },
+      {
+        "slug": "erp-crm-integration", "group": "run",
+        "name": "ERP & CRM SaaS integration",
+        "one": "Inventory, orders, dealers and customers in one connected system — for manufacturers and distributors.",
+        "problem": "Stock in one spreadsheet, dealers in another and orders on WhatsApp. Growth breaks it; you cannot manage what you cannot see.",
+        "deliverables": ["System choice (Odoo, Zoho, HubSpot and others)", "Set-up for inventory, orders, dealers and invoicing", "Integration with marketplaces, accounting and WhatsApp", "Team training and ongoing support"],
+        "timeline": "4–12 weeks", "model": ["fixed", "retainer"], "lead": "Aryan", "markets": "PK · IN · PH · UAE",
+        "related": ["it-solutions", "distribution-sales", "logistics-landed-cost"]
+      },
+      {
+        "slug": "logistics-landed-cost", "group": "run",
+        "name": "Logistics & landed cost",
+        "one": "Freight from China to the shelf, LCL or FCL, with a true landed cost per unit before you commit.",
+        "problem": "Freight, duty, clearance and last-mile costs are where trial shipments lose their margin — usually discovered after the fact.",
+        "deliverables": ["Landed-cost model per SKU and market", "Consolidated LCL and FCL shipping", "Clearance, warehousing and last-mile delivery", "Shipment tracking and cost reports"],
+        "timeline": "Per shipment", "model": ["fixed"], "lead": "Umer", "markets": "PK · IN · PH · UAE",
+        "related": ["customs-taxation", "distribution-sales", "erp-crm-integration"]
+      },
+      {
+        "slug": "warranty-after-sales", "group": "run",
+        "name": "Warranty & after-sales",
+        "one": "Local replacement, repairs and spares — so the brand honours its warranty and is remembered for it.",
+        "problem": "Warranty culture is thin in these markets, which is exactly why a brand that honours it wins. Without local service, returns pile up with the dealer.",
+        "deliverables": ["Warranty terms and claim process", "Local replacement and repair partners", "Spares stock and return logistics", "Defect reporting back to the factory"],
+        "timeline": "From launch", "model": ["retainer"], "lead": "Umair", "markets": "PK · IN · PH · UAE",
+        "related": ["distribution-sales", "brand-building", "logistics-landed-cost"]
+      }
+    ]
+  }
+}

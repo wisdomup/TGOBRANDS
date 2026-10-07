@@ -1,0 +1,146 @@
+{
+  "portal": {
+    "kicker": "Partner portal",
+    "title": "Every step of your launch, in one place.",
+    "sub": "Partners see where their product is — stage, approvals, shipments, sell-through and every document — without having to ask. This is a preview with sample data; the live portal opens to partners with their first stage.",
+    "demo": "Preview · sample data",
+    "company": "Sample Lithium Co.",
+    "companyNote": "A Shenzhen lithium-battery manufacturer entering Pakistan and India",
+    "tabs": {
+      "overview": "Overview",
+      "approvals": "Approvals",
+      "shipments": "Shipments",
+      "sales": "Sell-through",
+      "documents": "Documents",
+      "messages": "Messages"
+    },
+    "stageLabel": "Current stage",
+    "stageNow": 4,
+    "nextLabel": "Next",
+    "next": "Second container — order confirmed by two Karachi dealers",
+    "stats": [
+      [
+        "Weeks since start",
+        "19"
+      ],
+      [
+        "Markets",
+        "PK · IN"
+      ],
+      [
+        "Units sold",
+        "6,240"
+      ],
+      [
+        "Return rate",
+        "1.4%"
+      ]
+    ],
+    "approvalsTitle": "Certification clock",
+    "approvals": [
+      [
+        "PSQCA conformity",
+        "Pakistan",
+        "Approved",
+        8,
+        8
+      ],
+      [
+        "BIS registration (CRS)",
+        "India",
+        "In review",
+        9,
+        16
+      ]
+    ],
+    "week": "Week",
+    "of": "of",
+    "shipmentsTitle": "Shipments",
+    "shipments": [
+      [
+        "TGO-PK-001",
+        "1 × 20ft, 9,600 units",
+        "Cleared · in Karachi warehouse",
+        "done"
+      ],
+      [
+        "TGO-IN-S01",
+        "Samples, 40 units",
+        "With four distributors in Patna",
+        "done"
+      ],
+      [
+        "TGO-PK-002",
+        "1 × 40ft, 19,200 units",
+        "Booked · ships week 22",
+        "next"
+      ]
+    ],
+    "salesTitle": "Sell-through by market",
+    "sales": [
+      [
+        "Karachi",
+        71
+      ],
+      [
+        "Lahore",
+        58
+      ],
+      [
+        "Islamabad",
+        44
+      ]
+    ],
+    "salesNote": "Share of delivered stock sold to end customers, six weeks after arrival.",
+    "feedbackTitle": "What buyers said",
+    "feedback": [
+      [
+        "Dealer, Saddar, Karachi",
+        "Price is right for 10,000 mAh. The 20,000 needs a better box to sell at that price."
+      ],
+      [
+        "Distributor, Patna",
+        "We will take it once BIS is through — customers ask for the warranty card first."
+      ],
+      [
+        "Retailer, Hafeez Centre, Lahore",
+        "Second order if you keep the same margin and replace faulty units in a week."
+      ]
+    ],
+    "documentsTitle": "Documents",
+    "documents": [
+      [
+        "Landed-cost model — Pakistan",
+        "Stage 1"
+      ],
+      [
+        "Buyer feedback report",
+        "Stage 3"
+      ],
+      [
+        "Company and import registration",
+        "Stage 4"
+      ],
+      [
+        "Territory agreement — draft",
+        "Stage 6"
+      ]
+    ],
+    "messagesTitle": "Messages with your market lead",
+    "messages": [
+      [
+        "Umair",
+        "Two Karachi dealers confirmed repeat orders. I suggest bringing the 40ft forward by a week."
+      ],
+      [
+        "You",
+        "Agreed. Can we change the 20,000 mAh box before it ships?"
+      ],
+      [
+        "Umair",
+        "Yes — artwork from our designer by Friday. Factory needs it by week 20."
+      ]
+    ],
+    "cta": "Become a partner"
+  }
+}

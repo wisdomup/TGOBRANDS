@@ -1,0 +1,137 @@
+{
+  "launch": {
+    "kicker": "TGO Launch",
+    "title": "From factory to shelf, one stage at a time.",
+    "sub": "Seven stages, each with a stated scope, a typical duration and a written result. Join at the stage you are at, stop after any stage, and know what you are paying for before it starts.",
+    "stagesKicker": "The stages",
+    "stagesTitle": "What happens, and when.",
+    "labels": {
+      "duration": "Typical duration",
+      "deliverable": "You leave with",
+      "model": "Priced as",
+      "stage": "Stage"
+    },
+    "stages": [
+      {
+        "n": "01",
+        "name": "Research",
+        "scope": "Shelf and price survey in the target cities, competitor map, product fit.",
+        "duration": "2–4 weeks",
+        "deliverable": "A go / no-go report and the recommended entry route",
+        "model": "fixed",
+        "service": "research-development"
+      },
+      {
+        "n": "02",
+        "name": "Scout",
+        "scope": "Your team on the ground with ours: retail clusters, distributors, regulators.",
+        "duration": "4–7 days",
+        "deliverable": "Introductions, a debrief and a next-step plan",
+        "model": "fixed",
+        "service": "market-survey-trips"
+      },
+      {
+        "n": "03",
+        "name": "Samples in market",
+        "scope": "Samples in front of real buyers, with their answers unedited — including the ones you will not like.",
+        "duration": "2–3 weeks",
+        "deliverable": "A buyer feedback report with prices they would pay",
+        "model": "fixed",
+        "service": "research-development"
+      },
+      {
+        "n": "04",
+        "name": "Set up",
+        "scope": "Local entity, customs and tax, certification — run in parallel, not in sequence.",
+        "duration": "3–16 weeks",
+        "deliverable": "A company that can import, and the approvals to sell",
+        "model": "fixed",
+        "service": "certification-compliance"
+      },
+      {
+        "n": "05",
+        "name": "Trial container",
+        "scope": "One container or less, priced properly, sold through our channel.",
+        "duration": "8–12 weeks",
+        "deliverable": "True landed cost, sell-through and return rate — before anyone commits",
+        "model": "share",
+        "service": "distribution-sales"
+      },
+      {
+        "n": "06",
+        "name": "Territory or TGO brand",
+        "scope": "A territory agreement in plain language — or we build and own a brand that you manufacture.",
+        "duration": "Agreed per market",
+        "deliverable": "Volume bands, exclusivity where earned, warranty terms, marketing split",
+        "model": "share",
+        "service": "brand-building"
+      },
+      {
+        "n": "07",
+        "name": "Scale",
+        "scope": "More markets, more channels, a wider range, and a senior operator if you want one.",
+        "duration": "Quarterly cycles",
+        "deliverable": "A growth plan with targets, reviewed every quarter",
+        "model": "share",
+        "service": "brand-scaling"
+      }
+    ],
+    "forKicker": "Is it for you",
+    "forTitle": "Who it is for — and who it is not.",
+    "forYes": {
+      "t": "A good fit",
+      "items": [
+        "Manufacturers and brand owners with a product that already sells somewhere",
+        "Capacity for at least one trial container",
+        "Ready to stand behind a warranty in the market",
+        "Willing to adapt packaging, specs or price for the market"
+      ]
+    },
+    "forNo": {
+      "t": "Not a fit yet",
+      "items": [
+        "One-off clearance or liquidation lots",
+        "Products that cannot be certified for the market",
+        "Looking for an agent's commission rather than a partner",
+        "No product yet — start with Research on its own"
+      ]
+    },
+    "pricingKicker": "How pricing works",
+    "pricingTitle": "Fixed fees to start. A share of what sells after.",
+    "pricing": [
+      {
+        "t": "Stages 1–4: fixed fees",
+        "d": "Research, scout trips, samples in market and set-up are quoted per stage before they start. You can stop after any of them."
+      },
+      {
+        "t": "Stages 5–7: revenue share",
+        "d": "From the trial container on, we earn a margin or a share of revenue on what sells through our channel. When you do not sell, we do not earn."
+      }
+    ],
+    "faqKicker": "Questions",
+    "faqTitle": "Asked in the first meeting.",
+    "faq": [
+      {
+        "q": "How much does it cost?",
+        "a": "Each of the first four stages is quoted upfront after a first conversation, based on your product and markets. From the trial container we move to a margin or revenue share."
+      },
+      {
+        "q": "Do I have to do every stage?",
+        "a": "No. Join where you are — some partners arrive with certification done and start at the trial container. You can also stop after any stage."
+      },
+      {
+        "q": "Who owns the brand?",
+        "a": "Your choice. Your own brand under a territory agreement, or a TGO-owned brand that you manufacture for us."
+      },
+      {
+        "q": "How long until the first sales?",
+        "a": "Typically three to six months from research to the first container on shelves. India takes longer because BIS registration has to come first."
+      },
+      {
+        "q": "What do I see along the way?",
+        "a": "Every stage ends with a written result. Partners also get a portal with their stage, certification clock, shipments and sell-through — see the preview."
+      }
+    ],
+    "applyNote": "A few questions, about two minutes. A person replies within two working days."
+  }
+}

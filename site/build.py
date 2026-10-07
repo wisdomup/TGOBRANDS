@@ -21,7 +21,17 @@ LANGS = ('en', 'zh')
 
 
 def load(lang):
-    return json.loads((ROOT / 'content' / f'{lang}.json').read_text(encoding='utf-8'))
+    """content/<lang>.json plus every module in content/<lang>/ and the language-neutral
+    data in content/shared/ (one top-level key per file)."""
+    content = json.loads((ROOT / 'content' / f'{lang}.json').read_text(encoding='utf-8'))
+    modules = sorted((ROOT / 'content' / lang).glob('*.json')) + sorted((ROOT / 'content' / 'shared').glob('*.json'))
+    for f in modules:
+        module = json.loads(f.read_text(encoding='utf-8'))
+        clash = set(module) & set(content)
+        if clash:
+            raise SystemExit(f'{f}: keys {sorted(clash)} already defined elsewhere')
+        content.update(module)
+    return content
 
 
 def routes(c):
@@ -29,8 +39,12 @@ def routes(c):
     description, render, structured data). Both locales produce the same paths."""
     suffix = c['meta']['suffix']
     out = [('home', '', c['meta']['title'], c['meta']['description'], T.page_home, None)]
-    for key in ('what', 'brands', 'founders', 'markets', 'partner', 'contact'):
+    for key in ('what', 'services', 'launch', 'brands', 'founders', 'markets', 'partner', 'contact',
+                'expeditions', 'estimator', 'portal'):
         out.append((key, T.PATHS[key], f'{c["nav"][key]} — {suffix}', c[key]['sub'], T.PAGES[key], None))
+    for i, x in enumerate(c['services']['items']):
+        render = lambda c, lang, i=i: T.page_service(c, lang, i)
+        out.append(('service', T.DETAIL['service'].format(x['slug']), f'{x["name"]} — {suffix}', x['one'], render, None))
 
     s = c['insights']
     for cat, (cat_name, cat_slug) in enumerate(zip(s['cats'], s['catSlugs'])):
@@ -41,6 +55,18 @@ def routes(c):
     for i, post in enumerate(s['posts']):
         render = lambda c, lang, i=i: T.page_post(c, lang, i)
         out.append(('post', f'insights/{post["slug"]}/', f'{post["t"]} — {suffix}', post['ex'], render, i))
+
+    for i, x in enumerate(c['audiences']['items']):
+        render = lambda c, lang, i=i: T.page_audience(c, lang, i)
+        out.append(('audience', T.DETAIL['audience'].format(x['slug']), f'{x["name"]} — {suffix}', x['sub'], render, None))
+    for i, x in enumerate(c['playbooks']['items']):
+        name = c['markets']['items'][x['market']]['c']
+        render = lambda c, lang, i=i: T.page_playbook(c, lang, i)
+        out.append(('playbook', T.DETAIL['playbook'].format(x['slug']), f'{name} — {c["playbooks"]["kicker"]} — {suffix}',
+                    c['markets']['items'][x['market']]['size'], render, None))
+    for i, x in enumerate(c['expeditions']['editions']):
+        render = lambda c, lang, i=i: T.page_trip(c, lang, i)
+        out.append(('trip', T.DETAIL['trip'].format(x['slug']), f'{x["title"]} — {suffix}', x['one'], render, None))
 
     for i, brand in enumerate(c['brands']['items']):
         render = lambda c, lang, i=i: T.page_brand(c, lang, i)

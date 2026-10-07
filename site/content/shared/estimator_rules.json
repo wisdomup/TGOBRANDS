@@ -1,0 +1,423 @@
+{
+  "estimatorRules": {
+    "PK": {
+      "accessories": {
+        "certs": [
+          [
+            "psqca",
+            4,
+            8
+          ]
+        ],
+        "duty": "high",
+        "tax": "pk",
+        "landed": [
+          1.35,
+          1.7
+        ],
+        "services": [
+          "certification-compliance",
+          "customs-taxation",
+          "distribution-sales"
+        ]
+      },
+      "audio": {
+        "certs": [
+          [
+            "pta",
+            4,
+            8
+          ]
+        ],
+        "duty": "high",
+        "tax": "pk",
+        "landed": [
+          1.35,
+          1.7
+        ],
+        "services": [
+          "certification-compliance",
+          "distribution-sales",
+          "marketplaces"
+        ]
+      },
+      "solar": {
+        "certs": [
+          [
+            "iec",
+            2,
+            4
+          ]
+        ],
+        "duty": "low",
+        "tax": "pk_solar",
+        "landed": [
+          1.15,
+          1.35
+        ],
+        "services": [
+          "customs-taxation",
+          "distribution-sales",
+          "warranty-after-sales"
+        ]
+      },
+      "appliances": {
+        "certs": [
+          [
+            "psqca",
+            4,
+            8
+          ]
+        ],
+        "duty": "high",
+        "tax": "pk",
+        "landed": [
+          1.4,
+          1.8
+        ],
+        "services": [
+          "certification-compliance",
+          "customs-taxation",
+          "warranty-after-sales"
+        ]
+      },
+      "other": {
+        "certs": [],
+        "duty": null,
+        "tax": "pk",
+        "landed": [
+          1.2,
+          1.7
+        ],
+        "services": [
+          "research-development",
+          "certification-compliance",
+          "customs-taxation"
+        ]
+      }
+    },
+    "IN": {
+      "accessories": {
+        "certs": [
+          [
+            "bis",
+            8,
+            16
+          ]
+        ],
+        "duty": "medium",
+        "tax": "in",
+        "landed": [
+          1.3,
+          1.6
+        ],
+        "services": [
+          "certification-compliance",
+          "company-registration",
+          "distribution-sales"
+        ]
+      },
+      "audio": {
+        "certs": [
+          [
+            "bis",
+            8,
+            16
+          ],
+          [
+            "wpc",
+            2,
+            6
+          ]
+        ],
+        "duty": "medium",
+        "tax": "in",
+        "landed": [
+          1.3,
+          1.6
+        ],
+        "services": [
+          "certification-compliance",
+          "marketplaces",
+          "distribution-sales"
+        ]
+      },
+      "solar": {
+        "certs": [
+          [
+            "bis_solar",
+            10,
+            16
+          ],
+          [
+            "almm",
+            8,
+            20
+          ]
+        ],
+        "duty": "high",
+        "tax": "in_solar",
+        "landed": [
+          1.45,
+          1.9
+        ],
+        "services": [
+          "certification-compliance",
+          "customs-taxation",
+          "company-registration"
+        ]
+      },
+      "appliances": {
+        "certs": [
+          [
+            "bis",
+            8,
+            16
+          ],
+          [
+            "bee",
+            4,
+            8
+          ]
+        ],
+        "duty": "medium",
+        "tax": "in",
+        "landed": [
+          1.3,
+          1.6
+        ],
+        "services": [
+          "certification-compliance",
+          "distribution-sales",
+          "warranty-after-sales"
+        ]
+      },
+      "other": {
+        "certs": [],
+        "duty": null,
+        "tax": "in",
+        "landed": [
+          1.2,
+          1.7
+        ],
+        "services": [
+          "research-development",
+          "certification-compliance",
+          "customs-taxation"
+        ]
+      }
+    },
+    "PH": {
+      "accessories": {
+        "certs": [
+          [
+            "bps",
+            6,
+            10
+          ]
+        ],
+        "duty": "low",
+        "tax": "ph",
+        "landed": [
+          1.2,
+          1.4
+        ],
+        "services": [
+          "certification-compliance",
+          "marketplaces",
+          "logistics-landed-cost"
+        ]
+      },
+      "audio": {
+        "certs": [
+          [
+            "bps",
+            6,
+            10
+          ],
+          [
+            "ntc",
+            4,
+            8
+          ]
+        ],
+        "duty": "low",
+        "tax": "ph",
+        "landed": [
+          1.2,
+          1.4
+        ],
+        "services": [
+          "certification-compliance",
+          "marketplaces",
+          "distribution-sales"
+        ]
+      },
+      "solar": {
+        "certs": [
+          [
+            "bps",
+            6,
+            10
+          ]
+        ],
+        "duty": "low",
+        "tax": "ph",
+        "landed": [
+          1.15,
+          1.3
+        ],
+        "services": [
+          "certification-compliance",
+          "distribution-sales",
+          "logistics-landed-cost"
+        ]
+      },
+      "appliances": {
+        "certs": [
+          [
+            "bps",
+            6,
+            10
+          ]
+        ],
+        "duty": "medium",
+        "tax": "ph",
+        "landed": [
+          1.2,
+          1.45
+        ],
+        "services": [
+          "certification-compliance",
+          "distribution-sales",
+          "warranty-after-sales"
+        ]
+      },
+      "other": {
+        "certs": [],
+        "duty": null,
+        "tax": "ph",
+        "landed": [
+          1.2,
+          1.7
+        ],
+        "services": [
+          "research-development",
+          "certification-compliance",
+          "customs-taxation"
+        ]
+      }
+    },
+    "AE": {
+      "accessories": {
+        "certs": [
+          [
+            "ecas",
+            3,
+            6
+          ]
+        ],
+        "duty": "low",
+        "tax": "ae",
+        "landed": [
+          1.1,
+          1.25
+        ],
+        "services": [
+          "marketplaces",
+          "company-registration",
+          "logistics-landed-cost"
+        ]
+      },
+      "audio": {
+        "certs": [
+          [
+            "ecas",
+            3,
+            6
+          ],
+          [
+            "tdra",
+            2,
+            4
+          ]
+        ],
+        "duty": "low",
+        "tax": "ae",
+        "landed": [
+          1.1,
+          1.25
+        ],
+        "services": [
+          "marketplaces",
+          "certification-compliance",
+          "brand-scaling"
+        ]
+      },
+      "solar": {
+        "certs": [
+          [
+            "ecas",
+            3,
+            6
+          ],
+          [
+            "dewa",
+            4,
+            8
+          ]
+        ],
+        "duty": "low",
+        "tax": "ae",
+        "landed": [
+          1.08,
+          1.2
+        ],
+        "services": [
+          "certification-compliance",
+          "company-registration",
+          "distribution-sales"
+        ]
+      },
+      "appliances": {
+        "certs": [
+          [
+            "ecas",
+            3,
+            6
+          ],
+          [
+            "energy_label",
+            3,
+            6
+          ]
+        ],
+        "duty": "low",
+        "tax": "ae",
+        "landed": [
+          1.1,
+          1.3
+        ],
+        "services": [
+          "certification-compliance",
+          "marketplaces",
+          "warranty-after-sales"
+        ]
+      },
+      "other": {
+        "certs": [],
+        "duty": null,
+        "tax": "ae",
+        "landed": [
+          1.2,
+          1.7
+        ],
+        "services": [
+          "research-development",
+          "certification-compliance",
+          "customs-taxation"
+        ]
+      }
+    }
+  }
+}

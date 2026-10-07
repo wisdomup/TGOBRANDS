@@ -38,7 +38,12 @@
     "markets": "Markets",
     "insights": "Insights",
     "partner": "Partner With Us",
-    "contact": "Contact"
+    "contact": "Contact",
+    "services": "Services",
+    "launch": "Launch",
+    "expeditions": "Expeditions",
+    "estimator": "Entry estimator",
+    "portal": "Partner portal"
   },
   "route": {
     "origin": "Guangzhou",
@@ -58,7 +63,7 @@
   "home": {
     "h1a": "We take Chinese brands",
     "h1b": "to the world.",
-    "sub": "Starting where we live — Pakistan, India, the Philippines, and now the UAE. Three founders, four markets, one route from Guangzhou.",
+    "sub": "Research, travel, company set-up, customs, approvals, sales and scale — one operator for the whole journey into Pakistan, India, the Philippines and the UAE.",
     "cta": "Tell us about your business",
     "cta2": "How we work",
     "premiseKicker": "The premise",
@@ -87,84 +92,21 @@
       }
     ],
     "proofNote": "Figures as of Q3 2026, across TGO founder operations. No published financials.",
-    "doKicker": "What we do",
     "brandsKicker": "Our brands",
     "brandsNote": "A house of brands, in the model of BBK Electronics: an invisible parent, visible brands.",
     "foundersKicker": "The founders",
     "routeKicker": "From the route",
     "routeNote": "Weekly notes and the founder-led channel.",
     "closeA": "Tell us about your business.",
-    "closeB": "Six questions, one screen each.",
+    "closeB": "A few questions, one screen each.",
     "closeBtn": "Start the survey",
     "headings": {
       "premise": "A parent company you never see.",
       "proof": "The scale, stated plainly.",
-      "pillars": "Five pillars. One system.",
       "brands": "Brands we own outright.",
       "founders": "We take you global.",
       "route": "What we are learning."
     },
-    "servicesKicker": "Services",
-    "servicesTitle": "One parent company. Seven capabilities.",
-    "servicesNote": "Partners choose the range and sell it. TGO carries everything behind it.",
-    "services": [
-      {
-        "n": "Brand incubation",
-        "d": "Positioning, naming, packaging and range planning — a shelf-ready brand from a blank page."
-      },
-      {
-        "n": "Certification",
-        "d": "PSQCA, BIS, BPS and market-entry files, filed and carried by us rather than by you."
-      },
-      {
-        "n": "Manufacturing & QC",
-        "d": "Owned and partner lines in the Pearl River Delta, batch-sampled before every shipment."
-      },
-      {
-        "n": "Cross-border logistics",
-        "d": "LCL and FCL, customs brokerage, delivery to destination port on transparent terms."
-      },
-      {
-        "n": "Channel distribution",
-        "d": "Local dealer networks, key-account negotiation and marketplace operations, tiered by market."
-      },
-      {
-        "n": "Warranty & service",
-        "d": "The parent carries the warranty — local replacement and spares, no float from the dealer."
-      },
-      {
-        "n": "Market survey trips",
-        "d": "We take the Chinese team on the ground to see the market reality first-hand, then help set up the local company needed to expand there."
-      }
-    ],
-    "exploreKicker": "Explore",
-    "exploreTitle": "Go deeper into the business.",
-    "explore": [
-      {
-        "k": "Business",
-        "n": "What we do",
-        "d": "The five pillars and how they work together.",
-        "page": "what"
-      },
-      {
-        "k": "Portfolio",
-        "n": "The brands",
-        "d": "Live brands, their categories and markets.",
-        "page": "brands"
-      },
-      {
-        "k": "Markets",
-        "n": "Where we operate",
-        "d": "Entry and cadence across four markets.",
-        "page": "markets"
-      },
-      {
-        "k": "People",
-        "n": "The founders",
-        "d": "Three partners and what each one carries.",
-        "page": "founders"
-      }
-    ],
     "marquee": [
       "Lightspeed International",
       "ZIG ZAG",
@@ -173,7 +115,15 @@
       "PSQCA",
       "BIS",
       "BPS"
-    ]
+    ],
+    "heroKicker": "Senior brand operator · R&D",
+    "doorsTitle": "Four ways in.",
+    "servicesMore": "All fifteen services",
+    "launchMore": "How the programme works",
+    "toolsKicker": "Before you commit",
+    "toolsTitle": "Check the market first. Then go and see it.",
+    "estimatorNote": "Pick a product and a market: approvals, time to the first shelf, duties and a landed-cost range in seconds.",
+    "tripKicker": "Next expedition"
   },
   "what": {
     "title": "The bridge.",
@@ -477,7 +427,7 @@
   "partner": {
     "title": "Tell us about your business.",
     "kicker": "Partner with us",
-    "sub": "Six questions, one screen each. It takes about two minutes, and it goes straight to whichever of us covers your market.",
+    "sub": "Five or six questions, one screen each. It takes about two minutes, and it reaches whichever of us covers your market.",
     "start": "Start",
     "back": "Back",
     "next": "Next",
@@ -502,6 +452,10 @@
             "A distributor or retailer"
           ],
           [
+            "creator",
+            "A creator or influencer"
+          ],
+          [
             "investor",
             "An investor"
           ],
@@ -509,7 +463,89 @@
             "other",
             "Something else"
           ]
-        ]
+        ],
+        "short": "Type"
+      },
+      {
+        "k": "creator_following",
+        "q": "How big is your following?",
+        "h": "Across every platform you post on.",
+        "opts": [
+          [
+            "<100k",
+            "Under 100k"
+          ],
+          [
+            "100k-500k",
+            "100k – 500k"
+          ],
+          [
+            "500k-1m",
+            "500k – 1M"
+          ],
+          [
+            "1m+",
+            "Over 1M"
+          ]
+        ],
+        "for": [
+          "creator"
+        ],
+        "short": "Following"
+      },
+      {
+        "k": "investor_ticket",
+        "q": "What size of investment are you considering?",
+        "h": "In US dollars. An estimate is fine.",
+        "opts": [
+          [
+            "<50k",
+            "Under $50k"
+          ],
+          [
+            "50k-250k",
+            "$50k – $250k"
+          ],
+          [
+            "250k-1m",
+            "$250k – $1M"
+          ],
+          [
+            "1m+",
+            "Over $1M"
+          ]
+        ],
+        "for": [
+          "investor"
+        ],
+        "short": "Investment size"
+      },
+      {
+        "k": "investor_interest",
+        "q": "What would you like to back?",
+        "h": "",
+        "opts": [
+          [
+            "brands",
+            "Brands we build"
+          ],
+          [
+            "trial_shipments",
+            "Trial shipments and inventory"
+          ],
+          [
+            "distribution",
+            "Distribution in a market"
+          ],
+          [
+            "other",
+            "Open to discuss"
+          ]
+        ],
+        "for": [
+          "investor"
+        ],
+        "short": "Interested in"
       },
       {
         "k": "category",
@@ -536,7 +572,19 @@
             "other",
             "Other"
           ]
-        ]
+        ],
+        "qFor": {
+          "creator": "What would you like to sell?",
+          "distributor": "Which category do you sell most?"
+        },
+        "for": [
+          "manufacturer",
+          "brand_owner",
+          "other",
+          "distributor",
+          "creator"
+        ],
+        "short": "Category"
       },
       {
         "k": "monthly_volume_band",
@@ -563,7 +611,44 @@
             "n/a",
             "Not applicable"
           ]
-        ]
+        ],
+        "for": [
+          "manufacturer",
+          "brand_owner",
+          "other"
+        ],
+        "short": "Monthly volume"
+      },
+      {
+        "k": "dist_outlets",
+        "q": "How many outlets do you supply?",
+        "h": "Your own shops, or the shops you distribute to.",
+        "opts": [
+          [
+            "1",
+            "One shop"
+          ],
+          [
+            "2-10",
+            "2 – 10"
+          ],
+          [
+            "11-50",
+            "11 – 50"
+          ],
+          [
+            "50+",
+            "Over 50"
+          ],
+          [
+            "online",
+            "Online only"
+          ]
+        ],
+        "for": [
+          "distributor"
+        ],
+        "short": "Outlets"
       },
       {
         "k": "target_markets",
@@ -591,30 +676,58 @@
             "other",
             "Somewhere else"
           ]
-        ]
+        ],
+        "qFor": {
+          "distributor": "Where do you sell?",
+          "creator": "Where is your audience?"
+        },
+        "short": "Markets"
       },
       {
         "k": "need",
         "q": "What do you need from us?",
-        "h": "",
+        "h": "Choose all that apply.",
         "opts": [
           [
+            "market_entry",
+            "Market entry & certification"
+          ],
+          [
+            "setup",
+            "Company set-up, customs & tax"
+          ],
+          [
             "distribution",
-            "Distribution"
+            "Distribution & sales"
           ],
           [
             "brand_building",
-            "Brand building"
+            "Brand building & scaling"
+          ],
+          [
+            "marketplaces",
+            "Marketplaces & e-commerce"
+          ],
+          [
+            "systems",
+            "IT, ERP & CRM"
+          ],
+          [
+            "trips",
+            "Market trips & travel"
           ],
           [
             "sourcing",
             "Sourcing"
-          ],
-          [
-            "market_entry",
-            "Market entry & certification"
           ]
-        ]
+        ],
+        "multi": true,
+        "for": [
+          "manufacturer",
+          "brand_owner",
+          "other"
+        ],
+        "short": "Needs"
       },
       {
         "k": "timeline",
@@ -637,7 +750,8 @@
             "exploring",
             "Exploring for later"
           ]
-        ]
+        ],
+        "short": "Timeline"
       }
     ],
     "contact": {
@@ -658,7 +772,19 @@
       "d2": "who covers your market. Expect a reply within two working days — a real one, not an autoresponder.",
       "again": "Start again",
       "route": "Routed to",
-      "score": "Lead score"
+      "score": "Lead score",
+      "handoff": {
+        "t": "Almost there.",
+        "d": "Your answers are ready for",
+        "d2": "who covers your market. Send them on WhatsApp or by email — a person replies within two working days.",
+        "wa": "Send on WhatsApp",
+        "email": "Send by email",
+        "subject": "TGO Brands — partner application",
+        "msg": "TGO Brands — partner application",
+        "service": "Service of interest",
+        "source": "Source",
+        "scoreLine": "Lead score"
+      }
     }
   },
   "contact": {
@@ -730,6 +856,12 @@
       "Privacy",
       "Terms"
     ],
-    "note": "TGO means “The Good One”."
+    "note": "TGO means “The Good One”.",
+    "cols": {
+      "services": "Services",
+      "programmes": "Programmes",
+      "company": "Company"
+    },
+    "about": "TGO Brands is a Hong Kong company that takes Chinese manufacturers and their brands into Pakistan, India, the Philippines and the UAE — research, set-up, selling and the systems behind it."
   }
 }

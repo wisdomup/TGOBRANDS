@@ -1,6 +1,8 @@
 # TGO Brands — website
 
-The production build of the **TGO Brands v3 Glass** design, tightened into the base for v4.
+v4: TGO as a senior brand operator and R&D partner taking Chinese brands into Pakistan, India, the
+Philippines and the UAE — a service catalogue, the Launch programme, audience pages, market playbooks,
+an entry estimator, Expeditions and a Partner Portal preview, built on the tightened v3 Glass design.
 Static, pre-rendered, bilingual (`/` English, `/zh/` 中文). No framework and no dependencies:
 Python 3 standard library to build, plain HTML/CSS/JS out.
 
@@ -16,37 +18,65 @@ folders with an `index.html`, so no rewrites are needed.
 
 | Path | What it is |
 | --- | --- |
-| `content/en.json`, `content/zh.json` | All copy, one file per locale, identical shape. Edit copy here. |
+| `content/en.json`, `content/zh.json` | Site-wide copy: nav, footer, home, the original pages, the application, insights. |
+| `content/<lang>/*.json` | One file per v4 module, same shape in both languages: `services`, `launch`, `audiences`, `playbooks`, `estimator`, `expeditions`, `portal`. |
+| `content/shared/*.json` | Language-neutral data — the estimator rules (category × market → approvals, weeks, duty band, tax, landed-cost factor, services). |
 | `templates.py` | Page templates (one function per page) and the shared head/nav/footer. |
-| `build.py` | Renders every page for both locales, versions the CSS/JS, writes sitemap (with hreflang pairs), `robots.txt`, `llms.txt`. |
+| `build.py` | Merges the content files (a key defined twice stops the build), renders every page for both locales, versions the CSS/JS, writes sitemap (with hreflang pairs), `robots.txt`, `llms.txt`. |
 | `static/site.css` | The one stylesheet: tokens at the top, then base, components, pages, the 中文 layer, responsive, motion. |
 | `static/site.js` | Progressive enhancement only — every page is complete without it. |
 | `static/photo.jpg`, `static/hero.mp4` | Placeholder photography and the hero loop. |
 
+## Pages
+
+| URL | Page |
+| --- | --- |
+| `/` | Home: hero, the four audience doors, three service groups, Launch stages, estimator and next expedition, brands, founders, insights |
+| `/services/`, `/services/<slug>/` | The catalogue in three groups (Enter the market, Sell and grow, Run it) and one page per service (15): problem, deliverables, timeline, engagement model, lead, markets, related services |
+| `/launch/` | TGO Launch: seven stages with scope, duration, deliverable and pricing model; who it is for; how pricing works; FAQ |
+| `/for/<audience>/` | Manufacturers, distributors & retailers, creators, investors — each links into its own application branch (`/partner/?as=…`) |
+| `/markets/`, `/markets/<country>/` | The four markets and a playbook per country: approvals with typical weeks, customs and tax, channels, cities, visiting |
+| `/tools/entry-estimator/` | Product × market → approvals, weeks to the first shelf, duty band, import tax, landed-cost range, matching services. Accepts `?market=` and `?category=` |
+| `/expeditions/`, `/expeditions/<trip>/` | Trip types, travel support, and dated editions with a day-by-day itinerary |
+| `/portal/` | Partner Portal preview: one sample partner's stages, approvals, shipments, sell-through, documents and messages — labelled as sample data |
+| `/partner/` | The application (below) |
+
+Adding a service, trip, market playbook or audience: add the item (with a `slug`) to the module file in
+**both** languages and rebuild — cards, detail pages, links, sitemap and `llms.txt` follow. Estimator
+rules live once, in `content/shared/estimator_rules.json`; certificate and tax names are translated in
+each language's `estimator.json`.
+
 Adding an insight: add a post (with a `slug`, its category name and optional `body` paragraphs) to
 `insights.posts` in both content files, newest first. Its article page, the category listings, page
 numbers, Previous / Next links, sitemap and `llms.txt` all follow. Until `body` has paragraphs the
-article shows a "full article coming soon" note. Both files must list the same posts, categories and
-brands — the build stops if the two languages would produce different pages.
+article shows a "full article coming soon" note. Both languages must produce the same pages — the
+build stops if they differ.
 
 Adding a brand: add an item (with a `slug`) to `brands.items` in both content files and rebuild —
 the table, the cards and the `/brands/<slug>/` pages all follow.
 
 ## Behaviour
 
+- **Application** (`/partner/`) is one form. With JavaScript it runs one question per screen and
+  branches on the first answer (manufacturer, distributor/retailer, creator, investor), with
+  questions and wording per audience. `?as=<audience>` preselects the branch and `?service=<slug>`
+  notes the service the visitor came from. It scores the lead and routes it by market (PK → Umair,
+  IN → Aryan, PH → Umer, AE → Shamas, otherwise Umair). While the site is static the done screen hands
+  off: a WhatsApp message to that person, pre-filled with the answers, and an email fallback to
+  hello@tgobrands.com. The first-touch source (utm tag or referrer) rides along in the message. To send
+  leads to a backend instead, set `data-endpoint` on the form in `templates.py`; `site.js` then POSTs
+  the lead as JSON. Without JavaScript every question is listed in order.
+- **Entry estimator** reads its data from a JSON block in the page; with JavaScript off it says so and
+  points to the market playbooks, which carry the same facts.
+- **Portal tabs** are ARIA tabs (arrow keys, Home, End); without JavaScript every pane is listed.
 - **Pagination.** Insights lists `insights.perPage` posts per page (6) at `/insights/`, `/insights/page/2/`,
-  and per category at `/insights/category/<name>/` (`insights.catSlugs`); page numbers appear once a list
-  runs past one page. Each post has an article at `/insights/<slug>/` with Previous / Next article links.
-  Section pages end with Previous / Next cards in nav order — Home → What We Do → Brands → Founders →
-  Markets → Insights → Partner With Us — and brand pages step between brands.
-
+  and per category at `/insights/category/<name>/` (`insights.catSlugs`). Each post has an article at
+  `/insights/<slug>/` with Previous / Next links. Section pages end with Previous / Next cards in
+  this order: Home → What We Do → Services → Launch → Markets → Expeditions → Brands → Founders →
+  Insights → Partner With Us. Service, audience, brand, playbook and trip pages step between their siblings.
 - **Nav** merges with the page at the top and becomes a frosted capsule once scrolled; over the
   dark hero it switches to smoked glass with white links. On phones the links live in a
   `popover` drawer, which works without JavaScript.
-- **Survey** (`/partner/`) is one form. With JavaScript it runs one question per screen, scores the
-  lead and routes it (PK → Umair, IN → Aryan, PH → Umer, otherwise Umair). To send leads to a backend,
-  set `data-endpoint` on the form in `templates.py`; `site.js` POSTs the lead as JSON (field names
-  follow the spec's lead schema). Without JavaScript every question is listed in order.
 - **How we work** opens as a dialog; its links fall back to `/what-we-do/#start`.
 - **Reveal, marquees, hero video** respect `prefers-reduced-motion`; the video also skips Save-Data.
 - **Fonts** are system fonts only (SF / PingFang / YaHei) — nothing loads from Google Fonts, so the
@@ -54,13 +84,19 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
 
 ## Still to supply
 
-Rendered as non-clickable placeholders until filled in:
+Rendered as non-clickable placeholders, or marked as drafts, until filled in:
 
+- Prices: service and stage fees, trip prices ("Price on application" for now)
+- Expedition dates (each edition says "dates to be announced")
+- Estimator and playbook figures — approvals, weeks, duty bands, landed-cost factors — for each
+  market lead to verify; they move with every budget
+- Home figures (`home.proof`) and the Portal's sample partner, which is illustrative
+- Native review of all 中文 copy, the v4 modules especially
 - WeChat QR and the public WhatsApp number — `contact.channels.*.href` in the content files
 - Channel link (YouTube for EN, Bilibili for 中文 — never YouTube on `/zh/`) — `insights.videoHref`
 - Privacy and Terms pages (footer)
 - Real photography and founder portraits (every image is currently `photo.jpg`)
-- Placeholder copy marked in the spec (figures, dates, names)
+- A backend (Phase 2) for stored leads, the live Portal and investor deck uploads
 
 ## What changed from the v3 prototype
 

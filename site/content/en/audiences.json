@@ -1,0 +1,84 @@
+{
+  "audiences": {
+    "kicker": "Who we work with",
+    "labels": {"pains": "What gets in the way", "offer": "What we do about it", "services": "Services you will use", "apply": "Start your application"},
+    "items": [
+      {
+        "slug": "manufacturers", "as": "manufacturer",
+        "name": "Manufacturers",
+        "title": "Your factory, on shelves in four new markets.",
+        "sub": "You make well and you already export somewhere. We take the product into Pakistan, India, the Philippines and the UAE — research, approvals, channel and warranty — and stay on the ground after the first container lands.",
+        "pains": [
+          {"t": "Agents who disappear", "d": "An agent in an office takes the order and the commission. Nobody is in the shop when the third container arrives."},
+          {"t": "Approvals that stall everything", "d": "BIS, PSQCA, BPS and UAE approvals each run on their own clock. Start late and the market waits months."},
+          {"t": "Margins lost in the paperwork", "d": "Duty, clearance and freight surprises turn a priced container into a loss."}
+        ],
+        "offer": [
+          {"t": "We go first", "d": "Research and samples in front of real buyers before you commit to a container."},
+          {"t": "We carry the approvals", "d": "Certification, entity and customs run in parallel, filed by us."},
+          {"t": "We sell it", "d": "Dealers, shops and marketplaces in every city, with monthly sell-through reports."},
+          {"t": "We stay", "d": "Warranty, spares and returns handled locally, so the second shipment is easier than the first."}
+        ],
+        "services": ["research-development", "certification-compliance", "customs-taxation", "distribution-sales", "brand-building", "warranty-after-sales"],
+        "cta": "Apply as a manufacturer"
+      },
+      {
+        "slug": "distributors", "as": "distributor",
+        "name": "Distributors & retailers",
+        "title": "Stock brands with a parent company behind them.",
+        "sub": "For dealers, distributors and retailers in Pakistan, India, the Philippines and the UAE: brands that arrive certified, priced for your channel, and backed by a warranty someone actually honours.",
+        "pains": [
+          {"t": "Supply you cannot count on", "d": "The importer changes, the quality drifts, the next batch arrives late — and your customers blame you."},
+          {"t": "Warranty that lands on you", "d": "When the brand will not stand behind the product, returns pile up at your counter."},
+          {"t": "No support after the sale", "d": "No training, no display material, no marketing — just a price list."}
+        ],
+        "offer": [
+          {"t": "Brands made for your shelf", "d": "TGO brands and partner brands, priced for general trade, modern trade and marketplaces."},
+          {"t": "Warranty handled by us", "d": "Local replacement and spares, so a claim never becomes your loss."},
+          {"t": "Training and display", "d": "Retail training packs, display and promotion support with every range."},
+          {"t": "Systems if you want them", "d": "Stock, orders and dealer accounts in one system, set up by our team."}
+        ],
+        "services": ["distribution-sales", "warranty-after-sales", "marketplaces", "erp-crm-integration", "logistics-landed-cost", "brand-building"],
+        "cta": "Apply as a distributor"
+      },
+      {
+        "slug": "creators", "as": "creator",
+        "name": "Creators",
+        "title": "Your own product line, made in China, sold where your audience lives.",
+        "sub": "Brand deals pay once. A product of your own keeps paying. We develop, manufacture, brand, launch and fulfil it with you — end to end, in the markets your audience is in.",
+        "pains": [
+          {"t": "Sponsorships end", "d": "Your audience trusts you, but every deal is someone else's product and someone else's margin."},
+          {"t": "Factories are a black box", "d": "Sourcing from China without a team on the ground means samples that drift and timelines that slip."},
+          {"t": "Inventory is a risk", "d": "Ordering too much ties up cash; too little and the launch sells out with nothing behind it."}
+        ],
+        "offer": [
+          {"t": "Develop", "d": "Product research and samples shaped around what your audience actually asks for."},
+          {"t": "Source and brand", "d": "Manufacturing in the Pearl River Delta, with packaging and identity built around you."},
+          {"t": "Launch and sell", "d": "Marketplaces, social commerce and retail in your audience's markets."},
+          {"t": "Fulfil", "d": "Freight, warehousing, delivery and warranty handled for you."}
+        ],
+        "services": ["research-development", "brand-building", "marketplaces", "logistics-landed-cost", "brand-scaling", "distribution-sales"],
+        "cta": "Apply as a creator"
+      },
+      {
+        "slug": "investors", "as": "investor",
+        "name": "Investors",
+        "title": "Back brands and shipments in markets you can see into.",
+        "sub": "Emerging-market consumer businesses are hard to diligence from abroad. We give investors a way in: brands we build, inventory for trial shipments and distribution businesses — with the same stage-by-stage reporting our partners get.",
+        "pains": [
+          {"t": "Hard to see into", "d": "Informal trade, cash channels and thin data make these markets difficult to underwrite from a distance."},
+          {"t": "Operators are scarce", "d": "Capital is easier to find than people who have actually sold in Saddar, Patna and Manila."},
+          {"t": "Cash tied up in stock", "d": "Good brands stall waiting for inventory and letters of credit."}
+        ],
+        "offer": [
+          {"t": "Brands we build", "d": "Co-invest in TGO-owned brands from launch, alongside the founders."},
+          {"t": "Trial shipment finance", "d": "Fund inventory for trial containers, repaid from sell-through."},
+          {"t": "Distribution businesses", "d": "Back distribution operations in a market we already run."},
+          {"t": "Reporting you can read", "d": "Stage, shipment and sell-through reporting from the partner portal."}
+        ],
+        "services": ["brand-building", "distribution-sales", "brand-scaling"],
+        "cta": "Request the investor conversation"
+      }
+    ]
+  }
+}

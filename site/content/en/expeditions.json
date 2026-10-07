@@ -1,0 +1,256 @@
+{
+  "expeditions": {
+    "kicker": "Expeditions",
+    "title": "See the market before you commit to it.",
+    "sub": "Small-group trips to Pakistan, India, the Philippines and the UAE — and the other way, to the factories of Guangzhou, Dongguan and Shenzhen. We plan it, take you round, translate, and stay with you until you fly home.",
+    "typesKicker": "Ways to travel",
+    "typesTitle": "Four kinds of trip.",
+    "types": [
+      {
+        "t": "Group market trips",
+        "d": "Dated editions for 8–12 manufacturers and brand owners. Retail clusters, distributors, regulators and a debrief."
+      },
+      {
+        "t": "Business-owner trips",
+        "d": "A private trip for you and your team, built around your product, your dates and the meetings that matter to you."
+      },
+      {
+        "t": "Custom trips",
+        "d": "For individuals and small teams who want one city, one channel or one question answered on the ground."
+      },
+      {
+        "t": "Reverse trips to China",
+        "d": "For buyers from Pakistan, India, the Philippines and the UAE: the Canton Fair, factory visits and sourcing meetings."
+      }
+    ],
+    "travelKicker": "Taken care of",
+    "travelTitle": "You fly in. We handle the rest.",
+    "travel": [
+      {
+        "t": "Visas",
+        "d": "Invitation letters and guidance for every traveller."
+      },
+      {
+        "t": "Hotels",
+        "d": "Booked near the markets you are there to see."
+      },
+      {
+        "t": "Pick and drop",
+        "d": "Airport transfers and a car with a driver for every day on the ground."
+      },
+      {
+        "t": "Interpreters",
+        "d": "Urdu, Hindi, Filipino, Arabic and Mandarin."
+      },
+      {
+        "t": "A planner on call",
+        "d": "One person who knows the plan and answers the phone."
+      },
+      {
+        "t": "Meetings set up",
+        "d": "Distributors, dealers, regulators and partners booked before you land."
+      }
+    ],
+    "editionsKicker": "Upcoming editions",
+    "editionsTitle": "Apply for a seat.",
+    "labels": {
+      "when": "When",
+      "length": "Length",
+      "group": "Group",
+      "lead": "Led by",
+      "price": "Price",
+      "itinerary": "Day by day",
+      "day": "Day {n}",
+      "included": "Included",
+      "excluded": "Not included",
+      "for": "Who it is for",
+      "apply": "Apply for this trip",
+      "interest": "Register interest",
+      "all": "All expeditions",
+      "playbook": "Read the market playbook",
+      "note": "Dates, itineraries and prices are confirmed with each edition. Seats are offered after a short application."
+    },
+    "included": [
+      "Trip planner and in-country team",
+      "Airport pick and drop, and daily transport",
+      "Interpreters",
+      "Every meeting and briefing on the itinerary",
+      "A written debrief and next-step plan"
+    ],
+    "excluded": [
+      "International flights",
+      "Hotels (booked for you on request)",
+      "Personal expenses"
+    ],
+    "editions": [
+      {
+        "slug": "pakistan-market-trip",
+        "type": 0,
+        "market": "PK",
+        "playbook": "pakistan",
+        "title": "Pakistan market trip: Karachi and Lahore",
+        "one": "Five days in the two cities that set the price for the whole country.",
+        "when": "Spring 2027 · dates to be announced",
+        "length": "5 days",
+        "group": "8–12 people",
+        "lead": "Umair",
+        "price": "Price on application",
+        "for": "Manufacturers and brand owners in electronics, accessories, solar and appliances planning a first shipment to Pakistan.",
+        "days": [
+          [
+            "Karachi",
+            "Arrival, market briefing and dinner with the team."
+          ],
+          [
+            "Karachi",
+            "Saddar mobile and electronics markets on foot; lunch with dealers."
+          ],
+          [
+            "Karachi",
+            "Distributor and warehouse visits; customs and PSQCA briefing."
+          ],
+          [
+            "Lahore",
+            "Fly to Lahore; Hafeez Centre and Hall Road; dealer meetings."
+          ],
+          [
+            "Lahore",
+            "One-to-one meetings, debrief and next steps; departures."
+          ]
+        ]
+      },
+      {
+        "slug": "india-market-trip",
+        "type": 0,
+        "market": "IN",
+        "playbook": "india",
+        "title": "India market trip: Delhi and Patna",
+        "one": "A national hub and a regional market — and why winning one is not winning the other.",
+        "when": "Autumn 2027 · dates to be announced",
+        "length": "5 days",
+        "group": "8–12 people",
+        "lead": "Aryan",
+        "price": "Price on application",
+        "for": "Brands preparing BIS registration and a distributor-led launch in North and East India.",
+        "days": [
+          [
+            "Delhi",
+            "Arrival, market briefing and dinner with the team."
+          ],
+          [
+            "Delhi",
+            "Gaffar Market and Nehru Place electronics clusters; distributor lunch."
+          ],
+          [
+            "Delhi",
+            "BIS and import briefing; national distributor meetings."
+          ],
+          [
+            "Patna",
+            "Fly to Patna; retail clusters and dealer visits."
+          ],
+          [
+            "Patna",
+            "Regional distributor meetings, debrief and next steps; departures."
+          ]
+        ]
+      },
+      {
+        "slug": "philippines-market-trip",
+        "type": 0,
+        "market": "PH",
+        "playbook": "philippines",
+        "title": "Philippines market trip: Manila",
+        "one": "Malls, sari-sari stores and live selling — three channels in one city.",
+        "when": "Summer 2027 · dates to be announced",
+        "length": "4 days",
+        "group": "8–12 people",
+        "lead": "Umer",
+        "price": "Price on application",
+        "for": "Brands weighing retail chains against marketplaces and social commerce in the Philippines.",
+        "days": [
+          [
+            "Manila",
+            "Arrival, market briefing and dinner with the team."
+          ],
+          [
+            "Manila",
+            "Divisoria and Greenhills on foot; mall retail and national chains."
+          ],
+          [
+            "Manila",
+            "Warehouse and last-mile partners; Lazada, Shopee and live-selling briefing."
+          ],
+          [
+            "Manila",
+            "One-to-one meetings, debrief and next steps; departures."
+          ]
+        ]
+      },
+      {
+        "slug": "uae-market-trip",
+        "type": 0,
+        "market": "AE",
+        "playbook": "uae",
+        "title": "UAE market trip: Dubai",
+        "one": "Marketplaces, re-export traders and the free zones that open the wider region.",
+        "when": "Winter 2027 · dates to be announced",
+        "length": "3 days",
+        "group": "8–12 people",
+        "lead": "Shamas",
+        "price": "Price on application",
+        "for": "Brands entering the GCC through Amazon.ae, Noon and Dubai's re-export trade.",
+        "days": [
+          [
+            "Dubai",
+            "Arrival; Deira wholesale markets and re-export traders."
+          ],
+          [
+            "Dubai",
+            "Amazon.ae and Noon operations briefing; Dragon Mart; retail chains."
+          ],
+          [
+            "Dubai",
+            "Free-zone and company set-up briefing, debrief and next steps; departures."
+          ]
+        ]
+      },
+      {
+        "slug": "canton-fair-trip",
+        "type": 3,
+        "market": "CN",
+        "playbook": "",
+        "title": "Canton Fair and factory trip: Guangzhou, Dongguan, Shenzhen",
+        "one": "The reverse trip — for buyers who want to source with someone who knows the factories.",
+        "when": "Spring 2027 · during the Canton Fair",
+        "length": "5 days",
+        "group": "6–10 people",
+        "lead": "Umair",
+        "price": "Price on application",
+        "for": "Distributors, retailers and creators from Pakistan, India, the Philippines and the UAE sourcing from China.",
+        "days": [
+          [
+            "Guangzhou",
+            "Arrival and sourcing briefing; dinner with the team."
+          ],
+          [
+            "Guangzhou",
+            "Canton Fair: halls chosen for your categories, with an interpreter."
+          ],
+          [
+            "Guangzhou",
+            "Canton Fair and supplier meetings; samples and price checks."
+          ],
+          [
+            "Dongguan",
+            "Factory visits and quality-control walk-throughs."
+          ],
+          [
+            "Shenzhen",
+            "Huaqiangbei electronics market, debrief and next steps; departures."
+          ]
+        ]
+      }
+    ]
+  }
+}

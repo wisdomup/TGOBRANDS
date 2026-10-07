@@ -1,0 +1,189 @@
+{
+  "playbooks": {
+    "kicker": "Market playbook",
+    "labels": {
+      "overview": "The market",
+      "size": "Size",
+      "retail": "Retail structure",
+      "hard": "What is hard",
+      "have": "What we have there",
+      "certs": "Approvals you will need",
+      "weeks": "Typical time",
+      "customs": "Customs and tax basics",
+      "channels": "Where it sells",
+      "cities": "Cities we cover",
+      "visiting": "Visiting",
+      "lead": "Market lead",
+      "estimate": "Estimate your entry",
+      "trip": "Join a market trip",
+      "all": "All markets",
+      "read": "Read the playbook",
+      "note": "Figures, approvals and timelines are indicative and change with each budget. Your market lead confirms them for your product.",
+      "approval": "Approval",
+      "covers": "Covers"
+    },
+    "items": [
+      {
+        "slug": "pakistan",
+        "code": "PK",
+        "market": 0,
+        "certs": [
+          [
+            "PSQCA conformity",
+            "Listed electrical and household products",
+            "4–8 weeks"
+          ],
+          [
+            "PTA type approval",
+            "Devices with Bluetooth, Wi-Fi or cellular radios",
+            "4–8 weeks"
+          ]
+        ],
+        "customs": [
+          "Customs duty plus additional and regulatory duties on many consumer electronics",
+          "Sales tax at import, generally 18%",
+          "Rates move with every federal budget — price with headroom"
+        ],
+        "channels": [
+          "Wholesale clusters: Saddar (Karachi), Hafeez Centre and Hall Road (Lahore)",
+          "City dealer and sub-dealer networks",
+          "Daraz and social commerce",
+          "Modern trade — under 10% of the category"
+        ],
+        "cities": [
+          "Karachi",
+          "Lahore",
+          "Islamabad / Rawalpindi"
+        ],
+        "visiting": [
+          "Business visas with an invitation letter, which we provide",
+          "Our team meets you at the airport and stays with you",
+          "Best months to visit: October to March"
+        ],
+        "trip": "pakistan-market-trip"
+      },
+      {
+        "slug": "india",
+        "code": "IN",
+        "market": 1,
+        "certs": [
+          [
+            "BIS registration (CRS)",
+            "Chargers, power banks, adapters, many electronics",
+            "8–16 weeks"
+          ],
+          [
+            "WPC equipment approval",
+            "Wireless devices: Bluetooth, Wi-Fi",
+            "2–6 weeks"
+          ],
+          [
+            "BEE labelling",
+            "Appliances covered by energy labelling",
+            "4–8 weeks"
+          ]
+        ],
+        "customs": [
+          "Basic customs duty plus social welfare surcharge",
+          "GST on most electronics, commonly 18%",
+          "BIS registration has to be in place before goods clear"
+        ],
+        "channels": [
+          "Distributor–dealer hierarchies, region by region",
+          "Flipkart and Amazon.in",
+          "Modern trade: national electronics chains",
+          "Regional strength first: Bihar and UP are a different business from Bangalore"
+        ],
+        "cities": [
+          "Patna",
+          "Delhi NCR",
+          "Mumbai"
+        ],
+        "visiting": [
+          "Business e-visa with an invitation letter, which we provide",
+          "Our team meets you at the airport and stays with you",
+          "Best months to visit: October to March"
+        ],
+        "trip": "india-market-trip"
+      },
+      {
+        "slug": "philippines",
+        "code": "PH",
+        "market": 2,
+        "certs": [
+          [
+            "BPS product certification (PS / ICC)",
+            "Covered electrical and electronic products",
+            "6–10 weeks"
+          ],
+          [
+            "NTC type approval",
+            "Devices with radios",
+            "4–8 weeks"
+          ]
+        ],
+        "customs": [
+          "Duty from 0% to 15%; ASEAN–China preferences can apply with a Form E",
+          "VAT of 12% at import",
+          "Strict import documentation — errors stop the container"
+        ],
+        "channels": [
+          "National chains and mall retail",
+          "Sari-sari stores at the smallest end",
+          "Lazada, Shopee and live selling — the channel, not an experiment",
+          "Island logistics: Luzon, Visayas and Mindanao run as three distribution problems"
+        ],
+        "cities": [
+          "Metro Manila",
+          "Cebu",
+          "Davao"
+        ],
+        "visiting": [
+          "Visa rules depend on passport; we provide invitation letters where needed",
+          "Our team meets you at the airport and stays with you",
+          "Plan around typhoon season, June to November"
+        ],
+        "trip": "philippines-market-trip"
+      },
+      {
+        "slug": "uae",
+        "code": "AE",
+        "market": 3,
+        "certs": [
+          [
+            "ECAS / EQM conformity",
+            "Electrical and electronic products",
+            "3–6 weeks"
+          ],
+          [
+            "TDRA type approval",
+            "Wireless and telecom devices",
+            "2–4 weeks"
+          ]
+        ],
+        "customs": [
+          "Customs duty of 5% on most goods",
+          "VAT of 5%",
+          "Free zones for re-export to the GCC and Africa"
+        ],
+        "channels": [
+          "Amazon.ae and Noon dominate online",
+          "Hypermarkets and electronics chains",
+          "Dubai and Sharjah malls",
+          "Re-export traders serving the wider region"
+        ],
+        "cities": [
+          "Dubai",
+          "Sharjah",
+          "Abu Dhabi"
+        ],
+        "visiting": [
+          "Visit visas are straightforward for most passports; we advise on the right one",
+          "Our team meets you at the airport and stays with you",
+          "Best months to visit: October to April"
+        ],
+        "trip": "uae-market-trip"
+      }
+    ]
+  }
+}

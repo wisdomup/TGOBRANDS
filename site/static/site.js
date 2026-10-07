@@ -138,20 +138,36 @@
     });
   }
 
-  /* ── Partner survey ─────────────────────────────────────────────────── */
-  var WHATSAPP = { Umer: '639772547666', Umair: '8615623305030', Aryan: '917645912074' };
+  /* ── Where a visitor came from: first touch per session, for the lead ── */
+  function initSource() {
+    try {
+      if (sessionStorage.getItem('tgo_src')) return;
+      var q = new URLSearchParams(location.search);
+      var tag = ['utm_source', 'utm_medium', 'utm_campaign'].map(function (k) { return q.get(k); }).filter(Boolean).join(' / ');
+      var ref = document.referrer && new URL(document.referrer).host !== location.host ? new URL(document.referrer).host : '';
+      if (tag || ref) sessionStorage.setItem('tgo_src', tag || ref);
+    } catch (e) { /* storage unavailable: no source tag */ }
+  }
+  function source() {
+    try { return sessionStorage.getItem('tgo_src') || ''; } catch (e) { return ''; }
+  }
+
+  /* ── Partner application ────────────────────────────────────────────── */
+  var WHATSAPP = { Umer: '639772547666', Umair: '8615623305030', Aryan: '917645912074', Shamas: '971542971969' };
   var SCORES = {
+    party_type: { manufacturer: 25, brand_owner: 22, distributor: 15, creator: 12, investor: 8, other: 5 },
     monthly_volume_band: { '<1k': 5, '1k-10k': 15, '10k-50k': 25, '50k+': 35, 'n/a': 5 },
-    timeline: { now: 30, '3_months': 22, '6_months': 12, exploring: 4 },
-    party_type: { manufacturer: 25, brand_owner: 22, distributor: 15, investor: 8, other: 5 }
+    dist_outlets: { '1': 5, '2-10': 12, '11-50': 22, '50+': 30, online: 15 },
+    creator_following: { '<100k': 5, '100k-500k': 15, '500k-1m': 25, '1m+': 35 },
+    investor_ticket: { '<50k': 5, '50k-250k': 15, '250k-1m': 25, '1m+': 35 },
+    timeline: { now: 30, '3_months': 22, '6_months': 12, exploring: 4 }
   };
 
-  // auto-routing: PK → Umair, IN → Aryan, PH → Umer, a manufacturer → Umair
+  // routing: PK → Umair, IN → Aryan, PH → Umer, UAE → Shamas, otherwise Umair
   function assignee(lead) {
-    var m = lead.target_markets;
-    if (m.indexOf('PK') > -1) return 'Umair';
-    if (m.indexOf('IN') > -1) return 'Aryan';
-    if (m.indexOf('PH') > -1) return 'Umer';
+    var m = lead.target_markets || [];
+    var order = [['PK', 'Umair'], ['IN', 'Aryan'], ['PH', 'Umer'], ['AE', 'Shamas']];
+    for (var i = 0; i < order.length; i++) if (m.indexOf(order[i][0]) > -1) return order[i][1];
     return 'Umair';
   }
   function score(lead) {
@@ -163,8 +179,36 @@
     if (!form) return;
     var steps = $$('.survey__step', form);
     var done = $('[data-done]');
-    var current = -1;
+    var text = JSON.parse($('[data-survey-text]', form).textContent);
+    var of = form.getAttribute('data-of') || 'of';
+    var seq = steps.slice();
+    var pos = -1;
 
+    // a service page links here with ?service=<slug>; carry it into the lead
+    var svc = new URLSearchParams(location.search).get('service');
+    if (svc && text.services[svc]) {
+      form.elements.service.value = svc;
+      var note = $('[data-service-note]', form);
+      $('strong', note).textContent = text.services[svc];
+      note.hidden = false;
+    }
+
+    var as = new URLSearchParams(location.search).get('as');
+    $$('input[name="party_type"]', form).forEach(function (r) { if (r.value === as) r.checked = true; });
+
+    function party() {
+      var c = $('input[name="party_type"]:checked', form);
+      return c ? c.value : '';
+    }
+    // the steps this applicant sees: shared ones plus those for their audience
+    // until the first answer, count steps as the most common path (manufacturer)
+    function rebuild() {
+      var p = party() || 'manufacturer';
+      seq = steps.filter(function (s) {
+        var f = s.getAttribute('data-for');
+        return !f || f.split(' ').indexOf(p) > -1;
+      });
+    }
     function answered(step) {
       if (!step.hasAttribute('data-key')) return true;
       return !!$('input:checked', step);
@@ -173,32 +217,67 @@
       var next = $('[data-next]', step);
       if (next) next.disabled = !answered(step);
     }
+    function relabel(step) {
+      var alt = step.getAttribute('data-alt');
+      if (!alt) return;
+      var h = $('.display', step);
+      if (!h.hasAttribute('data-default')) h.setAttribute('data-default', h.textContent);
+      h.textContent = JSON.parse(alt)[party()] || h.getAttribute('data-default');
+    }
     function show(i) {
-      current = i;
+      pos = i;
       form.setAttribute('data-state', i < 0 ? 'intro' : 'steps');
-      steps.forEach(function (s, n) { s.classList.toggle('is-active', n === i); });
-      var target = i < 0 ? $('.survey__intro h1', form) : $('.display', steps[i]);
-      if (i >= 0) refresh(steps[i]);
-      if (target) {
-        target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
+      steps.forEach(function (s) { s.classList.remove('is-active'); });
+      var target = $('.survey__intro h1', form);
+      if (i >= 0) {
+        var step = seq[i];
+        step.classList.add('is-active');
+        relabel(step);
+        refresh(step);
+        $('.step-count', step).textContent = (i + 1) + ' ' + of + ' ' + seq.length;
+        $('.progress > div', step).style.width = Math.round((i + 1) / seq.length * 100) + '%';
+        target = $('.display', step);
       }
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
       window.scrollTo({ top: 0 });
+    }
+    function forward() {
+      if (seq[pos] && seq[pos].getAttribute('data-key') === 'party_type') rebuild();
+      show(pos + 1);
     }
 
     form.addEventListener('click', function (e) {
-      if (e.target.closest('[data-start]')) { e.preventDefault(); show(0); return; }
-      if (e.target.closest('[data-back]')) { show(current - 1); return; }
-      if (e.target.closest('[data-next]')) { if (answered(steps[current])) show(current + 1); return; }
+      if (e.target.closest('[data-start]')) { e.preventDefault(); rebuild(); show(0); return; }
+      if (e.target.closest('[data-back]')) { show(pos - 1); return; }
+      if (e.target.closest('[data-next]')) { if (answered(seq[pos])) forward(); return; }
       // a single-choice answer tapped or clicked moves straight on. The click
       // lands on the label first (the input is visually hidden); keyboard
       // users select on the input itself and confirm with Next.
       var opt = e.target.closest('.opt');
       if (opt && e.target.tagName !== 'INPUT' && $('input', opt).type === 'radio') {
-        setTimeout(function () { show(current + 1); }, 120);
+        setTimeout(forward, 120);
       }
     });
-    form.addEventListener('change', function () { if (current >= 0) refresh(steps[current]); });
+    form.addEventListener('change', function () { if (pos >= 0) refresh(seq[pos]); });
+
+    // the application as a readable message for WhatsApp or email
+    function summary(lead) {
+      var lines = [text.labels.msg, ''];
+      seq.forEach(function (step) {
+        var picked = $$('input:checked', step).map(function (i) { return i.nextElementSibling.textContent; });
+        if (picked.length) lines.push(step.getAttribute('data-short') + ': ' + picked.join(', '));
+      });
+      lines.push('');
+      $$('.field', form).forEach(function (f) {
+        var input = $('.input', f);
+        if (input.value.trim()) lines.push($('label', f).textContent + ': ' + input.value.trim());
+      });
+      if (lead.service) lines.push(text.labels.service + ': ' + text.services[lead.service]);
+      lines.push(text.labels.score + ': ' + lead.score + ' / 90');
+      if (lead.source) lines.push(text.labels.source + ': ' + lead.source);
+      return lines.join('\n');
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -206,41 +285,44 @@
       var lead = {
         created_at: new Date().toISOString(),
         locale: form.getAttribute('data-lang'),
-        party_type: data.get('party_type') || '',
-        category: data.get('category') || '',
-        monthly_volume_band: data.get('monthly_volume_band') || '',
-        target_markets: data.getAll('target_markets'),
-        need: data.get('need') || '',
-        timeline: data.get('timeline') || '',
-        contact_name: data.get('contact_name') || '',
-        company_name: data.get('company_name') || '',
-        company_country: data.get('company_country') || '',
-        contact_email: data.get('contact_email') || '',
-        contact_phone: data.get('contact_phone') || '',
-        handle: data.get('handle') || '',
-        message: data.get('message') || '',
-        source: document.referrer || ''
+        service: data.get('service') || '',
+        source: source()
       };
+      // answers from the steps this applicant actually saw
+      seq.forEach(function (step) {
+        var k = step.getAttribute('data-key');
+        if (!k) return;
+        var vals = $$('input:checked', step).map(function (i) { return i.value; });
+        lead[k] = step.hasAttribute('data-multi') ? vals : (vals[0] || '');
+      });
+      ['contact_name', 'company_name', 'company_country', 'contact_email', 'contact_phone', 'handle', 'message']
+        .forEach(function (k) { lead[k] = data.get(k) || ''; });
       lead.score = score(lead);
       lead.assigned_to = assignee(lead);
+      var who = lead.assigned_to;
 
-      // wire the backend by setting data-endpoint on the form
+      // with a backend (data-endpoint set) the lead is sent; until then the
+      // applicant sends it themselves on WhatsApp or by email
       var endpoint = form.getAttribute('data-endpoint');
-      if (endpoint && window.fetch) {
+      var mode = endpoint && window.fetch ? 'sent' : 'handoff';
+      if (mode === 'sent') {
         fetch(endpoint, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(lead), keepalive: true
         }).catch(function () {});
       }
-
-      var who = lead.assigned_to;
+      var msg = summary(lead);
+      $$('[data-mode]', done).forEach(function (el) { el.hidden = el.getAttribute('data-mode') !== mode; });
       $$('[data-assignee]', done).forEach(function (el) { el.textContent = who; });
       $$('[data-assignee-link]', done).forEach(function (a) { a.href = 'https://wa.me/' + WHATSAPP[who]; });
+      $('[data-wa]', done).href = 'https://wa.me/' + WHATSAPP[who] + '?text=' + encodeURIComponent(msg);
+      $('[data-mail]', done).href = 'mailto:hello@tgobrands.com?subject=' + encodeURIComponent(text.labels.subject) +
+        '&body=' + encodeURIComponent(msg);
       $('[data-score]', done).textContent = lead.score;
       form.hidden = true;
       done.hidden = false;
       window.scrollTo({ top: 0 });
-      $('.done__title', done).focus({ preventScroll: true });
+      $('.done__title:not([hidden])', done).focus({ preventScroll: true });
     });
 
     if (done) {
@@ -248,6 +330,7 @@
         form.reset();
         done.hidden = true;
         form.hidden = false;
+        rebuild();
         show(-1);
       });
     }
@@ -255,13 +338,137 @@
     form.setAttribute('data-state', 'intro');
     // a deep link to a question (#q3) opens the stepper there
     var m = /^#q(\d+)$/.exec(location.hash);
-    if (m && steps[m[1] - 1]) show(m[1] - 1);
+    if (m && steps[m[1] - 1]) { rebuild(); show(Math.max(0, seq.indexOf(steps[m[1] - 1]))); }
   }
 
+  /* ── Entry estimator: category × market → approvals, time, duty, landed cost ── */
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function initEstimator() {
+    var form = $('[data-estimator]');
+    if (!form) return;
+    var d = JSON.parse($('[data-estimator-data]').textContent);
+    var L = d.labels;
+    var out = $('[data-est-result]');
+    var q = new URLSearchParams(location.search);
+    ['market', 'category'].forEach(function (k) {
+      var v = q.get(k);
+      $$('option', form.elements[k]).forEach(function (o) { if (o.value === v) form.elements[k].value = v; });
+    });
+
+    function tile(label, value) {
+      var t = el('div', 'fact');
+      t.appendChild(el('p', 'eyebrow', label));
+      t.appendChild(el('p', 'fact__v', value));
+      return t;
+    }
+    function render() {
+      var market = form.elements.market.value;
+      var r = d.rules[market][form.elements.category.value];
+      var certMin = 0, certMax = 0;
+      r.certs.forEach(function (c) { certMin = Math.max(certMin, c[1]); certMax = Math.max(certMax, c[2]); });
+      // approvals, entity and customs run in parallel; shipping follows
+      var wMin = Math.max(certMin, d.setup[0]) + d.ship[0];
+      var wMax = Math.max(certMax, d.setup[1]) + d.ship[1];
+      var fob = parseFloat(form.elements.fob.value);
+      var landed = fob > 0
+        ? '$' + (fob * r.landed[0]).toFixed(2) + ' – $' + (fob * r.landed[1]).toFixed(2)
+        : '×' + r.landed[0] + ' – ×' + r.landed[1] + ' ' + L.landedFactor;
+
+      out.textContent = '';
+      var grid = el('div', 'est-grid');
+      grid.appendChild(tile(L.time, wMin + '–' + wMax + ' ' + L.weeks));
+      grid.appendChild(tile(L.duty, r.duty ? d.duty[r.duty] : d.dutyUnknown));
+      grid.appendChild(tile(L.tax, d.tax[r.tax]));
+      grid.appendChild(tile(L.landed, landed));
+      out.appendChild(grid);
+
+      var certs = el('div', 'panel est-block');
+      certs.appendChild(el('p', 'eyebrow', L.approvals));
+      if (r.certs.length) {
+        var ul = el('ul', 'est-certs');
+        r.certs.forEach(function (c) {
+          var li = el('li');
+          li.appendChild(el('span', '', d.certs[c[0]]));
+          li.appendChild(el('span', '', c[1] + '–' + c[2] + ' ' + L.weeks));
+          ul.appendChild(li);
+        });
+        certs.appendChild(ul);
+      } else {
+        certs.appendChild(el('p', '', L.none));
+      }
+      out.appendChild(certs);
+
+      var svc = el('div', 'panel est-block');
+      svc.appendChild(el('p', 'eyebrow', L.services));
+      var chips = el('div', 'est-services');
+      r.services.forEach(function (slug) {
+        var a = el('a', 'chip', d.services[slug][0]);
+        a.href = d.services[slug][1];
+        chips.appendChild(a);
+      });
+      svc.appendChild(chips);
+      out.appendChild(svc);
+
+      var links = el('div', 'est-links');
+      if (d.playbooks[market]) {
+        var book = el('a', 'btn btn--outline', L.playbook);
+        book.href = d.playbooks[market];
+        links.appendChild(book);
+      }
+      var apply = el('a', 'btn btn--primary', L.apply);
+      apply.href = d.apply + '?service=' + encodeURIComponent(r.services[0]);
+      links.appendChild(apply);
+      out.appendChild(links);
+    }
+    form.addEventListener('input', render);
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+    render();
+  }
+
+  /* ── Tabs (portal preview); without JS every pane is listed in order ── */
+  function initTabs() {
+    $$('[data-tabs]').forEach(function (root) {
+      var tabs = $$('[role="tab"]', root);
+      var panes = $$('[role="tabpanel"]', root);
+      function select(tab, focus) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-selected', String(on));
+          t.tabIndex = on ? 0 : -1;
+        });
+        panes.forEach(function (p) { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
+        if (focus) tab.focus();
+      }
+      tabs.forEach(function (t) { t.addEventListener('click', function () { select(t); }); });
+      $('[role="tablist"]', root).addEventListener('keydown', function (e) {
+        var i = tabs.indexOf(document.activeElement);
+        if (i < 0) return;
+        var to = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+        if (to == null) return;
+        e.preventDefault();
+        select(tabs[(to + tabs.length) % tabs.length], true);
+      });
+      select(tabs[0]);
+      // on phones the stage strip scrolls; bring the current stage into view without moving the page
+      var strip = $('.pstages', root), now = strip && $('.is-now', strip);
+      if (now && strip.scrollWidth > strip.clientWidth) {
+        strip.scrollLeft += now.getBoundingClientRect().left - strip.getBoundingClientRect().left - 24;
+      }
+    });
+  }
+
+  initSource();
   initNav();
   initHeroVideo();
   initReveal();
   initHow();
   initRegion();
   initSurvey();
+  initEstimator();
+  initTabs();
 })();
