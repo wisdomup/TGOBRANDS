@@ -822,6 +822,26 @@ html:not(.js) .pane__title { position: static; width: auto; height: auto; clip-p
 .office { flex: 0 1 150px; }
 .office__city { margin-bottom: 8px; font-weight: 600; }
 
+/* ── Founder portraits ───────────────────────────────────────────────
+   A real photograph prints in the same black and white, a touch richer, and
+   melts into its card at the bottom edge instead of stopping at a hard line.
+   The grade sits on the image alone so the fade matches the card exactly. */
+.photo--portrait { position: relative; filter: none; }
+/* height: auto lets the card ratio win over the width/height attributes (kept to stop layout shift) */
+.photo--portrait img { height: auto; filter: grayscale(1) contrast(1.12) brightness(1.02); }
+.photo--portrait::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 26%; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--surface));
+}
+.host__face {
+  display: block; width: 64px; height: 64px; margin-bottom: 16px; border-radius: 50%; object-fit: cover;
+  filter: grayscale(1) contrast(1.1); box-shadow: 0 0 0 1px var(--chip-line), 0 0 0 4px var(--surface), 0 0 0 5px var(--line);
+}
+@media (max-width: 680px) {
+  /* on phones the home cards put the photo beside the text: no fade there */
+  .fcard .photo--portrait::after { display: none; }
+}
+
 /* ── Legal pages: privacy notice, terms of use ──────────────────────── */
 .wrap.legal { max-width: calc(760px + 2 * var(--gutter)); padding-bottom: var(--sec-y); }
 .page .legal__updated { margin-bottom: 24px; color: var(--ink-3); font-size: var(--t-caption); text-align: center; }
@@ -1098,8 +1118,9 @@ html:lang(zh) {
 .pkg > .btn { align-self: flex-start; margin-top: auto; }
 .pkg--featured, .pkg--featured:hover { box-shadow: 0 0 0 2px var(--accent), var(--surface-shadow); }
 
-@media (max-width: 1100px) and (min-width: 861px) {
-  .nav__links > a:not(.btn) { font-size: 14px; }
+@media (max-width: 1240px) and (min-width: 1101px) {
+  .nav__links { gap: 4px; }
+  .nav__links > a:not(.btn) { padding: 7px 10px; font-size: 14px; }
   .nav__cta { gap: 10px; padding: 0 6px 0 16px; font-size: 14px; }
   .nav[data-scrolled="0"] { padding: 12px 20px; }
 }
@@ -1121,14 +1142,11 @@ html:lang(zh) {
   .hstep:last-child { border-bottom: 1px solid var(--line); }
   .hstep__n { grid-row: 1 / span 2; margin: 0; line-height: 1.5; }
 }
-/* phone: the bar keeps one row; the links move into a drawer */
-@media (max-width: 860px) {
-  :root { --nav-space: 76px; }
-  .footer__col a { display: flex; align-items: center; min-height: 44px; padding: 0; }
+/* below 1100px the seven links no longer fit beside the language, theme and CTA:
+   the bar keeps one row and the links move into a drawer */
+@media (max-width: 1100px) {
   .nav { top: 10px; width: 100%; max-width: none; }
-  .nav__word { display: none; }
   .nav__lang { min-width: 40px; }
-  .nav > .nav__cta { display: none; }
   .nav__burger {
     display: flex; flex-direction: column; flex-shrink: 0; align-items: center; justify-content: center; gap: 4px;
     width: 40px; height: 40px; padding: 0; border: 0; border-radius: 14px; background: transparent; color: var(--text);
@@ -1165,7 +1183,17 @@ html:lang(zh) {
   .nav[data-hero="1"][data-dark="1"] .nav__links[popover] { border-color: rgba(255, 255, 255, 0.22); background: rgba(20, 20, 22, 0.55); }
   .nav[data-hero="1"][data-dark="1"] .nav__links > a:not(.btn) { border-bottom-color: rgba(255, 255, 255, 0.16); }
   .nav[data-hero="1"][data-dark="1"] .nav__links > a:not(.btn):hover { background: rgba(255, 255, 255, 0.12); }
-
+  /* wider screens: the drawer drops from the burger instead of spanning the window */
+  @media (min-width: 681px) {
+    .nav__links[popover] { left: auto; right: 10px; width: min(420px, calc(100% - 20px)); }
+  }
+}
+/* phone: the CTA moves into the drawer; tables, chips and footer links resize for touch */
+@media (max-width: 860px) {
+  :root { --nav-space: 76px; }
+  .footer__col a { display: flex; align-items: center; min-height: 44px; padding: 0; }
+  .nav__word { display: none; }
+  .nav > .nav__cta { display: none; }
   /* the brand table becomes compact rows: name, category, markets, status */
   .table, .table :is(thead, tbody, tr) { display: block; width: 100%; }
   .table thead { display: none; }
@@ -1644,7 +1672,7 @@ html:lang(zh) {
 :root .nav[data-hero="1"][data-dark="1"] .nav__links > a:not(.btn)::before { background: rgba(255, 255, 255, 0.16); }
 :root .nav[data-hero="1"][data-dark="1"] .nav__cta { background: #fff; color: #131313; }
 :root .nav[data-hero="1"][data-dark="1"] .nav__cta:hover { background: #d1d1d1; }
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   :root .nav__links[popover] { border-color: var(--chrome-line); border-radius: 16px; background: var(--chrome-solid); box-shadow: var(--glass-shadow); }
   :root .nav__links > a:not(.btn) { border-radius: 0; border-bottom-color: var(--chrome-line); }
   :root .nav__links > a:first-child { border-radius: 16px 16px 0 0; }

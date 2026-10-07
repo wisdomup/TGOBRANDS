@@ -230,7 +230,11 @@ Rendered as non-clickable placeholders, or marked as drafts, until filled in:
   reply to access requests, hello@tgobrands.com as the privacy contact, and the list of providers
   (Vercel, Resend, Meta/WhatsApp, your email provider, Google Fonts). Update the notice if analytics,
   cookies or a lead database are ever added. Each form shows a one-line collection notice linked to it.
-- Real photography and founder portraits (every image is currently `photo.jpg`)
+- Real photography and the other founder portraits. Umair's is in: `static/umair-shad.jpg` (680×907,
+  3:4), `umair-shad-400.jpg` (phones) and `umair-shad-face.jpg` (240px, the travel-guide host avatar),
+  registered in `content/shared/portraits.json` by first name with a `focus` (object-position) that keeps
+  the face in frame when cards crop to a square or a wide strip. Add Umer and Aryan the same way; every
+  other image is still `photo.jpg`. Portraits print black and white and fade into their card.
 - Resend and WhatsApp credentials for lead delivery (above)
 - The rest of Phase 2: a database for leads, the live Portal with sign-in, investor deck uploads
 

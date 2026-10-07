@@ -117,6 +117,26 @@ def img(ratio='', cls='photo', eager=False):
     return f'<figure class="{cls}{r}"><img src="{PHOTO}" alt=""{load}></figure>'
 
 
+def portrait(c, name, ratio='3x4', alt=''):
+    """A founder's photograph when one exists (keyed by first name in
+    content/shared/portraits.json), else the placeholder plate. `focus` is the
+    object-position that keeps the face in frame when a card crops the 3:4
+    original to a square or a wide strip on phones."""
+    p = c['portraits'].get(name.split()[0])
+    if not p:
+        return img(ratio)
+    return (f'<figure class="photo photo--{ratio} photo--portrait">'
+            f'<img src="{p["src"]}" srcset="{p["small"]} 400w, {p["src"]} {p["w"]}w" '
+            f'sizes="(max-width: 680px) 50vw, 340px" width="{p["w"]}" height="{p["h"]}" '
+            f'alt="{e(alt)}" style="object-position:{p["focus"]}" loading="lazy" decoding="async"></figure>')
+
+
+def face(c, name):
+    """The round host avatar, or nothing while there is no photograph."""
+    p = c['portraits'].get(name.split()[0])
+    return f'<img class="host__face" src="{p["face"]}" width="64" height="64" alt="" loading="lazy" decoding="async">' if p else ''
+
+
 def eyebrow(text, cls=''):
     return f'<p class="eyebrow{" " + cls if cls else ""}">{e(text)}</p>'
 
@@ -265,7 +285,7 @@ def page_home(c, lang):
 
     fcards = ''.join(f'''
           <div class="fcard">
-            {img('3x4')}
+            {portrait(c, p["name"], alt=p["name"])}
             <div class="fcard__body"><h3>{e(p["name"])}</h3>{eyebrow(p["city"])}<p>{e(p["role"])}</p></div>
           </div>''' for p in c['founders']['people'])
 
@@ -540,9 +560,9 @@ def brand_pager(c, lang, i):
     return pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])
 
 
-def person(p, team=False):
+def person(c, p, team=False):
     tags = ''.join(f'<span class="tag tag--outline">{e(v)}</span>' for v in p['v'])
-    photo = '' if team else img('3x4')
+    photo = '' if team else portrait(c, p['name'], alt=p['name'])
     contact = f'<a class="person__contact" href="{e(p["waHref"])}" target="_blank" rel="noopener">{e(p["contact"])}</a>' if team else ''
     return f'''
         <article class="person">
@@ -562,8 +582,8 @@ def page_founders(c, lang):
     f = c['founders']
     acts = ''.join(f'''
           <div class="act">{eyebrow(a["n"])}<h2>{e(a["t"])}</h2><p>{e(a["d"])}</p></div>''' for a in f['acts'])
-    people = ''.join(person(p) for p in f['people'])
-    team = ''.join(person(p, team=True) for p in f['team'])
+    people = ''.join(person(c, p) for p in f['people'])
+    team = ''.join(person(c, p, team=True) for p in f['team'])
     return f'''<main id="main" class="page page--founders">
   <section class="band band--ruled">
     <div class="wrap story">
@@ -1558,6 +1578,7 @@ def guide_section(c, lang, g, sec):
         d = next(x for x in t['destinations'] if x['code'] == g['code'])
         person = next((p for p in c['founders']['people'] if p['name'].split()[0] == d['host']), None)
         host = f"""<div class="panel host">
+          {face(c, d['host'])}
           {eyebrow(L["host"])}
           <h3>{e(person['name'] if person else d['host'])}</h3>
           <p>{e(g["hostNote"])}</p>

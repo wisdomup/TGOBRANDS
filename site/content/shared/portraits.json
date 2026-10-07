@@ -1,0 +1,12 @@
+{
+  "portraits": {
+    "Umair": {
+      "src": "/assets/umair-shad.jpg",
+      "small": "/assets/umair-shad-400.jpg",
+      "face": "/assets/umair-shad-face.jpg",
+      "w": 680,
+      "h": 907,
+      "focus": "60% 20%"
+    }
+  }
+}
