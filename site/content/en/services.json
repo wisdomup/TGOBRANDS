@@ -128,11 +128,35 @@
       {
         "slug": "it-solutions", "group": "run",
         "name": "IT solutions",
-        "one": "Websites, e-commerce, hardware and connectivity for a new office or distribution operation.",
-        "problem": "A new market team needs working systems on day one — email, devices, a site in the local language and a shop that takes local payments.",
-        "deliverables": ["Website and e-commerce in local languages", "Local payment gateways and COD set-up", "Office IT, devices and connectivity", "Support and maintenance"],
-        "timeline": "2–8 weeks", "model": ["fixed"], "lead": "Aryan", "markets": "Worldwide",
-        "related": ["erp-crm-integration", "company-registration", "marketplaces"]
+        "one": "Design, software, cloud, data, AI and security from one team — from a launch website to the systems a whole distribution business runs on.",
+        "problem": "A new market needs new systems all at once: a site in the local language, a shop that takes local payments, devices, data and security. Bought from five vendors, they rarely work together.",
+        "deliverables": ["One technical lead for every project", "Written scope, fixed price or a monthly retainer", "Security and backups set up from day one", "Documentation and handover, so you own every system"],
+        "timeline": "2–16 weeks per project", "model": ["fixed", "retainer"], "lead": "Aryan", "markets": "Worldwide",
+        "related": ["erp-crm-integration", "marketplaces", "brand-building"],
+        "catalog": {
+          "kicker": "What we build and run", "title": "Nine practices, one team.",
+          "sub": "Use one practice or several. Tools are chosen for your market and budget, not for a vendor.", "more": "ERP & CRM integration",
+          "groups": [
+            {"t": "Strategy & architecture", "d": "Decide what to build, buy or keep before the money is spent.",
+             "items": ["Technology roadmap and architecture", "IT audits and technical due diligence", "Platform and vendor selection", "Project and delivery management"]},
+            {"t": "Product & UX design", "d": "Screens people understand on first use, in every language you sell in.",
+             "items": ["User research and journey mapping", "UI design and design systems", "Prototypes and usability testing", "Motion, 3D and product visuals"]},
+            {"t": "Software engineering", "d": "Websites, apps and platforms built to load fast and last for years.",
+             "items": ["Websites and content platforms", "Web apps, customer portals and dashboards", "iOS, Android and cross-platform apps", "Custom software and SaaS products", "Automated testing and quality assurance", "Modernising legacy systems"]},
+            {"t": "Commerce & integration", "d": "Sell online and keep every system in step with the others.",
+             "items": ["Online stores on Shopify, WooCommerce or a custom stack", "Local payment gateways, wallets and cash on delivery", "Marketplace, courier and warehouse connections", "APIs and system-to-system integration", "Analytics, conversion tracking and technical SEO"], "link": "erp-crm-integration"},
+            {"t": "Data, AI & automation", "d": "Turn the data you already hold into decisions and saved hours.",
+             "items": ["Data pipelines, reporting and BI dashboards", "AI assistants for web and WhatsApp, with hand-off to a person", "Search and answers across your own documents", "Workflow automation and AI agents", "Demand forecasting and visual quality inspection"]},
+            {"t": "Connected products", "d": "For hardware brands: the app and the cloud behind the device.",
+             "items": ["Companion apps for devices", "Telemetry and remote monitoring", "Over-the-air firmware updates", "Warranty registration and product traceability"]},
+            {"t": "Cloud & infrastructure", "d": "Hosting, deployment and office IT that stay up and stay affordable.",
+             "items": ["Cloud set-up and migration: AWS, Azure, Google Cloud, Alibaba Cloud", "CI/CD pipelines and infrastructure as code", "Containers and Kubernetes", "Monitoring, uptime and cloud cost control", "Office networks, devices, Microsoft 365 and Google Workspace"]},
+            {"t": "Security & compliance", "d": "Built in from the first day, not added after a breach.",
+             "items": ["Security assessments and penetration testing", "Single sign-on and multi-factor login", "Endpoint protection, backups and disaster recovery", "Data-privacy compliance", "Security monitoring and incident response"]},
+            {"t": "Managed IT & teams", "d": "Support after launch, or engineers who work inside your team.",
+             "items": ["Help desk and remote support", "Maintenance with agreed response times", "Device, licence and asset management", "Dedicated engineers and team extension", "Training for your staff"]}
+          ]
+        }
       },
       {
         "slug": "erp-crm-integration", "group": "run",

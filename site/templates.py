@@ -925,6 +925,30 @@ def page_services(c, lang):
 </main>'''
 
 
+def service_catalog(c, lang, cat):
+    """A service's practice list (the IT catalogue): numbered cards, each a one-line
+    purpose and its named services; a practice may point to a sibling service."""
+    def more(g):
+        if not g.get('link'):
+            return ''
+        return (f'\n          <a class="btn btn--link cap__more" href="{href(lang, "service", g["link"])}">'
+                f'{e(service_by_slug(c, g["link"])["name"])} →</a>')
+    cards = ''.join(f'''
+      <article class="panel cap">
+        <p class="cap__n">{n + 1:02d}</p>
+        <h3>{e(g["t"])}</h3>
+        <p class="cap__d">{e(g["d"])}</p>
+        <ul class="cap__list">{''.join(f'<li>{e(it)}</li>' for it in g["items"])}</ul>{more(g)}
+      </article>''' for n, g in enumerate(cat['groups']))
+    return f'''
+
+  <section class="wrap caps-wrap" id="practices">
+    <header class="shead">{eyebrow(cat["kicker"])}<h2 class="sech">{e(cat["title"])}</h2><p class="lead">{e(cat["sub"])}</p></header>
+    <div class="caps">{cards}
+    </div>
+  </section>'''
+
+
 def page_service(c, lang, i):
     s = c['services']
     L = s['labels']
@@ -936,6 +960,7 @@ def page_service(c, lang, i):
     facts_html = ''.join(f'<div class="fact">{eyebrow(k)}<p class="fact__v">{v}</p></div>' for k, v in facts)
     deliver = ''.join(f'<li>{e(d)}</li>' for d in x['deliverables'])
     related = ''.join(service_card(c, lang, service_by_slug(c, r)) for r in x['related'])
+    catalog = service_catalog(c, lang, x['catalog']) if x.get('catalog') else ''
     prev = ((href(lang, 'service', items[i - 1]['slug']), items[i - 1]['name']) if i > 0
             else (href(lang, 'services'), L['all']))
     nxt = ((href(lang, 'service', items[i + 1]['slug']), items[i + 1]['name']) if i + 1 < len(items)
@@ -955,7 +980,7 @@ def page_service(c, lang, i):
       <div class="panel svc-deliver">{eyebrow(L["deliverables"])}<ul class="ticks">{deliver}</ul></div>
     </div>
     <p class="note">{e(L["indicative"])}</p>
-  </section>
+  </section>{catalog}
 
   <section class="band">
     <div class="wrap sec">
