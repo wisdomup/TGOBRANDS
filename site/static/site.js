@@ -122,21 +122,6 @@
     });
   }
 
-  /* ── Insights: filter posts by category ── */
-  function initFilter() {
-    var group = $('[data-filter]');
-    if (!group) return;
-    group.addEventListener('click', function (e) {
-      var chip = e.target.closest('[data-cat]');
-      if (!chip) return;
-      var cat = chip.getAttribute('data-cat');
-      $$('[data-cat]', group).forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
-      $$('.post-row').forEach(function (row) {
-        row.hidden = cat !== '0' && row.getAttribute('data-cat') !== cat;
-      });
-    });
-  }
-
   /* ── Contact: the fastest channel for the chosen region goes first ── */
   var ORDER = { cn: ['wechat', 'email', 'whatsapp'], pk: ['whatsapp', 'email', 'wechat'], other: ['email', 'whatsapp', 'wechat'] };
   function initRegion() {
@@ -277,7 +262,6 @@
   initHeroVideo();
   initReveal();
   initHow();
-  initFilter();
   initRegion();
   initSurvey();
 })();

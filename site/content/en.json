@@ -18,7 +18,17 @@
     "gallery": "Gallery",
     "services": "Services",
     "explore": "Explore",
-    "filter": "Filter by category"
+    "filter": "Filter by category",
+    "home": "Home",
+    "prev": "Previous",
+    "next": "Next",
+    "prevArticle": "Previous article",
+    "nextArticle": "Next article",
+    "allInsights": "All insights",
+    "pages": "Insights pages",
+    "pageN": "Page {n}",
+    "continue": "Keep exploring",
+    "articleSoon": "The full article is coming soon."
   },
   "dir": "latin",
   "nav": {
@@ -419,35 +429,50 @@
         "c": "Market notes",
         "t": "What a phone shop in Saddar will actually stock",
         "ex": "Six SKUs, and none of them are the one your marketing deck is built around. A morning spent counting what is on the counter.",
-        "lang": "EN · 中文"
+        "lang": "EN · 中文",
+        "slug": "saddar-phone-shop",
+        "body": []
       },
       {
         "d": "2026-08-11",
         "c": "Manufacturing",
         "t": "The sample that passes and the container that fails",
         "ex": "How golden samples drift, why it is usually not dishonesty, and the two checks that catch it before the shipment.",
-        "lang": "EN · 中文"
+        "lang": "EN · 中文",
+        "slug": "sample-passes-container-fails",
+        "body": []
       },
       {
         "d": "2026-08-04",
         "c": "Building TGO",
         "t": "Why the parent company stays invisible",
         "ex": "BBK sells more phones than almost anyone and nobody asks for a BBK. Why we structured TGO the same way.",
-        "lang": "EN only"
+        "lang": "EN only",
+        "slug": "why-the-parent-stays-invisible",
+        "body": []
       },
       {
         "d": "2026-07-28",
         "c": "Market notes",
         "t": "BIS is not a formality, it is a calendar",
         "ex": "What the India certification clock actually looks like, and how to run it in parallel instead of in sequence.",
-        "lang": "EN · 中文"
+        "lang": "EN · 中文",
+        "slug": "bis-is-a-calendar",
+        "body": []
       }
     ],
     "videoKicker": "The channel",
     "videoTitle": "Founder-led, weekly.",
     "videoNote": "Filmed on the road — factories in Dongguan, shops in Karachi, a warehouse in Manila, and an office in the UAE. YouTube on the English site; Bilibili on the 中文 site — no YouTube embeds there.",
     "videoBtn": "Watch on YouTube",
-    "videoHref": ""
+    "videoHref": "",
+    "perPage": 6,
+    "catSlugs": [
+      "",
+      "market-notes",
+      "manufacturing",
+      "building-tgo"
+    ]
   },
   "partner": {
     "title": "Tell us about your business.",

@@ -25,21 +25,38 @@ def load(lang):
 
 
 def routes(c):
-    """(page key, brand index or None, title, description) for every page."""
-    out = [('home', None, c['meta']['title'], c['meta']['description'])]
+    """Every page for one locale as (key, path under the locale root, title,
+    description, render, structured data). Both locales produce the same paths."""
     suffix = c['meta']['suffix']
-    for key, section in (('what', 'what'), ('brands', 'brands'), ('founders', 'founders'),
-                         ('markets', 'markets'), ('insights', 'insights'), ('partner', 'partner'),
-                         ('contact', 'contact')):
-        out.append((key, None, f'{c["nav"][key]} — {suffix}', c[section]['sub']))
-    for i, b in enumerate(c['brands']['items']):
-        out.append(('brand', i, f'{b["name"]} — {suffix}', b['pos']))
+    out = [('home', '', c['meta']['title'], c['meta']['description'], T.page_home, None)]
+    for key in ('what', 'brands', 'founders', 'markets', 'partner', 'contact'):
+        out.append((key, T.PATHS[key], f'{c["nav"][key]} — {suffix}', c[key]['sub'], T.PAGES[key], None))
+
+    s = c['insights']
+    for cat, (cat_name, cat_slug) in enumerate(zip(s['cats'], s['catSlugs'])):
+        for n in range(1, T.insights_pages(c, cat) + 1):
+            parts = [c['nav']['insights']] + ([cat_name] if cat else []) + ([c['ui']['pageN'].format(n=n)] if n > 1 else [])
+            render = lambda c, lang, cat=cat, n=n: T.page_insights(c, lang, cat, n)
+            out.append(('insights', T.list_path(cat_slug, n), ' — '.join(parts + [suffix]), s['sub'], render, None))
+    for i, post in enumerate(s['posts']):
+        render = lambda c, lang, i=i: T.page_post(c, lang, i)
+        out.append(('post', f'insights/{post["slug"]}/', f'{post["t"]} — {suffix}', post['ex'], render, i))
+
+    for i, brand in enumerate(c['brands']['items']):
+        render = lambda c, lang, i=i: T.page_brand(c, lang, i)
+        out.append(('brand', f'brands/{brand["slug"]}/', f'{brand["name"]} — {suffix}', brand['pos'], render, None))
     return out
 
 
-def page_path(lang, page, i, c):
-    slug = c['brands']['items'][i]['slug'] if page == 'brand' else None
-    return T.href(lang, page, slug)
+def article_ld(c, lang, i, url):
+    post = c['insights']['posts'][i]
+    return json.dumps({
+        '@context': 'https://schema.org', '@type': 'Article',
+        'headline': post['t'], 'description': post['ex'], 'datePublished': post['d'],
+        'inLanguage': 'zh-CN' if lang == 'zh' else 'en', 'url': url,
+        'image': T.SITE + T.PHOTO,
+        'publisher': {'@type': 'Organization', 'name': 'TGO Brands', 'url': T.SITE + '/'},
+    }, ensure_ascii=False)
 
 
 def write(out, url_path, html):
@@ -66,19 +83,21 @@ def build(out):
     version = hashlib.sha1(b''.join((static / n).read_bytes() for n in ('site.css', 'site.js'))).hexdigest()[:10]
 
     content = {lang: load(lang) for lang in LANGS}
-    sitemap = []
+    plans = {lang: routes(content[lang]) for lang in LANGS}
+    paths = {lang: [r[1] for r in plans[lang]] for lang in LANGS}
+    if paths['en'] != paths['zh']:
+        raise SystemExit('en and zh content produce different pages; keep posts, categories and brands aligned')
+
     count = 0
     for lang in LANGS:
         c = content[lang]
         other = 'zh' if lang == 'en' else 'en'
-        for page, i, title, desc in routes(c):
-            path = page_path(lang, page, i, c)
-            alt = page_path(other, page, i, content[other])
-            body = T.page_brand(c, lang, i) if page == 'brand' else T.PAGES[page](c, lang)
-            write(out, path, T.document(c, lang, page, body, path, alt, title, desc, version))
+        for key, rel, title, desc, render, post in plans[lang]:
+            path, alt = T.root(lang) + rel, T.root(other) + rel
+            ld = [article_ld(c, lang, post, T.SITE + path)] if key == 'post' else None
+            write(out, path, T.document(c, lang, key, render(c, lang), path, alt, title, desc, version, ld))
             count += 1
-            if lang == 'en':
-                sitemap.append((path, alt))
+    sitemap = [(T.root('en') + rel, T.root('zh') + rel) for rel in paths['en']]
 
     urls = ''.join(
         f'''  <url><loc>{T.SITE}{p}</loc>
@@ -123,6 +142,9 @@ def llms(c):
     lines += ['', '## Brands', '']
     for b in c['brands']['items']:
         lines.append(f'- [{b["name"]}]({T.SITE}{T.href("en", "brand", b["slug"])}): {b["cat"]}. {b["pos"]}')
+    lines += ['', '## Insights', '']
+    for post in c['insights']['posts']:
+        lines.append(f'- [{post["t"]}]({T.SITE}{T.href_post("en", post["slug"])}) ({post["d"]}): {post["ex"]}')
     lines += ['', '## Founders', '']
     for p in c['founders']['people']:
         lines.append(f'- {p["name"]} ({p["city"]}): {p["role"]}')

@@ -18,7 +18,17 @@
     "gallery": "图集",
     "services": "服务",
     "explore": "继续了解",
-    "filter": "按类别筛选"
+    "filter": "按类别筛选",
+    "home": "首页",
+    "prev": "上一页",
+    "next": "下一页",
+    "prevArticle": "上一篇",
+    "nextArticle": "下一篇",
+    "allInsights": "全部洞察",
+    "pages": "洞察分页",
+    "pageN": "第 {n} 页",
+    "continue": "继续浏览",
+    "articleSoon": "全文即将发布。"
   },
   "dir": "cjk",
   "nav": {
@@ -419,35 +429,50 @@
         "c": "市场观察",
         "t": "卡拉奇 Saddar 的手机店真正会进什么货",
         "ex": "六个 SKU，而且都不是您 PPT 里主推的那一个。一个上午，数清柜台上摆的是什么。",
-        "lang": "中文 · EN"
+        "lang": "中文 · EN",
+        "slug": "saddar-phone-shop",
+        "body": []
       },
       {
         "d": "2026-08-11",
         "c": "制造",
         "t": "通过的样品与不合格的货柜",
         "ex": "金样为什么会漂移、为什么通常不是有意为之，以及在出货前能抓住它的两道检查。",
-        "lang": "中文 · EN"
+        "lang": "中文 · EN",
+        "slug": "sample-passes-container-fails",
+        "body": []
       },
       {
         "d": "2026-08-04",
         "c": "建设 TGO",
         "t": "母公司为什么保持隐形",
         "ex": "BBK 的手机销量几乎无人能及，却没有人要买一台 BBK。我们为什么用同样的方式搭建 TGO。",
-        "lang": "仅 EN"
+        "lang": "仅 EN",
+        "slug": "why-the-parent-stays-invisible",
+        "body": []
       },
       {
         "d": "2026-07-28",
         "c": "市场观察",
         "t": "BIS 不是手续，而是一份日历",
         "ex": "印度认证的时间表究竟是什么样子，以及如何并行推进而不是串行等待。",
-        "lang": "中文 · EN"
+        "lang": "中文 · EN",
+        "slug": "bis-is-a-calendar",
+        "body": []
       }
     ],
     "videoKicker": "频道",
     "videoTitle": "创始人出镜，每周更新。",
     "videoNote": "在路上拍摄——东莞的工厂、卡拉奇的门店、马尼拉的仓库，以及阿联酋的办公室。英文站用 YouTube；中文站用哔哩哔哩，此处不嵌入 YouTube。",
     "videoBtn": "在哔哩哔哩观看",
-    "videoHref": ""
+    "videoHref": "",
+    "perPage": 6,
+    "catSlugs": [
+      "",
+      "market-notes",
+      "manufacturing",
+      "building-tgo"
+    ]
   },
   "partner": {
     "title": "介绍一下您的业务。",

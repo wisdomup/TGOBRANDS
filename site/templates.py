@@ -32,9 +32,63 @@ def e(s):
     return escape(str(s), quote=True)
 
 
+def root(lang):
+    return '/zh/' if lang == 'zh' else '/'
+
+
 def href(lang, page, slug=None):
     path = f'brands/{slug}/' if page == 'brand' else PATHS[page]
-    return ('/zh/' if lang == 'zh' else '/') + path
+    return root(lang) + path
+
+
+def list_path(cat_slug='', page_no=1):
+    """Insights listing: /insights/, /insights/page/2/, /insights/category/<cat>/page/2/."""
+    path = 'insights/' + (f'category/{cat_slug}/' if cat_slug else '')
+    return path + (f'page/{page_no}/' if page_no > 1 else '')
+
+
+def href_list(lang, cat_slug='', page_no=1):
+    return root(lang) + list_path(cat_slug, page_no)
+
+
+def href_post(lang, slug):
+    return root(lang) + f'insights/{slug}/'
+
+
+def post_cat(c, post):
+    """Index of a post's category in the insights category list (0 is All)."""
+    cats = c['insights']['cats']
+    return cats.index(post['c']) if post['c'] in cats else 0
+
+
+def pager(aria, prev=None, nxt=None, prev_label='', next_label=''):
+    """Previous / next cards at the foot of a page. prev and nxt are (url, title)."""
+    if not prev and not nxt:
+        return ''
+
+    def cell(item, label, rel):
+        if not item:
+            return ''
+        url, title = item
+        return (f'<a class="pager__link pager__link--{rel}" href="{url}" rel="{rel}">'
+                f'<span class="pager__dir">{label}</span><span class="pager__title">{e(title)}</span></a>')
+    return f'''
+  <nav class="wrap pager" aria-label="{e(aria)}">
+    {cell(prev, "← " + e(prev_label), "prev")}
+    {cell(nxt, e(next_label) + " →", "next")}
+  </nav>'''
+
+
+# the order a first-time visitor walks the site; ends on the conversion page
+SEQUENCE = ['home', 'what', 'brands', 'founders', 'markets', 'insights', 'partner']
+
+
+def site_pager(c, lang, page):
+    i = SEQUENCE.index(page)
+    title = lambda k: c['ui']['home'] if k == 'home' else c['nav'][k]
+    prev = (href(lang, SEQUENCE[i - 1]), title(SEQUENCE[i - 1])) if i > 0 else None
+    nxt = (href(lang, SEQUENCE[i + 1]), title(SEQUENCE[i + 1])) if i + 1 < len(SEQUENCE) else None
+    return pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])
 
 
 def img(ratio='', cls='photo', eager=False):
@@ -75,7 +129,7 @@ def bcard(c, lang, b):
 
 def nav(c, lang, page, alt_href):
     home = page == 'home'
-    cur = 'brands' if page == 'brand' else page
+    cur = {'brand': 'brands', 'post': 'insights'}.get(page, page)
     current = ' aria-current="page"'
     links = ''.join(
         f'<a href="{href(lang, k)}"{current if cur == k else ""}>{e(c["nav"][k])}</a>'
@@ -167,7 +221,7 @@ def page_home(c, lang):
           </div>''' for p in c['founders']['people'])
 
     posts = ''.join(f'''
-        <a class="panel post" href="{href(lang, 'insights')}">
+        <a class="panel post" href="{href_post(lang, p['slug'])}">
           {eyebrow(p["d"] + " · " + p["c"])}
           <h3>{e(p["t"])}</h3>
           <p>{e(p["ex"])}</p>
@@ -300,6 +354,7 @@ def page_home(c, lang):
       <a class="btn btn--light" href="{href(lang, 'partner')}">{e(h["closeBtn"])}</a>
     </div>
   </section>
+  {site_pager(c, lang, 'home')}
 </main>
 {how_dialog(c, lang)}'''
 
@@ -357,6 +412,7 @@ def page_what(c, lang):
   </section>
 
   {poster(c, lang)}
+  {site_pager(c, lang, 'what')}
 </main>'''
 
 
@@ -386,6 +442,7 @@ def page_brands(c, lang):
     <div class="bcards">{cards}
     </div>
   </section>
+  {site_pager(c, lang, 'brands')}
 </main>'''
 
 
@@ -395,7 +452,7 @@ def page_brand(c, lang, i):
     L = b['labels']
     rng = ''.join(f'<p class="spec__item">{e(r)}</p>' for r in it['range'])
     return f'''<main id="main" class="page page--brand">
-  <section class="wrap brand-back"><a href="{href(lang, 'brands')}">← {e(L["back"])}</a></section>
+  <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'brands')}">← {e(L["back"])}</a></section>
   <section class="wrap brand-hero">
     <div>
       {eyebrow(it["cat"])}
@@ -412,7 +469,17 @@ def page_brand(c, lang, i):
       <div class="spec">{eyebrow(L["st"])}<p class="spec__tag"><span class="tag">{e(it["st"])}</span></p><p>{e(it["note"])}</p></div>
     </div>
   </section>
+  {brand_pager(c, lang, i)}
 </main>'''
+
+
+def brand_pager(c, lang, i):
+    items = c['brands']['items']
+    prev = ((href(lang, 'brand', items[i - 1]['slug']), items[i - 1]['name']) if i > 0
+            else (href(lang, 'brands'), c['nav']['brands']))
+    nxt = ((href(lang, 'brand', items[i + 1]['slug']), items[i + 1]['name']) if i + 1 < len(items)
+           else (href(lang, 'founders'), c['nav']['founders']))
+    return pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])
 
 
 def person(p, team=False):
@@ -465,6 +532,7 @@ def page_founders(c, lang):
     <div class="trio trio--people">{team}
     </div>
   </section>
+  {site_pager(c, lang, 'founders')}
 </main>'''
 
 
@@ -492,28 +560,60 @@ def page_markets(c, lang):
 
   <section class="wrap markets">{items}
   </section>
+  {site_pager(c, lang, 'markets')}
 </main>'''
 
 
-def page_insights(c, lang):
+def insights_posts(c, cat=0):
+    posts = c['insights']['posts']
+    return [p for p in posts if cat == 0 or post_cat(c, p) == cat]
+
+
+def insights_pages(c, cat=0):
+    per = c['insights']['perPage']
+    return max(1, -(-len(insights_posts(c, cat)) // per))
+
+
+def page_numbers(c, lang, cat_slug, page_no, total):
+    """1 · 2 · 3 with Previous / Next; nothing at all while everything fits on one page."""
+    if total < 2:
+        return ''
+    ui = c['ui']
+    nums = ''.join(
+        '<li><a class="pages__n" href="{0}" aria-label="{1}"{2}>{3}</a></li>'.format(
+            href_list(lang, cat_slug, n), e(ui['pageN'].format(n=n)),
+            ' aria-current="page"' if n == page_no else '', n)
+        for n in range(1, total + 1))
+    prev = (f'<a class="pages__step" href="{href_list(lang, cat_slug, page_no - 1)}" rel="prev">← {e(ui["prev"])}</a>'
+            if page_no > 1 else f'<span class="pages__step is-off" aria-hidden="true">← {e(ui["prev"])}</span>')
+    nxt = (f'<a class="pages__step" href="{href_list(lang, cat_slug, page_no + 1)}" rel="next">{e(ui["next"])} →</a>'
+           if page_no < total else f'<span class="pages__step is-off" aria-hidden="true">{e(ui["next"])} →</span>')
+    return f'''
+    <nav class="pages" aria-label="{e(ui["pages"])}">{prev}<ol>{nums}</ol>{nxt}</nav>'''
+
+
+def page_insights(c, lang, cat=0, page_no=1):
     s = c['insights']
-    cats = s['cats']
+    cats, slugs = s['cats'], s['catSlugs']
+    per = s['perPage']
     chips = ''.join(
-        f'<button class="chip" type="button" data-cat="{i}" aria-pressed="{"true" if i == 0 else "false"}">{e(x)}</button>'
+        '<a class="chip" href="{0}"{1}>{2}</a>'.format(
+            href_list(lang, slugs[i]), ' aria-current="page"' if i == cat else '', e(x))
         for i, x in enumerate(cats))
+    shown = insights_posts(c, cat)[(page_no - 1) * per: page_no * per]
     posts = ''.join(f'''
-    <article class="post-row" data-cat="{cats.index(p["c"]) if p["c"] in cats else 0}">
+    <a class="post-row" href="{href_post(lang, p['slug'])}">
       {eyebrow(p["d"] + " · " + p["c"])}
       <h2>{e(p["t"])}</h2>
       <p class="post-row__ex">{e(p["ex"])}</p>
       {eyebrow(p["lang"])}
-    </article>''' for p in s['posts'])
-    chips_html = f'\n    <div class="chips" role="group" aria-label="{e(c["ui"]["filter"])}" data-filter>{chips}</div>'
+    </a>''' for p in shown)
+    chips_html = f'\n    <nav class="chips" aria-label="{e(c["ui"]["filter"])}">{chips}</nav>'
     # YouTube on the English site; the 中文 site links out rather than embedding
     return f'''<main id="main" class="page page--insights">
   {phead(s["kicker"], s["title"], s["sub"], extra=chips_html)}
 
-  <section class="wrap posts">{posts}
+  <section class="wrap posts">{posts}{page_numbers(c, lang, slugs[cat], page_no, insights_pages(c, cat))}
   </section>
 
   <section class="band band--ruled">
@@ -527,6 +627,32 @@ def page_insights(c, lang):
       {img('16x9')}
     </div>
   </section>
+  {site_pager(c, lang, 'insights')}
+</main>'''
+
+
+def page_post(c, lang, i):
+    s = c['insights']
+    posts = s['posts']
+    p = posts[i]
+    ui = c['ui']
+    body = ''.join(f'<p>{e(x)}</p>' for x in p.get('body', [])) or f'<p class="post-body__soon">{e(ui["articleSoon"])}</p>'
+    prev = (href_post(lang, posts[i - 1]['slug']), posts[i - 1]['t']) if i > 0 else None
+    nxt = (href_post(lang, posts[i + 1]['slug']), posts[i + 1]['t']) if i + 1 < len(posts) else None
+    return f'''<main id="main" class="page page--post">
+  <section class="wrap post-head">
+    <a class="back-link" href="{href_list(lang)}">← {e(ui["allInsights"])}</a>
+    {eyebrow(p["d"] + " · " + p["c"])}
+    <h1 class="disp">{e(p["t"])}</h1>
+    <p class="lead" style="--mw:52ch">{e(p["ex"])}</p>
+    {eyebrow(p["lang"], "post-head__lang")}
+  </section>
+
+  <section class="wrap post-body">
+    {img('16x9')}
+    {body}
+  </section>
+  {pager(ui["allInsights"], prev, nxt, ui["prevArticle"], ui["nextArticle"])}
 </main>'''
 
 
@@ -657,11 +783,12 @@ PAGES = {
 
 # ── document ──────────────────────────────────────────────────────────────
 
-def document(c, lang, page, body, path, alt_path, title, description, version):
+def document(c, lang, page, body, path, alt_path, title, description, version, ld=None):
     m = c['meta']
     zh = lang == 'zh'
     en_path, zh_path = (alt_path, path) if zh else (path, alt_path)
     preload = f'\n<link rel="preload" as="image" href="{PHOTO}" fetchpriority="high">' if page == 'home' else ''
+    extra_ld = ''.join(f'\n<script type="application/ld+json">{x}</script>' for x in (ld or []))
     org = ('{"@context":"https://schema.org","@type":"Organization","name":"TGO Brands",'
            '"alternateName":"TGO优选","url":"' + SITE + '/",'
            '"description":"Market entry, distribution and local company setup for Chinese brands in Pakistan, the Philippines, India and the UAE.",'
@@ -679,7 +806,7 @@ def document(c, lang, page, body, path, alt_path, title, description, version):
 <link rel="alternate" hreflang="x-default" href="{SITE}{en_path}">
 <meta name="theme-color" content="#1d1d1f">
 <meta name="format-detection" content="telephone=no">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{'article' if page == 'post' else 'website'}">
 <meta property="og:site_name" content="TGO Brands">
 <meta property="og:url" content="{SITE}{path}">
 <meta property="og:title" content="{e(m['ogTitle'] if page == 'home' else title)}">
@@ -692,7 +819,7 @@ def document(c, lang, page, body, path, alt_path, title, description, version):
 <link rel="stylesheet" href="/assets/site.css?v={version}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/assets/site.js?v={version}" defer onerror="document.documentElement.classList.remove('js')"></script>
-<script type="application/ld+json">{org}</script>
+<script type="application/ld+json">{org}</script>{extra_ld}
 </head>
 <body data-page="{page}">
 <a class="skip" href="#main">{e(c["ui"]["skip"])}</a>

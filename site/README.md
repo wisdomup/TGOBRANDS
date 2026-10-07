@@ -5,7 +5,7 @@ Static, pre-rendered, bilingual (`/` English, `/zh/` 中文). No framework and n
 Python 3 standard library to build, plain HTML/CSS/JS out.
 
 ```bash
-python3 build.py                                   # writes ./dist (20 pages + sitemap, robots, llms.txt)
+python3 build.py                                   # writes ./dist (every page + sitemap, robots, llms.txt)
 python3 -m http.server 8000 --directory dist       # preview at http://localhost:8000
 ```
 
@@ -23,10 +23,22 @@ folders with an `index.html`, so no rewrites are needed.
 | `static/site.js` | Progressive enhancement only — every page is complete without it. |
 | `static/photo.jpg`, `static/hero.mp4` | Placeholder photography and the hero loop. |
 
+Adding an insight: add a post (with a `slug`, its category name and optional `body` paragraphs) to
+`insights.posts` in both content files, newest first. Its article page, the category listings, page
+numbers, Previous / Next links, sitemap and `llms.txt` all follow. Until `body` has paragraphs the
+article shows a "full article coming soon" note. Both files must list the same posts, categories and
+brands — the build stops if the two languages would produce different pages.
+
 Adding a brand: add an item (with a `slug`) to `brands.items` in both content files and rebuild —
 the table, the cards and the `/brands/<slug>/` pages all follow.
 
 ## Behaviour
+
+- **Pagination.** Insights lists `insights.perPage` posts per page (6) at `/insights/`, `/insights/page/2/`,
+  and per category at `/insights/category/<name>/` (`insights.catSlugs`); page numbers appear once a list
+  runs past one page. Each post has an article at `/insights/<slug>/` with Previous / Next article links.
+  Section pages end with Previous / Next cards in nav order — Home → What We Do → Brands → Founders →
+  Markets → Insights → Partner With Us — and brand pages step between brands.
 
 - **Nav** merges with the page at the top and becomes a frosted capsule once scrolled; over the
   dark hero it switches to smoked glass with white links. On phones the links live in a
