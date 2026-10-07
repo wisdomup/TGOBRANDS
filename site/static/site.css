@@ -822,14 +822,16 @@ html:lang(zh) {
   .explore__arrow { padding-top: 6px; }
   .actions { margin-top: 28px; }
 
-  /* hero: content centred in one screen, equal-width stacked actions, the
-     route line kept clear of the fade into the page */
-  .hero { padding: 88px 0 32px; }
-  .hero__in { padding: 16px var(--gutter) 72px; }
+  /* hero: sized to its content rather than forced to a full screen — a forced
+     100svh left an empty band of photograph under the route line on taller
+     phones. Equal-width stacked actions; the route line sits just clear of the
+     fade into the page, and the next section peeks in as a cue to scroll. */
+  .hero { min-height: 0; padding: 88px 0 24px; }
+  .hero__in { padding: 16px var(--gutter) 56px; }
   .hero__sub { margin-bottom: 28px; }
   .hero__acts { flex-direction: column; align-items: stretch; max-width: 320px; margin: 0 auto 36px; gap: 12px; }
   .hero__route { font-size: 12px; letter-spacing: 0.04em; }
-  .hero::after { height: 72px; }
+  .hero::after { height: 56px; }
 
   /* founders on the home page: a compact row each, not three full-screen portraits */
   .fcard { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; }
