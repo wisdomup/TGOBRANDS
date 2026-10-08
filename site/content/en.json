@@ -969,5 +969,14 @@
       "sitemap": "Site map"
     },
     "about": "TGO Brands is a Hong Kong company that takes Chinese manufacturers and their brands to the world — research, set-up, selling and the systems behind it."
+  },
+  "sitemap": {
+    "name": "Site map",
+    "kicker": "Site map",
+    "title": "Every page, in one place.",
+    "sub": "Every service, destination, market, brand and article on the site, grouped the way the site is.",
+    "home": "Home",
+    "topics": "Topics",
+    "articles": "Articles"
   }
 }

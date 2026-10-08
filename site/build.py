@@ -99,7 +99,7 @@ def routes(c):
     for key in ('what', 'services', 'launch', 'brands', 'founders', 'markets', 'partner', 'contact',
                 'expeditions', 'travel', 'estimator', 'portal'):
         out.append((key, T.PATHS[key], f'{c["nav"][key]} — {suffix}', c[key]['sub'], T.PAGES[key], None))
-    for key in ('privacy', 'terms'):
+    for key in ('privacy', 'terms', 'sitemap'):
         out.append((key, T.PATHS[key], f'{c[key]["name"]} — {suffix}', c[key]['sub'], T.PAGES[key], None))
     for key, page in (('packages', 'packagesPage'), ('visas', 'visasPage'), ('booking', 'bookingPage')):
         p = c['travel'][page]
@@ -244,7 +244,7 @@ def llms(c):
     for key, page in (('packages', 'packagesPage'), ('visas', 'visasPage'), ('booking', 'bookingPage')):
         p = c['travel'][page]
         lines.append(f'- [{p["name"]}]({T.SITE}{T.href("en", key)}): {p["sub"]}')
-    for key in ('privacy', 'terms'):
+    for key in ('privacy', 'terms', 'sitemap'):
         lines.append(f'- [{c[key]["name"]}]({T.SITE}{T.href("en", key)}): {c[key]["sub"]}')
     lines += ['', '## Services', '']
     for x in c['services']['items']:

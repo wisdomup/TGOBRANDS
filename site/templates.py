@@ -29,6 +29,7 @@ PATHS = {
     'portal': 'portal/',
     'privacy': 'privacy/',
     'terms': 'terms/',
+    'sitemap': 'sitemap/',
     'packages': 'travel/packages/',
     'visas': 'travel/visas/',
     'booking': 'travel/booking/',
@@ -218,35 +219,52 @@ def nav(c, lang, page, alt_href):
 </header>'''
 
 
-def footer(c, lang):
-    """The footer is a compact site map: every page, grouped as the site is, in small type."""
-    f, n = c['footer'], c['nav']
-    cols = f['cols']
-    t = c['travel']
-
-    def col(title, items, head=None, wide=False):
-        h = f'<a class="footer__h" href="{head}">{e(title)}</a>' if head else f'<p class="footer__h">{e(title)}</p>'
-        links = ''.join(f'<a href="{u}">{e(label)}</a>' for u, label in items)
-        cls = 'footer__col footer__col--wide' if wide else 'footer__col'
-        return f'\n      <nav class="{cls}" aria-label="{e(title)}">{h}<div class="footer__list">{links}</div></nav>'
-
+def site_groups(c, lang, full=False):
+    """The site, grouped as it is built: (title, section link or None, parts, wide), where parts is
+    [(subheading or None, [(href, label)])]. The footer shows each section's pages; the site-map
+    page (full=True) adds the home page, full trip names and every article."""
+    n, cols, t, s, m = c['nav'], c['footer']['cols'], c['travel'], c['insights'], c['sitemap']
     services = [(href(lang, 'service', x['slug']), x['name']) for x in c['services']['items']]
     travel = ([(href(lang, k), t[p]['name']) for k, p in (('packages', 'packagesPage'), ('visas', 'visasPage'), ('booking', 'bookingPage'))]
-              + [(href(lang, 'expeditions'), n['expeditions'])]
               + [(href(lang, 'guide', g['slug']), g['name']) for g in t['guides']])
+    trips = [(href(lang, 'trip', x['slug']), x['title'] if full else x['short']) for x in c['expeditions']['editions']]
     markets = ([(href(lang, 'playbook', b['slug']), c['markets']['items'][b['market']]['c']) for b in c['playbooks']['items']]
                + [(href(lang, 'estimator'), n['estimator'])])
     who = ([(href(lang, 'audience', a['slug']), a['name']) for a in c['audiences']['items']]
            + [(href(lang, 'launch'), n['launch']), (href(lang, 'portal'), n['portal'])])
     brands = [(href(lang, 'brand', b['slug']), b['name']) for b in c['brands']['items']]
-    company = ([(href(lang, k), n[k]) for k in ('what', 'founders', 'insights', 'contact', 'partner')]
-               + [(href(lang, 'privacy'), c['privacy']['name']), (href(lang, 'terms'), c['terms']['name'])])
-    sitemap = (col(cols['services'], services, href(lang, 'services'), wide=True)
-               + col(cols['travel'], travel, href(lang, 'travel'))
-               + col(cols['markets'], markets, href(lang, 'markets'))
-               + col(cols['who'], who)
-               + col(cols['brands'], brands, href(lang, 'brands'))
-               + col(cols['company'], company))
+    topics = [(href_list(lang, slug), name) for name, slug in zip(s['cats'][1:], s['catSlugs'][1:])]
+    insights = ([(m['topics'], topics), (m['articles'], [(href_post(lang, p['slug']), p['t']) for p in s['posts']])]
+                if full else [(None, topics)])
+    company = (([(href(lang, 'home'), m['home'])] if full else [])
+               + [(href(lang, k), n[k]) for k in ('what', 'founders', 'contact', 'partner')]
+               + [(href(lang, 'privacy'), c['privacy']['name']), (href(lang, 'terms'), c['terms']['name'])]
+               + ([] if full else [(href(lang, 'sitemap'), m['name'])]))
+    return [
+        (cols['services'], href(lang, 'services'), [(None, services)], True),
+        (cols['travel'], href(lang, 'travel'), [(None, travel)], False),
+        (n['expeditions'], href(lang, 'expeditions'), [(None, trips)], False),
+        (cols['markets'], href(lang, 'markets'), [(None, markets)], False),
+        (cols['who'], None, [(None, who)], False),
+        (cols['brands'], href(lang, 'brands'), [(None, brands)], False),
+        (n['insights'], href(lang, 'insights'), insights, False),
+        (cols['company'], None, [(None, company)], False),
+    ]
+
+
+def footer(c, lang):
+    """The footer is a compact site map: every section and its pages, in small type. The
+    full list, with every article, is the site-map page it links to."""
+    f = c['footer']
+    cols = f['cols']
+
+    def col(title, head, parts, wide):
+        h = f'<a class="footer__h" href="{head}">{e(title)}</a>' if head else f'<p class="footer__h">{e(title)}</p>'
+        links = ''.join(f'<a href="{u}">{e(label)}</a>' for _, items in parts for u, label in items)
+        cls = 'footer__col footer__col--wide' if wide else 'footer__col'
+        return f'\n      <nav class="{cls}" aria-label="{e(title)}">{h}<div class="footer__list">{links}</div></nav>'
+
+    sitemap = ''.join(col(*g) for g in site_groups(c, lang))
     return f'''<footer class="footer">
   <div class="footer__top">
     <div class="footer__brand">
@@ -1911,6 +1929,27 @@ def page_legal(c, lang, key):
 </main>'''
 
 
+def page_sitemap(c, lang):
+    """Every page on the site, grouped as the footer groups them, with every article listed."""
+    m = c['sitemap']
+
+    def group(title, head, parts, wide):
+        h = f'<a href="{head}">{e(title)}</a>' if head else e(title)
+        lists = ''.join(
+            (f'<h3 class="smap__sub">{e(sub)}</h3>' if sub else '')
+            + '<ul class="smap__list">' + ''.join(f'<li><a href="{u}">{e(label)}</a></li>' for u, label in items) + '</ul>'
+            for sub, items in parts)
+        return f"""
+    <section class="panel smap__group{' smap__group--wide' if wide else ''}">
+      <h2 class="smap__h">{h}</h2>{lists}
+    </section>"""
+    return f'''<main id="main" class="page page--sitemap">
+  {phead(m["kicker"], m["title"], m["sub"])}
+  <div class="wrap smap">{''.join(group(*g) for g in site_groups(c, lang, full=True))}
+  </div>
+</main>'''
+
+
 def page_portal(c, lang):
     p = c['portal']
     tabs = p['tabs']
@@ -1985,6 +2024,7 @@ PAGES = {
     'booking': page_booking,
     'privacy': lambda c, lang: page_legal(c, lang, 'privacy'),
     'terms': lambda c, lang: page_legal(c, lang, 'terms'),
+    'sitemap': page_sitemap,
     'home': page_home,
     'what': page_what,
     'brands': page_brands,
