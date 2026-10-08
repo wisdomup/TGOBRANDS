@@ -4,6 +4,25 @@
     "labels": {"pains": "What gets in the way", "offer": "What we do about it", "services": "Services you will use", "apply": "Start your application"},
     "items": [
       {
+        "slug": "entrepreneurs", "as": "entrepreneur",
+        "name": "Business owners & entrepreneurs",
+        "title": "Your business, growing in a new market.",
+        "sub": "You have built something that works at home, and you have the capital and the team to take it further. We help you choose the market, set it up, meet the right people, and we go there with you.",
+        "pains": [
+          {"t": "Everything looks different from far away", "d": "Rules, prices, partners and people. From a desk at home, good advice is hard to tell from a sales pitch."},
+          {"t": "Partners you cannot check", "d": "A distributor, an agent or a landlord can look perfect on a call. You only find out on the ground."},
+          {"t": "Trips that teach you nothing", "d": "Hotel, conference, a few polite meetings, home. The market you came to see stays out of view."}
+        ],
+        "offer": [
+          {"t": "We help you choose", "d": "Research, and a trip on the ground, before you commit money to a market."},
+          {"t": "We set it up", "d": "Company, licences, customs and tax, run in parallel and filed by us."},
+          {"t": "We open the doors", "d": "Distributors, partners and service providers, introduced by people who know them."},
+          {"t": "We stay", "d": "After the launch we are still there, in the second year as much as the first month."}
+        ],
+        "services": ["research-development", "market-survey-trips", "company-registration", "distribution-sales", "brand-scaling", "it-solutions"],
+        "cta": "Tell us about your business"
+      },
+      {
         "slug": "manufacturers", "as": "manufacturer",
         "name": "Manufacturers",
         "title": "Your factory, on shelves in new markets.",

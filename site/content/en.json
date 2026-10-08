@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "TGO Brands — Take Chinese Brands to the World",
-    "description": "TGO Brands takes Chinese manufacturers and their brands to the world: market research, approvals, company set-up, distribution and trips on the ground, from one operator.",
-    "ogTitle": "TGO Brands — We take you global",
-    "ogDescription": "Market entry and distribution for Chinese brands, worldwide.",
+    "title": "TGO Brands — Grow into new markets with people who have done it",
+    "description": "TGO Brands is a lobby for entrepreneurs and business owners going into new markets: market entry, distribution, brand building, IT and systems, and business travel, led by three founders who have done it themselves.",
+    "ogTitle": "TGO Brands — Grow into new markets with people who have done it",
+    "ogDescription": "Grow into new markets with three founders who have done it.",
     "suffix": "TGO Brands",
     "langName": "English"
   },
@@ -32,53 +32,104 @@
     "pageN": "Page {n}",
     "continue": "Keep exploring",
     "articleSoon": "The full article is coming soon.",
-    "related": "Related"
+    "related": "Related",
+    "talk": "Talk to a founder",
+    "soon": "Coming soon"
   },
   "dir": "latin",
   "nav": {
-    "what": "What We Do",
+    "what": "What we do",
     "brands": "Brands",
     "founders": "Founders",
     "markets": "Markets",
     "insights": "Insights",
-    "partner": "Partner With Us",
+    "partner": "Partner with us",
     "contact": "Contact",
     "services": "Services",
     "launch": "Launch",
     "expeditions": "Expeditions",
     "estimator": "Entry estimator",
-    "portal": "Partner portal",
+    "portal": "Partner portal (preview)",
     "travel": "Travel"
   },
   "route": {
     "origin": "Guangzhou",
     "stations": [
       "Karachi",
-      "Mumbai",
+      "Patna",
       "Manila",
-      "UAE"
+      "Dubai"
     ],
     "leads": [
       "Umair",
       "Aryan",
       "Umer",
-      "Shamas"
+      "Shamas (guest)"
     ]
   },
   "home": {
-    "h1a": "We take Chinese brands",
-    "h1b": "to the world.",
-    "sub": "One operator for the whole journey, from the first market study to full shelves.",
-    "routeLine": "From Guangzhou to the world",
-    "cta": "Tell us about your business",
-    "cta2": "How we work",
-    "premiseKicker": "The premise",
-    "premise": [
-      "A factory in Dongguan can find an agent on the other side of the world tomorrow. What is hard to find is someone who will be standing in the shop when the first container lands, and again when the third one does.",
-      "We are three people who met in Guangzhou in 2006, went our separate ways, and spent the years since building electronics, solar, distribution and retail businesses on the ground. We know what a phone shop will actually stock, and why a product that sells in one city fails in the next.",
-      "TGO owns and builds the brands, handles certification and channel, and carries the warranty. The parent stays invisible. The brands do the talking."
+    "kicker": "A lobby for businesses going into new markets",
+    "h1": "Grow into new markets with people who have done it.",
+    "sub": "TGO is the lobby we wished we’d had when we started: where business owners meet the markets, partners and people they need to expand. We open the doors, go with you, and stay after the first deal.",
+    "cta": "Tell us where you want to grow",
+    "cta2": "Meet the founders",
+    "routeFrom": "Guangzhou, 2006",
+    "routeTo": "The world",
+    "needsTitle": "Come to us when you want to…",
+    "needs": [
+      {
+        "t": "Enter a new market",
+        "d": "Research, company set-up, approvals and customs, sorted before your first shipment.",
+        "link": {
+          "group": "enter"
+        }
+      },
+      {
+        "t": "Scale your sales and your team",
+        "d": "Distributors, marketplaces, your brand, sales teams, and the systems a bigger team runs on.",
+        "link": {
+          "group": "grow"
+        }
+      },
+      {
+        "t": "Go and see it first",
+        "d": "Business trips, trade fairs and market tours, with one of us beside you and the visas handled.",
+        "link": {
+          "page": "travel"
+        }
+      }
     ],
-    "proofKicker": "Where the credibility comes from",
+    "whoLabel": "We work with",
+    "careTitle": "You deal with a founder, not a sales team.",
+    "care": [
+      {
+        "t": "A founder answers",
+        "d": "Your message goes to Umair, Umer or Aryan, whoever knows your market best. You hear back within two working days."
+      },
+      {
+        "t": "We go with you",
+        "d": "To the meetings, the factories and the fairs. We translate, we negotiate, and we tell you what we see, including the parts you won’t like."
+      },
+      {
+        "t": "We stay after the first deal",
+        "d": "The second shipment, the first hires, the warranty desk. We are still there when the excitement wears off."
+      }
+    ],
+    "foundersTitle": "We met in Guangzhou in 2006.",
+    "foundersSub": "Two brothers and a lifelong friend. We spent the years since building businesses in three countries, then came back together to build the lobby we wished we’d had.",
+    "lines": {
+      "Umair": "Electronics, solar and lithium ventures, and the brands and systems behind them.",
+      "Umer": "Ten years in Manila, building distribution and a travel business.",
+      "Aryan": "Trained at Oppo, then founded a technology company."
+    },
+    "proofNote": "The founders’ own figures, Q3 2026. Not audited.",
+    "storyLink": "Our story",
+    "brandsTitle": "Brands we build and run.",
+    "brandsNote": "The brands we run ourselves, in the markets we work in.",
+    "closeTitle": "Tell us where you want to grow.",
+    "closeNote": "A founder reads every message and replies within two working days. Or message one of us directly.",
+    "closeCta": "Tell us about your business",
+    "wa": "WhatsApp {name}",
     "proof": [
       {
         "n": "45+",
@@ -97,44 +148,9 @@
         "l": "Manufacturing partners"
       }
     ],
-    "proofNote": "Figures as of Q3 2026, across TGO founder operations. No published financials.",
-    "brandsKicker": "Our brands",
-    "brandsNote": "A house of brands: the parent stays in the background, the brands carry their own names.",
-    "foundersKicker": "The founders",
-    "routeKicker": "From the route",
-    "routeNote": "Weekly notes and the founder-led channel.",
     "closeA": "Tell us about your business.",
     "closeB": "A few quick questions.",
-    "closeBtn": "Start the survey",
-    "headings": {
-      "premise": "A parent company you never see.",
-      "proof": "The scale, stated plainly.",
-      "brands": "Brands we own outright.",
-      "founders": "We take you global.",
-      "route": "What we are learning."
-    },
-    "marquee": [
-      "Lightspeed International",
-      "ZIG ZAG",
-      "TGO优选",
-      "Guangzhou",
-      "PSQCA",
-      "BIS",
-      "BPS"
-    ],
-    "heroKicker": "Senior brand operator · R&D",
-    "doorsTitle": "Four ways in.",
-    "servicesMore": "All fifteen services",
-    "launchMore": "How the programme works",
-    "toolsKicker": "Before you commit",
-    "toolsTitle": "Check the market first. Then go and see it.",
-    "estimatorNote": "Pick a product and a market: approvals, time to the first shelf, duties and a landed-cost range in seconds.",
-    "tripKicker": "Next expedition",
-    "visaTool": {
-      "kicker": "Visa check",
-      "title": "Any passport, any country.",
-      "d": "The visa you need, how long you can stay and when to apply — checked in seconds."
-    }
+    "closeBtn": "Start the survey"
   },
   "what": {
     "title": "The bridge.",
@@ -425,7 +441,7 @@
   "insights": {
     "title": "Notes from the route.",
     "kicker": "Insights",
-    "sub": "Weekly, tied to the channel. Written from the road, not from a keyword list.",
+    "sub": "Notes from the road, written by the three of us. Articles marked coming soon are still being written.",
     "cats": [
       "All",
       "Market notes",
@@ -538,6 +554,10 @@
         "q": "First — who are you?",
         "h": "So we route this to the right person.",
         "opts": [
+          [
+            "entrepreneur",
+            "A business owner or entrepreneur"
+          ],
           [
             "manufacturer",
             "A manufacturer"
@@ -674,9 +694,11 @@
         ],
         "qFor": {
           "creator": "What would you like to sell?",
-          "distributor": "Which category do you sell most?"
+          "distributor": "Which category do you sell most?",
+          "entrepreneur": "What does your business sell?"
         },
         "for": [
+          "entrepreneur",
           "manufacturer",
           "brand_owner",
           "other",
@@ -822,6 +844,7 @@
         ],
         "multi": true,
         "for": [
+          "entrepreneur",
           "manufacturer",
           "brand_owner",
           "other"
@@ -968,7 +991,7 @@
       "brands": "Brands",
       "sitemap": "Site map"
     },
-    "about": "TGO Brands is a Hong Kong company that takes Chinese manufacturers and their brands to the world — research, set-up, selling and the systems behind it."
+    "about": "TGO Brands is a Hong Kong company run by its three founders: a lobby for entrepreneurs and businesses going into new markets, from the first trip to the years after launch."
   },
   "sitemap": {
     "name": "Site map",

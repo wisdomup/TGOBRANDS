@@ -194,10 +194,13 @@ def build(out):
         other = 'zh' if lang == 'en' else 'en'
         for key, rel, title, desc, render, post in plans[lang]:
             path, alt = T.root(lang) + rel, T.root(other) + rel
-            ld = [article_ld(c, lang, post, T.SITE + path)] if key == 'post' else None
-            write(out, path, T.document(c, lang, key, render(c, lang), path, alt, title, desc, version, ld))
+            # an article still being written is labelled on the page and kept out of search
+            draft = key == 'post' and not T.written(c['insights']['posts'][post])
+            ld = [article_ld(c, lang, post, T.SITE + path)] if key == 'post' and not draft else None
+            write(out, path, T.document(c, lang, key, render(c, lang), path, alt, title, desc, version, ld, noindex=draft))
             count += 1
-    sitemap = [(T.root('en') + rel, T.root('zh') + rel) for rel in paths['en']]
+    drafts = {r[1] for r in plans['en'] if r[0] == 'post' and not T.written(content['en']['insights']['posts'][r[5]])}
+    sitemap = [(T.root('en') + rel, T.root('zh') + rel) for rel in paths['en'] if rel not in drafts]
 
     urls = ''.join(
         f'''  <url><loc>{T.SITE}{p}</loc>
@@ -227,12 +230,12 @@ def llms(c):
     lines = [
         '# TGO Brands',
         '',
-        '> TGO Brands Limited is a Hong Kong company that takes Chinese manufacturers and their brands to the '
-        'world: distribution, brand building, market entry and certification, sourcing, market survey trips, '
-        'and IT and systems (software, cloud, data, AI, security, ERP and CRM) — with a travel agency for '
-        'business trips, trade fairs, holidays, visas and documents.',
+        '> TGO Brands Limited is a Hong Kong company run by its three founders: a lobby for entrepreneurs and '
+        'business owners going into new markets. Market entry and certification, distribution, brand building, '
+        'sourcing, market survey trips, and IT and systems (software, cloud, data, AI, security, ERP and CRM), '
+        'with a travel agency for business trips, trade fairs, holidays, visas and documents.',
         '',
-        c['home']['premise'][2],
+        c['home']['sub'],
         '',
         '## Pages',
         '',
@@ -257,7 +260,8 @@ def llms(c):
         lines.append(f'- [{b["name"]}]({T.SITE}{T.href("en", "brand", b["slug"])}): {b["cat"]}. {b["pos"]}')
     lines += ['', '## Insights', '']
     for post in c['insights']['posts']:
-        lines.append(f'- [{post["t"]}]({T.SITE}{T.href_post("en", post["slug"])}) ({post["d"]}): {post["ex"]}')
+        when = post['d'] if T.written(post) else 'coming soon'
+        lines.append(f'- [{post["t"]}]({T.SITE}{T.href_post("en", post["slug"])}) ({when}): {post["ex"]}')
     lines += ['', '## Founders', '']
     for p in c['founders']['people']:
         lines.append(f'- {p["name"]} ({p["city"]}): {p["role"]}')

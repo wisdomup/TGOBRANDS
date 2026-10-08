@@ -1,7 +1,6 @@
 /* TGO Brands — progressive enhancement. Every page is complete without this
-   file; it adds the capsule nav, scroll reveal, the proof-figure flicker, the
-   how-we-work sheet, the insights filter, region-ordered contact channels and
-   the one-question-per-screen partner survey. */
+   file; it adds the capsule nav, scroll reveal, the insights filter,
+   region-ordered contact channels and the one-question-per-screen partner survey. */
 (function () {
   'use strict';
 
@@ -50,49 +49,8 @@
     }
   }
 
-  /* ── Hero video: streamed after first paint so the page is interactive first ── */
-  function initHeroVideo() {
-    var v = $('.hero video[data-src]');
-    if (!v || reduced) return;
-    var conn = navigator.connection;
-    if (conn && conn.saveData) return;
-    function start() {
-      setTimeout(function () {
-        v.muted = true;
-        v.src = v.getAttribute('data-src');
-        var p = v.play();
-        if (p && p.catch) p.catch(function () {});
-      }, 300);
-    }
-    if (document.readyState === 'complete') start();
-    else window.addEventListener('load', start, { once: true });
-  }
-
-  /* ── Proof figures flicker through random values, then settle left to right ── */
-  function flicker(figs) {
-    if (reduced || !figs.length) return;
-    var finals = figs.map(function (el) { return el.getAttribute('data-fig'); });
-    var t0 = Date.now();
-    var DUR = 1100;
-    figs.forEach(function (el) { el.classList.add('is-settling'); });
-    var timer = setInterval(function () {
-      var p = Math.min(1, (Date.now() - t0) / DUR);
-      figs.forEach(function (el, i) {
-        if (p >= 0.55 + i * 0.11) { el.textContent = finals[i]; return; }
-        el.textContent = finals[i].replace(/\d+/, function (d) {
-          var max = Math.pow(10, d.length) - 1;
-          return String(Math.max(1, Math.floor(Math.random() * max))).padStart(d.length, '0');
-        });
-      });
-      if (p >= 1) {
-        clearInterval(timer);
-        figs.forEach(function (el, i) { el.textContent = finals[i]; el.classList.remove('is-settling'); });
-      }
-    }, 70);
-  }
-
   /* ── Scroll reveal: must match the selector the stylesheet hides ── */
-  var REVEAL = ':is(.page > section:not(.hero), .page .survey) :is(h1, h2, h3, p, article, figure, .figs):not(.marq *)';
+  var REVEAL = ':is(.page > section:not(.hero, .lobby), .page .survey) :is(h1, h2, h3, p, article, figure, .figs):not(.marq *)';
   function initReveal() {
     var els = $$(REVEAL);
     if (!('IntersectionObserver' in window)) {
@@ -104,29 +62,12 @@
         if (!e.isIntersecting) return;
         e.target.classList.add('is-in');
         io.unobserve(e.target);
-        if (e.target.hasAttribute('data-figs')) flicker($$('[data-fig]', e.target));
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
     els.forEach(function (el) {
       var i = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
       el.style.transitionDelay = Math.min(i, 5) * 70 + 'ms';
       io.observe(el);
-    });
-  }
-
-  /* ── How-we-work sheet; its triggers fall back to /what-we-do/#start ── */
-  function initHow() {
-    var dlg = $('#how');
-    if (!dlg || !dlg.showModal) return;
-    $$('[data-open-how]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        dlg.showModal();
-      });
-    });
-    dlg.addEventListener('click', function (e) {
-      // a click on the scrim (the dialog box itself, outside the sheet) closes it
-      if (e.target === dlg || e.target.closest('[data-close]')) dlg.close();
     });
   }
 
@@ -163,7 +104,7 @@
   /* ── Partner application ────────────────────────────────────────────── */
   var WHATSAPP = { Umer: '639772547666', Umair: '8615623305030', Aryan: '917645912074', Shamas: '971542971969' };
   var SCORES = {
-    party_type: { manufacturer: 25, brand_owner: 22, distributor: 15, creator: 12, investor: 8, other: 5 },
+    party_type: { entrepreneur: 22, manufacturer: 25, brand_owner: 22, distributor: 15, creator: 12, investor: 8, other: 5 },
     monthly_volume_band: { '<1k': 5, '1k-10k': 15, '10k-50k': 25, '50k+': 35, 'n/a': 5 },
     dist_outlets: { '1': 5, '2-10': 12, '11-50': 22, '50+': 30, online: 15 },
     creator_following: { '<100k': 5, '100k-500k': 15, '500k-1m': 25, '1m+': 35 },
@@ -812,9 +753,7 @@
   initSource();
   initTheme();
   initNav();
-  initHeroVideo();
   initReveal();
-  initHow();
   initRegion();
   initSurvey();
   initTravel();

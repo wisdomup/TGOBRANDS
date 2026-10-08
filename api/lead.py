@@ -32,7 +32,7 @@ COVERS = [('PK', 'Umair'), ('IN', 'Aryan'), ('PH', 'Umer'), ('AE', 'Shamas'), ('
 DEFAULT_LEAD = 'Umair'
 WHATSAPP = {'Umer': '639772547666', 'Umair': '8615623305030', 'Aryan': '917645912074', 'Shamas': '971542971969'}
 
-PARTY = {'manufacturer': 'Manufacturer', 'brand_owner': 'Brand owner', 'distributor': 'Distributor / retailer',
+PARTY = {'entrepreneur': 'Business owner / entrepreneur', 'manufacturer': 'Manufacturer', 'brand_owner': 'Brand owner', 'distributor': 'Distributor / retailer',
          'creator': 'Creator', 'investor': 'Investor', 'other': 'Other'}
 MARKETS = {'PK': 'Pakistan', 'IN': 'India', 'PH': 'Philippines', 'AE': 'UAE', 'other': 'Other'}
 DESTINATIONS = {'PK': 'Pakistan', 'IN': 'India', 'PH': 'Philippines', 'AE': 'UAE', 'CN': 'China', 'BD': 'Bangladesh', 'NP': 'Nepal'}
