@@ -994,6 +994,25 @@ def service_catalog(c, lang, cat):
   </section>'''
 
 
+def service_lead(c, x):
+    """Who leads a service, as a person: face, name, what they do here and a WhatsApp link.
+    A service led by "your market lead" has no single person, so it has no card."""
+    who = x['lead']
+    if who not in WHATSAPP:
+        return ''
+    f = c['founders']
+    person = next((p for p in f['people'] + f.get('team', []) if p['name'].split()[0] == who), None)
+    note = x.get('leadNote') or (person['role'] if person else '')
+    return f"""
+    <div class="panel host svc-lead">
+      {face(c, who)}
+      {eyebrow(c['services']['labels']['lead'])}
+      <h3>{e(person['name'] if person else who)}</h3>
+      <p>{e(note)}</p>
+      <a class="wa-link" href="https://wa.me/{WHATSAPP[who]}" target="_blank" rel="noopener">WhatsApp {e(who)}{WA_ICON}</a>
+    </div>"""
+
+
 def page_service(c, lang, i):
     s = c['services']
     L = s['labels']
@@ -1002,6 +1021,8 @@ def page_service(c, lang, i):
     group = next(g for g in s['groups'] if g['key'] == x['group'])
     facts = [(L['timeline'], e(x['timeline'])), (L['model'], model_badges(c, x['model'])),
              (L['lead'], e(x['lead'])), (L['markets'], e(x['markets']))]
+    if x.get('base'):  # where the team doing the work sits, when that is one place
+        facts.append((L['base'], e(x['base'])))
     facts_html = ''.join(f'<div class="fact">{eyebrow(k)}<p class="fact__v">{v}</p></div>' for k, v in facts)
     deliver = ''.join(f'<li>{e(d)}</li>' for d in x['deliverables'])
     related = ''.join(service_card(c, lang, service_by_slug(c, r)) for r in x['related'])
@@ -1020,14 +1041,14 @@ def page_service(c, lang, i):
     {eyebrow(group["name"])}
     <h1 class="disp">{e(x["name"])}</h1>
     <p class="lead" style="--mw:46ch">{e(x["one"])}</p>
-    <div class="svc-facts">{facts_html}</div>
+    <div class="svc-facts{' svc-facts--5' if len(facts) == 5 else ''}">{facts_html}</div>
   </section>
 
   <section class="wrap svc-body">
     <div class="grid grid--2">
       <div class="panel svc-problem">{eyebrow(L["problem"])}<p>{e(x["problem"])}</p></div>
       <div class="panel svc-deliver">{eyebrow(L["deliverables"])}<ul class="ticks">{deliver}</ul></div>
-    </div>
+    </div>{service_lead(c, x)}
     <p class="note">{e(L["indicative"])}</p>{also}
   </section>{catalog}
 

@@ -112,8 +112,13 @@
     timeline: { now: 30, '3_months': 22, '6_months': 12, exploring: 4 }
   };
 
-  // routing: PK → Umair, IN → Aryan, PH → Umer, UAE → Shamas, otherwise Umair
+  // routing: a service one founder leads goes to that founder (IT and ERP & CRM → Umair, also when
+  // IT is the only need); otherwise by market: PK → Umair, IN → Aryan, PH → Umer, UAE → Shamas, else Umair.
+  // Mirrors route() in api/lead.py, which decides.
+  var SERVICE_LEADS = { 'it-solutions': 'Umair', 'erp-crm-integration': 'Umair' };
   function assignee(lead) {
+    if (SERVICE_LEADS[lead.service]) return SERVICE_LEADS[lead.service];
+    if (lead.need && lead.need.length === 1 && lead.need[0] === 'systems') return SERVICE_LEADS['it-solutions'];
     var m = lead.target_markets || [];
     var order = [['PK', 'Umair'], ['IN', 'Aryan'], ['PH', 'Umer'], ['AE', 'Shamas']];
     for (var i = 0; i < order.length; i++) if (m.indexOf(order[i][0]) > -1) return order[i][1];

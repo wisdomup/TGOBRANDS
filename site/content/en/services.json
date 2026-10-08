@@ -13,6 +13,7 @@
       "timeline": "Typical timeline",
       "model": "How it is priced",
       "lead": "Led by",
+      "base": "Team based in",
       "markets": "Markets",
       "related": "Often paired with",
       "problem": "The problem",
@@ -132,6 +133,7 @@
         "problem": "A new market needs new systems all at once: a site in the local language, a shop that takes local payments, devices, data and security. Bought from five vendors, they rarely work together.",
         "deliverables": ["One technical lead for every project", "Written scope, fixed price or a monthly retainer", "Security and backups set up from day one", "Documentation and handover, so you own every system"],
         "timeline": "2–16 weeks per project", "model": ["fixed", "retainer"], "lead": "Umair", "markets": "Worldwide",
+        "leadNote": "Umair leads our IT and systems team in Pakistan, from the first call to the handover.", "base": "Pakistan",
         "related": ["erp-crm-integration", "marketplaces", "brand-building"],
         "catalog": {
           "kicker": "What we build and run", "title": "Nine practices, one team.",
@@ -165,6 +167,7 @@
         "problem": "Stock in one spreadsheet, dealers in another and orders on WhatsApp. Growth breaks it; you cannot manage what you cannot see.",
         "deliverables": ["System choice (Odoo, Zoho, HubSpot and others)", "Set-up for inventory, orders, dealers and invoicing", "Integration with marketplaces, accounting and WhatsApp", "Team training and ongoing support"],
         "timeline": "4–12 weeks", "model": ["fixed", "retainer"], "lead": "Umair", "markets": "Worldwide",
+        "leadNote": "Umair leads every ERP and CRM project from our team in Pakistan, from choosing the system to training your team.", "base": "Pakistan",
         "related": ["it-solutions", "distribution-sales", "logistics-landed-cost"]
       },
       {

@@ -30,6 +30,9 @@ from urllib.parse import urlparse
 # recipient is always derived here, never taken from the request.
 COVERS = [('PK', 'Umair'), ('IN', 'Aryan'), ('PH', 'Umer'), ('AE', 'Shamas'), ('CN', 'Umair'), ('BD', 'Aryan'), ('NP', 'Aryan')]
 DEFAULT_LEAD = 'Umair'
+# services one founder leads wherever the client is: their enquiries go straight to that founder.
+# Mirrors SERVICE_LEADS in site/static/site.js.
+SERVICE_LEADS = {'it-solutions': 'Umair', 'erp-crm-integration': 'Umair'}
 WHATSAPP = {'Umer': '639772547666', 'Umair': '8615623305030', 'Aryan': '917645912074', 'Shamas': '971542971969'}
 
 PARTY = {'entrepreneur': 'Business owner / entrepreneur', 'manufacturer': 'Manufacturer', 'brand_owner': 'Brand owner', 'distributor': 'Distributor / retailer',
@@ -73,6 +76,18 @@ def assignee(markets):
     return DEFAULT_LEAD
 
 
+def route(lead):
+    """Travel goes to the destination's host. A partner application goes to the founder who leads
+    its service (from a service page, or when IT and systems is the only need), else by market."""
+    if lead['kind'] == 'travel':
+        return assignee(lead['destinations'])
+    if lead['service'] in SERVICE_LEADS:
+        return SERVICE_LEADS[lead['service']]
+    if lead['answers'].get('need') == ['systems']:
+        return SERVICE_LEADS['it-solutions']
+    return assignee(lead['target_markets'])
+
+
 def parse_lead(raw):
     """Validate the posted application. Returns (lead, error)."""
     if not isinstance(raw, dict):
@@ -104,7 +119,7 @@ def parse_lead(raw):
             lead['answers'][k] = [clean(x, 80) for x in v[:12] if isinstance(x, str)]
         elif isinstance(v, (str, int, float)) and not isinstance(v, bool):
             lead['answers'][k] = clean(v, 80)
-    lead['assigned_to'] = assignee(lead['destinations'] if lead['kind'] == 'travel' else lead['target_markets'])
+    lead['assigned_to'] = route(lead)
     lead['received_at'] = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
     return lead, None
 
