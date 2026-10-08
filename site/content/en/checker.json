@@ -153,7 +153,11 @@
       "cn_scheme": "Visa-free for up to 30 days under China's visa-free scheme, which runs to 31 December 2026.",
       "permit": "Residents of Hong Kong, Macao and Taiwan travel to the mainland on special permits rather than visas. We confirm which applies to you.",
       "us_suspended": "Entry to the United States is currently suspended for this passport.",
-      "us_visitor_suspended": "Visitor and business visas for the United States are currently suspended for this passport."
+      "us_visitor_suspended": "Visitor and business visas for the United States are currently suspended for this passport.",
+      "np_cn": "A free tourist visa on arrival at Kathmandu airport or the land borders, or in advance from a Nepal mission in China. Other kinds of visa pay the standard fee. Fill in the online arrival form before you fly.",
+      "np_in": "No visa needed. Carry a passport or a voter ID card.",
+      "np_saarc": "A free visa on arrival for up to 30 days on your first visit in a year. A second visit, or a longer stay, pays the standard fee.",
+      "np_voa": "A multiple-entry tourist visa on arrival at Kathmandu airport and the land borders: US$30 for 15 days, US$50 for 30 days, US$125 for 90 days. Fill in the online arrival form before you fly."
     },
     "destNotes": {
       "PH": "Everyone registers free on eTravel (etravel.gov.ph) within 72 hours before arrival."
@@ -181,6 +185,7 @@
     "groupAll": "All countries and territories",
     "validRuleStay3": "It must be valid for three months beyond the day you leave.",
     "tripTo": "Trip to",
-    "loading": "Loading every country…"
+    "loading": "Loading every country…",
+    "stayOpen": "No set limit"
   }
 }

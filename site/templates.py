@@ -1396,7 +1396,7 @@ def page_trip(c, lang, i):
 
 # ── travel ────────────────────────────────────────────────────────────────
 
-TRAVEL_HOSTS = {'PK': 'Umair', 'IN': 'Aryan', 'PH': 'Umer', 'AE': 'Shamas', 'CN': 'Umair', 'BD': 'Aryan'}
+TRAVEL_HOSTS = {'PK': 'Umair', 'IN': 'Aryan', 'PH': 'Umer', 'AE': 'Shamas', 'CN': 'Umair', 'BD': 'Aryan', 'NP': 'Aryan'}
 
 
 def attr(name, value):
@@ -1480,11 +1480,11 @@ def visa_checker(c, lang):
         'core': core, 'world': c['visaWorld'],
         'validity': vr['validityMonths'], 'beyondStay': vr['validityBeyondStay'], 'schengen': vr['schengen'],
         'labels': {x: k[x] for x in ('types', 'stay', 'fee', 'applyBy', 'passportCheck', 'days', 'stayVaries', 'noFee',
-                                     'feeOnArrival', 'feeFrom', 'feeVaries', 'noApply', 'beforeFly', 'addDates', 'valid',
+                                     'feeOnArrival', 'feeFrom', 'feeVaries', 'stayOpen', 'noApply', 'beforeFly', 'addDates', 'valid',
                                      'renew', 'validRule', 'validRuleStay', 'validRuleStay3', 'pages', 'checklist', 'plan',
                                      'guide', 'whatsapp', 'late', 'groupTop', 'groupAll', 'tripTo')},
         'notes': k['notes'], 'destNotes': k['destNotes'], 'docs': k['docs'],
-        'destNames': dnames, 'featured': ['CN', 'PK', 'IN', 'BD', 'PH', 'AE'],
+        'destNames': dnames, 'featured': ['CN', 'PK', 'IN', 'BD', 'NP', 'PH', 'AE'],
         'guides': {g['code']: href(lang, 'guide', g['slug']) for g in t['guides']},
         'hosts': TRAVEL_HOSTS, 'lang': lang,
     }

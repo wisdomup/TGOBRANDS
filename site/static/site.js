@@ -483,7 +483,7 @@
     $$('input[name="destinations"]', form).forEach(function (i) { if (i.value === to) i.checked = true; });
 
     function host(dests) {
-      var order = ['PK', 'IN', 'PH', 'AE', 'CN', 'BD'];
+      var order = ['PK', 'IN', 'PH', 'AE', 'CN', 'BD', 'NP'];
       for (var i = 0; i < order.length; i++) if (dests.indexOf(order[i]) > -1) return text.hosts[order[i]];
       return 'Umair';
     }
@@ -663,7 +663,7 @@
 
       if (['free', 'voa', 'evisa', 'eta', 'visa'].indexOf(r.type) > -1) {
         var grid = el('div', 'est-grid');
-        grid.appendChild(tile(L.stay, r.stay ? fmt(L.days, { n: r.stay }) : L.stayVaries));
+        grid.appendChild(tile(L.stay, r.stay ? fmt(L.days, { n: r.stay }) : r.open ? L.stayOpen : L.stayVaries));
         // a business-specific rule (e.g. India's e-B-4) has its own fee, so don't show the tourist one
         var fee = biz && r.noteBiz ? L.feeVaries
           : r.fee === 0 ? L.noFee

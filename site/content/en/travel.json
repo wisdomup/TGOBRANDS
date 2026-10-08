@@ -113,7 +113,7 @@
       }
     ],
     "destKicker": "Destinations",
-    "destTitle": "Six countries, one team.",
+    "destTitle": "Seven countries, one team.",
     "destinations": [
       {
         "code": "PH",
@@ -172,6 +172,16 @@
         "best": "November to February",
         "host": "Aryan",
         "guide": "bangladesh",
+        "playbook": "",
+        "trip": ""
+      },
+      {
+        "code": "NP",
+        "name": "Nepal",
+        "cities": "Kathmandu · Birgunj · Pokhara",
+        "best": "October to November, March to May",
+        "host": "Aryan",
+        "guide": "nepal",
         "playbook": "",
         "trip": ""
       }
@@ -2549,6 +2559,505 @@
               "Interpreters",
               "Daily security checks",
               "Tea-country and Sundarbans extensions"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "nepal",
+        "code": "NP",
+        "name": "Nepal",
+        "kicker": "Nepal travel desk",
+        "title": "Between China and India, a market of its own.",
+        "sub": "Thirty million people, where seven in ten new cars are electric and most come from China. Business weeks in Kathmandu and Birgunj, the fairs at Bhrikutimandap, and Pokhara, Chitwan or Lumbini when the work is done — all arranged.",
+        "facts": [
+          [
+            "Fly into",
+            "Kathmandu (Tribhuvan)"
+          ],
+          [
+            "From China",
+            "Under 4 hours from Chengdu or Kunming"
+          ],
+          [
+            "Chinese passports",
+            "Free tourist visa on arrival"
+          ],
+          [
+            "Best months",
+            "October–November and March–May"
+          ],
+          [
+            "Business language",
+            "English and Nepali"
+          ],
+          [
+            "Weekend",
+            "Saturday and Sunday for offices and banks"
+          ]
+        ],
+        "cta": "Plan my Nepal trip",
+        "hostNote": "Leads our Nepal desk — the meetings in Kathmandu, the Birgunj trade route from the Bihar side, and the people you will meet.",
+        "note": "Prices are per person, twin share, and indicative until confirmed for your dates. Visa rules, fair dates, permits and domestic flights change — we confirm them when you book.",
+        "sections": [
+          {
+            "type": "packages",
+            "kicker": "Packages",
+            "title": "Seven ways to travel Nepal.",
+            "items": [
+              {
+                "t": "Market Week: Kathmandu",
+                "len": "5 days",
+                "cities": "Kathmandu · Lalitpur · Bhaktapur",
+                "price": "From US$1,150",
+                "priceNote": "flights extra",
+                "best": "Brands entering Nepal: phones, electronics, appliances, solar and electric vehicles.",
+                "incl": [
+                  "Distributor, dealer and retailer meetings",
+                  "New Road’s electronics and phone markets",
+                  "Import, customs and product-registration briefing",
+                  "Car, driver and interpreter every day"
+                ],
+                "featured": true,
+                "kind": "business"
+              },
+              {
+                "t": "Trade Route: Kathmandu and Birgunj",
+                "len": "6 days",
+                "cities": "Kathmandu · Birgunj · the Raxaul border",
+                "price": "From US$1,450",
+                "priceNote": "flights extra",
+                "best": "Exporters and logistics teams moving goods into Nepal through India.",
+                "incl": [
+                  "The Birgunj customs point and the Sirsiya dry port",
+                  "Clearing agents and transport companies",
+                  "Factories and distributors on the Birgunj–Pathlaiya corridor",
+                  "Domestic flights Kathmandu–Simara"
+                ],
+                "kind": "business"
+              },
+              {
+                "t": "Fair Week",
+                "len": "4 days",
+                "cities": "Kathmandu",
+                "price": "From US$890",
+                "priceNote": "flights extra",
+                "best": "Visitors and exhibitors at the Bhrikutimandap trade fairs.",
+                "incl": [
+                  "Fair registration and transfers",
+                  "Hotel in Durbar Marg, Thamel or Lalitpur",
+                  "Booked meetings with exhibitors and buyers",
+                  "Interpreter on fair days"
+                ],
+                "kind": "business"
+              },
+              {
+                "t": "Business and Pokhara",
+                "len": "7 days",
+                "cities": "Kathmandu · Pokhara",
+                "price": "From US$1,650",
+                "priceNote": "flights extra",
+                "best": "Business owners who want to see the mountains before they fly home.",
+                "incl": [
+                  "Three days of Kathmandu meetings",
+                  "Flight to Pokhara and a lakeside hotel",
+                  "Sunrise over the Annapurnas from Sarangkot",
+                  "Private car and guide"
+                ],
+                "kind": "holiday"
+              },
+              {
+                "t": "Kathmandu, Pokhara and Chitwan",
+                "len": "8 days",
+                "cities": "Kathmandu · Pokhara · Chitwan",
+                "price": "Quoted for your dates",
+                "priceNote": "per person, twin share",
+                "best": "Families and groups: temples, lakes and a jungle safari, from October to May.",
+                "incl": [
+                  "The Kathmandu Valley’s World Heritage sites with a guide",
+                  "Phewa Lake and the Annapurna views",
+                  "Two nights in Chitwan: jeep safari and canoe",
+                  "Domestic flights or a private car between stops"
+                ],
+                "kind": "holiday"
+              },
+              {
+                "t": "Lumbini and the Kathmandu Valley",
+                "len": "6 days",
+                "cities": "Kathmandu · Lumbini",
+                "price": "Quoted for your dates",
+                "priceNote": "per person, twin share",
+                "best": "Pilgrims and families visiting the birthplace of the Buddha.",
+                "incl": [
+                  "Boudhanath and Swayambhunath with a guide",
+                  "Flight to Bhairahawa and two nights in Lumbini",
+                  "The Maya Devi Temple and the monastic zone, with the Chinese temple",
+                  "Vegetarian and Chinese meals on request"
+                ],
+                "kind": "holiday"
+              },
+              {
+                "t": "Private delegation",
+                "len": "Your dates",
+                "cities": "Kathmandu, the industrial areas and project sites",
+                "price": "Price on application",
+                "priceNote": "for companies, chambers and investors",
+                "best": "Investors and delegations meeting ministries, chambers and partners.",
+                "incl": [
+                  "Investment-board and chamber meetings",
+                  "Industrial-area, special-economic-zone and project-site visits",
+                  "Domestic flights, and a helicopter where the roads are slow",
+                  "Venues, dinners and a group host"
+                ],
+                "kind": "business"
+              }
+            ],
+            "note": "Per person, twin share. Single rooms extra.",
+            "id": "packages"
+          },
+          {
+            "type": "phases",
+            "kicker": "Trade fairs",
+            "title": "Where Nepal’s buyers meet.",
+            "items": [
+              {
+                "n": "Bhrikutimandap, Kathmandu",
+                "t": "Hometex Nepal",
+                "d": "Furniture, furnishings, home décor and household appliances.",
+                "dates": [
+                  [
+                    "2026",
+                    "19–21 December"
+                  ]
+                ]
+              },
+              {
+                "n": "Bhrikutimandap, Kathmandu",
+                "t": "Kathmandu Business Expo",
+                "d": "A broad business fair: consumer goods, appliances, vehicles and services.",
+                "dates": [
+                  [
+                    "2027",
+                    "January (expected)"
+                  ]
+                ]
+              },
+              {
+                "n": "Bhrikutimandap, Kathmandu",
+                "t": "Nepal Buildcon",
+                "d": "Construction, building materials, machinery and solar.",
+                "dates": [
+                  [
+                    "2027",
+                    "February (expected)"
+                  ]
+                ]
+              },
+              {
+                "n": "Bhrikutimandap, Kathmandu",
+                "t": "Consumer Electronics & Home Appliances Expo",
+                "d": "Phones, televisions, home appliances and solar, for Nepal’s dealers and retailers.",
+                "dates": [
+                  [
+                    "2027",
+                    "September (expected)"
+                  ]
+                ]
+              }
+            ],
+            "note": "2027 dates are confirmed by the organisers through the year."
+          },
+          {
+            "type": "cards",
+            "kicker": "Before you fly",
+            "title": "Visas, by passport.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Chinese passports",
+                "d": "A free tourist visa on arrival at Kathmandu airport or the land borders with China, or in advance from a Nepal mission in China. For meetings and fairs most visitors travel on it, with our invitation letter; the business visa is for registered foreign investors."
+              },
+              {
+                "t": "Indian passports",
+                "d": "No visa. Carry a passport or a voter ID card, by air or over land at Raxaul–Birgunj or Sunauli–Bhairahawa."
+              },
+              {
+                "t": "Pakistani and Bangladeshi passports",
+                "d": "As SAARC citizens, a free visa on arrival for up to 30 days on the first visit in a year. A second visit, or a longer stay, pays the standard fee."
+              },
+              {
+                "t": "Other passports",
+                "d": "A multiple-entry tourist visa on arrival at Kathmandu and the land borders: US$30 for 15 days, US$50 for 30 days, US$125 for 90 days. Fill in the online arrival form before you fly. A few nationalities must apply in advance; we confirm yours before you book."
+              }
+            ],
+            "note": "Visa rules change; we confirm yours before you book.",
+            "checked": true
+          },
+          {
+            "type": "cards",
+            "kicker": "Safety",
+            "title": "The honest picture.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "Flying in the mountains",
+                "d": "Every Nepali airline has been on the EU air-safety list since 2013, and mountain weather changes fast. We fly in the morning when the skies are clearest, keep a spare day on mountain routes and drive where the road makes more sense."
+              },
+              {
+                "t": "Roads and the monsoon",
+                "d": "From June to September landslides close highways at short notice. This year they cut the crossings to China at Rasuwagadhi and Tatopani, and Chinese goods were rerouted through Birgunj."
+              },
+              {
+                "t": "Protests",
+                "d": "Demonstrations can close roads in Kathmandu, as they did in September 2025. We check the day’s situation every morning and keep plans flexible."
+              },
+              {
+                "t": "Trekking",
+                "d": "Since 2023 trekkers in most national parks and conservation areas need a licensed guide. We book the guides and permits, and plan for altitude."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Getting there",
+            "title": "Direct from China.",
+            "cols": 2,
+            "items": [
+              {
+                "t": "From Chengdu",
+                "d": "Air China and Sichuan Airlines fly direct to Kathmandu, in under four hours."
+              },
+              {
+                "t": "From Kunming and Guangzhou",
+                "d": "China Eastern from Kunming, about 3½ hours; China Southern from Guangzhou, about 4¾ hours."
+              },
+              {
+                "t": "From Lhasa, Delhi and the Gulf",
+                "d": "Flights from Lhasa; connections through Delhi, Dubai, Doha, Bangkok and Kuala Lumpur; and the road crossing at Rasuwagadhi (Kerung) when it is open."
+              },
+              {
+                "t": "Inside Nepal",
+                "d": "Short flights link Kathmandu with Pokhara, Bhairahawa for Lumbini, Bharatpur for Chitwan, Simara for Birgunj, and Biratnagar. Roads are slow: Kathmandu to Pokhara takes six to eight hours."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Where business happens",
+            "title": "Five places to know.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "Kathmandu",
+                "d": "The capital and most of the market: ministries, head offices and distributors, with New Road for electronics and phones."
+              },
+              {
+                "t": "Lalitpur",
+                "d": "Patan, across the river: offices, the Patan Industrial Estate and some of the valley’s best hotels."
+              },
+              {
+                "t": "Birgunj",
+                "d": "The busiest trade gateway, opposite Raxaul in India: the Sirsiya dry port, the rail link to Kolkata and Haldia, and nearly half of Nepal’s imports."
+              },
+              {
+                "t": "Biratnagar",
+                "d": "The industrial east, with the Jogbani crossing into India."
+              },
+              {
+                "t": "Bhairahawa",
+                "d": "Gautam Buddha International Airport, the Sunauli crossing, a special economic zone — and Lumbini half an hour away."
+              }
+            ]
+          },
+          {
+            "type": "ticks",
+            "kicker": "On the ground",
+            "title": "How we run a Nepal week.",
+            "items": [
+              "Kathmandu’s roads are narrow and slow: two or three meetings a day, and a hotel near them.",
+              "Since April 2026 government offices and banks close on Saturday and Sunday; companies set their own week, so we confirm each meeting.",
+              "Nepal runs 2 hours 15 minutes behind Beijing and 15 minutes ahead of India.",
+              "October–November and March–May are the clearest months; from June to September the monsoon brings landslides and cloud over the mountains.",
+              "Cards work in hotels and larger shops; elsewhere it is cash or local wallets. We arrange rupees on arrival.",
+              "A local SIM needs your passport and a photo; we set one up at the airport."
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "Guests from China",
+            "title": "What our guests from China need to know.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "A free visa",
+                "d": "Chinese citizens pay no tourist-visa fee, on arrival or from a Nepal mission in China. Other kinds of visa pay the standard fee."
+              },
+              {
+                "t": "A familiar partner",
+                "d": "China is Nepal’s second-largest trading partner, and Chinese contractors build its roads, airports and hydropower — Pokhara’s new airport among them."
+              },
+              {
+                "t": "WeChat works",
+                "d": "WeChat works normally; local business runs on WhatsApp, Viber and Messenger, and we set up the groups."
+              },
+              {
+                "t": "Interpreters",
+                "d": "Mandarin–Nepali interpreters are few; we bring Mandarin–English interpreters and our own team."
+              },
+              {
+                "t": "Food",
+                "d": "Chinese restaurants in Thamel and Lalitpur. Beef is not served; chicken, mutton, buffalo and pork are common."
+              },
+              {
+                "t": "Buddhist heritage",
+                "d": "Lumbini, the birthplace of the Buddha, has a Chinese temple in its monastic zone; Boudhanath and Swayambhunath are in Kathmandu."
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "kicker": "When the work is done",
+            "title": "Add a few days.",
+            "cols": 3,
+            "items": [
+              {
+                "t": "The Kathmandu Valley",
+                "e": "In Kathmandu",
+                "d": "The Durbar Squares of Kathmandu, Patan and Bhaktapur, Boudhanath and Pashupatinath: seven World Heritage monuments in one valley."
+              },
+              {
+                "t": "Nagarkot",
+                "e": "About 90 minutes from Kathmandu",
+                "d": "Sunrise over the Himalaya from the rim of the valley."
+              },
+              {
+                "t": "Pokhara",
+                "e": "A 25-minute flight from Kathmandu",
+                "d": "Phewa Lake, Sarangkot at dawn and the Annapurnas overhead."
+              },
+              {
+                "t": "Chitwan",
+                "e": "Five hours by road, or a short flight",
+                "d": "A World Heritage national park: rhinos, jeep safaris and canoes."
+              },
+              {
+                "t": "Lumbini",
+                "e": "A flight to Bhairahawa",
+                "d": "The birthplace of the Buddha, and a World Heritage site."
+              },
+              {
+                "t": "The Everest flight",
+                "e": "An hour from Kathmandu",
+                "d": "A morning mountain flight past Everest, without the trek."
+              }
+            ]
+          },
+          {
+            "type": "plans",
+            "kicker": "Sample itineraries",
+            "title": "Three ways we put it together.",
+            "items": [
+              {
+                "t": "Market Week: Kathmandu",
+                "len": "5 days",
+                "days": [
+                  "Arrive in Kathmandu; meet and assist; hotel; briefing dinner.",
+                  "Distributors and dealers.",
+                  "New Road’s electronics markets; retailers in Lalitpur.",
+                  "Import, customs and registration briefing; partner meetings.",
+                  "Debrief and next steps; departure."
+                ]
+              },
+              {
+                "t": "Trade Route: Kathmandu and Birgunj",
+                "len": "6 days",
+                "days": [
+                  "Arrive in Kathmandu; briefing dinner.",
+                  "Distributors and importers in Kathmandu.",
+                  "Fly to Simara; drive to Birgunj.",
+                  "The customs point, the Sirsiya dry port and clearing agents.",
+                  "Factories on the industrial corridor; fly back to Kathmandu.",
+                  "Debrief; departure."
+                ]
+              },
+              {
+                "t": "Business and Pokhara",
+                "len": "7 days",
+                "days": [
+                  "Arrive in Kathmandu.",
+                  "Meetings in Kathmandu.",
+                  "Meetings, and Patan’s Durbar Square.",
+                  "Fly to Pokhara; an evening on Phewa Lake.",
+                  "Sunrise at Sarangkot; a free afternoon.",
+                  "A day in the hills or on the lake.",
+                  "Fly back to Kathmandu; departure."
+                ]
+              }
+            ]
+          },
+          {
+            "type": "split",
+            "kicker": "One price",
+            "title": "What it covers, and what it doesn’t.",
+            "a": {
+              "t": "Included",
+              "items": [
+                "Visa guidance, the online arrival form and an invitation letter",
+                "4★ hotels in Kathmandu, breakfast and dinner",
+                "Car and driver every day; airport meet and assist",
+                "Interpreters for meetings and visits",
+                "A distributor and partner shortlist",
+                "Domestic flights named in the package",
+                "A written debrief and next-step plan"
+              ]
+            },
+            "b": {
+              "t": "Not included",
+              "items": [
+                "International flights",
+                "Visa fees",
+                "Trekking permits and park fees, unless listed",
+                "Lunches and personal expenses",
+                "Single-room supplement"
+              ]
+            }
+          },
+          {
+            "type": "faq",
+            "kicker": "Questions",
+            "title": "Asked before every Nepal trip.",
+            "items": [
+              {
+                "q": "Is Nepal a big enough market?",
+                "a": "Thirty million people, steady spending from money sent home by Nepalis working abroad, and a market where Chinese brands already lead in electric cars. For many brands it is a natural step after India, or an easier first test."
+              },
+              {
+                "q": "Should goods come through China or through India?",
+                "a": "Most imports come through India, by sea to Kolkata or Haldia and on to the Birgunj dry port. The crossings from China are shorter but close when landslides hit. We plan the route with your forwarder."
+              },
+              {
+                "q": "Are domestic flights safe?",
+                "a": "They are short and frequent, but mountain weather changes fast and Nepali airlines are on the EU air-safety list. We fly in the morning, keep a spare day on mountain routes, and drive where that makes more sense."
+              },
+              {
+                "q": "Do I need a guide to trek?",
+                "a": "In most national parks and conservation areas, including the Annapurnas, yes — a licensed guide is required. We book guides, porters and permits."
+              }
+            ]
+          },
+          {
+            "type": "desk",
+            "kicker": "Our Nepal desk",
+            "title": "What we handle, so you can buy and sell.",
+            "items": [
+              "Visas and the online arrival form",
+              "Distributor, dealer and importer meetings",
+              "Customs, dry-port and forwarder introductions",
+              "Hotels, cars, drivers and domestic flights",
+              "Interpreters",
+              "Fair registration at Bhrikutimandap",
+              "Daily weather and road checks",
+              "Pokhara, Chitwan and Lumbini extensions"
             ]
           }
         ]

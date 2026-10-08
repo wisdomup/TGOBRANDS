@@ -16,6 +16,7 @@
       "PK",
       "IN",
       "BD",
+      "NP",
       "PH",
       "CN",
       "AE"
@@ -340,6 +341,87 @@
           "note": "ae_free",
           "stay": 30,
           "fee": 0,
+          "lead": 0
+        }
+      },
+      "NP": {
+        "CN": {
+          "type": "voa",
+          "note": "np_cn",
+          "stay": 90,
+          "fee": 0,
+          "lead": 0
+        },
+        "IN": {
+          "type": "free",
+          "note": "np_in",
+          "stay": null,
+          "open": true,
+          "fee": 0,
+          "lead": 0
+        },
+        "PK": {
+          "type": "voa",
+          "note": "np_saarc",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "BD": {
+          "type": "voa",
+          "note": "np_saarc",
+          "stay": 30,
+          "fee": 0,
+          "lead": 0
+        },
+        "PH": {
+          "type": "voa",
+          "note": "np_voa",
+          "stay": 90,
+          "fee": {
+            "kind": "from",
+            "n": 30
+          },
+          "lead": 0
+        },
+        "AE": {
+          "type": "voa",
+          "note": "np_voa",
+          "stay": 90,
+          "fee": {
+            "kind": "from",
+            "n": 30
+          },
+          "lead": 0
+        },
+        "US": {
+          "type": "voa",
+          "note": "np_voa",
+          "stay": 90,
+          "fee": {
+            "kind": "from",
+            "n": 30
+          },
+          "lead": 0
+        },
+        "GB": {
+          "type": "voa",
+          "note": "np_voa",
+          "stay": 90,
+          "fee": {
+            "kind": "from",
+            "n": 30
+          },
+          "lead": 0
+        },
+        "DE": {
+          "type": "voa",
+          "note": "np_voa",
+          "stay": 90,
+          "fee": {
+            "kind": "from",
+            "n": 30
+          },
           "lead": 0
         }
       }
