@@ -205,18 +205,55 @@ SUN = ('<svg class="{}" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy
 MOON = '<svg class="{}" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.6 10.2A5.8 5.8 0 0 1 5.8 2.4a5.8 5.8 0 1 0 7.8 7.8z"/></svg>'
 
 
+def nav_menus(c, lang):
+    """What drops down under a nav link: (groups, view-all), where groups is
+    [(caption or None, [(href, label)])]. Services shows all fifteen, in their three groups;
+    travel, markets and brands show their pages."""
+    ui, s, t, b = c['ui'], c['services'], c['travel'], c['brands']
+    services = [(g['name'], [(href(lang, 'service', x['slug']), x['name']) for x in s['items'] if x['group'] == g['key']])
+                for g in s['groups']]
+    travel = [(ui['menuDestinations'], [(href(lang, 'guide', g['slug']), g['name']) for g in t['guides']]),
+              (ui['menuPlan'], [(href(lang, k), t[p]['name']) for k, p in (('packages', 'packagesPage'), ('visas', 'visasPage'), ('booking', 'bookingPage'))]
+               + [(href(lang, 'expeditions'), c['nav']['expeditions'])])]
+    markets = [(ui['menuPlaybooks'], [(href(lang, 'playbook', x['slug']), c['markets']['items'][x['market']]['c']) for x in c['playbooks']['items']]),
+               (ui['menuTools'], [(href(lang, 'estimator'), c['nav']['estimator'])])]
+    brands = [(ui['menuBrands'], [(href(lang, 'brand', x['slug']), x['name']) for x in b['items']])]
+    return {
+        'services': (services, (href(lang, 'services'), s['labels']['all'])),
+        'travel': (travel, (href(lang, 'travel') + '#destinations', t['labels']['all'])),
+        'markets': (markets, (href(lang, 'markets'), c['playbooks']['labels']['all'])),
+        'brands': (brands, (href(lang, 'brands'), b['labels']['back'])),
+    }
+
+
 def nav(c, lang, page, alt_href):
     home = page == 'home'
     cur = {'brand': 'brands', 'post': 'insights', 'service': 'services', 'playbook': 'markets',
            'trip': 'travel', 'expeditions': 'travel', 'guide': 'travel', 'what': 'services',
            'packages': 'travel', 'visas': 'travel', 'booking': 'travel'}.get(page, page)
     current = ' aria-current="page"'
-    links = ''.join(
-        f'<a href="{href(lang, k)}"{current if cur == k else ""}>{e(c["nav"][k])}</a>'
-        for k in NAV)
+    menus = nav_menus(c, lang)
+    links = ''
+    for k in NAV:
+        link = f'<a class="nav__link" href="{href(lang, k)}"{current if cur == k else ""}>{e(c["nav"][k])}</a>'
+        if k not in menus:
+            links += link
+            continue
+        groups, (all_href, all_label) = menus[k]
+        i = 0
+        cols = ''
+        for cap, items in groups:
+            rows = ''
+            for u, label in items:
+                rows += f'<a href="{u}" style="--i:{i}">{e(label)}</a>'
+                i += 1
+            cols += f'<div class="nav__group"><p class="nav__cap">{e(cap)}</p>{rows}</div>'
+        links += (f'<div class="nav__item"><div class="nav__row">{link}</div>'
+                  f'<div class="nav__menu" id="menu-{k}" style="--cols:{len(groups)}">{cols}'
+                  f'<a class="nav__all" href="{all_href}" style="--i:{i}">{e(all_label)}</a></div></div>')
     cta = f'{e(c["ui"]["talk"])}<span class="nav__arrow" aria-hidden="true">→</span>'
     other = 'en' if lang == 'zh' else 'zh-CN'
-    hero = 1 if home and c['home'].get('photo') else 0
+    hero = 1 if home and (c['home'].get('photo') or c['home'].get('slides')) else 0
     return f'''<header class="nav" data-scrolled="0" data-hero="{hero}" data-dark="{hero}">
   <a class="nav__logo" href="{href(lang, 'home')}" aria-label="TGO Brands">TGO<span class="nav__word">Brands</span></a>
   <nav class="nav__links" id="site-menu" popover aria-label="{e(c["ui"]["menu"])}">
@@ -315,7 +352,7 @@ ROUTE_POINTS = ((8, 92), (260, 52), (500, 82), (740, 38), (980, 70), (1192, 28))
 ROUTE_PATH = 'M8 92 C120 92 170 50 260 52 S420 90 500 82 S650 28 740 38 S900 86 980 70 S1120 24 1192 28'
 
 
-def route_line(c):
+def route_line(c, ends=True):
     """Guangzhou in 2006, through the places the founders have built in, to the world. The line
     draws itself once as the page opens and stays still for readers who prefer reduced motion.
     The dots are HTML, so they stay round while the line stretches to the width of the page."""
@@ -325,10 +362,61 @@ def route_line(c):
         f'<span class="route-line__dot{" route-line__dot--end" if i in (0, last) else ""}" '
         f'style="--x:{x / 12:.2f}%;--y:{y / 1.2:.2f}%;--i:{i}"></span>'
         for i, (x, y) in enumerate(ROUTE_POINTS))
-    return f'''<div class="route-line" aria-hidden="true">
+    line = f'''<div class="route-line" aria-hidden="true">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false"><path d="{ROUTE_PATH}" pathLength="1" vector-effect="non-scaling-stroke"/></svg>{dots}
-      </div>
+      </div>'''
+    if not ends:
+        return line
+    return line + f'''
       <p class="route-line__ends"><span>{e(h["routeFrom"])}</span><span>{e(h["routeTo"])}</span></p>'''
+
+
+ARROW = '<svg class="slide-arrow__ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg>'
+CUE = '<svg class="slide-cue__ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 3l4 4 4-4M4 9l4 4 4-4"/></svg>'
+
+
+def home_slides(c, lang):
+    """The opener, as the design system's HeroSlider: full-screen slides wiped in one after
+    another, copy pinned low and centred, glass arrows at the sides, step labels over a
+    progress line at the bottom right, and a scroll cue. Slide one carries the route line;
+    a slide with a `photo` shows it full-bleed, the rest sit on a quiet glow."""
+    h = c['home']
+    ui = c['ui']
+    slides = h['slides']
+    shots = ''
+    copies = ''
+    for i, x in enumerate(slides):
+        link = x['link']
+        url = href(lang, 'services') + '#' + link['group'] if 'group' in link else href(lang, link['page'])
+        if x.get('photo'):
+            load = 'fetchpriority="high"' if i == 0 else 'loading="lazy"'
+            shot = f'<img src="{e(x["photo"])}" alt="" {load}>'
+        elif i == 0:
+            shot = f'<div class="slide__route">{route_line(c, ends=False)}</div>'
+        else:
+            shot = ''
+        shots += f'\n    <div class="slide slide--{i + 1}"><div class="slide__shot">{shot}</div><div class="slide__fade"></div></div>'
+        tag = 'h1' if i == 0 else 'h2'
+        copies += f'''
+    <div class="slide__copy{" is-active" if i == 0 else ""}" aria-hidden="{"false" if i == 0 else "true"}">
+      <p class="slide__kicker">{e(x["kicker"])}</p>
+      <{tag} class="slide__title disp">{e(x["title"])}</{tag}>
+      <p class="slide__sub">{e(x["sub"])}</p>
+      <a class="btn btn--primary btn--lg" href="{url}">{e(x["cta"])}</a>
+    </div>'''
+    labels = ''
+    for i, x in enumerate(slides):
+        active = ' class="is-active" aria-current="true"' if i == 0 else ''
+        labels += f'<button type="button"{active}>{e(x["label"])}</button>'
+    # "Scroll ⌄ down": the cue's chevron sits between its two words, or after a single word
+    words = h['cue'].split(' ', 1)
+    cue = f'{e(words[0])} {CUE} {e(words[1])}' if len(words) == 2 else f'{e(h["cue"])} {CUE}'
+    return f'''<section class="hero-slides" data-slides data-every="5500" aria-roledescription="carousel" aria-label="{e(h["kicker"])}" tabindex="-1" style="--n:{len(slides)}">{shots}{copies}
+    <button class="slide-arrow slide-arrow--prev" type="button" aria-label="{e(ui["prevSlide"])}">{ARROW}</button>
+    <button class="slide-arrow slide-arrow--next" type="button" aria-label="{e(ui["nextSlide"])}">{ARROW}</button>
+    <div class="slide-steps"><div class="slide-steps__labels">{labels}</div><div class="slide-steps__line"><span style="width:{100 / len(slides):.2f}%"></span></div></div>
+    <a class="slide-cue" href="#needs">{cue}</a>
+  </section>'''
 
 
 def first_sentence(text):
@@ -394,24 +482,11 @@ def page_home(c, lang):
     chips = ''.join(
         f'<a class="chip chip--wa" href="https://wa.me/{WHATSAPP[first(p)]}" target="_blank" rel="noopener">'
         f'{WA_ICON}{e(h["wa"].format(name=first(p)))}</a>' for p in people)
-    photo = (f'\n      <figure class="lobby__photo"><img src="{e(h["photo"])}" alt="" fetchpriority="high"></figure>'
-             if h.get('photo') else '')
 
     return f'''<main id="main" class="page page--home">
-  <section class="lobby">
-    <div class="wrap lobby__in">
-      <p class="lobby__kicker">{e(h["kicker"])}</p>
-      <h1 class="lobby__title disp">{e(h["h1"])}</h1>
-      <p class="lobby__sub">{e(h["sub"])}</p>
-      <div class="lobby__acts">
-        <a class="btn btn--primary btn--lg" href="{href(lang, 'partner')}">{e(h["cta"])}</a>
-        <a class="btn btn--outline btn--lg" href="{href(lang, 'founders')}">{e(h["cta2"])}</a>
-      </div>
-      {route_line(c)}{photo}
-    </div>
-  </section>
+  {home_slides(c, lang)}
 
-  <section class="wrap sec home-needs">
+  <section class="wrap sec home-needs" id="needs">
     <header class="shead shead--left"><h2 class="sech">{e(h["needsTitle"])}</h2></header>
     <ol class="needs">{needs}
     </ol>

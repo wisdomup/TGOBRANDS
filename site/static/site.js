@@ -47,6 +47,107 @@
         if (e.matches && menu.matches(':popover-open')) menu.hidePopover();
       });
     }
+
+    // dropdowns: on desktop a hovered or focused item opens after a moment's intent and closes
+    // a moment after the pointer leaves; in the drawer the row itself unfolds the links.
+    // Escape, a click elsewhere, a resize or closing the drawer shuts them all
+    var items = $$('.nav__item', nav);
+    var hover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    function setOpen(item, open) {
+      item.classList.toggle('is-open', open);
+      $('.nav__row .nav__link', item).setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    function closeAll(except) { items.forEach(function (it) { if (it !== except) setOpen(it, false); }); }
+    items.forEach(function (item) {
+      var timer = 0;
+      $('.nav__row .nav__link', item).addEventListener('click', function (e) {
+        if (wide.matches) return;  // on desktop the link is a link
+        e.preventDefault();
+        var open = !item.classList.contains('is-open');
+        closeAll(item);
+        setOpen(item, open);
+      });
+      item.addEventListener('pointerenter', function (e) {
+        if (!wide.matches || !hover.matches || e.pointerType === 'touch') return;
+        clearTimeout(timer);
+        timer = setTimeout(function () { closeAll(item); setOpen(item, true); }, 70);
+      });
+      item.addEventListener('pointerleave', function () {
+        if (!wide.matches) return;
+        clearTimeout(timer);
+        timer = setTimeout(function () { setOpen(item, false); }, 140);
+      });
+      item.addEventListener('focusin', function () {
+        if (wide.matches) { closeAll(item); setOpen(item, true); }
+      });
+      item.addEventListener('focusout', function (e) {
+        if (wide.matches && !item.contains(e.relatedTarget)) setOpen(item, false);
+      });
+    });
+    if (items.length) {
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+      document.addEventListener('pointerdown', function (e) { if (!nav.contains(e.target)) closeAll(); });
+      wide.addEventListener('change', function () { closeAll(); });
+      if (menu) menu.addEventListener('toggle', function (e) { if (e.newState === 'closed') closeAll(); });
+    }
+  }
+
+  /* ── Home slides: a clip-path wipe between full-screen slides, copy cross-fading, a progress
+     line that fills over each slide's time, arrows, step labels and a scroll cue. Autoplay
+     rests while the tab is hidden and never runs for readers who prefer reduced motion. ── */
+  function initSlides() {
+    var root = $('[data-slides]');
+    if (!root) return;
+    var slides = $$('.slide', root), copies = $$('.slide__copy', root), labels = $$('.slide-steps__labels button', root);
+    var line = $('.slide-steps__line span', root);
+    var n = slides.length, cur = 0, timer = 0, every = parseInt(root.getAttribute('data-every'), 10) || 5000;
+    var auto = !reduced && n > 1;
+    function fill(from, to, ms) {
+      if (!line) return;
+      line.style.transition = 'none';
+      line.style.width = (from * 100 / n) + '%';
+      void line.offsetWidth;
+      line.style.transition = ms ? 'width ' + ms + 'ms linear' : 'width 0.4s ease';
+      line.style.width = (to * 100 / n) + '%';
+    }
+    function go(i) {
+      i = (i + n) % n;
+      var prev = (i - 1 + n) % n, next = (i + 1) % n;
+      slides.forEach(function (s, k) {
+        s.style.zIndex = k === i ? 2 : 1;
+        s.classList.toggle('close-right', k === next && n > 2 || n === 2 && k !== i);
+        s.classList.toggle('close-left', k === prev && n > 2);
+      });
+      copies.forEach(function (c, k) { c.classList.toggle('is-active', k === i); c.setAttribute('aria-hidden', k === i ? 'false' : 'true'); });
+      labels.forEach(function (b, k) { b.classList.toggle('is-active', k <= i); b.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      fill(i, i + 1, auto ? every : 0);
+      cur = i;
+    }
+    function play() {
+      clearInterval(timer);
+      if (!auto || document.hidden) return;
+      timer = setInterval(function () { go(cur + 1); }, every);
+    }
+    var prevBtn = $('.slide-arrow--prev', root), nextBtn = $('.slide-arrow--next', root);
+    if (prevBtn) prevBtn.addEventListener('click', function () { go(cur - 1); play(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { go(cur + 1); play(); });
+    labels.forEach(function (b, k) { b.addEventListener('click', function () { go(k); play(); }); });
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { go(cur - 1); play(); }
+      if (e.key === 'ArrowRight') { go(cur + 1); play(); }
+    });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) clearInterval(timer); else { go(cur); play(); } });
+    go(0);
+    play();
+    root.classList.add('is-ready');
+    // the hero fades as it scrolls out of view
+    var raf = 0;
+    function scrub() {
+      raf = 0;
+      var h = root.offsetHeight || 1;
+      root.style.opacity = Math.max(0, 1 - window.scrollY / (h * 0.7)).toFixed(3);
+    }
+    if (!reduced) window.addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(scrub); }, { passive: true });
   }
 
   /* ── Scroll reveal: must match the selector the stylesheet hides ── */
@@ -758,6 +859,7 @@
   initSource();
   initTheme();
   initNav();
+  initSlides();
   initReveal();
   initRegion();
   initSurvey();

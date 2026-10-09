@@ -34,7 +34,14 @@
     "articleSoon": "The full article is coming soon.",
     "related": "Related",
     "talk": "Talk to a founder",
-    "soon": "Coming soon"
+    "soon": "Coming soon",
+    "menuDestinations": "Destinations",
+    "menuPlan": "Plan a trip",
+    "menuPlaybooks": "Market playbooks",
+    "menuTools": "Tools",
+    "menuBrands": "Our brands",
+    "prevSlide": "Previous slide",
+    "nextSlide": "Next slide"
   },
   "dir": "latin",
   "nav": {
@@ -150,7 +157,50 @@
     ],
     "closeA": "Tell us about your business.",
     "closeB": "A few quick questions.",
-    "closeBtn": "Start the survey"
+    "closeBtn": "Start the survey",
+    "slides": [
+      {
+        "label": "TGO",
+        "kicker": "A lobby for businesses going into new markets",
+        "title": "Grow into new markets with people who have done it.",
+        "sub": "TGO is the lobby we wished we’d had when we started: where business owners meet the markets, partners and people they need to expand. We open the doors, go with you, and stay after the first deal.",
+        "cta": "Tell us where you want to grow",
+        "link": {
+          "page": "partner"
+        }
+      },
+      {
+        "label": "Enter",
+        "kicker": "Enter a new market",
+        "title": "From the first study to the first shipment.",
+        "sub": "Research, company set-up, approvals and customs, run in parallel and filed by us, so the market is ready when your product is.",
+        "cta": "See how we enter a market",
+        "link": {
+          "group": "enter"
+        }
+      },
+      {
+        "label": "Scale",
+        "kicker": "Scale your sales and your team",
+        "title": "Real shelves, real sell-through.",
+        "sub": "Distributors, marketplaces, your brand, sales teams, and the systems a bigger team runs on.",
+        "cta": "See how we grow sales",
+        "link": {
+          "group": "grow"
+        }
+      },
+      {
+        "label": "Travel",
+        "kicker": "Go and see it first",
+        "title": "Trade fairs, factories and markets, with one of us beside you.",
+        "sub": "Business trips, trade fairs and market tours in seven countries, with the visas and the meetings handled.",
+        "cta": "Plan a trip",
+        "link": {
+          "page": "travel"
+        }
+      }
+    ],
+    "cue": "Scroll down"
   },
   "what": {
     "title": "The bridge.",
