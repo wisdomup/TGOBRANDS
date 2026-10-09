@@ -140,6 +140,8 @@
     go(0);
     play();
     root.classList.add('is-ready');
+    // the entrance is decoration: whatever happens to it, the copy is plainly shown after it
+    setTimeout(function () { root.classList.add('is-settled'); }, 2500);
     // the hero fades as it scrolls out of view
     var raf = 0;
     function scrub() {

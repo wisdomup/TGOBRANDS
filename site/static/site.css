@@ -2024,12 +2024,17 @@ html:not(.js) .theme-switch { display: none; }
 .slide { position: absolute; inset: 0; clip-path: inset(0); transition: clip-path 1s cubic-bezier(0.455, 0.03, 0.515, 0.955); }
 .slide.close-right { clip-path: inset(0 0 0 100%); }
 .slide.close-left { clip-path: inset(0 100% 0 0); }
-.slide__shot { position: absolute; inset: 0; background: radial-gradient(70% 70% at 70% 28%, #2a3348, #0b0e14 50%, #000 85%); }
-.slide--2 .slide__shot { background: radial-gradient(70% 70% at 30% 35%, #3a3a3a, #141414 50%, #000 85%); }
-.slide--3 .slide__shot { background: radial-gradient(70% 70% at 62% 25%, #223061, #0f1526 50%, #000 85%); }
-.slide--4 .slide__shot { background: radial-gradient(70% 70% at 40% 30%, #2f3a4f, #0c1017 50%, #000 85%); }
+.slide__shot { position: absolute; inset: 0; background: radial-gradient(62% 56% at 72% 22%, #3b4c7c 0%, #161c30 42%, #000 78%); }
+.slide--2 .slide__shot {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 96px),
+    radial-gradient(72% 60% at 24% 36%, #4b4642 0%, #1f1c1a 44%, #000 80%);
+}
+.slide--3 .slide__shot { background: radial-gradient(66% 58% at 58% 28%, #2a4fb8 0%, #121c3e 44%, #000 80%); }
+.slide--4 .slide__shot { background: radial-gradient(70% 56% at 34% 26%, #2f6172 0%, #10232a 44%, #000 80%); }
 .slide__shot :is(img, video) { width: 100%; height: 100%; object-fit: cover; }
-.slide__fade { position: absolute; inset: auto 0 0; height: 55%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000); }
+.slide__fade { position: absolute; inset: auto 0 0; height: 48%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000); }
 /* slide one carries the route line, large, as the page's signature */
 .slide__route { position: absolute; left: 50%; top: 14%; width: min(1100px, 92vw); transform: translateX(-50%); opacity: 0.75; }
 .slide__route .route-line { height: clamp(70px, 10vw, 128px); margin: 0; }
@@ -2083,6 +2088,7 @@ html:not(.js) .theme-switch { display: none; }
 .hero-slides.is-ready .slide__copy.is-active > :nth-child(3) { animation-delay: 0.2s; }
 .hero-slides.is-ready .slide__copy.is-active > :nth-child(4) { animation-delay: 0.3s; }
 .hero-slides.is-ready :is(.slide-arrow, .slide-steps, .slide-cue) { animation: slide-fade 1s ease 0.6s backwards; }
+.hero-slides.is-settled :is(.slide__copy > *, .slide-arrow, .slide-steps, .slide-cue) { animation: none; opacity: 1; }
 @keyframes slide-rise { from { transform: translateY(28px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes slide-fade { from { opacity: 0; } to { opacity: 1; } }
 html:not(.js) .slide:not(.slide--1), html:not(.js) :is(.slide-arrow, .slide-steps) { display: none; }
@@ -2090,13 +2096,20 @@ html:not(.js) .slide:not(.slide--1), html:not(.js) :is(.slide-arrow, .slide-step
   .slide, .slide__copy { transition: none; }
   .slide-cue__ico, .hero-slides.is-ready .slide__copy.is-active > *, .hero-slides.is-ready :is(.slide-arrow, .slide-steps, .slide-cue) { animation: none; }
 }
+@media (max-width: 860px) {
+  .slide-steps { display: none; }
+}
 @media (max-width: 680px) {
   .hero-slides { min-height: 560px; }
   .slide__route { top: 12%; }
-  .slide__copy { bottom: 19vh; width: calc(100% - 32px); }
-  .slide__title { font-size: clamp(32px, 9.5vw, 44px); }
-  .slide__copy .btn { margin-top: 22px; }
-  .slide-arrow { top: 24vh; width: 44px; height: 44px; border-radius: 12px; }
-  .slide-steps { left: 16px; right: 16px; bottom: 10vh; width: auto; }
-  .slide-cue { bottom: 2.5vh; }
+  .slide__copy { bottom: 9vh; width: calc(100% - 48px); }
+  .page .slide__kicker { margin-bottom: 12px; font-size: 12px; }
+  .slide__title { font-size: clamp(27px, 7.6vw, 34px); }
+  .page .slide__sub { margin-top: 12px; font-size: 15px; }
+  .slide__copy .btn { margin-top: 16px; }
+  .slide-arrow { width: 38px; height: 38px; border-radius: 10px; }
+  .slide-arrow--prev { left: 11px; }
+  .slide-arrow--next { right: 11px; }
+  .slide-arrow__ico { width: 16px; height: 16px; }
+  .slide-cue { bottom: 1.5vh; font-size: 10px; }
 }
