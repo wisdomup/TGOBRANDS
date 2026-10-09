@@ -41,7 +41,7 @@
 
     // a drawer left open while the window widens would float in the top layer
     var menu = $('#site-menu');
-    var wide = window.matchMedia('(min-width: 1101px)');
+    var wide = window.matchMedia('(min-width: 1241px)');
     if (menu && menu.hidePopover) {
       wide.addEventListener('change', function (e) {
         if (e.matches && menu.matches(':popover-open')) menu.hidePopover();

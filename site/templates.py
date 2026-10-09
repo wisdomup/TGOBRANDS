@@ -260,10 +260,12 @@ def nav(c, lang, page, alt_href):
     {links}
     <a class="btn nav__cta nav__cta--drawer" href="{href(lang, 'partner')}">{cta}</a>
   </nav>
-  <a class="nav__lang" href="{alt_href}" hreflang="{other}" lang="{other}" aria-label="{e(c["ui"]["langSwitchLabel"])}">{e(c["ui"]["langSwitch"])}</a>
-  <button class="nav__theme" type="button" role="switch" aria-checked="false" aria-label="{e(c["ui"]["themeDark"])}" title="{e(c["ui"]["themeDark"])}" data-theme-toggle>{MOON.format('nav__moon')}{SUN.format('nav__sun')}</button>
-  <a class="btn nav__cta" href="{href(lang, 'partner')}">{cta}</a>
-  <button class="nav__burger" type="button" popovertarget="site-menu" aria-label="{e(c["ui"]["menu"])}"><span></span><span></span><span></span></button>
+  <div class="nav__tools">
+    <a class="nav__lang" href="{alt_href}" hreflang="{other}" lang="{other}" aria-label="{e(c["ui"]["langSwitchLabel"])}">{e(c["ui"]["langSwitch"])}</a>
+    <button class="nav__theme" type="button" role="switch" aria-checked="false" aria-label="{e(c["ui"]["themeDark"])}" title="{e(c["ui"]["themeDark"])}" data-theme-toggle>{MOON.format('nav__moon')}{SUN.format('nav__sun')}</button>
+    <a class="btn nav__cta" href="{href(lang, 'partner')}">{cta}</a>
+    <button class="nav__burger" type="button" popovertarget="site-menu" aria-label="{e(c["ui"]["menu"])}"><span></span><span></span><span></span></button>
+  </div>
 </header>'''
 
 
