@@ -1316,21 +1316,21 @@ html:lang(zh) {
    when scripting runs, so nothing is hidden without it. Live result areas ([aria-live]) are drawn
    after load and must show at once, so they are left out. */
 @media (prefers-reduced-motion: no-preference) {
-  .js :where(.page > section:not(.hero, .lobby), .page .survey) :where(h1, h2, h3, p, article, figure, .figs):not(.marq *, [aria-live] *) {
+  .js :where(.page > section:not(.hero, .lobby, .hero-slides), .page .survey) :where(h1, h2, h3, p, article, figure, .figs):not(.marq *, [aria-live] *) {
     transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 1s var(--ease);
   }
-  .js :where(.page > section:not(.hero, .lobby), .page .survey) :where(h1, h2, h3, p):not(.is-in, .marq *, [aria-live] *) {
+  .js :where(.page > section:not(.hero, .lobby, .hero-slides), .page .survey) :where(h1, h2, h3, p):not(.is-in, .marq *, [aria-live] *) {
     opacity: 0; transform: translateY(20px); filter: blur(9px);
   }
   /* phones and tablets: rise and fade only; a blur on every block costs frames while scrolling */
   @media (hover: none), (max-width: 860px) {
-    .js :where(.page > section:not(.hero, .lobby), .page .survey) :where(h1, h2, h3, p):not(.is-in, .marq *, [aria-live] *) { filter: none; }
-    .js :where(.page > section:not(.hero, .lobby), .page .survey) :where(h1, h2, h3, p, article, figure, .figs):not(.marq *, [aria-live] *) {
+    .js :where(.page > section:not(.hero, .lobby, .hero-slides), .page .survey) :where(h1, h2, h3, p):not(.is-in, .marq *, [aria-live] *) { filter: none; }
+    .js :where(.page > section:not(.hero, .lobby, .hero-slides), .page .survey) :where(h1, h2, h3, p, article, figure, .figs):not(.marq *, [aria-live] *) {
       transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
     }
   }
   /* structural blocks resolve without the blur — only type unblurs */
-  .js :where(.page > section:not(.hero, .lobby), .page .survey) :where(article, figure, .figs):not(.is-in, .marq *, [aria-live] *) {
+  .js :where(.page > section:not(.hero, .lobby, .hero-slides), .page .survey) :where(article, figure, .figs):not(.is-in, .marq *, [aria-live] *) {
     opacity: 0; transform: translateY(20px);
   }
 }
@@ -2012,6 +2012,7 @@ html:not(.js) .theme-switch { display: none; }
 .hero-slides { position: relative; z-index: 0; height: 100svh; min-height: 600px; max-height: 1100px; overflow: hidden; isolation: isolate; background: #000; color: #fff; }
 .hero-slides:focus { outline: none; }
 .slide { position: absolute; inset: 0; clip-path: inset(0); transition: clip-path 1s cubic-bezier(0.455, 0.03, 0.515, 0.955); }
+.slide--1 { z-index: 2; }
 .slide.close-right { clip-path: inset(0 0 0 100%); }
 .slide.close-left { clip-path: inset(0 100% 0 0); }
 .slide__shot { position: absolute; inset: 0; background: radial-gradient(62% 56% at 72% 22%, #3b4c7c 0%, #161c30 42%, #000 78%); }

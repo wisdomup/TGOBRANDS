@@ -153,7 +153,8 @@
   }
 
   /* ── Scroll reveal: must match the selector the stylesheet hides ── */
-  var REVEAL = ':is(.page > section:not(.hero, .lobby), .page .survey) :is(h1, h2, h3, p, article, figure, .figs):not(.marq *)';
+  // the home slides run their own entrance, so the reveal leaves them alone
+  var REVEAL = ':is(.page > section:not(.hero, .lobby, .hero-slides), .page .survey) :is(h1, h2, h3, p, article, figure, .figs):not(.marq *)';
   function initReveal() {
     var els = $$(REVEAL);
     if (!('IntersectionObserver' in window)) {
