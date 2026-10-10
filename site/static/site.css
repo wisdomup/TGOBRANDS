@@ -136,39 +136,60 @@ a.is-pending, a.is-pending:hover { cursor: default; text-decoration: none; color
 .phead > .eyebrow { margin-bottom: 24px; }
 .phead > h1 { margin-bottom: 24px; }
 
-/* ── Buttons ─────────────────────────────────────────────────────────── */
+/* ── Buttons: TGO's rimmed action button ──────────────────────────────
+   As the TGO Brands design system: an outer rim, an inner layer, a 40px chevron tile and a
+   label. Blue is the primary on light grounds, white the primary on black; glass and tint are
+   the secondaries on dark and on light. On desktop the fill sweeps in from the left behind the
+   tile and the chevron nudges right; below 992px the button shows its resting state. */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 46px; padding: 0 22px;
-  border: 0; border-radius: 980px; background: transparent;
-  font-family: var(--font-text); font-size: 17px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em;
-  text-align: center; text-decoration: none; cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  --grad-blue: linear-gradient(180deg, #1266df 50%, #0a3779);
+  --grad-white: linear-gradient(180deg, #fff 50%, #f4f4f7);
+  --grad-tile: linear-gradient(180deg, #fff, #f4f4f7);
+  --chev-blue: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231266df' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+  --chev-white: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+  --rim: rgba(18, 102, 223, 0.3); --ins: var(--grad-blue); --sweep: var(--grad-white); --tile: var(--grad-tile);
+  --chev: var(--chev-blue); --label: #fff; --label-hover: #1266df;
+  position: relative; isolation: isolate; display: inline-flex; align-items: center; gap: 10px;
+  padding: 3px 17px 3px 3px; border: 3px solid var(--rim); border-radius: 12px;
+  background: var(--ins); background-clip: padding-box; color: var(--label);
+  font-family: var(--font-text); font-size: 16px; font-weight: 600; line-height: 1; letter-spacing: -0.02em;
+  text-align: left; text-decoration: none; white-space: nowrap; cursor: pointer;
+  transition: color 0.16s cubic-bezier(0, 0, 0.58, 1);
+}
+.btn::before {
+  content: ""; position: absolute; z-index: -1; inset: 3px; border-radius: 8px;
+  background: var(--sweep) left center / 0% 100% no-repeat;
+  transition: background-size 0.25s cubic-bezier(0, 0, 0.58, 1);
+}
+.btn::after {
+  content: ""; order: -1; flex: none; width: 40px; height: 40px; border-radius: 8px;
+  background: var(--chev) center / 24px no-repeat, var(--tile);
+  transition: background-position 0.25s cubic-bezier(0, 0, 0.58, 1);
 }
 .btn:hover { text-decoration: none; }
-/* small link-style controls keep their look but get a 44px touch target */
+.btn:focus-visible { outline: 2px solid #1266df; outline-offset: 2px; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+/* white: the primary on black grounds (the slides, the poster) */
+.btn--light { --rim: rgba(255, 255, 255, 0.3); --ins: #fff; --sweep: var(--grad-blue); --tile: var(--grad-blue); --chev: var(--chev-white); --label: #1266df; --label-hover: #fff; }
+/* glass: the secondary on dark */
+.btn--glass { --rim: rgba(255, 255, 255, 0.12); --ins: transparent; --label: #fff; --label-hover: #1266df; padding: 0 14px 0 0; border-radius: 10px; }
+/* tint: the secondary on light */
+.btn--outline { --rim: rgba(18, 102, 223, 0.08); --ins: transparent; --label: #1266df; --label-hover: #1266df; padding: 0 14px 0 0; border-width: 4px; border-radius: 10px; }
+.btn--glass::before, .btn--outline::before { inset: 0; }
+@media (min-width: 992px) {
+  .btn:hover, .btn:focus-visible, .btn.is-hover { color: var(--label-hover); }
+  .btn:hover::before, .btn:focus-visible::before, .btn.is-hover::before { background-size: 100% 100%; }
+  .btn:hover::after, .btn:focus-visible::after, .btn.is-hover::after { background-position: calc(50% + 8px) center, 0 0; }
+}
+@media (prefers-reduced-motion: reduce) { .btn, .btn::before, .btn::after { transition: none; } }
+/* text links keep their look but get a 44px touch target */
 .btn--link, .footer__links a, .back-link, .person__contact, .table td a { position: relative; }
 .btn--link::after, .footer__links a::after, .back-link::after, .person__contact::after, .table td a::after {
-  content: ""; position: absolute; inset: -15px -8px;
+  content: ""; position: absolute; inset: -15px -8px; width: auto; height: auto; order: 0; border-radius: 0; background: none;
 }
-.btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn--primary, .btn--primary:hover { color: #fff; }
-.btn--primary { background: var(--accent); }
-.btn--primary:hover { background: var(--accent-hover); }
-.btn--link { min-height: 0; padding: 0; color: var(--accent-deep); }
-.btn--link:hover { color: var(--accent); text-decoration: underline; }
-.btn--lg { min-height: 52px; padding: 0 30px; }
-.btn--glass, .btn--glass:hover { color: #fff; }
-.btn--glass {
-  border: 1px solid rgba(255, 255, 255, 0.42); background: rgba(255, 255, 255, 0.14);
-  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
-}
-.btn--glass:hover { background: rgba(255, 255, 255, 0.24); }
-.btn--light, .btn--light:hover { color: var(--text); }
-.btn--light { background: var(--bg); }
-.btn--light:hover { background: rgba(255, 255, 255, 0.9); }
-.btn--outline, .btn--outline:hover { color: var(--text); }
-.btn--outline { padding: 0 26px; border: 1px solid var(--line); background: #fff; }
+.btn--link { min-height: 0; padding: 0; border: 0; background: none; color: var(--accent-deep); font-size: 17px; font-weight: 400; letter-spacing: -0.01em; white-space: normal; }
+.btn--link::before { display: none; }
+.btn--link:hover, .btn--link.is-hover { color: var(--accent); text-decoration: underline; }
 
 .chip {
   display: inline-flex; align-items: center; justify-content: center;
@@ -267,19 +288,9 @@ a:hover .photo img, article:hover .photo img { transform: scale(1.05); }
   transition: transform 0.25s var(--ease), background 0.25s ease, color 0.25s ease;
 }
 .nav__lang:hover { transform: translateY(-1px); background: rgba(0, 0, 0, 0.1); color: #000; }
-.nav__cta, .nav__cta:hover { color: #fff; }
-.nav__cta {
-  flex: 0 0 auto; gap: 14px; min-height: 46px; padding: 0 8px 0 22px;
-  background: var(--text); font-size: 15px; font-weight: 500; white-space: nowrap;
-  box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.6);
-}
-.nav__cta:hover { background: #000; }
-.nav__arrow {
-  display: grid; flex: 0 0 30px; place-items: center; width: 30px; height: 30px;
-  border-radius: 999px; background: rgba(255, 255, 255, 0.16); font-size: 14px; line-height: 1;
-  transition: transform 0.34s var(--ease), background 0.25s ease;
-}
-.nav__cta:hover .nav__arrow { transform: translateX(2px); background: rgba(255, 255, 255, 0.26); }
+.nav__cta { flex: 0 0 auto; font-size: 15px; }
+/* over the dark hero the call to action is the glass button */
+.nav[data-hero="1"][data-dark="1"] .btn--outline { --rim: rgba(255, 255, 255, 0.12); --label: #fff; border-width: 3px; }
 .nav__cta--drawer, .nav__burger { display: none; }
 
 /* over the dark hero the chrome turns white: smoked glass keeps the white links legible */
@@ -1080,7 +1091,6 @@ html:lang(zh) {
 .travel-visas .eyebrow { margin-bottom: 10px; }
 .pkg--featured, .pkg--featured:hover { box-shadow: 0 0 0 2px var(--accent), var(--surface-shadow); }
 
-  .nav__cta { gap: 10px; padding: 0 6px 0 16px; font-size: 14px; }
 }
 @media (max-width: 900px) {
   
@@ -1306,7 +1316,6 @@ html:lang(zh) {
   .done__title { font-size: clamp(46px, 4vw, 76px); }
   .nav { padding-inline: 48px; }
   .nav__link { font-size: 16px; }
-  .nav__cta { padding: 0 10px 0 26px; }
   .panel { padding: 40px; }
   .person > div { padding: 36px; }
 }
@@ -1573,32 +1582,9 @@ html:lang(zh) {
 :root .vtable tbody th, :root .vtable thead th:first-child { background: var(--surface); }
 :root .portal .fact { box-shadow: none; }
 
-/* PrimaryButton: ink-on-ground fill, then a square chip with the blue gradient and a white arrow */
-:root .btn { border-radius: 12px; }
-:root .btn--primary, :root .btn--primary:hover { color: var(--btn-ink); }
-:root .btn--primary { gap: 12px; padding: 0 7px 0 20px; background: var(--btn-bg); letter-spacing: -0.02em; font-weight: 500; }
-:root .btn--primary:hover { background: var(--btn-hover); }
-:root .btn--primary::after {
-  content: ""; flex: 0 0 auto; width: 32px; height: 32px; border-radius: 9px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 8h11.5M9 3.5 13.5 8 9 12.5' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 16px no-repeat, var(--chip-grad);
-  transition: background-position 0.15s ease-out;
-}
-:root .btn--primary:hover::after { background-position: calc(50% + 2px) center, 0 0; }
-:root .btn--lg.btn--primary { padding: 0 8px 0 24px; }
-:root .btn--lg.btn--primary::after { width: 36px; height: 36px; border-radius: 10px; }
-/* on the hero photograph the primary button is white in both themes */
-
-
-
-/* the light button only sits on the black poster */
-:root .btn--light, :root .btn--light:hover { color: #131313; }
-:root .btn--light { background: #fff; font-weight: 500; }
-:root .btn--light:hover { background: #d1d1d1; }
-:root .btn--outline, :root .btn--outline:hover { color: var(--text); }
-:root .btn--outline { border-color: var(--line-strong); background: var(--fill); font-weight: 500; }
-:root .btn--outline:hover { border-color: var(--line-hover); background: var(--fill-hover); }
-/* the glass button only sits on the hero photograph */
-:root .btn--glass { border-color: rgba(255, 255, 255, 0.22); background: rgba(173, 173, 173, 0.18); }
+/* buttons: on the black ground the primary is the white button and the secondary the glass one */
+:root[data-theme="dark"] .btn--primary { --rim: rgba(255, 255, 255, 0.3); --ins: #fff; --sweep: var(--grad-blue); --tile: var(--grad-blue); --chev: var(--chev-white); --label: #1266df; --label-hover: #fff; }
+:root[data-theme="dark"] .btn--outline { --rim: rgba(255, 255, 255, 0.12); --label: #fff; --label-hover: #1266df; border-width: 3px; }
 :root .btn--link { color: var(--accent); }
 
 /* chips, tags, pagination: squarer, tinted rather than filled when chosen */
@@ -1622,18 +1608,12 @@ html:lang(zh) {
 :root :is(.nav__link:hover, .nav__link[aria-current="page"]) { color: var(--text); font-weight: 500; }
 :root :is(.nav__lang, .nav__theme) { border-radius: 10px; background: var(--chrome-chip); color: var(--text); }
 :root :is(.nav__lang, .nav__theme):hover { background: var(--chrome-hover); color: var(--text); }
-:root .nav__cta, :root .nav__cta:hover { color: var(--btn-ink); }
-:root .nav__cta { background: var(--btn-bg); box-shadow: none; padding-left: 16px; padding-right: 6px; }
-:root .nav__cta:hover { background: var(--btn-hover); }
-:root .nav__arrow, :root .nav__cta:hover .nav__arrow { border-radius: 9px; background: var(--chip-grad); color: #fff; }
 /* over the dark hero the chrome turns white in both themes: smoked glass, white CTA */
 :root .nav[data-hero="1"][data-dark="1"] :is(.nav__logo, .nav__word, .nav__lang, .nav__burger, .nav__theme),
 :root .nav[data-hero="1"][data-dark="1"] .nav__link { color: #fff; }
 :root .nav[data-hero="1"][data-dark="1"] :is(.nav__lang, .nav__theme) { background: rgba(255, 255, 255, 0.12); }
 :root .nav[data-hero="1"][data-dark="1"] :is(.nav__lang, .nav__theme):hover { background: rgba(255, 255, 255, 0.24); }
 :root .nav[data-hero="1"][data-dark="1"] .nav__link::before { background: rgba(255, 255, 255, 0.16); }
-:root .nav[data-hero="1"][data-dark="1"] .nav__cta { background: #fff; color: #131313; }
-:root .nav[data-hero="1"][data-dark="1"] .nav__cta:hover { background: #d1d1d1; }
 @media (max-width: 1240px) {
   :root .nav__links[popover] { border: 1px solid var(--chrome-line); border-radius: 16px; background: var(--chrome-solid); box-shadow: var(--glass-shadow); -webkit-backdrop-filter: none; backdrop-filter: none; }
   :root .nav__link { border-radius: 0; border-bottom-color: var(--chrome-line); }

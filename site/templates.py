@@ -251,19 +251,19 @@ def nav(c, lang, page, alt_href):
         links += (f'<div class="nav__item"><div class="nav__row">{link}</div>'
                   f'<div class="nav__menu" id="menu-{k}" style="--cols:{len(groups)}">{cols}'
                   f'<a class="nav__all" href="{all_href}" style="--i:{i}">{e(all_label)}</a></div></div>')
-    cta = f'{e(c["ui"]["talk"])}<span class="nav__arrow" aria-hidden="true">→</span>'
+    cta = e(c['ui']['talk'])
     other = 'en' if lang == 'zh' else 'zh-CN'
     hero = 1 if home and (c['home'].get('photo') or c['home'].get('slides')) else 0
     return f'''<header class="nav" data-scrolled="0" data-hero="{hero}" data-dark="{hero}">
   <a class="nav__logo" href="{href(lang, 'home')}" aria-label="TGO Brands">TGO<span class="nav__word">Brands</span></a>
   <nav class="nav__links" id="site-menu" popover aria-label="{e(c["ui"]["menu"])}">
     {links}
-    <a class="btn nav__cta nav__cta--drawer" href="{href(lang, 'partner')}">{cta}</a>
+    <a class="btn btn--outline nav__cta nav__cta--drawer" href="{href(lang, 'partner')}">{cta}</a>
   </nav>
   <div class="nav__tools">
     <a class="nav__lang" href="{alt_href}" hreflang="{other}" lang="{other}" aria-label="{e(c["ui"]["langSwitchLabel"])}">{e(c["ui"]["langSwitch"])}</a>
     <button class="nav__theme" type="button" role="switch" aria-checked="false" aria-label="{e(c["ui"]["themeDark"])}" title="{e(c["ui"]["themeDark"])}" data-theme-toggle>{MOON.format('nav__moon')}{SUN.format('nav__sun')}</button>
-    <a class="btn nav__cta" href="{href(lang, 'partner')}">{cta}</a>
+    <a class="btn btn--outline nav__cta" href="{href(lang, 'partner')}">{cta}</a>
     <button class="nav__burger" type="button" popovertarget="site-menu" aria-label="{e(c["ui"]["menu"])}"><span></span><span></span><span></span></button>
   </div>
 </header>'''
@@ -404,7 +404,7 @@ def home_slides(c, lang):
       <p class="slide__kicker">{e(x["kicker"])}</p>
       <{tag} class="slide__title disp">{e(x["title"])}</{tag}>
       <p class="slide__sub">{e(x["sub"])}</p>
-      <a class="btn btn--primary btn--lg" href="{url}">{e(x["cta"])}</a>
+      <a class="btn btn--light btn--lg" href="{url}">{e(x["cta"])}</a>
     </div>'''
     labels = ''
     for i, x in enumerate(slides):
