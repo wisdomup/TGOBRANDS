@@ -61,7 +61,11 @@
     "fieldEmail": "邮箱",
     "fieldPhone": "电话或 WhatsApp",
     "fieldMessage": "您想做什么，在哪里？",
-    "copyright": "© {year} TGO Brands Limited · 香港 · TGO优选"
+    "copyright": "© {year} TGO Brands Limited · 香港 · TGO优选",
+    "contactSent": "已发送",
+    "contactAgain": "再发一条",
+    "fieldEmailHint": "name@company.com",
+    "fieldPhoneHint": "+86 138 0000 0000"
   },
   "dir": "cjk",
   "nav": {

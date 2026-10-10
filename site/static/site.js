@@ -85,6 +85,15 @@
     if (!form) return;
     var text = JSON.parse($('[data-footer-text]', form).textContent);
     var btn = $('button[type="submit"]', form), need = $('[data-need]', form), ok = $('[data-footer-ok]'), fail = $('[data-footer-fail]');
+    var again = $('[data-footer-again]');
+    if (again) again.addEventListener('click', function () {
+      form.reset();
+      ok.hidden = true;
+      form.hidden = false;
+      btn.disabled = false;
+      var label = $('.btn__t', btn); if (label) label.textContent = text.send;
+      var firstField = $('.input', form); if (firstField) firstField.focus();
+    });
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var data = new FormData(form);

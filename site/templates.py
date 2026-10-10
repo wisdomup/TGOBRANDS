@@ -418,79 +418,90 @@ def site_groups(c, lang, full=False):
     ]
 
 
-def field(name, label, kind='text', wide=False, required=False):
+def field(name, label, kind='text', wide=False, required=False, hint=''):
     """A tall white field with its label printed inside, as the system draws forms."""
     req = ' <span class="req" aria-hidden="true">*</span>' if required else ''
     r = ' required' if required else ''
+    ph = f' placeholder="{e(hint)}"' if hint else ''
     if kind == 'textarea':
-        control = f'<textarea class="input" id="ff-{name}" name="{name}" rows="3"{r}></textarea>'
+        control = f'<textarea class="input" id="ff-{name}" name="{name}" rows="3"{r}{ph}></textarea>'
     else:
         auto = {'email': 'email', 'tel': 'tel', 'text': 'on'}[kind]
-        control = f'<input class="input" id="ff-{name}" name="{name}" type="{kind}" autocomplete="{auto}"{r}>'
+        control = f'<input class="input" id="ff-{name}" name="{name}" type="{kind}" autocomplete="{auto}"{r}{ph}>'
     return f'<div class="field{" field--wide" if wide else ""}"><label for="ff-{name}">{e(label)}{req}</label>{control}</div>'
 
 
 def contact_form(c, lang):
-    """The system's contact form: a grey panel holding the pitch and the form. It posts to
-    /api/lead like the application; without scripting, or if the server cannot take it, the
-    message goes by email."""
+    """The system's ContactForm: a grey panel, the pitch in a gradient-edge card on the left (label,
+    title, note, then the alternative: the full application as a tint button) and the two-column
+    form on the right. It posts to /api/lead like the application; without scripting, or if the
+    server cannot take it, the message goes by email."""
     ui = c['ui']
-    text = json.dumps({'sending': ui['contactSending'], 'subject': ui['contactTitle'], 'msg': 'Footer contact form'}, ensure_ascii=False)
-    fields = (field('contact_name', ui['fieldName']) + field('company_name', ui['fieldCompany'])
-              + field('contact_email', ui['fieldEmail'], 'email') + field('contact_phone', ui['fieldPhone'], 'tel')
-              + field('message', ui['fieldMessage'], 'textarea', wide=True))
+    text = json.dumps({'sending': ui['contactSending'], 'send': ui['contactSend'], 'subject': ui['contactTitle'], 'msg': 'Footer contact form'}, ensure_ascii=False)
+    fields = (field('contact_name', ui['fieldName'], required=True) + field('company_name', ui['fieldCompany'])
+              + field('contact_email', ui['fieldEmail'], 'email', hint=ui['fieldEmailHint'])
+              + field('contact_phone', ui['fieldPhone'], 'tel', hint=ui['fieldPhoneHint'])
+              + field('message', ui['fieldMessage'], 'textarea', wide=True, required=True))
     return f'''<section class="form-panel" id="contact-form" aria-labelledby="ff-title">
       <div class="card card--form form-panel__cta"><div class="card__in">
-        <div>{pill(c, ui["contactLabel"], "mail")}<h2 class="title-36" id="ff-title" style="margin-top:1rem">{e(ui["contactTitle"])}</h2></div>
-        <p class="form-panel__note">{e(ui["contactNote"])}</p>
-        <p class="form-note">{e(ui["contactAlt"])} <a href="{href(lang, 'partner')}">{e(c["nav"]["partner"])}</a></p>
+        <div class="form-panel__row1">{pill(c, ui["contactLabel"], "mail")}<h2 class="title-64" id="ff-title">{e(ui["contactTitle"])}</h2><p class="form-panel__note">{e(ui["contactNote"])}</p></div>
+        <div class="form-panel__row2"><p class="text-20">{e(ui["contactAlt"])}</p><a class="btn btn--outline" href="{href(lang, 'partner')}">{e(c["nav"]["partner"])}</a></div>
       </div></div>
       <div class="card card--form form-panel__form"><div class="card__in">
-        <form data-footer-form data-lang="{lang}" data-endpoint="/api/lead" action="mailto:help@tgobrands.com" method="post" enctype="text/plain" novalidate>
+        <form class="form" data-footer-form data-lang="{lang}" data-endpoint="/api/lead" action="mailto:help@tgobrands.com" method="post" enctype="text/plain" novalidate>
           <script type="application/json" data-footer-text>{text}</script>
           <div class="fields">{fields}</div>
           <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <p class="form-note" data-need hidden>{e(ui["contactNeed"])}</p>
           <div class="form-actions"><button class="btn btn--primary" type="submit">{e(ui["contactSend"])}</button></div>
         </form>
-        <div class="form-ok" data-footer-ok hidden tabindex="-1"><h3>{e(ui["contactOk"])}</h3><p class="muted">{e(ui["contactOkNote"])}</p></div>
-        <div class="form-ok" data-footer-fail hidden><p class="muted">{e(ui["contactFail"])}</p><a class="btn btn--outline" href="mailto:help@tgobrands.com">help@tgobrands.com</a></div>
+        <div class="form-ok" data-footer-ok hidden tabindex="-1" role="status">{pill(c, ui["contactSent"], "spark")}<h3 class="title-36">{e(ui["contactOk"])}</h3><p class="text-20 muted">{e(ui["contactOkNote"])}</p><button class="btn btn--outline" type="button" data-footer-again>{e(ui["contactAgain"])}</button></div>
+        <div class="form-ok" data-footer-fail hidden role="status"><p class="text-20 muted">{e(ui["contactFail"])}</p><a class="btn btn--outline" href="mailto:help@tgobrands.com">help@tgobrands.com</a></div>
       </div></div>
     </section>'''
 
 
+def footer_menus(c, lang):
+    """The footer's four menu columns: our work, travel, who we work with, company. Every section
+    is one link away; the individual services, destinations and articles are in the nav's menus
+    and on the site-map page."""
+    n, ui, cols, t = c['nav'], c['ui'], c['footer']['cols'], c['travel']
+    work = [(href(lang, k), n[k]) for k in ('services', 'launch', 'markets', 'estimator', 'brands', 'expeditions')]
+    travel = ([(href(lang, 'travel'), n['travel']), (href(lang, 'travel') + '#destinations', ui['menuDestinations'])]
+              + [(href(lang, k), t[p]['name']) for k, p in (('packages', 'packagesPage'), ('visas', 'visasPage'), ('booking', 'bookingPage'))])
+    who = [(href(lang, 'audience', a['slug']), a['name']) for a in c['audiences']['items']] + [(href(lang, 'portal'), n['portal'])]
+    company = [(href(lang, k), n[k]) for k in ('what', 'founders', 'insights', 'contact', 'partner')] + [(href(lang, 'sitemap'), c['sitemap']['name'])]
+    return [(ui['footerWork'], work), (cols['travel'], travel), (cols['who'], who), (ui['footerCompany'], company)]
+
+
 def footer(c, lang):
-    """The black closing band: the contact form, then who we are with the founders' WhatsApp
-    lines, the whole site as menus (the full list, with every article, is the site-map page),
-    and the legal row."""
+    """The system's Footer: the black closing band with the contact panel first, then the
+    wordmark and the founders' contact buttons on the left, the menu columns on the right, and
+    the legal row. The full site map, with every article, is the site-map page."""
     f = c['footer']
     first = lambda p: p['name'].split()[0]
     contacts = ''.join(
         f'<a class="contactbtn" href="https://wa.me/{WHATSAPP[first(p)]}" target="_blank" rel="noopener">{icon("chat")}<span>{e(c["home"]["wa"].format(name=first(p)))}</span></a>'
         for p in c['founders']['people'])
     contacts += f'<a class="contactbtn" href="mailto:hello@tgobrands.com">{icon("mail")}<span>hello@tgobrands.com</span></a>'
-
-    def menu(title, head, parts, wide):
-        h = f'<a href="{head}">{e(title)}</a>' if head else e(title)
-        links = ''.join(f'<a href="{u}">{e(label)}</a>' for _, items in parts for u, label in items)
-        return f'\n      <nav class="footer__menu{" footer__menu--wide" if wide else ""}" aria-label="{e(title)}"><h2>{h}</h2><div class="footer__links">{links}</div></nav>'
-
-    menus = ''.join(menu(*g) for g in site_groups(c, lang))
+    menus = ''.join(
+        f'\n        <nav class="footer__menu" aria-label="{e(title)}"><h2 class="title-17">{e(title)}</h2><div class="footer__links">'
+        + ''.join(f'<a href="{u}">{e(label)}</a>' for u, label in links) + '</div></nav>'
+        for title, links in footer_menus(c, lang))
     legal = ''.join(f'<a href="{href(lang, k)}">{e(c[k]["name"])}</a>' for k in ('privacy', 'terms', 'sitemap'))
-    return f'''<footer class="footer"><div class="footer__glow"></div>
+    return f'''<footer class="footer"><div class="footer__glow" aria-hidden="true"></div>
   <div class="wrap">
     {contact_form(c, lang)}
     <div class="footer__cols">
       <div class="footer__contact">
-        <a class="wordmark wordmark--lg" href="{href(lang, 'home')}" aria-label="TGO Brands">TGO <span>Brands</span></a>
-        <p class="footer__about">{e(f["about"])}</p>
+        <a class="footer__brand wordmark wordmark--lg" href="{href(lang, 'home')}" aria-label="TGO Brands">TGO <span>Brands</span></a>
         <div class="footer__contacts">{contacts}</div>
       </div>
-      <div class="footer__map" role="group" aria-label="{e(f["cols"]["sitemap"])}">{menus}
+      <div class="footer__menus" role="group" aria-label="{e(f["cols"]["sitemap"])}">{menus}
       </div>
     </div>
     <div class="footer__bottom">
-      <p>{e(c["ui"]["copyright"].format(year=2026))} <span class="nowrap">{e(f["note"])}</span></p>
+      <p class="text-14">{e(c["ui"]["copyright"].format(year=2026))} · {e(f["note"])}</p>
       <div class="footer__legal">{legal}</div>
     </div>
   </div>
