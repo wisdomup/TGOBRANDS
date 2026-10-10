@@ -41,33 +41,7 @@
     "menuTools": "工具",
     "menuBrands": "我们的品牌",
     "prevSlide": "上一张",
-    "nextSlide": "下一张",
-    "footerWork": "我们的业务",
-    "footerCompany": "公司",
-    "contactTitle": "介绍一下您的业务。",
-    "contactNote": "每条消息都由创始人亲自阅读，两个工作日内回复。",
-    "contactLabel": "联系",
-    "contactAlt": "想填写完整申请？",
-    "contactSend": "发送",
-    "contactSending": "发送中…",
-    "contactOk": "谢谢。",
-    "contactOkNote": "创始人将在两个工作日内回复。",
-    "contactFail": "发送未成功，请改用邮件联系我们：",
-    "contactNeed": "请留下邮箱或电话，方便我们回复。",
-    "breadcrumbHome": "首页",
-    "menuAll": "全部{name}",
-    "fieldName": "您的姓名",
-    "fieldCompany": "公司",
-    "fieldEmail": "邮箱",
-    "fieldPhone": "电话或 WhatsApp",
-    "fieldMessage": "您想做什么，在哪里？",
-    "copyright": "© {year} TGO Brands Limited · 香港 · TGO优选",
-    "contactSent": "已发送",
-    "contactAgain": "再发一条",
-    "fieldEmailHint": "name@company.com",
-    "fieldPhoneHint": "+86 138 0000 0000",
-    "menuClose": "关闭菜单",
-    "menuBack": "返回"
+    "nextSlide": "下一张"
   },
   "dir": "cjk",
   "nav": {
@@ -226,12 +200,7 @@
         }
       }
     ],
-    "cue": "向下滚动",
-    "needsLabel": "我们做什么",
-    "careLabel": "为什么选我们",
-    "foundersLabel": "创始人",
-    "brandsLabel": "我们的品牌",
-    "closeEyebrow": "开始"
+    "cue": "向下滚动"
   },
   "what": {
     "title": "这座桥。",

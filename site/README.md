@@ -3,7 +3,7 @@
 v4: TGO as a senior brand operator and R&D partner taking Chinese brands into Pakistan, India, the
 Philippines and the UAE — a service catalogue, the Launch programme, audience pages, market playbooks,
 an entry estimator, a Travel desk with destination guides, Expeditions and a Partner Portal preview, built on
-the TGO Brands design system (one theme: a pale page, black bands, dark plates).
+the Obsidian design system, in a light and a dark theme.
 Static, pre-rendered, bilingual (`/` English, `/zh/` 中文). No framework and no dependencies:
 Python 3 standard library to build, plain HTML/CSS/JS out.
 
@@ -96,8 +96,8 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
   **Refreshing:** replace the CSV with a newer copy if one is published, review `visa_overrides.json` against
   official portals (expiring schemes are noted with their end dates), rebuild, and run the fixture test
   described in the research file.
-- **Live result areas** (`[aria-live]`: the checker and the entry estimator) are rendered by the script
-  from the system's facts, panels, chips and buttons, so they read like the rest of the page.
+- **Live result areas** (`[aria-live]`: the checker and the entry estimator) are excluded from the scroll
+  reveal, which only watches elements present at load.
 - **Entry estimator** reads its data from a JSON block in the page; with JavaScript off it says so and
   points to the market playbooks, which carry the same facts.
 - **Portal tabs** are ARIA tabs (arrow keys, Home, End); without JavaScript every pane is listed.
@@ -106,39 +106,57 @@ the table, the cards and the `/brands/<slug>/` pages all follow.
   `/insights/<slug>/` with Previous / Next links. Section pages end with Previous / Next cards in
   this order: Home → What We Do → Services → Launch → Markets → Travel → Expeditions → Brands → Founders →
   Insights → Partner With Us. Service, audience, brand, playbook and trip pages step between their siblings.
-- **Nav** is the design system's floating glass bar: wordmark, the links centred, the language chip
-  and the call to action. Services, Markets, Travel and Brands open mega menus (a category rail and
-  icon cards) on hover or focus, no arrows; the panel hangs from the bar at the bar's width and
-  reveals top-down. Below 480px a burger opens the full-screen sheet. Without JavaScript the menus
-  open on hover and the sheet is not needed: the footer carries the whole site map.
-- **Design system.** One theme, from the **TGO Brands** design system: the pale page (`#f9fafb`),
-  black bands for the hero and the footer, dark plates (`#030712`) for heavy content, gradient-edge
-  light cards, one blue (`#1266df`), Manrope for text and a display face for headings. Sizes are rem
-  on a fluid root (`16 * 100vw / 1440`, capped at 1440px, a 393px base under 480px), so the page scales
-  as one picture between phone and desktop. Every token is on `:root` at the top of `site.css`;
-  components follow in the order the system lists them (buttons, pills, cards, dark cards, service
-  cards, step cards, team plate, accordion, page hero, CTA plate, nav, hero slides, forms, footer),
-  then the inner-page components. A content `.band` section becomes a dark plate; everything inside
-  it reads as on-dark automatically.
-- **Buttons** are the system's rimmed button (rim › inner layer › 40px chevron tile › label): blue
-  primary on light, white primary on black and inside bands, glass and tint secondaries. On desktop the
-  fill sweeps in from behind the tile, the chevron nudges and the label's colour sweeps as a clipped
-  gradient; below 992px they rest. `wrap_labels()` puts every button's text in `.btn__t` for that.
-- **Icons** are the system's 24px line set in `content/shared/icons.json` (`icon(name)` in
-  `templates.py`); menus, pills, contact buttons, the slider arrows, the scroll cue, breadcrumbs,
-  pagers and WhatsApp links all draw from it. Placeholder art (`art()`) is the system's light UI tiles
-  on a faint grid, or initials on a dark grid, until real photographs arrive.
-- **Motion** follows the system: short eased transitions on hover and open states, the slide wipe,
-  the menu reveal, the scroll cue's bob. No scroll reveals, parallax or entrance stagger. Everything
-  stops under `prefers-reduced-motion`.
+- **Nav** merges with the page at the top and becomes a frosted capsule once scrolled; over the
+  dark hero it switches to smoked glass with white links. On phones the links live in a
+  `popover` drawer, which works without JavaScript.
+- **How we work** opens as a dialog; its links fall back to `/what-we-do/#start`.
+- **Reveal, marquees, hero video** respect `prefers-reduced-motion`; the video also skips Save-Data.
 - **Scrolling.** In-page links glide (`scroll-behavior: smooth`, off under reduced motion) and land
-  below the fixed nav (`scroll-padding-top`).
+  below the fixed nav (`scroll-padding-top`). The nav writes its shrink values on itself, only when
+  they change, never on the root (which would restyle the whole page each frame). On touch screens
+  the reveal is a rise and fade without the blur filter, which phones pay for while scrolling.
 - **Separators.** `keep_dots()` puts a no-break space before every ` · ` in the page body, so a
   middle dot never starts a line.
-- **Fonts** are self-hosted under `static/fonts/` (Manrope and Inter Tight, variable, OFL), preloaded
-  from the head. Inter Tight stands in for the system's paid display face (Degular Display) with a
-  cap-height adjustment; a licensed Degular would slot in first in `--font-display`. 中文 pages use
-  the same files and fall through to PingFang / YaHei for CJK, with the display letter-spacing reset.
+- **Light / dark.** Both themes follow the **Obsidian** design system; only the colour tokens change.
+  The site follows the device setting until the visitor picks a theme with the switch in the nav
+  (sun / moon) or in the footer; the choice is kept in `localStorage` (`tgo-theme`), and a one-line
+  head script sets `data-theme` before first paint, so there is no flash. The system: Work Sans
+  headings at 500, one blue signal, GlowCards (gradient hairline edge, two soft corner shades, no
+  shadows), primary buttons with a blue gradient arrow chip (black on the light ground, white on the
+  dark one and on the hero photograph), line eyebrows between diamond-ended rules, broken-outline
+  fields, a squarer frosted nav and a hairline footer grid. Light is a white stage with ink type and a
+  deeper blue (`#3d60c9`) so blue text holds 4.5:1; dark is the black stage with `#6289ff`. The hero
+  photograph and the closing poster stay dark in both. All of it is the "Obsidian" layer at the end of
+  `site.css`: token sets on `:root` and `:root[data-theme="dark"]`, then component rules that read them.
+- **Contrast.** Every text token is at least 4.5:1 on the ground, on cards and on inset fills in both
+  themes; status badges 6–9:1; field outlines and the arrow chip at least 3:1. Hero copy is checked
+  against the actual photograph: the shade and the pale-blue eyebrow (`#b4c6ff`) keep every line at
+  4.5:1 or better even over the brightest lights.
+- **Fonts.** Work Sans loads from Google Fonts on English pages only, by script and as a print
+  stylesheet first, so it never blocks the first paint. 中文 pages never request it (Google Fonts is
+  blocked in mainland China) and use the CJK system faces, then Helvetica Neue / Arial. To remove the
+  Google dependency entirely, self-host Work Sans (OFL) under `static/` and point `FONT_CSS` in
+  `templates.py` at it.
+- **Scrolling.** In-page links glide (`scroll-behavior: smooth`, off under reduced motion) and land
+  below the fixed nav (`scroll-padding-top`). The nav writes its shrink values on itself, only when
+  they change, never on the root (which would restyle the whole page each frame). On touch screens
+  the reveal is a rise and fade without the blur filter, which phones pay for while scrolling.
+- **Separators.** `keep_dots()` puts a no-break space before every ` · ` in the page body, so a
+  middle dot never starts a line.
+- **Light / dark.** The site follows the device setting until the visitor picks a theme with the
+  switch in the nav (sun / moon) or in the footer; the choice is kept in `localStorage` (`tgo-theme`).
+  A one-line head script sets `data-theme` before first paint, so there is no flash. Light is the v3
+  Glass design. Dark is the **Obsidian** design system: black ground, white Work Sans headings at 500,
+  `#cbcbcb` body, one blue accent (`#6289ff`), GlowCards (gradient hairline edge, two neutral corner
+  shades, no shadows), white primary buttons with a blue gradient arrow chip, line eyebrows between
+  diamond-ended rules, broken-outline fields, a squarer frosted nav and a hairline footer grid lit by a
+  grey and a blue glow. Every dark rule lives under `[data-theme="dark"]` at the end of `site.css`, so
+  the light theme is untouched by it. Without JavaScript both switches hide and the page stays light.
+- **Fonts.** Light is system fonts only (SF / PingFang / YaHei). Dark loads Work Sans from Google
+  Fonts on English pages only, by script and as a print stylesheet first, so it never blocks the
+  first paint. 中文 pages never request it (Google Fonts is blocked in mainland China) and use the
+  CJK system faces, then Helvetica Neue / Arial. To remove the Google dependency entirely, self-host
+  Work Sans (OFL) under `static/` and point `FONT_CSS` in `templates.py` at it.
 
 ## Lead delivery (`/api/lead`)
 
