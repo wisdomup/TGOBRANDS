@@ -172,7 +172,10 @@ def build(out):
 
     static = ROOT / 'static'
     for f in static.iterdir():
-        shutil.copy2(f, assets / f.name)
+        if f.is_dir():
+            shutil.copytree(f, assets / f.name)
+        else:
+            shutil.copy2(f, assets / f.name)
     version = hashlib.sha1(b''.join((static / n).read_bytes() for n in ('site.css', 'site.js'))).hexdigest()[:10]
 
     content = {lang: load(lang) for lang in LANGS}

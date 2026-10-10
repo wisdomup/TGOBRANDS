@@ -1,6 +1,7 @@
 /* TGO Brands — progressive enhancement. Every page is complete without this
-   file; it adds the capsule nav, scroll reveal, the insights filter,
-   region-ordered contact channels and the one-question-per-screen partner survey. */
+   file; it adds the nav's menus and sheet, the home slides, the footer form,
+   the insights filter, region-ordered contact channels, the visa check, the
+   estimator and the one-question-per-screen partner survey. */
 (function () {
   'use strict';
 
@@ -18,80 +19,99 @@
   function initNav() {
     var nav = $('.nav');
     if (!nav) return;
-    var overHero = nav.getAttribute('data-hero') === '1';
-    var raf = 0, last = -1, state = '';
-    function update() {
-      raf = 0;
-      var y = window.scrollY;
-      var p = Math.min(1, Math.max(0, y / 320));
-      if (p !== last) {
-        last = p;
-        var eased = p * p * (3 - 2 * p);
-        nav.style.setProperty('--nav-scale', (1 - 0.14 * eased).toFixed(4));
-        nav.style.setProperty('--nav-top', (22 - 10 * eased).toFixed(2) + 'px');
-      }
-      var next = (y > 24 ? '1' : '0') + (overHero && y < window.innerHeight * 0.88 ? '1' : '0');
-      if (next !== state) {
-        state = next;
-        nav.setAttribute('data-scrolled', next[0]);
-        if (overHero) nav.setAttribute('data-dark', next[1]);
-      }
-    }
-    window.addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
-    window.addEventListener('resize', function () { if (!raf) raf = requestAnimationFrame(update); });
-    update();
-
-    // a drawer left open while the window widens would float in the top layer
-    var menu = $('#site-menu');
-    var wide = window.matchMedia('(min-width: 1241px)');
-    if (menu && menu.hidePopover) {
-      wide.addEventListener('change', function (e) {
-        if (e.matches && menu.matches(':popover-open')) menu.hidePopover();
-      });
-    }
-
-    // dropdowns: on desktop a hovered or focused item opens after a moment's intent and closes
-    // a moment after the pointer leaves; in the drawer the row itself unfolds the links.
-    // Escape, a click elsewhere, a resize or closing the drawer shuts them all
     var items = $$('.nav__item', nav);
     var hover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var wide = window.matchMedia('(min-width: 480px)');
     function setOpen(item, open) {
       item.classList.toggle('is-open', open);
-      $('.nav__row .nav__link', item).setAttribute('aria-expanded', open ? 'true' : 'false');
+      var link = $('.nav__link', item);
+      if (link) link.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
     function closeAll(except) { items.forEach(function (it) { if (it !== except) setOpen(it, false); }); }
     items.forEach(function (item) {
       var timer = 0;
-      $('.nav__row .nav__link', item).addEventListener('click', function (e) {
-        if (wide.matches) return;  // on desktop the link is a link
-        e.preventDefault();
-        var open = !item.classList.contains('is-open');
-        closeAll(item);
-        setOpen(item, open);
-      });
       item.addEventListener('pointerenter', function (e) {
         if (!wide.matches || !hover.matches || e.pointerType === 'touch') return;
         clearTimeout(timer);
         timer = setTimeout(function () { closeAll(item); setOpen(item, true); }, 70);
       });
       item.addEventListener('pointerleave', function () {
-        if (!wide.matches) return;
         clearTimeout(timer);
         timer = setTimeout(function () { setOpen(item, false); }, 140);
       });
-      item.addEventListener('focusin', function () {
-        if (wide.matches) { closeAll(item); setOpen(item, true); }
+      item.addEventListener('focusin', function () { closeAll(item); setOpen(item, true); });
+      item.addEventListener('focusout', function (e) { if (!item.contains(e.relatedTarget)) setOpen(item, false); });
+      // a touch on the link opens the menu first; a second touch follows the link
+      $('.nav__link', item).addEventListener('click', function (e) {
+        if (hover.matches || item.classList.contains('is-open')) return;
+        e.preventDefault();
+        closeAll(item);
+        setOpen(item, true);
       });
-      item.addEventListener('focusout', function (e) {
-        if (wide.matches && !item.contains(e.relatedTarget)) setOpen(item, false);
+      // the category rail switches the card grid
+      $$('.mega__tab', item).forEach(function (tab, k) {
+        tab.addEventListener('click', function () {
+          $$('.mega__tab', item).forEach(function (x, n) { x.setAttribute('aria-selected', n === k ? 'true' : 'false'); });
+          $$('.mega__grid', item).forEach(function (g, n) { g.classList.toggle('is-active', n === k); });
+        });
       });
     });
-    if (items.length) {
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
-      document.addEventListener('pointerdown', function (e) { if (!nav.contains(e.target)) closeAll(); });
-      wide.addEventListener('change', function () { closeAll(); });
-      if (menu) menu.addEventListener('toggle', function (e) { if (e.newState === 'closed') closeAll(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeAll(); closeSheet(); } });
+    document.addEventListener('pointerdown', function (e) { if (!nav.contains(e.target)) closeAll(); });
+
+    var burger = $('.burger', nav), sheet = $('.msheet', nav);
+    function closeSheet() {
+      if (!sheet || !sheet.classList.contains('is-open')) return;
+      sheet.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.documentElement.style.overflow = '';
     }
+    if (burger && sheet) {
+      burger.addEventListener('click', function () {
+        var open = !sheet.classList.contains('is-open');
+        if (!open) return closeSheet();
+        sheet.classList.add('is-open');
+        burger.setAttribute('aria-expanded', 'true');
+        document.documentElement.style.overflow = 'hidden';
+      });
+      wide.addEventListener('change', function (e) { if (e.matches) closeSheet(); });
+    }
+  }
+
+  /* ── Footer contact form: posts to /api/lead like the application; if the server cannot take
+     it, the message goes by email instead ── */
+  function initFooterForm() {
+    var form = $('[data-footer-form]');
+    if (!form) return;
+    var text = JSON.parse($('[data-footer-text]', form).textContent);
+    var btn = $('button[type="submit"]', form), need = $('[data-need]', form), ok = $('[data-footer-ok]'), fail = $('[data-footer-fail]');
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var data = new FormData(form);
+      var reachable = ['contact_email', 'contact_phone'].some(function (k) { return (data.get(k) || '').trim(); });
+      need.hidden = reachable;
+      if (!reachable) { $('[name="contact_email"]', form).focus(); return; }
+      var lead = { created_at: new Date().toISOString(), locale: form.getAttribute('data-lang'), party_type: 'other',
+        target_markets: [], source: source(), website: data.get('website') || '', summary: text.msg };
+      ['contact_name', 'company_name', 'contact_email', 'contact_phone', 'message'].forEach(function (k) { lead[k] = data.get(k) || ''; });
+      lead.score = 0; lead.assigned_to = 'Umair';
+      btn.disabled = true;
+      var label = $('.btn__t', btn); if (label) label.textContent = text.sending;
+      function done(sent) {
+        form.hidden = true;
+        if (sent) { ok.hidden = false; ok.focus && ok.focus(); }
+        else {
+          fail.hidden = false;
+          var body = ['contact_name', 'company_name', 'contact_email', 'contact_phone', 'message'].map(function (k) { return k + ': ' + (lead[k] || '-'); }).join('\n');
+          $('a', fail).href = 'mailto:help@tgobrands.com?subject=' + encodeURIComponent(text.subject) + '&body=' + encodeURIComponent(body);
+        }
+      }
+      if (!window.fetch) return done(false);
+      fetch(form.getAttribute('data-endpoint'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(lead) })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
+        .then(function (b) { done(!!(b && b.ok)); })
+        .catch(function () { done(false); });
+    });
   }
 
   /* ── Home slides: a clip-path wipe between full-screen slides, copy cross-fading, a progress
@@ -141,40 +161,6 @@
     document.addEventListener('visibilitychange', function () { if (document.hidden) clearInterval(timer); else { go(cur); play(); } });
     go(0);
     play();
-    root.classList.add('is-ready');
-    // the entrance is decoration: whatever happens to it, the copy is plainly shown after it
-    setTimeout(function () { root.classList.add('is-settled'); }, 2500);
-    // the hero fades as it scrolls out of view
-    var raf = 0;
-    function scrub() {
-      raf = 0;
-      var h = root.offsetHeight || 1;
-      root.style.opacity = Math.max(0, 1 - window.scrollY / (h * 0.7)).toFixed(3);
-    }
-    if (!reduced) window.addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(scrub); }, { passive: true });
-  }
-
-  /* ── Scroll reveal: must match the selector the stylesheet hides ── */
-  // the home slides run their own entrance, so the reveal leaves them alone
-  var REVEAL = ':is(.page > section:not(.hero, .lobby, .hero-slides), .page .survey) :is(h1, h2, h3, p, article, figure, .figs):not(.marq *)';
-  function initReveal() {
-    var els = $$(REVEAL);
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(function (el) { el.classList.add('is-in'); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('is-in');
-        io.unobserve(e.target);
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-    els.forEach(function (el) {
-      var i = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
-      el.style.transitionDelay = Math.min(i, 5) * 70 + 'ms';
-      io.observe(el);
-    });
   }
 
   /* ── Contact: the fastest channel for the chosen region goes first ── */
@@ -834,38 +820,10 @@
   /* ── Theme: follows the device until the visitor picks one (nav or footer) ──
      The head script sets data-theme before first paint; this keeps both
      switches, the stored choice and live device changes in step. */
-  function initTheme() {
-    var KEY = 'tgo-theme';
-    var media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
-    var stored = function () { try { var v = localStorage.getItem(KEY); return v === 'dark' || v === 'light' ? v : null; } catch (e) { return null; } };
-    var switches = $$('[data-theme-toggle]');
-    var bars = $$('meta[name="theme-color"]');
-    function apply(mode) {
-      doc.setAttribute('data-theme', mode);
-      switches.forEach(function (b) { b.setAttribute('aria-checked', mode === 'dark' ? 'true' : 'false'); });
-      // the browser bar follows the chosen theme, not only the device setting
-      bars.forEach(function (m) { m.setAttribute('content', mode === 'dark' ? '#000000' : '#ffffff'); });
-    }
-    apply(stored() || (media && media.matches ? 'dark' : 'light'));
-    switches.forEach(function (b) {
-      b.addEventListener('click', function () {
-        var next = doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        doc.classList.add('theme-swap');
-        apply(next);
-        try { localStorage.setItem(KEY, next); } catch (e) {}
-        setTimeout(function () { doc.classList.remove('theme-swap'); }, 400);
-      });
-    });
-    if (media && media.addEventListener) {
-      media.addEventListener('change', function (e) { if (!stored()) apply(e.matches ? 'dark' : 'light'); });
-    }
-  }
-
   initSource();
-  initTheme();
   initNav();
+  initFooterForm();
   initSlides();
-  initReveal();
   initRegion();
   initSurvey();
   initTravel();

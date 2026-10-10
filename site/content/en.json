@@ -41,7 +41,27 @@
     "menuTools": "Tools",
     "menuBrands": "Our brands",
     "prevSlide": "Previous slide",
-    "nextSlide": "Next slide"
+    "nextSlide": "Next slide",
+    "footerWork": "Our work",
+    "footerCompany": "Company",
+    "contactTitle": "Tell us about your business.",
+    "contactNote": "A founder reads every message and replies within two working days.",
+    "contactLabel": "Contact",
+    "contactAlt": "Prefer the full application?",
+    "contactSend": "Send",
+    "contactSending": "Sending…",
+    "contactOk": "Thank you.",
+    "contactOkNote": "A founder will reply within two working days.",
+    "contactFail": "That did not go through. Email us instead:",
+    "contactNeed": "Add an email or a phone number so we can reply.",
+    "breadcrumbHome": "Home",
+    "menuAll": "All {name}",
+    "fieldName": "Your name",
+    "fieldCompany": "Company",
+    "fieldEmail": "Email",
+    "fieldPhone": "Phone or WhatsApp",
+    "fieldMessage": "What do you want to do, and where?",
+    "copyright": "© {year} TGO Brands Limited · Hong Kong · TGO优选"
   },
   "dir": "latin",
   "nav": {
@@ -200,7 +220,12 @@
         }
       }
     ],
-    "cue": "Scroll down"
+    "cue": "Scroll down",
+    "needsLabel": "What we do",
+    "careLabel": "Why us",
+    "foundersLabel": "The founders",
+    "brandsLabel": "Our brands",
+    "closeEyebrow": "Start"
   },
   "what": {
     "title": "The bridge.",
