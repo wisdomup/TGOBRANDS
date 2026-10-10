@@ -2109,6 +2109,15 @@ PAGES = {
 
 # ── document ──────────────────────────────────────────────────────────────
 
+BTN_LABEL = re.compile(r'(<(?:a|button)\b[^>]*\bclass="btn(?![^"]*btn--link)[^"]*"[^>]*>)([^<]+?)(</(?:a|button)>)')
+
+
+def wrap_labels(html):
+    """A button's text goes in its own span, so the hover can sweep its colour across as a
+    clipped gradient (TGO design system). Text links and buttons with icons inside are left."""
+    return BTN_LABEL.sub(r'\1<span class="btn__t">\2</span>\3', html)
+
+
 def keep_dots(html):
     """A no-break space before every ' · ' so a separator never starts a line."""
     return html.replace(' · ', '\u00a0· ')
@@ -2125,7 +2134,7 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
            '"alternateName":"TGO优选","url":"' + SITE + '/",'
            '"description":"A lobby for entrepreneurs and businesses going into new markets, run by its three founders.",'
            '"areaServed":"Worldwide"}')
-    return f'''<!doctype html>
+    return wrap_labels(f'''<!doctype html>
 <html lang="{'zh-CN' if zh else 'en'}">
 <head>
 <meta charset="utf-8">
@@ -2162,4 +2171,4 @@ def document(c, lang, page, body, path, alt_path, title, description, version, l
 {keep_dots(footer(c, lang))}
 </body>
 </html>
-'''
+''')

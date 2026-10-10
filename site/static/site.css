@@ -149,6 +149,7 @@ a.is-pending, a.is-pending:hover { cursor: default; text-decoration: none; color
   --chev-white: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
   --rim: rgba(18, 102, 223, 0.3); --ins: var(--grad-blue); --sweep: var(--grad-white); --tile: var(--grad-tile);
   --chev: var(--chev-blue); --label: #fff; --label-hover: #1266df;
+  --label-rest-img: linear-gradient(#fff, #fff); --label-hover-img: var(--grad-blue);
   position: relative; isolation: isolate; display: inline-flex; align-items: center; gap: 10px;
   padding: 3px 17px 3px 3px; border: 3px solid var(--rim); border-radius: 12px;
   background: var(--ins); background-clip: padding-box; color: var(--label);
@@ -158,8 +159,16 @@ a.is-pending, a.is-pending:hover { cursor: default; text-decoration: none; color
 }
 .btn::before {
   content: ""; position: absolute; z-index: -1; inset: 3px; border-radius: 8px;
-  background: var(--sweep) left center / 0% 100% no-repeat;
+  background: var(--sweep) left center / 40px 100% no-repeat;
   transition: background-size 0.25s cubic-bezier(0, 0, 0.58, 1);
+}
+/* the label: a clipped gradient, the hover colour sweeping over the resting one left to right */
+.btn__t {
+  position: relative; z-index: 1; display: inline-block; line-height: 23px;
+  background-image: var(--label-hover-img), var(--label-rest-img);
+  -webkit-background-clip: text, text; background-clip: text, text; color: transparent; -webkit-text-fill-color: transparent;
+  background-repeat: no-repeat; background-position: left top, left top; background-size: 0% 100%, 100% 100%;
+  transition: background-size 0.16s cubic-bezier(0, 0, 0.58, 1);
 }
 .btn::after {
   content: ""; order: -1; flex: none; width: 40px; height: 40px; border-radius: 8px;
@@ -170,18 +179,23 @@ a.is-pending, a.is-pending:hover { cursor: default; text-decoration: none; color
 .btn:focus-visible { outline: 2px solid #1266df; outline-offset: 2px; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 /* white: the primary on black grounds (the slides, the poster) */
-.btn--light { --rim: rgba(255, 255, 255, 0.3); --ins: #fff; --sweep: var(--grad-blue); --tile: var(--grad-blue); --chev: var(--chev-white); --label: #1266df; --label-hover: #fff; }
+.btn--light { --rim: rgba(255, 255, 255, 0.3); --ins: #fff; --sweep: var(--grad-blue); --tile: var(--grad-blue); --chev: var(--chev-white); --label: #1266df; --label-hover: #fff; --label-rest-img: var(--grad-blue); --label-hover-img: linear-gradient(#fff, #fff); }
 /* glass: the secondary on dark */
 .btn--glass { --rim: rgba(255, 255, 255, 0.12); --ins: transparent; --label: #fff; --label-hover: #1266df; padding: 0 14px 0 0; border-radius: 10px; }
 /* tint: the secondary on light */
-.btn--outline { --rim: rgba(18, 102, 223, 0.08); --ins: transparent; --label: #1266df; --label-hover: #1266df; padding: 0 14px 0 0; border-width: 4px; border-radius: 10px; }
+.btn--outline { --rim: rgba(18, 102, 223, 0.08); --ins: transparent; --label: #1266df; --label-hover: #1266df; --label-rest-img: var(--grad-blue); --label-hover-img: var(--grad-blue); padding: 0 14px 0 0; border-width: 4px; border-radius: 10px; }
 .btn--glass::before, .btn--outline::before { inset: 0; }
 @media (min-width: 992px) {
   .btn:hover, .btn:focus-visible, .btn.is-hover { color: var(--label-hover); }
   .btn:hover::before, .btn:focus-visible::before, .btn.is-hover::before { background-size: 100% 100%; }
   .btn:hover::after, .btn:focus-visible::after, .btn.is-hover::after { background-position: calc(50% + 8px) center, 0 0; }
+  .btn:hover .btn__t, .btn:focus-visible .btn__t, .btn.is-hover .btn__t { background-size: 100% 100%, 100% 100%; }
 }
-@media (prefers-reduced-motion: reduce) { .btn, .btn::before, .btn::after { transition: none; } }
+/* below desktop the label is a plain colour and nothing sweeps */
+@media (max-width: 991px) {
+  .btn__t { background-image: none; color: var(--label); -webkit-text-fill-color: var(--label); transition: none; }
+}
+@media (prefers-reduced-motion: reduce) { .btn, .btn::before, .btn::after, .btn__t { transition: none; } }
 /* text links keep their look but get a 44px touch target */
 .btn--link, .footer__links a, .back-link, .person__contact, .table td a { position: relative; }
 .btn--link::after, .footer__links a::after, .back-link::after, .person__contact::after, .table td a::after {
@@ -290,7 +304,7 @@ a:hover .photo img, article:hover .photo img { transform: scale(1.05); }
 .nav__lang:hover { transform: translateY(-1px); background: rgba(0, 0, 0, 0.1); color: #000; }
 .nav__cta { flex: 0 0 auto; font-size: 15px; }
 /* over the dark hero the call to action is the glass button */
-.nav[data-hero="1"][data-dark="1"] .btn--outline { --rim: rgba(255, 255, 255, 0.12); --label: #fff; border-width: 3px; }
+.nav[data-hero="1"][data-dark="1"] .btn--outline { --rim: rgba(255, 255, 255, 0.12); --label: #fff; --label-rest-img: linear-gradient(#fff, #fff); --label-hover-img: var(--grad-blue); border-width: 3px; }
 .nav__cta--drawer, .nav__burger { display: none; }
 
 /* over the dark hero the chrome turns white: smoked glass keeps the white links legible */
@@ -1583,8 +1597,8 @@ html:lang(zh) {
 :root .portal .fact { box-shadow: none; }
 
 /* buttons: on the black ground the primary is the white button and the secondary the glass one */
-:root[data-theme="dark"] .btn--primary { --rim: rgba(255, 255, 255, 0.3); --ins: #fff; --sweep: var(--grad-blue); --tile: var(--grad-blue); --chev: var(--chev-white); --label: #1266df; --label-hover: #fff; }
-:root[data-theme="dark"] .btn--outline { --rim: rgba(255, 255, 255, 0.12); --label: #fff; --label-hover: #1266df; border-width: 3px; }
+:root[data-theme="dark"] .btn--primary { --rim: rgba(255, 255, 255, 0.3); --ins: #fff; --sweep: var(--grad-blue); --tile: var(--grad-blue); --chev: var(--chev-white); --label: #1266df; --label-hover: #fff; --label-rest-img: var(--grad-blue); --label-hover-img: linear-gradient(#fff, #fff); }
+:root[data-theme="dark"] .btn--outline { --rim: rgba(255, 255, 255, 0.12); --label: #fff; --label-hover: #1266df; --label-rest-img: linear-gradient(#fff, #fff); --label-hover-img: var(--grad-blue); border-width: 3px; }
 :root .btn--link { color: var(--accent); }
 
 /* chips, tags, pagination: squarer, tinted rather than filled when chosen */

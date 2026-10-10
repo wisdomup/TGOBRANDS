@@ -8,6 +8,8 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+  // a button's label sits in its own span so its colour can sweep on hover
+  function button(cls, text) { var a = document.createElement('a'); a.className = cls; var s = document.createElement('span'); s.className = 'btn__t'; s.textContent = text; a.appendChild(s); return a; }
 
   /* ── Nav: merged with the page at the top, a capsule once scrolled ──
      Scale tracks scroll continuously over 0–320px. The values are written on
@@ -502,11 +504,11 @@
 
       var links = el('div', 'est-links');
       if (d.playbooks[market]) {
-        var book = el('a', 'btn btn--outline', L.playbook);
+        var book = button('btn btn--outline', L.playbook);
         book.href = d.playbooks[market];
         links.appendChild(book);
       }
-      var apply = el('a', 'btn btn--primary', L.apply);
+      var apply = button('btn btn--primary', L.apply);
       apply.href = d.apply + '?service=' + encodeURIComponent(r.services[0]);
       links.appendChild(apply);
       out.appendChild(links);
@@ -751,7 +753,7 @@
       }
 
       var acts = el('div', 'vresult__acts');
-      var plan = el('a', 'btn btn--primary', L.plan);
+      var plan = button('btn btn--primary', L.plan);
       plan.href = '#plan';
       plan.addEventListener('click', function () {
         var box = $('[data-travel] input[name="destinations"][value="' + dest + '"]');
@@ -763,7 +765,7 @@
       });
       acts.appendChild(plan);
       if (d.guides[dest]) {
-        var guide = el('a', 'btn btn--outline', fmt(L.guide, { country: name(dest) }));
+        var guide = button('btn btn--outline', fmt(L.guide, { country: name(dest) }));
         guide.href = d.guides[dest];
         acts.appendChild(guide);
       }
