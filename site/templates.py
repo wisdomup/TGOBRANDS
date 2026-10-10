@@ -9,8 +9,11 @@ TGO Brands design system; see static/site.css.
 import json
 import re
 from html import escape
+from pathlib import Path
 
 SITE = 'https://tgobrands.com'
+# the design system's 24px line icons (content/shared/icons.json): name -> inner SVG
+ICONS = json.loads((Path(__file__).resolve().parent / 'content' / 'shared' / 'icons.json').read_text(encoding='utf-8'))['icons']
 
 # page key -> path under the locale root
 PATHS = {
@@ -94,12 +97,14 @@ def pager(aria, prev=None, nxt=None, prev_label='', next_label=''):
         if not item:
             return ''
         url, title = item
+        arrow = icon('chevron-left' if rel == 'prev' else 'chevron-right')
+        direction = arrow + label if rel == 'prev' else label + arrow
         return (f'<a class="pager__link pager__link--{rel}" href="{url}" rel="{rel}">'
-                f'<span class="pager__dir">{label}</span><span class="pager__title">{e(title)}</span></a>')
+                f'<span class="pager__dir">{direction}</span><span class="pager__title">{e(title)}</span></a>')
     return f'''
   <nav class="wrap pager" aria-label="{e(aria)}">
-    {cell(prev, "← " + e(prev_label), "prev")}
-    {cell(nxt, e(next_label) + " →", "next")}
+    {cell(prev, e(prev_label), "prev")}
+    {cell(nxt, e(next_label), "next")}
   </nav>'''
 
 
@@ -180,17 +185,8 @@ def action(label, url, cls='btn btn--link'):
 
 
 def bcard(c, lang, b):
-    return f'''
-        <a class="bcard" href="{href(lang, 'brand', b['slug'])}">
-          {plate(initials(b['name']), '4x3')}
-          <div class="bcard__body">
-            {eyebrow(b["cat"])}
-            <h3>{e(b["name"])}</h3>
-            <p class="bcard__pos">{e(b["pos"])}</p>
-            {eyebrow(b["mk"] + " · " + b["st"], "bcard__meta")}
-            <span class="bcard__link">{e(c["brands"]["detailKicker"])} →</span>
-          </div>
-        </a>'''
+    foot = f'<span class="tag">{e(b["mk"])} · {e(b["st"])}</span><span class="btn btn--link">{e(c["brands"]["detailKicker"])}</span>'
+    return feature_card(b['name'], b['pos'], href(lang, 'brand', b['slug']), art('mark', initials(b['name']), dark=True), kicker=b['cat'], foot=foot)
 
 
 # ── chrome ────────────────────────────────────────────────────────────────
@@ -200,14 +196,14 @@ def bcard(c, lang, b):
 # (content/shared/icons.json), the section pill and heading, the gradient-edge card, the dark
 # card, placeholder art, breadcrumbs, the page hero and the closing CTA.
 
-def icon(c, name, cls='ico'):
+def icon(name, cls='ico'):
     """One of the system's 24px line icons, drawn in the current colour."""
-    return f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true">{c["icons"][name]}</svg>'
+    return f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true">{ICONS[name]}</svg>'
 
 
 def pill(c, text, name=None, dark=False):
     """The section label: a small white (or dark) pill with an optional icon."""
-    ico = icon(c, name) if name else ''
+    ico = icon(name) if name else ''
     return f'<span class="pill{" pill--dark" if dark else ""}"><span class="pill__in">{ico}<span>{e(text)}</span></span></span>'
 
 
@@ -275,7 +271,7 @@ def breadcrumbs(c, lang, trail):
             parts.append(f'<span aria-current="page">{e(label)}</span>')
         else:
             parts.append(f'<a href="{u}">{e(label)}</a>')
-    sep = f'<span aria-hidden="true">{icon(c, "chevron-right", "ico")}</span>'
+    sep = f'<span aria-hidden="true">{icon("chevron-right", "ico")}</span>'
     return f'<nav class="crumbs" aria-label="Breadcrumb">{sep.join(parts)}</nav>'
 
 
@@ -286,7 +282,7 @@ def page_hero(c, lang, title, lead, label=None, trail=None, extra='', media='', 
     top = pill(c, label, name, dark=True) if label else ''
     side = f'<div class="phero__art">{media}</div>' if media else ''
     more = f'<div class="phero__extra">{extra}</div>' if extra else ''
-    return f'''<section class="band"><div class="wrap phero{" phero--wide" if wide else ""}"><div class="phero__cols">
+    return f'''<section class="hero-band on-dark"><div class="wrap phero{" phero--wide" if wide else ""}"><div class="phero__cols">
       <div class="phero__copy">{crumbs}<div class="phero__text">{top}<h1>{e(title)}</h1><p class="phero__lead">{e(lead)}</p></div>{more}</div>{side}
     </div></div></section>'''
 
@@ -358,8 +354,8 @@ def nav(c, lang, page, alt_href):
         for n, (cap, items) in enumerate(groups):
             on = 'true' if n == 0 else 'false'
             tabs += (f'<button class="mega__tab" type="button" role="tab" aria-selected="{on}" id="tab-{k}-{n}" aria-controls="grid-{k}-{n}">'
-                     f'{icon(c, "go")}<span>{e(cap)}</span></button>')
-            cards = ''.join(f'<a class="mega__card" href="{u}"><span class="mega__icon">{icon(c, menu_icon(u))}</span><span>{e(name)}</span></a>' for u, name in items)
+                     f'{icon("go")}<span>{e(cap)}</span></button>')
+            cards = ''.join(f'<a class="mega__card" href="{u}"><span class="mega__icon">{icon(menu_icon(u))}</span><span>{e(name)}</span></a>' for u, name in items)
             cols = min(4, max(2, (len(items) + 1) // 2)) if len(groups) > 1 else min(4, len(items))
             grids += f'<div class="mega__grid{" is-active" if n == 0 else ""}" id="grid-{k}-{n}" role="tabpanel" aria-labelledby="tab-{k}-{n}" style="--cols:{cols}">{cards}</div>'
         side = f'<div class="mega__side" role="tablist">{tabs}</div>' if len(groups) > 1 else ''
@@ -383,8 +379,8 @@ def nav(c, lang, page, alt_href):
   <div class="msheet" id="msheet">
     <nav class="msheet__items" aria-label="{e(ui["menu"])}">{sheet}</nav>
     <div class="msheet__contacts">
-      <a class="contactbtn" href="{alt_href}" hreflang="{other}" lang="{other}">{icon(c, 'globe')}<span>{e(ui["langSwitchLabel"])}</span></a>
-      <a class="contactbtn" href="mailto:help@tgobrands.com">{icon(c, 'mail')}<span>help@tgobrands.com</span></a>
+      <a class="contactbtn" href="{alt_href}" hreflang="{other}" lang="{other}">{icon('globe')}<span>{e(ui["langSwitchLabel"])}</span></a>
+      <a class="contactbtn" href="mailto:help@tgobrands.com">{icon('mail')}<span>help@tgobrands.com</span></a>
     </div>
   </div>
 </header>'''
@@ -470,9 +466,9 @@ def footer(c, lang):
     f = c['footer']
     first = lambda p: p['name'].split()[0]
     contacts = ''.join(
-        f'<a class="contactbtn" href="https://wa.me/{WHATSAPP[first(p)]}" target="_blank" rel="noopener">{icon(c, "chat")}<span>{e(c["home"]["wa"].format(name=first(p)))}</span></a>'
+        f'<a class="contactbtn" href="https://wa.me/{WHATSAPP[first(p)]}" target="_blank" rel="noopener">{icon("chat")}<span>{e(c["home"]["wa"].format(name=first(p)))}</span></a>'
         for p in c['founders']['people'])
-    contacts += f'<a class="contactbtn" href="mailto:hello@tgobrands.com">{icon(c, "mail")}<span>hello@tgobrands.com</span></a>'
+    contacts += f'<a class="contactbtn" href="mailto:hello@tgobrands.com">{icon("mail")}<span>hello@tgobrands.com</span></a>'
 
     def menu(title, head, parts, wide):
         h = f'<a href="{head}">{e(title)}</a>' if head else e(title)
@@ -569,10 +565,10 @@ def home_slides(c, lang):
         active = ' class="is-active" aria-current="true"' if i == 0 else ''
         labels += f'<button type="button"{active}>{e(x["label"])}</button>'
     return f'''<section class="hero-slides" data-slides data-every="5500" aria-roledescription="carousel" aria-label="{e(h["kicker"])}" tabindex="-1" style="--n:{len(slides)}">{shots}{copies}
-    <button class="slide-arrow slide-arrow--prev" type="button" aria-label="{e(ui["prevSlide"])}">{icon(c, 'chevron-left')}</button>
-    <button class="slide-arrow slide-arrow--next" type="button" aria-label="{e(ui["nextSlide"])}">{icon(c, 'chevron-right')}</button>
+    <button class="slide-arrow slide-arrow--prev" type="button" aria-label="{e(ui["prevSlide"])}">{icon('chevron-left')}</button>
+    <button class="slide-arrow slide-arrow--next" type="button" aria-label="{e(ui["nextSlide"])}">{icon('chevron-right')}</button>
     <div class="slide-steps"><div class="slide-steps__labels">{labels}</div><div class="slide-steps__line"><span style="width:{100 / len(slides):.2f}%"></span></div></div>
-    <a class="slide-cue" href="#needs">{e(h["cue"])} {icon(c, 'chevron-down')}</a>
+    <a class="slide-cue" href="#needs">{e(h["cue"])} {icon('chevron-down')}</a>
   </section>'''
 
 def first_sentence(text):
@@ -624,7 +620,7 @@ def page_home(c, lang):
   </section>'''
 
     chips = ''.join(
-        f'<a class="chip" href="https://wa.me/{WHATSAPP[first(p)]}" target="_blank" rel="noopener">{icon(c, "chat")}{e(h["wa"].format(name=first(p)))}</a>'
+        f'<a class="chip" href="https://wa.me/{WHATSAPP[first(p)]}" target="_blank" rel="noopener">{icon("chat")}{e(h["wa"].format(name=first(p)))}</a>'
         for p in people)
 
     return f'''<main id="main" class="page page--home">
@@ -664,12 +660,11 @@ def page_home(c, lang):
 
 # ── interior pages ────────────────────────────────────────────────────────
 
-def phead(kicker, title, sub, mw='56ch', extra=''):
-    """The inner-page opener for pages not yet re-templated: the band, a dark pill, title, lead."""
-    more = f'<div class="phero__extra">{extra}</div>' if extra else ''
-    return f'''<section class="band"><div class="wrap phero"><div class="phero__cols">
-      <div class="phero__copy"><div class="phero__text"><span class="pill pill--dark"><span class="pill__in"><span>{e(kicker)}</span></span></span><h1>{e(title)}</h1><p class="phero__lead">{e(sub)}</p></div>{more}</div>
-    </div></div></section>'''
+def phead(c, lang, kicker, title, sub, extra='', trail=None, media='', wide=False):
+    """A page's opener: the hero band with breadcrumbs (home, then the kicker unless a
+    trail is given), the kicker as a pill, the title and the lead."""
+    return page_hero(c, lang, title, sub, label=kicker, trail=trail if trail is not None else [(None, kicker)],
+                     extra=extra, media=media, wide=wide)
 
 
 def poster(c, lang):
@@ -682,35 +677,34 @@ def page_what(c, lang):
         if not p.get('link'):
             return ''
         url, name = target(c, lang, p['link'])
-        return f'\n      <a class="btn btn--link" href="{url}">{e(name)} →</a>'
+        return f'\n      <a class="btn btn--link" href="{url}">{e(name)}</a>'
 
     pillars = ''.join(f'''
-    <div class="pillar-row">
-      <p class="pillar__n">{e(p["n"])}</p>
-      <div><h2>{e(p["t"])}</h2><p class="pillar-row__who">{e(p["w"])}</p></div>
-      <p class="pillar-row__d">{e(p["d"])}</p>{pillar_link(p)}
+    <div class="panel pillar-row">
+      <p class="eyebrow">{e(p["n"])}</p>
+      <div><h2 class="title-24">{e(p["t"])}</h2><p class="pillar-row__who">{e(p["w"])}</p></div>
+      <div><p class="pillar-row__d">{e(p["d"])}</p>{pillar_link(p)}</div>
     </div>''' for p in w['pillars'])
     steps = ''.join(f'''
-          <div class="step"><p class="step__n">{e(s["n"])}</p><h3>{e(s["t"])}</h3><p>{e(s["d"])}</p></div>''' for s in w['steps'])
-    proof = ''.join(f'<p class="case">{e(p)}</p>' for p in w['proof'])
+          <div class="panel"><p class="eyebrow">{e(s["n"])}</p><h3>{e(s["t"])}</h3><p>{e(s["d"])}</p></div>''' for s in w['steps'])
+    proof = ''.join(f'<p class="panel case">{e(p)}</p>' for p in w['proof'])
     return f'''<main id="main" class="page page--what">
-  {phead(w["kicker"], w["title"], w["sub"])}
+  {phead(c, lang, w["kicker"], w["title"], w["sub"])}
 
-  <section class="wrap pillars">{pillars}
+  <section class="wrap sec pillars">{pillars}
   </section>
 
-  <section class="band band--ruled" id="start">
+  <section class="band" id="start">
     <div class="wrap sec">
-      <p class="eyebrow start__kicker">{e(w["startKicker"])}</p>
-      <p class="start__note">{e(w["startNote"])}</p>
+      {shead(c, w["startKicker"], lead=w["startNote"], size="36")}
       <div class="grid grid--2">{steps}
       </div>
     </div>
   </section>
 
   <section class="wrap sec">
-    <p class="eyebrow cases__kicker">{e(w["proofKicker"])}</p>
-    <div class="grid grid--280 cases">{proof}</div>
+    {shead(c, w["proofKicker"], size="36")}
+    <div class="grid grid--3 cases">{proof}</div>
     <p class="footnote">{e(w["proofNote"])}</p>
   </section>
 
@@ -731,19 +725,19 @@ def page_brands(c, lang):
           </tr>''' for it in b['items'])
     cards = ''.join(bcard(c, lang, it) for it in b['items'])
     return f'''<main id="main" class="page page--brands">
-  {phead(b["kicker"], b["title"], b["sub"])}
+  {phead(c, lang, b["kicker"], b["title"], b["sub"])}
 
-  <section class="wrap brands-table">
-    <table class="table">
+  <section class="wrap sec brands-cards">
+    <div class="feat-grid">{cards}
+    </div>
+  </section>
+
+  <section class="wrap sec brands-table">
+    <div class="panel"><table class="table">
       <thead><tr>{cols}</tr></thead>
       <tbody>{rows}
       </tbody>
-    </table>
-  </section>
-
-  <section class="wrap brands-cards">
-    <div class="bcards">{cards}
-    </div>
+    </table></div>
   </section>
   {site_pager(c, lang, 'brands')}
 </main>'''
@@ -758,19 +752,12 @@ def page_brand(c, lang, i):
     site = ''
     if it.get('url'):
         domain = it['url'].split('//', 1)[-1].rstrip('/')
-        site = (f'\n      <p class="brand-hero__site"><a class="btn btn--outline" href="{e(it["url"])}" target="_blank" rel="noopener">'
-                f'{e(L["site"].format(domain=domain))} ↗</a></p>')
+        site = (f'<div class="actions actions--row"><a class="btn btn--outline" href="{e(it["url"])}" target="_blank" rel="noopener">'
+                f'{e(L["site"].format(domain=domain))}</a></div>')
+    trail = [(href(lang, 'brands'), c['nav']['brands']), (None, it['name'])]
     return f'''<main id="main" class="page page--brand">
-  <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'brands')}">← {e(L["back"])}</a></section>
-  <section class="wrap brand-hero">
-    <div>
-      {eyebrow(it["cat"])}
-      <h1 class="disp">{e(it["name"])}</h1>
-      <p class="lead" style="--mw:48ch">{e(it["pos"])}</p>{site}
-    </div>
-    {plate(initials(it['name']), '4x3')}
-  </section>
-  <section class="wrap brand-specs">
+  {page_hero(c, lang, it["name"], it["pos"], label=it["cat"], trail=trail, extra=site, media=art('mark', initials(it['name']), dark=True, ratio='4x3'))}
+  <section class="wrap sec brand-specs">
     <div class="grid grid--2">
       <div class="spec">{eyebrow(L["range"])}{rng}</div>
       <div class="spec">{eyebrow(L["channel"])}<p>{e(it["channel"])}</p></div>
@@ -793,56 +780,49 @@ def brand_pager(c, lang, i):
 
 def person(c, lang, p, team=False):
     brands = {b['name']: b['slug'] for b in c['brands']['items']}
-    tags = ''.join(f'<a class="tag tag--outline tag--link" href="{href(lang, "brand", brands[v])}">{e(v)}</a>' if v in brands
-                   else f'<span class="tag tag--outline">{e(v)}</span>' for v in p['v'])
+    tags = ''.join(f'<a class="tag" href="{href(lang, "brand", brands[v])}">{e(v)}</a>' if v in brands
+                   else f'<span class="tag">{e(v)}</span>' for v in p['v'])
     photo = '' if team else portrait(c, p['name'], alt=p['name'])
     contact = f'<a class="person__contact" href="{e(p["waHref"])}" target="_blank" rel="noopener">{e(p["contact"])}</a>' if team else ''
     return f'''
-        <article class="person">
+        <article class="panel person">
           {photo}
-          <div>
+          <div class="person__body">
             {eyebrow(p["city"])}
-            <h2>{e(p["name"])}</h2>
-            {eyebrow(p["role"], "person__role")}
+            <h2 class="title-28">{e(p["name"])}</h2>
+            <p class="person__role">{e(p["role"])}</p>
             <p class="person__bio">{e(p["bio"])}</p>
             {contact}
-            <div class="tags">{tags}</div>
+            <div class="chips chips--sm">{tags}</div>
           </div>
         </article>'''
 
 
 def page_founders(c, lang):
     f = c['founders']
-    acts = ''.join(f'''
-          <div class="act">{eyebrow(a["n"])}<h2>{e(a["t"])}</h2><p>{e(a["d"])}</p></div>''' for a in f['acts'])
+    acts = ''.join(f'<article class="darkcard darkcard--open"><div class="darkcard__body"><p class="darkcard__n">{e(a["n"])}</p>'
+                   f'<h2 class="title-24">{e(a["t"])}</h2><div class="darkcard__text"><p>{e(a["d"])}</p></div><div class="darkcard__space"></div></div></article>'
+                   for a in f['acts'])
     people = ''.join(person(c, lang, p) for p in f['people'])
     team = ''.join(person(c, lang, p, team=True) for p in f['team'])
     return f'''<main id="main" class="page page--founders">
-  <section class="band band--ruled">
-    <div class="wrap story">
-      {eyebrow(f["kicker"])}
-      <h1 class="disp">{e(f["title"])}</h1>
-      <p class="lead" style="--mw:54ch">{e(f["sub"])}</p>
-      <div class="grid grid--3">{acts}
-      </div>
+  {phead(c, lang, f["kicker"], f["title"], f["sub"], trail=[(None, c["nav"]["founders"])])}
+
+  <section class="band"><div class="wrap sec">
+    <div class="darkcards darkcards--3">{acts}</div>
+  </div></section>
+
+  <section class="wrap sec" id="people">
+    {shead(c, f["profKicker"], lead=f["photoNote"], size="36")}
+    <div class="grid grid--3 people">{people}
     </div>
   </section>
 
-  <section class="wrap profiles-head">
-    {eyebrow(f["profKicker"])}
-    <p>{e(f["photoNote"])}</p>
-  </section>
-
-  <section class="wrap people">
-    <div class="trio trio--people">{people}
+  <section class="band"><div class="wrap sec">
+    {shead(c, f["teamKicker"], size="36")}
+    <div class="grid grid--3 people">{team}
     </div>
-  </section>
-
-  <section class="wrap people people--team">
-    {eyebrow(f["teamKicker"], "people__kicker")}
-    <div class="trio trio--people">{team}
-    </div>
-  </section>
+  </div></section>
   {site_pager(c, lang, 'founders')}
 </main>'''
 
@@ -854,10 +834,10 @@ def page_markets(c, lang):
     read = c['playbooks']['labels']['read']
     items = ''
     for n, it in enumerate(m['items']):
-        book = f'<a class="btn btn--link" href="{href(lang, "playbook", books[n])}">{e(read)} →</a>' if n in books else ''
+        book = f'<a class="btn btn--link" href="{href(lang, "playbook", books[n])}">{e(read)}</a>' if n in books else ''
         items += f'''
-    <div class="market">
-      <div class="market__head"><h2>{e(it["c"])}</h2>{eyebrow(L["lead"] + " — " + it["who"])}{book}</div>
+    <div class="panel market">
+      <div class="market__head"><h2 class="title-28">{e(it["c"])}</h2>{eyebrow(L["lead"] + " — " + it["who"])}{book}</div>
       <div class="grid grid--2 facts">
         <div>{eyebrow(L["size"])}<p>{e(it["size"])}</p></div>
         <div>{eyebrow(L["retail"])}<p>{e(it["retail"])}</p></div>
@@ -866,13 +846,13 @@ def page_markets(c, lang):
       </div>
     </div>'''
     return f'''<main id="main" class="page page--markets">
-  {phead(m["kicker"], m["title"], m["sub"])}
+  {phead(c, lang, m["kicker"], m["title"], m["sub"])}
 
   <section class="wrap route" aria-label="{e(c["ui"]["route"])}">
     <div class="route__track">{stations(c)}</div>
   </section>
 
-  <section class="wrap markets">{items}
+  <section class="wrap sec markets">{items}
   </section>
   {site_pager(c, lang, 'markets')}
 </main>'''
@@ -898,10 +878,10 @@ def page_numbers(c, lang, cat_slug, page_no, total):
             href_list(lang, cat_slug, n), e(ui['pageN'].format(n=n)),
             ' aria-current="page"' if n == page_no else '', n)
         for n in range(1, total + 1))
-    prev = (f'<a class="pages__step" href="{href_list(lang, cat_slug, page_no - 1)}" rel="prev">← {e(ui["prev"])}</a>'
-            if page_no > 1 else f'<span class="pages__step is-off" aria-hidden="true">← {e(ui["prev"])}</span>')
-    nxt = (f'<a class="pages__step" href="{href_list(lang, cat_slug, page_no + 1)}" rel="next">{e(ui["next"])} →</a>'
-           if page_no < total else f'<span class="pages__step is-off" aria-hidden="true">{e(ui["next"])} →</span>')
+    prev = (f'<a class="pages__step" href="{href_list(lang, cat_slug, page_no - 1)}" rel="prev">{icon("chevron-left")}{e(ui["prev"])}</a>'
+            if page_no > 1 else f'<span class="pages__step is-off" aria-hidden="true">{icon("chevron-left")}{e(ui["prev"])}</span>')
+    nxt = (f'<a class="pages__step" href="{href_list(lang, cat_slug, page_no + 1)}" rel="next">{e(ui["next"])}{icon("chevron-right")}</a>'
+           if page_no < total else f'<span class="pages__step is-off" aria-hidden="true">{e(ui["next"])}{icon("chevron-right")}</span>')
     return f'''
     <nav class="pages" aria-label="{e(ui["pages"])}">{prev}<ol>{nums}</ol>{nxt}</nav>'''
 
@@ -924,17 +904,14 @@ def page_insights(c, lang, cat=0, page_no=1):
             href_list(lang, slugs[i]), ' aria-current="page"' if i == cat else '', e(x))
         for i, x in enumerate(cats))
     shown = insights_posts(c, cat)[(page_no - 1) * per: page_no * per]
-    posts = ''.join(f'''
-    <a class="post-row" href="{href_post(lang, p['slug'])}">
-      {eyebrow(post_meta(c, p))}
-      <h2>{e(p["t"])}</h2>
-      <p class="post-row__ex">{e(p["ex"])}</p>
-      {eyebrow(p["lang"])}
-    </a>''' for p in shown)
+    kinds = {1: 'market', 2: 'team', 3: 'team', 4: 'systems', 5: 'travel'}
+    posts = ''.join(feature_card(p['t'], p['ex'], href_post(lang, p['slug']), art(kinds.get(post_cat(c, p), 'market')),
+                                 kicker=post_meta(c, p), small=True, foot=f'<span class="tag">{e(p["lang"])}</span>')
+                    for p in shown)
     chips_html = f'\n    <nav class="chips" aria-label="{e(c["ui"]["filter"])}">{chips}</nav>'
     # the channel is shown once it has an address to send people to
     channel = f'''
-  <section class="band band--ruled">
+  <section class="band">
     <div class="wrap sec channel">
       <div>
         {eyebrow(s["videoKicker"])}
@@ -942,13 +919,13 @@ def page_insights(c, lang, cat=0, page_no=1):
         <p>{e(s["videoNote"])}</p>
         {action(s["videoBtn"], s["videoHref"])}
       </div>
-      {plate('▶', '16x9')}
+      <div class="photo photo--16x9">{art('travel', dark=True, ratio='16x9')}</div>
     </div>
   </section>''' if s.get('videoHref') else ''
     return f'''<main id="main" class="page page--insights">
-  {phead(s["kicker"], s["title"], s["sub"], extra=chips_html)}
+  {phead(c, lang, s["kicker"], s["title"], s["sub"], extra=chips_html)}
 
-  <section class="wrap posts">{posts}{page_numbers(c, lang, slugs[cat], page_no, insights_pages(c, cat))}
+  <section class="wrap sec posts"><div class="feat-grid">{posts}</div>{page_numbers(c, lang, slugs[cat], page_no, insights_pages(c, cat))}
   </section>
 {channel}
   {site_pager(c, lang, 'insights')}
@@ -964,19 +941,13 @@ def page_post(c, lang, i):
     related = ''
     if p.get('rel'):
         url, name = target(c, lang, p['rel'])
-        related = f'\n    <p class="post-rel">{eyebrow(ui["related"])}<a class="btn btn--outline" href="{url}">{e(name)} →</a></p>'
+        related = f'\n    <p class="post-rel">{eyebrow(ui["related"])}<a class="btn btn--outline" href="{url}">{e(name)}</a></p>'
     prev = (href_post(lang, posts[i - 1]['slug']), posts[i - 1]['t']) if i > 0 else None
     nxt = (href_post(lang, posts[i + 1]['slug']), posts[i + 1]['t']) if i + 1 < len(posts) else None
     return f'''<main id="main" class="page page--post">
-  <section class="wrap post-head">
-    <a class="back-link" href="{href_list(lang)}">← {e(ui["allInsights"])}</a>
-    {eyebrow(post_meta(c, p))}
-    <h1 class="disp">{e(p["t"])}</h1>
-    <p class="lead" style="--mw:52ch">{e(p["ex"])}</p>
-    {eyebrow(p["lang"], "post-head__lang")}
-  </section>
+  {page_hero(c, lang, p["t"], p["ex"], label=post_meta(c, p), trail=[(href_list(lang), ui["allInsights"]), (None, p["t"])], extra=eyebrow(p["lang"], "post-head__lang"))}
 
-  <section class="wrap post-body">
+  <section class="wrap sec post-body">
     {body}{related}
   </section>
   {pager(ui["allInsights"], prev, nxt, ui["prevArticle"], ui["nextArticle"])}
@@ -989,27 +960,27 @@ def page_contact(c, lang):
         f'<button class="chip" type="button" data-region="{v}" aria-pressed="{"true" if v == "cn" else "false"}">{e(label)}</button>'
         for v, label in k['regions'])
     channels = ''.join(f'''
-        <div class="channel-card" data-channel="{key}">
-          <h2>{e(k["channels"][key]["t"])}</h2>
+        <div class="panel channel-card" data-channel="{key}">
+          <h2 class="title-24">{e(k["channels"][key]["t"])}</h2>
           <p>{e(k["channels"][key]["d"])}</p>
           {action(k["channels"][key]["a"], k["channels"][key].get("href", ""))}
         </div>''' for key in ('wechat', 'email', 'whatsapp'))
     offices = ''.join(f'''
-          <div class="office"><p class="office__city">{e(city)}</p><p>{e(note)}</p></div>''' for city, note in k['offices'])
+          <div class="panel office"><p class="office__city">{e(city)}</p><p>{e(note)}</p></div>''' for city, note in k['offices'])
     region_html = f'''
-    <div class="region" role="group" aria-labelledby="region-label"><p class="eyebrow" id="region-label">{e(k["region"])}</p>{regions}</div>'''
+    <div class="region" role="group" aria-labelledby="region-label"><p class="eyebrow" id="region-label">{e(k["region"])}</p><div class="chips">{regions}</div></div>'''
     return f'''<main id="main" class="page page--contact">
-  {phead(k["kicker"], k["title"], k["sub"], extra=region_html)}
+  {phead(c, lang, k["kicker"], k["title"], k["sub"], extra=region_html)}
 
-  <section class="wrap channels">
+  <section class="wrap sec channels">
     <div class="grid grid--3" data-channels>{channels}
     </div>
   </section>
 
-  <section class="offices">
+  <section class="band offices">
     <div class="wrap sec">
-      <p class="eyebrow offices__kicker">{e(k["officesKicker"])}</p>
-      <div class="office-list">{offices}
+      {shead(c, k["officesKicker"], size="36")}
+      <div class="grid grid--3 office-list">{offices}
       </div>
     </div>
   </section>
@@ -1053,7 +1024,7 @@ def page_partner(c, lang):
             attrs += f' data-alt="{e(json.dumps(q["qFor"], ensure_ascii=False))}"'
         steps += f'''
       <div class="survey__step" id="q{i + 1}" role="group" aria-labelledby="q{i + 1}-t" data-step="{i}" data-key="{q["k"]}"{attrs}>{progress(i + 1)}
-        <h2 class="display disp" id="q{i + 1}-t">{e(q["q"])}</h2>
+        <h2 class="display title-36" id="q{i + 1}-t">{e(q["q"])}</h2>
         <p class="lead">{e(q["h"])}</p>
         <div class="opts">{opts}</div>{nav_row()}
       </div>'''
@@ -1076,16 +1047,17 @@ def page_partner(c, lang):
     <script type="application/json" data-survey-text>{json.dumps({"services": services, "labels": labels}, ensure_ascii=False)}</script>
     <input type="hidden" name="service" value="">
     <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-    <section class="survey__intro" data-step="intro">
-      {eyebrow(p["kicker"])}
-      <h1 class="disp">{e(p["title"])}</h1>
-      <p class="lead" style="--mw:52ch">{e(p["sub"])}</p>
+    <section class="survey__intro hero-band on-dark" data-step="intro"><div class="wrap phero"><div class="phero__copy">
+      {breadcrumbs(c, lang, [(None, c["nav"]["partner"])])}
+      <div class="phero__text">{pill(c, p["kicker"], "chat", dark=True)}
+      <h1>{e(p["title"])}</h1>
+      <p class="phero__lead">{e(p["sub"])}</p></div>
       <p class="survey__service" data-service-note hidden>{e(h["service"])}: <strong></strong></p>
       <a class="btn btn--primary" href="#q1" data-start>{e(p["start"])}</a>
-    </section>
+    </div></div></section>
     <div class="survey__steps">{steps}
       <div class="survey__step" id="q{total}" role="group" aria-labelledby="q{total}-t" data-step="{len(qs)}">{progress(total)}
-        <h2 class="display disp" id="q{total}-t">{e(ct["q"])}</h2>
+        <h2 class="display title-36" id="q{total}-t">{e(ct["q"])}</h2>
         <p class="lead">{e(ct["h"])}</p>
         <div class="fields">{inputs}
         </div>
@@ -1102,13 +1074,13 @@ def page_partner(c, lang):
       <h1 class="done__title" tabindex="-1" data-mode="handoff">{e(h["t"])}</h1>
       <h1 class="done__title" tabindex="-1" data-mode="sent" hidden>{e(d["t"])}</h1>
       <p class="done__sub" data-mode="handoff">{e(h["d"])} <strong data-assignee></strong> {e(h["d2"])}</p>
-      <p class="done__sub" data-mode="sent" hidden>{e(d["d"])} <a class="wa-link" data-assignee-link href="#" target="_blank" rel="noopener"><span data-assignee></span>{WA_ICON}</a> — {e(d["d2"])}</p>
+      <p class="done__sub" data-mode="sent" hidden>{e(d["d"])} <a class="wa-link" data-assignee-link href="#" target="_blank" rel="noopener"><span data-assignee></span>{icon("chat")}</a> — {e(d["d2"])}</p>
       <div class="done__acts done__send" data-mode="handoff">
-        <a class="btn btn--primary btn--lg" data-wa href="#" target="_blank" rel="noopener">{WA_ICON}{e(h["wa"])}</a>
+        <a class="btn btn--primary btn--lg" data-wa href="#" target="_blank" rel="noopener">{icon("chat")}{e(h["wa"])}</a>
         <a class="btn btn--outline btn--lg" data-mail href="#">{e(h["email"])}</a>
       </div>
       <div class="done__cards">
-        <div class="done__card">{eyebrow(d["route"])}<a class="done__fig wa-link" data-assignee-link href="#" target="_blank" rel="noopener"><span data-assignee></span>{WA_ICON}</a></div>
+        <div class="done__card">{eyebrow(d["route"])}<a class="done__fig wa-link" data-assignee-link href="#" target="_blank" rel="noopener"><span data-assignee></span>{icon("chat")}</a></div>
         <div class="done__card">{eyebrow(d["score"])}<p class="done__fig"><span class="done__score" data-score></span><span class="done__of">/ 90</span></p></div>
       </div>
       <div class="done__acts">
@@ -1137,7 +1109,7 @@ def service_card(c, lang, x):
           <p class="svc-card__models">{model_badges(c, x['model'])}</p>
           <h3>{e(x["name"])}</h3>
           <p>{e(x["one"])}</p>
-          <p class="svc-card__meta">{e(x["timeline"])}<span aria-hidden="true">→</span></p>
+          <p class="svc-card__meta">{e(x["timeline"])}{icon("chevron-right")}</p>
         </a>'''
 
 
@@ -1150,7 +1122,7 @@ def page_services(c, lang):
         groups += f'''
   <section class="svc-group{' band' if i % 2 else ''}" id="{g['key']}">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(f"{i + 1:02d}")}<h2 class="sech">{e(g["name"])}</h2><p class="lead">{e(g["intro"])}</p></header>
+      {shead(c, g["name"], f"{i + 1:02d}", g["intro"])}
       <div class="grid grid--2 svc-cards">{cards}
       </div>
     </div>
@@ -1159,11 +1131,11 @@ def page_services(c, lang):
     pricing = ''.join(f'<div class="panel"><h3>{e(p["t"])}</h3><p>{e(p["d"])}</p></div>' for p in l['pricing'])
     extra = f'\n    <nav class="chips" aria-label="{e(s["kicker"])}">{jumps}</nav>'
     return f'''<main id="main" class="page page--services">
-  {phead(s["kicker"], s["title"], s["sub"], extra=extra)}
+  {phead(c, lang, s["kicker"], s["title"], s["sub"], extra=extra)}
 {groups}
 
   <section class="wrap sec">
-    <header class="shead">{eyebrow(l["pricingKicker"])}<h2 class="sech">{e(l["pricingTitle"])}</h2></header>
+    {shead(c, l["pricingTitle"], l["pricingKicker"])}
     <div class="grid grid--2">{pricing}</div>
     <div class="actions"><a class="btn btn--primary" href="{href(lang, 'launch')}">{e(c["nav"]["launch"])}</a></div>
   </section>
@@ -1178,7 +1150,7 @@ def service_catalog(c, lang, cat):
         if not g.get('link'):
             return ''
         return (f'\n          <a class="btn btn--link cap__more" href="{href(lang, "service", g["link"])}">'
-                f'{e(service_by_slug(c, g["link"])["name"])} →</a>')
+                f'{e(service_by_slug(c, g["link"])["name"])}</a>')
     cards = ''.join(f'''
       <article class="panel cap">
         <p class="cap__n">{n + 1:02d}</p>
@@ -1189,7 +1161,7 @@ def service_catalog(c, lang, cat):
     return f'''
 
   <section class="wrap caps-wrap" id="practices">
-    <header class="shead">{eyebrow(cat["kicker"])}<h2 class="sech">{e(cat["title"])}</h2><p class="lead">{e(cat["sub"])}</p></header>
+    {shead(c, cat["title"], cat["kicker"], cat["sub"])}
     <div class="caps">{cards}
     </div>
   </section>'''
@@ -1210,7 +1182,7 @@ def service_lead(c, x):
       {eyebrow(c['services']['labels']['lead'])}
       <h3>{e(person['name'] if person else who)}</h3>
       <p>{e(note)}</p>
-      <a class="wa-link" href="https://wa.me/{WHATSAPP[who]}" target="_blank" rel="noopener">WhatsApp {e(who)}{WA_ICON}</a>
+      <a class="wa-link" href="https://wa.me/{WHATSAPP[who]}" target="_blank" rel="noopener">WhatsApp {e(who)}{icon("chat")}</a>
     </div>"""
 
 
@@ -1230,22 +1202,18 @@ def page_service(c, lang, i):
     catalog = service_catalog(c, lang, x['catalog']) if x.get('catalog') else ''
     also = ''
     if x.get('links'):
-        also_links = ''.join(f'<a class="btn btn--link" href="{u}">{e(nm)} →</a>' for u, nm in (target(c, lang, {'page': k}) for k in x['links']))
+        also_links = ''.join(f'<a class="btn btn--link" href="{u}">{e(nm)}</a>' for u, nm in (target(c, lang, {'page': k}) for k in x['links']))
         also = f'\n    <div class="svc-also">{eyebrow(L["also"])}{also_links}</div>'
+    hero_extra = f'<div class="svc-facts{" svc-facts--5" if len(facts) == 5 else ""}">{facts_html}</div>'
+    trail = [(href(lang, 'services'), L['all']), (href(lang, 'services') + '#' + x['group'], group['name']), (None, x['name'])]
     prev = ((href(lang, 'service', items[i - 1]['slug']), items[i - 1]['name']) if i > 0
             else (href(lang, 'services'), L['all']))
     nxt = ((href(lang, 'service', items[i + 1]['slug']), items[i + 1]['name']) if i + 1 < len(items)
            else (href(lang, 'launch'), c['nav']['launch']))
     return f'''<main id="main" class="page page--service">
-  <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'services')}#{x['group']}">← {e(L["all"])}</a></section>
-  <section class="wrap svc-hero">
-    {eyebrow(group["name"])}
-    <h1 class="disp">{e(x["name"])}</h1>
-    <p class="lead" style="--mw:46ch">{e(x["one"])}</p>
-    <div class="svc-facts{' svc-facts--5' if len(facts) == 5 else ''}">{facts_html}</div>
-  </section>
+  {page_hero(c, lang, x["name"], x["one"], label=group["name"], trail=trail, extra=hero_extra, wide=True)}
 
-  <section class="wrap svc-body">
+  <section class="wrap sec svc-body">
     <div class="grid grid--2">
       <div class="panel svc-problem">{eyebrow(L["problem"])}<p>{e(x["problem"])}</p></div>
       <div class="panel svc-deliver">{eyebrow(L["deliverables"])}<ul class="ticks">{deliver}</ul></div>
@@ -1255,18 +1223,13 @@ def page_service(c, lang, i):
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(L["related"])}</header>
+      {shead(c, L["related"], size="36")}
       <div class="grid grid--3 svc-cards">{related}
       </div>
     </div>
   </section>
 
-  <section class="poster">
-    <div class="wrap sec">
-      <h2 class="title disp">{e(x["name"])}</h2>
-      <a class="btn btn--light" href="{href(lang, 'partner')}?service={x['slug']}">{e(L["cta"])}</a>
-    </div>
-  </section>
+  {cta_mini(c, lang, x["name"], cta=L["cta"], url=href(lang, 'partner') + '?service=' + x['slug'])}
   {pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])}
 </main>'''
 
@@ -1278,8 +1241,8 @@ def page_launch(c, lang):
     L = l['labels']
     models = c['services']['models']
     stages = ''.join(f'''
-      <li class="stage">
-        <p class="stage__n">{e(st["n"])}</p>
+      <li class="step stage">
+        <p class="step__n">{e(st["n"])}</p>
         <div class="stage__body">
           <h3>{e(st["name"])}</h3>
           <p>{e(st["scope"])}</p>
@@ -1288,7 +1251,7 @@ def page_launch(c, lang):
             <div><dt>{e(L["deliverable"])}</dt><dd>{e(st["deliverable"])}</dd></div>
             <div><dt>{e(L["model"])}</dt><dd><span class="badge badge--{st["model"]}">{e(models[st["model"]])}</span></dd></div>
           </dl>
-          <a class="btn btn--link" href="{href(lang, 'service', st['service'])}">{e(service_by_slug(c, st["service"])["name"])} →</a>
+          <a class="btn btn--link" href="{href(lang, 'service', st['service'])}">{e(service_by_slug(c, st["service"])["name"])}</a>
         </div>
       </li>''' for st in l['stages'])
 
@@ -1299,40 +1262,32 @@ def page_launch(c, lang):
     pricing = ''.join(f'<div class="panel"><h3>{e(p["t"])}</h3><p>{e(p["d"])}</p></div>' for p in l['pricing'])
     faq = ''.join(f'<details class="faq__item"><summary>{e(q["q"])}</summary><p>{e(q["a"])}</p></details>' for q in l['faq'])
     return f'''<main id="main" class="page page--launch">
-  {phead(l["kicker"], l["title"], l["sub"])}
-
-  <section class="wrap sec">
-    <header class="shead">{eyebrow(l["stagesKicker"])}<h2 class="sech">{e(l["stagesTitle"])}</h2></header>
-    <ol class="stages">{stages}
-    </ol>
-  </section>
+  {phead(c, lang, l["kicker"], l["title"], l["sub"])}
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(l["forKicker"])}<h2 class="sech">{e(l["forTitle"])}</h2></header>
-      <div class="grid grid--2">{fit(l["forYes"], "yes")}{fit(l["forNo"], "no")}</div>
+      {shead(c, l["stagesTitle"], l["stagesKicker"])}
+      <div class="steps"><ol class="steps__row stages">{stages}
+      </ol><div class="steps__rule"></div></div>
     </div>
   </section>
 
   <section class="wrap sec">
-    <header class="shead">{eyebrow(l["pricingKicker"])}<h2 class="sech">{e(l["pricingTitle"])}</h2></header>
+    {shead(c, l["forTitle"], l["forKicker"])}
+    <div class="grid grid--2">{fit(l["forYes"], "yes")}{fit(l["forNo"], "no")}</div>
+  </section>
+
+  <section class="wrap sec">
+    {shead(c, l["pricingTitle"], l["pricingKicker"])}
     <div class="grid grid--2">{pricing}</div>
   </section>
 
-  <section class="band">
-    <div class="wrap sec">
-      <header class="shead">{eyebrow(l["faqKicker"])}<h2 class="sech">{e(l["faqTitle"])}</h2></header>
-      <div class="faq">{faq}</div>
-    </div>
+  <section class="wrap sec">
+    {shead(c, l["faqTitle"], l["faqKicker"])}
+    {faq_block(faq)}
   </section>
 
-  <section class="poster">
-    <div class="wrap sec">
-      <h2 class="title disp">{e(c["home"]["closeA"])}</h2>
-      <p class="poster__note">{e(l["applyNote"])}</p>
-      <a class="btn btn--light" href="{href(lang, 'partner')}">{e(c["home"]["closeBtn"])}</a>
-    </div>
-  </section>
+  {cta_mini(c, lang, c["home"]["closeA"], l["applyNote"], cta=c["home"]["closeBtn"])}
   {site_pager(c, lang, 'launch')}
 </main>'''
 
@@ -1356,37 +1311,37 @@ def page_audience(c, lang, i):
            else (href(lang, 'launch'), c['nav']['launch']))
     cta = f'\n    <div class="actions"><a class="btn btn--primary btn--lg" href="{apply}">{e(x["cta"])}</a></div>'
     return f'''<main id="main" class="page page--audience">
-  {phead(x["name"], x["title"], x["sub"], mw="52ch", extra=cta)}
+  {phead(c, lang, x["name"], x["title"], x["sub"], extra=cta)}
 
   <section class="wrap sec">
-    <header class="shead">{eyebrow(L["pains"])}</header>
+    {shead(c, L["pains"], size="36")}
     <div class="grid grid--3">{pains}</div>
   </section>
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(L["offer"])}</header>
+      {shead(c, L["offer"], size="36")}
       <div class="grid grid--2">{offer}</div>
     </div>
   </section>
 
   <section class="wrap sec">
-    <header class="shead">{eyebrow(L["services"])}</header>
+    {shead(c, L["services"], size="36")}
     <div class="grid grid--3 svc-cards">{services}
     </div>
   </section>
 
-  <section class="poster">
-    <div class="wrap sec">
-      <h2 class="title disp">{e(x["title"])}</h2>
-      <a class="btn btn--light" href="{apply}">{e(x["cta"])}</a>
-    </div>
-  </section>
+  {cta_mini(c, lang, x["title"], cta=x["cta"], url=apply)}
   {pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])}
 </main>'''
 
 
 # ── market playbooks ──────────────────────────────────────────────────────
+
+def faq_block(items_html):
+    """The accordion in its light frame, as the system draws FAQs."""
+    return f'<div class="card faq-frame"><div class="card__in"><div class="faq"><div class="faq__list">{items_html}</div></div></div></div>'
+
 
 def ticks(items, kind=''):
     return f'<ul class="ticks{" ticks--" + kind if kind else ""}">' + ''.join(f'<li>{e(x)}</li>' for x in items) + '</ul>'
@@ -1405,22 +1360,16 @@ def page_playbook(c, lang, i):
     guide_link = (f'\n      <a class="btn btn--outline" href="{href(lang, "guide", x["slug"])}">{e(c["travel"]["labels"]["guide"])}</a>'
                   if guide else '')
     estimate = href(lang, 'estimator') + '?market=' + x['code']
+    hero_extra = (eyebrow(ML['lead'] + ' — ' + m['who'], 'playbook__lead')
+                  + f'<div class="actions actions--row"><a class="btn btn--primary" href="{estimate}">{e(L["estimate"])}</a>'
+                  + f'<a class="btn btn--outline" href="{href(lang, "trip", x["trip"])}">{e(L["trip"])}</a>{guide_link}</div>')
+    trail = [(href(lang, 'markets'), L['all']), (None, m['c'])]
     prev = ((href(lang, 'playbook', books[i - 1]['slug']), c['markets']['items'][books[i - 1]['market']]['c']) if i > 0
             else (href(lang, 'markets'), L['all']))
     nxt = ((href(lang, 'playbook', books[i + 1]['slug']), c['markets']['items'][books[i + 1]['market']]['c']) if i + 1 < len(books)
            else (href(lang, 'estimator'), c['nav']['estimator']))
     return f'''<main id="main" class="page page--playbook">
-  <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'markets')}">← {e(L["all"])}</a></section>
-  <section class="wrap svc-hero">
-    {eyebrow(pb["kicker"])}
-    <h1 class="disp">{e(m["c"])}</h1>
-    <p class="lead" style="--mw:46ch">{e(m["size"])}</p>
-    {eyebrow(ML["lead"] + " — " + m["who"], "playbook__lead")}
-    <div class="actions actions--row">
-      <a class="btn btn--primary" href="{estimate}">{e(L["estimate"])}</a>
-      <a class="btn btn--outline" href="{href(lang, 'trip', x['trip'])}">{e(L["trip"])}</a>{guide_link}
-    </div>
-  </section>
+  {page_hero(c, lang, m["c"], m["size"], label=pb["kicker"], trail=trail, extra=hero_extra)}
 
   <section class="wrap sec">
     <div class="grid grid--3">
@@ -1432,7 +1381,7 @@ def page_playbook(c, lang, i):
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(L["certs"])}</header>
+      {shead(c, L["certs"], size="36")}
       <table class="table table--spec">
         <thead><tr><th scope="col">{e(L["approval"])}</th><th scope="col">{e(L["covers"])}</th><th scope="col">{e(L["weeks"])}</th></tr></thead>
         <tbody>{certs}</tbody>
@@ -1473,12 +1422,12 @@ def page_estimator(c, lang):
         <a class="panel svc-card" href="{url}">
           <h3>{e(name)}</h3>
           <p>{e(c["markets"]["items"][b["market"]]["size"])}</p>
-          <p class="svc-card__meta">{e(c["playbooks"]["labels"]["read"])}<span aria-hidden="true">→</span></p>
+          <p class="svc-card__meta">{e(c["playbooks"]["labels"]["read"])}{icon("chevron-right")}</p>
         </a>''' for b in c['playbooks']['items'] for url, name in [books[b['code']]])
     return f'''<main id="main" class="page page--estimator">
-  {phead(est["kicker"], est["title"], est["sub"])}
+  {phead(c, lang, est["kicker"], est["title"], est["sub"])}
 
-  <section class="wrap estimator-wrap">
+  <section class="wrap sec estimator-wrap">
     <script type="application/json" data-estimator-data>{payload}</script>
     <form class="panel estimator" data-estimator>
       <div class="estimator__fields">
@@ -1495,7 +1444,7 @@ def page_estimator(c, lang):
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(c["playbooks"]["kicker"])}</header>
+      {shead(c, c["playbooks"]["kicker"], size="36")}
       <div class="grid grid--2 svc-cards">{cards}
       </div>
     </div>
@@ -1513,7 +1462,7 @@ def trip_card(c, lang, x, kicker=None):
           {eyebrow(kicker or ex["types"][x["type"]]["t"])}
           <h3>{e(x["title"])}</h3>
           <p>{e(x["one"])}</p>
-          <p class="svc-card__meta">{e(x["when"])} · {e(x["length"])}<span aria-hidden="true">→</span></p>
+          <p class="svc-card__meta">{e(x["when"])} · {e(x["length"])}{icon("chevron-right")}</p>
         </a>'''
 
 
@@ -1522,10 +1471,10 @@ def page_expeditions(c, lang):
     editions = ''.join(trip_card(c, lang, x) for x in ex['editions'])
     interest = 'mailto:help@tgobrands.com?subject=' + ex['kicker'].replace(' ', '%20')
     return f'''<main id="main" class="page page--expeditions">
-  {phead(ex["kicker"], ex["title"], ex["sub"])}
+  {phead(c, lang, ex["kicker"], ex["title"], ex["sub"])}
 
   <section class="wrap sec">
-    <header class="shead">{eyebrow(ex["editionsKicker"])}<h2 class="sech">{e(ex["editionsTitle"])}</h2></header>
+    {shead(c, ex["editionsTitle"], ex["editionsKicker"])}
     <div class="grid grid--2 svc-cards">{editions}
     </div>
     <p class="note">{e(ex["labels"]["note"])}</p>
@@ -1533,17 +1482,12 @@ def page_expeditions(c, lang):
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(c["travel"]["kicker"])}<h2 class="sech">{e(ex["labels"]["private"])}</h2><p class="lead" style="--mw:52ch">{e(c["travel"]["sub"])}</p></header>
+      {shead(c, ex["labels"]["private"], c["travel"]["kicker"], c["travel"]["sub"])}
       <div class="actions"><a class="btn btn--primary" href="{href(lang, 'travel')}#plan">{e(c["travel"]["labels"]["plan"])}</a></div>
     </div>
   </section>
 
-  <section class="poster">
-    <div class="wrap sec">
-      <h2 class="title disp">{e(ex["title"])}</h2>
-      <a class="btn btn--light" href="{interest}">{e(ex["labels"]["interest"])}</a>
-    </div>
-  </section>
+  {cta_mini(c, lang, ex["title"], cta=ex["labels"]["interest"], url=interest)}
   {site_pager(c, lang, 'expeditions')}
 </main>'''
 
@@ -1564,25 +1508,18 @@ def page_trip(c, lang, i):
     guide = next((g for g in c['travel']['guides'] if g['code'] == x['market']), None)
     if guide:
         book += f'\n      <a class="btn btn--outline" href="{href(lang, "guide", guide["slug"])}">{e(c["travel"]["labels"]["guide"])}</a>'
+    hero_extra = (f'<div class="svc-facts">{facts_html}</div>'
+                  + f'<div class="actions actions--row"><a class="btn btn--primary" href="{apply}">{e(L["apply"])}</a>{book}</div>')
+    trail = [(href(lang, 'expeditions'), L['all']), (None, x['title'])]
     prev = ((href(lang, 'trip', items[i - 1]['slug']), items[i - 1]['title']) if i > 0
             else (href(lang, 'expeditions'), L['all']))
     nxt = ((href(lang, 'trip', items[i + 1]['slug']), items[i + 1]['title']) if i + 1 < len(items)
            else (href(lang, 'expeditions'), L['all']))
     return f'''<main id="main" class="page page--trip">
-  <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'expeditions')}">← {e(L["all"])}</a></section>
-  <section class="wrap svc-hero">
-    {eyebrow(ex["types"][x["type"]]["t"])}
-    <h1 class="disp">{e(x["title"])}</h1>
-    <p class="lead" style="--mw:46ch">{e(x["one"])}</p>
-    <div class="svc-facts">{facts_html}</div>
-    <div class="actions actions--row">
-      <a class="btn btn--primary" href="{apply}">{e(L["apply"])}</a>
-      {book}
-    </div>
-  </section>
+  {page_hero(c, lang, x["title"], x["one"], label=ex["types"][x["type"]]["t"], trail=trail, extra=hero_extra, wide=True)}
 
   <section class="wrap sec">
-    <header class="shead">{eyebrow(L["itinerary"])}</header>
+    {shead(c, L["itinerary"], size="36")}
     <ol class="itinerary">{days}</ol>
   </section>
 
@@ -1638,7 +1575,7 @@ def travel_form(c, lang, preset=''):
     data = json.dumps(payload, ensure_ascii=False).replace('</', '<\\/')
     sep = ''  # the second half of each sentence carries its own punctuation
     return f"""<section class="wrap sec" id="plan">
-    <header class="shead">{eyebrow(f["kicker"])}<h2 class="sech">{e(f["title"])}</h2><p class="lead">{e(f["sub"])}</p></header>
+    {shead(c, f["title"], f["kicker"], f["sub"])}
     <form class="panel tform" data-travel data-endpoint="/api/lead" data-lang="{lang}" novalidate>
       <script type="application/json" data-travel-text>{data}</script>
       <div class="hp" aria-hidden="true"><label for="t-website">Website</label><input id="t-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
@@ -1658,7 +1595,7 @@ def travel_form(c, lang, preset=''):
       <h3 class="tdone__title" tabindex="-1" data-mode="handoff">{e(f["handoffT"])}</h3>
       <p data-mode="handoff">{e(f["handoffD"])} <strong data-who></strong>{sep}{e(f["handoffD2"])}</p>
       <div class="done__acts" data-mode="handoff">
-        <a class="btn btn--primary" data-wa href="#" target="_blank" rel="noopener">{WA_ICON}{e(f["wa"])}</a>
+        <a class="btn btn--primary" data-wa href="#" target="_blank" rel="noopener">{icon("chat")}{e(f["wa"])}</a>
         <a class="btn btn--outline" data-mail href="#">{e(f["email"])}</a>
       </div>
     </div>
@@ -1712,7 +1649,7 @@ def visa_checker(c, lang):
         rows += f'<tr><th scope="row">{e(pnames[p])}</th>{cells}</tr>'
     return f"""<section class="band" id="check">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(k["kicker"])}<h2 class="sech">{e(k["title"])}</h2><p class="lead" style="--mw:56ch">{e(k["sub"])}</p></header>
+      {shead(c, k["title"], k["kicker"], k["sub"])}
       <script type="application/json" data-checker-data>{data}</script>
       <form class="panel checker" data-checker>
         <div class="checker__fields">
@@ -1770,7 +1707,7 @@ def page_travel(c, lang):
         + '</div>' for n, x in enumerate(t['formats']))
     services = ''.join(f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' for x in t['services'])
     dests = ''.join(dest_card(c, lang, d) for d in t['destinations'])
-    how = ''.join(f'<li class="hstep"><span class="hstep__n">{n + 1:02d}</span><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></li>'
+    how = ''.join(f'<li class="panel hstep"><span class="hstep__n">{n + 1:02d}</span><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></li>'
                   for n, x in enumerate(t['how']))
     trips = ''.join(trip_card(c, lang, x) for x in c['expeditions']['editions'][:4])
     help_cards = ''.join(f'''
@@ -1778,13 +1715,13 @@ def page_travel(c, lang):
         <p class="cap__n">{n + 1:02d}</p>
         <h3>{e(x["t"])}</h3>
         <p>{e(x["d"])}</p>
-        <span class="explore__arrow" aria-hidden="true">→</span>
+        <span class="explore__arrow" aria-hidden="true">{icon("chevron-right")}</span>
       </a>''' for n, x in enumerate(t['help']))
     return f"""<main id="main" class="page page--travel">
-  {phead(t["kicker"], t["title"], t["sub"], extra=f'<div class="actions actions--row"><a class="btn btn--primary" href="{href(lang, "packages")}">{e(t["packagesCta"])}</a><a class="btn btn--outline" href="#check">{e(c["checker"]["cta"])}</a><a class="btn btn--outline" href="#plan">{e(t["labels"]["plan"])}</a></div>')}
+  {phead(c, lang, t["kicker"], t["title"], t["sub"], extra=f'<div class="actions actions--row"><a class="btn btn--primary" href="{href(lang, "packages")}">{e(t["packagesCta"])}</a><a class="btn btn--outline" href="#check">{e(c["checker"]["cta"])}</a><a class="btn btn--outline" href="#plan">{e(t["labels"]["plan"])}</a></div>')}
 
   <section class="wrap sec travel-help">
-    <header class="shead">{eyebrow(t["helpKicker"])}<h2 class="sech">{e(t["helpTitle"])}</h2></header>
+    {shead(c, t["helpTitle"], t["helpKicker"])}
     <div class="grid grid--3">{help_cards}
     </div>
   </section>
@@ -1792,39 +1729,39 @@ def page_travel(c, lang):
   {visa_checker(c, lang)}
 
   <section class="wrap sec" id="destinations">
-    <header class="shead">{eyebrow(t["destKicker"])}<h2 class="sech">{e(t["destTitle"])}</h2></header>
+    {shead(c, t["destTitle"], t["destKicker"])}
     <div class="grid grid--2 dests">{dests}
     </div>
   </section>
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(t["whoKicker"])}<h2 class="sech">{e(t["whoTitle"])}</h2></header>
+      {shead(c, t["whoTitle"], t["whoKicker"])}
       <div class="grid grid--3">{who}</div>
     </div>
   </section>
 
   <section class="wrap sec">
-    <header class="shead">{eyebrow(t["formatsKicker"])}<h2 class="sech">{e(t["formatsTitle"])}</h2></header>
+    {shead(c, t["formatsTitle"], t["formatsKicker"])}
     <div class="grid grid--3">{formats}</div>
   </section>
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(t["servicesKicker"])}<h2 class="sech">{e(t["servicesTitle"])}</h2></header>
+      {shead(c, t["servicesTitle"], t["servicesKicker"])}
       <div class="grid grid--3">{services}</div>
     </div>
   </section>
 
   <section class="wrap sec">
-    <header class="shead">{eyebrow(t["howKicker"])}<h2 class="sech">{e(t["howTitle"])}</h2></header>
+    {shead(c, t["howTitle"], t["howKicker"])}
     <ol class="hsteps">{how}</ol>
-    <div class="actions"><a class="btn btn--link" href="{href(lang, 'booking')}">{e(t["bookingLink"])} →</a></div>
+    <div class="actions"><a class="btn btn--outline" href="{href(lang, 'booking')}">{e(t["bookingLink"])}</a></div>
   </section>
 
   <section class="band">
     <div class="wrap sec">
-      <header class="shead">{eyebrow(t["tripsKicker"])}<h2 class="sech">{e(t["tripsTitle"])}</h2></header>
+      {shead(c, t["tripsTitle"], t["tripsKicker"])}
       <div class="grid grid--2 svc-cards">{trips}
       </div>
       <div class="actions"><a class="btn btn--link" href="{href(lang, 'expeditions')}">{e(t["tripsMore"])}</a></div>
@@ -1877,15 +1814,14 @@ def page_packages(c, lang):
                        for x in next(s for s in g['sections'] if s['type'] == 'packages')['items'] if x['kind'] == kind)
     def block(key, sid, kind, band):
         b = P[key]
-        inner = f'''<header class="shead">{eyebrow(b["kicker"])}<h2 class="sech">{e(b["title"])}</h2><p class="lead">{e(b["sub"])}</p></header>
+        inner = f'''{shead(c, b["title"], b["kicker"], b["sub"])}
       <div class="grid grid--2 pkgs">{group(kind)}
       </div>'''
         return (f'<section class="band" id="{sid}"><div class="wrap sec">{inner}</div></section>' if band
                 else f'<section class="wrap sec" id="{sid}">{inner}</section>')
     v = P['visas']
     return f'''<main id="main" class="page page--packages">
-  {travel_back(c, lang)}
-  {phead(P["kicker"], P["title"], P["sub"])}
+  {phead(c, lang, P["kicker"], P["title"], P["sub"], trail=[(href(lang, "travel"), c["nav"]["travel"]), (None, P["name"])])}
   {block("business", "business", "business", False)}
   {block("holiday", "holidays", "holiday", True)}
   <section class="wrap sec">
@@ -1893,7 +1829,7 @@ def page_packages(c, lang):
       {eyebrow(v["kicker"])}
       <h3>{e(v["title"])}</h3>
       <p>{e(v["d"])}</p>
-      <span class="explore__arrow" aria-hidden="true">→</span>
+      <span class="explore__arrow" aria-hidden="true">{icon("chevron-right")}</span>
     </a>
     <p class="note">{e(P["dated"])} <a href="{href(lang, "expeditions")}">{e(P["datedCta"])}</a></p>
   </section>
@@ -1905,29 +1841,28 @@ def page_visas(c, lang):
     t = c['travel']
     V = t['visasPage']
     services = ''.join(f'<div class="panel"><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></div>' for x in V['services'])
-    steps = ''.join(f'<li class="hstep"><span class="hstep__n">{n + 1:02d}</span><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></li>'
+    steps = ''.join(f'<li class="panel hstep"><span class="hstep__n">{n + 1:02d}</span><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></li>'
                     for n, x in enumerate(V['steps']))
     faq = ''.join(f'<details class="faq__item"><summary>{e(x["q"])}</summary><p>{e(x["a"])}</p></details>' for x in V['faq'])
     half = lambda title, items, k: (f'<div class="panel fit"><h3>{e(title)}</h3><ul class="ticks ticks--{k}">'
                                     + ''.join(f'<li>{e(x)}</li>' for x in items) + '</ul></div>')
     return f'''<main id="main" class="page page--visas">
-  {travel_back(c, lang)}
-  {phead(V["kicker"], V["title"], V["sub"], extra=f'<div class="actions actions--row"><a class="btn btn--primary" href="{href(lang, "travel")}#check">{e(c["checker"]["cta"])}</a><a class="btn btn--outline" href="{href(lang, "travel")}#plan">{e(t["labels"]["plan"])}</a></div>')}
+  {phead(c, lang, V["kicker"], V["title"], V["sub"], trail=[(href(lang, "travel"), c["nav"]["travel"]), (None, V["name"])], extra=f'<div class="actions actions--row"><a class="btn btn--primary" href="{href(lang, "travel")}#check">{e(c["checker"]["cta"])}</a><a class="btn btn--outline" href="{href(lang, "travel")}#plan">{e(t["labels"]["plan"])}</a></div>')}
   <section class="band"><div class="wrap sec">
-    <header class="shead">{eyebrow(V["servicesKicker"])}<h2 class="sech">{e(V["servicesTitle"])}</h2></header>
+    {shead(c, V["servicesTitle"], V["servicesKicker"])}
     <div class="grid grid--3">{services}</div>
   </div></section>
   <section class="wrap sec">
-    <header class="shead">{eyebrow(V["stepsKicker"])}<h2 class="sech">{e(V["stepsTitle"])}</h2></header>
+    {shead(c, V["stepsTitle"], V["stepsKicker"])}
     <ol class="hsteps hsteps--6">{steps}</ol>
   </section>
   <section class="band"><div class="wrap sec">
-    <header class="shead">{eyebrow(V["feesKicker"])}<h2 class="sech">{e(V["feesTitle"])}</h2></header>
+    {shead(c, V["feesTitle"], V["feesKicker"])}
     <div class="grid grid--2">{half(V["feesTitle"], V["fees"], "yes")}{half(V["limitsTitle"], V["limits"], "no")}</div>
   </div></section>
   <section class="wrap sec">
-    <header class="shead">{eyebrow(V["faqKicker"])}<h2 class="sech">{e(V["faqTitle"])}</h2></header>
-    <div class="faq">{faq}</div>
+    {shead(c, V["faqTitle"], V["faqKicker"])}
+    {faq_block(faq)}
   </section>
   {travel_pager(c, lang, "visas")}
 </main>'''
@@ -1936,7 +1871,7 @@ def page_visas(c, lang):
 def page_booking(c, lang):
     t = c['travel']
     B = t['bookingPage']
-    steps = ''.join(f'<li class="hstep"><span class="hstep__n">{n + 1:02d}</span><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></li>'
+    steps = ''.join(f'<li class="panel hstep"><span class="hstep__n">{n + 1:02d}</span><h3>{e(x["t"])}</h3><p>{e(x["d"])}</p></li>'
                     for n, x in enumerate(B['steps']))
     def block(b):
         if isinstance(b, list):
@@ -1948,15 +1883,15 @@ def page_booking(c, lang):
       {''.join(block(b) for b in s["body"])}
     </section>''' for s in B['terms'])
     return f'''<main id="main" class="page page--booking">
-  {travel_back(c, lang)}
-  {phead(B["kicker"], B["title"], B["sub"])}
+  {phead(c, lang, B["kicker"], B["title"], B["sub"], trail=[(href(lang, "travel"), c["nav"]["travel"]), (None, B["name"])])}
   <section class="band"><div class="wrap sec">
-    <header class="shead">{eyebrow(B["stepsKicker"])}<h2 class="sech">{e(B["stepsTitle"])}</h2></header>
+    {shead(c, B["stepsTitle"], B["stepsKicker"])}
     <ol class="hsteps hsteps--7">{steps}</ol>
   </div></section>
-  <div class="wrap legal">
-    <header class="shead">{eyebrow(B["termsKicker"])}<h2 class="sech">{e(B["termsTitle"])}</h2></header>{terms}
+  <div class="wrap sec legal legal--plain">
+    {shead(c, B["termsTitle"], B["termsKicker"])}<div class="legal__body">{terms}
     <p class="legal__other">{e(B["note"])} <a href="{href(lang, "terms")}">{e(B["termsLink"])}</a>{"" if lang == "zh" else "."}{"共同适用。" if lang == "zh" else ""}</p>
+    </div>
   </div>
   {travel_pager(c, lang, "booking")}
 </main>'''
@@ -1999,8 +1934,8 @@ def guide_section(c, lang, g, sec):
                              + ''.join(f'<li>{e(x)}</li>' for x in b['items']) + '</ul></div>')
         body = f'<div class="grid grid--2">{half(sec["a"], "yes")}{half(sec["b"], "no")}</div>'
     elif kind == 'faq':
-        body = '<div class="faq">' + ''.join(
-            f'<details class="faq__item"><summary>{e(x["q"])}</summary><p>{e(x["a"])}</p></details>' for x in sec['items']) + '</div>'
+        body = faq_block(''.join(
+            f'<details class="faq__item"><summary>{e(x["q"])}</summary><p>{e(x["a"])}</p></details>' for x in sec['items']))
     elif kind == 'trip':
         eds = c['expeditions']['editions']
         x = next(ed for ed in eds if ed['slug'] == sec['slug'])
@@ -2018,7 +1953,7 @@ def guide_section(c, lang, g, sec):
           {eyebrow(L["host"])}
           <h3>{e(person['name'] if person else d['host'])}</h3>
           <p>{e(g["hostNote"])}</p>
-          <a class="wa-link" href="https://wa.me/{WHATSAPP[d['host']]}" target="_blank" rel="noopener">WhatsApp {e(d["host"])}{WA_ICON}</a>
+          <a class="wa-link" href="https://wa.me/{WHATSAPP[d['host']]}" target="_blank" rel="noopener">WhatsApp {e(d["host"])}{icon("chat")}</a>
         </div>"""
         body = f'<div class="grid grid--2 desk"><div class="panel">{ticks(sec["items"])}</div>{host}</div>'
     else:
@@ -2027,7 +1962,7 @@ def guide_section(c, lang, g, sec):
     if sec.get('checked'):
         note = f'{note} {L["checked"]}.'
     note_html = f'\n    <p class="note">{e(note)}</p>' if note else ''
-    return f"""<header class="shead">{eyebrow(sec["kicker"])}<h2 class="sech">{e(sec["title"])}</h2></header>
+    return f"""{shead(c, sec["title"], sec["kicker"])}
     {body}{note_html}"""
 
 
@@ -2050,27 +1985,20 @@ def page_guide(c, lang, i):
             if d['playbook'] else '')
     eds = c['expeditions']['editions']
     trip = next((x for x in eds if x['slug'] == d['trip']), None)
+    hero_extra = (f'<div class="svc-facts guide-facts">{facts}</div>'
+                  + f'<div class="actions actions--row"><a class="btn btn--primary" href="#plan">{e(g["cta"])}</a>'
+                  + f'<a class="btn btn--outline" href="{href(lang, "travel")}?to={g["code"]}#check">{e(c["checker"]["cta"])}</a>{book}</div>')
+    trail = [(href(lang, 'travel'), c['nav']['travel']), (href(lang, 'travel') + '#destinations', L['all']), (None, g['title'])]
     prev = (href(lang, 'travel') + '#destinations', L['all'])
     # the next card is the destination's dated trip, else its playbook, else the expeditions list
     nxt = ((href(lang, 'trip', trip['slug']), trip['title']) if trip
            else (href(lang, 'playbook', d['playbook']), L['playbook']) if d['playbook']
            else (href(lang, 'expeditions'), c['nav']['expeditions']))
     return f"""<main id="main" class="page page--guide">
-  <section class="wrap brand-back"><a class="back-link" href="{href(lang, 'travel')}#destinations">← {e(L["all"])}</a></section>
-  <section class="wrap svc-hero">
-    {eyebrow(g["kicker"])}
-    <h1 class="disp">{e(g["title"])}</h1>
-    <p class="lead" style="--mw:52ch">{e(g["sub"])}</p>
-    <div class="svc-facts guide-facts">{facts}</div>
-    <div class="actions actions--row">
-      <a class="btn btn--primary" href="#plan">{e(g["cta"])}</a>
-      <a class="btn btn--outline" href="{href(lang, 'travel')}?to={g['code']}#check">{e(c["checker"]["cta"])}</a>
-      {book}
-    </div>
-  </section>
+  {page_hero(c, lang, g["title"], g["sub"], label=g["kicker"], trail=trail, extra=hero_extra, wide=True)}
 {sections}
   {form}
-  <section class="wrap"><p class="note">{e(g["note"])}</p></section>
+  <section class="wrap sec--tight"><p class="note">{e(g["note"])}</p></section>
   {pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])}
 </main>"""
 
@@ -2106,14 +2034,16 @@ def page_legal(c, lang, key):
       {''.join(block(b) for b in s["body"])}
     </section>''' for s in d['sections'])
     return f'''<main id="main" class="page page--legal">
-  {phead(d["kicker"], d["title"], d["sub"])}
-  <div class="wrap legal">
-    <p class="legal__updated">{e(d["updated"])}</p>
+  {phead(c, lang, d["kicker"], d["title"], d["sub"])}
+  <div class="wrap sec legal">
     <nav class="panel legal__toc" aria-label="{e(d["tocLabel"])}">
       <p class="eyebrow">{e(d["tocLabel"])}</p>
       <ol>{toc}</ol>
-    </nav>{sections}
-    <p class="legal__other"><a class="btn btn--link" href="{href(lang, other)}">{e(c[other]["name"])} →</a></p>
+    </nav>
+    <div class="legal__body">
+    <p class="legal__updated">{e(d["updated"])}</p>{sections}
+    <p class="legal__other"><a class="btn btn--link" href="{href(lang, other)}">{e(c[other]["name"])}</a></p>
+    </div>
   </div>
 </main>'''
 
@@ -2133,8 +2063,8 @@ def page_sitemap(c, lang):
       <h2 class="smap__h">{h}</h2>{lists}
     </section>"""
     return f'''<main id="main" class="page page--sitemap">
-  {phead(m["kicker"], m["title"], m["sub"])}
-  <div class="wrap smap">{''.join(group(*g) for g in site_groups(c, lang, full=True))}
+  {phead(c, lang, m["kicker"], m["title"], m["sub"])}
+  <div class="wrap sec smap">{''.join(group(*g) for g in site_groups(c, lang, full=True))}
   </div>
 </main>'''
 
@@ -2182,10 +2112,10 @@ def page_portal(c, lang):
     panes = ''.join(f'\n        <section class="pane" id="pane-{k}" role="tabpanel" aria-labelledby="tab-{k}"><h2 class="pane__title">{e(tabs[k])}</h2>{body}</section>'
                     for k, body in panels)
     return f'''<main id="main" class="page page--portal">
-  {phead(p["kicker"], p["title"], p["sub"])}
+  {phead(c, lang, p["kicker"], p["title"], p["sub"])}
 
-  <section class="wrap portal-wrap">
-    <div class="portal" data-tabs>
+  <section class="wrap sec portal-wrap">
+    <div class="panel portal" data-tabs>
       <div class="portal__top">
         <div><p class="demo-badge">{e(p["demo"])}</p><h2 class="portal__company">{e(p["company"])}</h2><p class="portal__note">{e(p["companyNote"])}</p></div>
         <div>{eyebrow(p["stageLabel"])}<p class="portal__stage">{e(c["launch"]["stages"][p["stageNow"]]["n"])} · {e(c["launch"]["stages"][p["stageNow"]]["name"])}</p></div>
@@ -2197,12 +2127,7 @@ def page_portal(c, lang):
     </div>
   </section>
 
-  <section class="poster">
-    <div class="wrap sec">
-      <h2 class="title disp">{e(p["title"])}</h2>
-      <a class="btn btn--light" href="{href(lang, 'partner')}">{e(p["cta"])}</a>
-    </div>
-  </section>
+  {cta_mini(c, lang, p["title"], cta=p["cta"])}
   {pager(c['ui']['continue'], (href(lang, 'launch'), c['nav']['launch']), (href(lang, 'partner'), c['nav']['partner']), c['ui']['prev'], c['ui']['next'])}
 </main>'''
 
