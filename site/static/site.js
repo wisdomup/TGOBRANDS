@@ -21,7 +21,7 @@
     if (!nav) return;
     var items = $$('.nav__item', nav);
     var hover = window.matchMedia('(hover: hover) and (pointer: fine)');
-    var wide = window.matchMedia('(min-width: 480px)');
+    var wide = window.matchMedia('(min-width: 768px)');
     function setOpen(item, open) {
       item.classList.toggle('is-open', open);
       var link = $('.nav__link', item);
