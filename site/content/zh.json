@@ -65,7 +65,9 @@
     "contactSent": "已发送",
     "contactAgain": "再发一条",
     "fieldEmailHint": "name@company.com",
-    "fieldPhoneHint": "+86 138 0000 0000"
+    "fieldPhoneHint": "+86 138 0000 0000",
+    "menuClose": "关闭菜单",
+    "menuBack": "返回"
   },
   "dir": "cjk",
   "nav": {

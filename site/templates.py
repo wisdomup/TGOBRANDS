@@ -335,7 +335,10 @@ def nav_menus(c, lang):
 def nav(c, lang, page, alt_href):
     """The design system's navbar: a floating glass bar with the wordmark, the links in the middle,
     the language chip and the call to action; mega menus hang from the bar at its width and open
-    on hover or focus (no arrows); below 480px a burger opens the full-screen sheet."""
+    on hover or focus (no arrows). On phones a burger opens the full-screen sheet, as on the
+    system's source site: the bar stays on top, so the burger turns into a close button; a
+    section with pages under it opens a second panel with a Back row, its category tabs and
+    its pages."""
     cur = {'brand': 'brands', 'post': 'insights', 'service': 'services', 'playbook': 'markets',
            'trip': 'travel', 'expeditions': 'travel', 'guide': 'travel', 'what': 'services',
            'packages': 'travel', 'visas': 'travel', 'booking': 'travel'}.get(page, page)
@@ -364,7 +367,29 @@ def nav(c, lang, page, alt_href):
                   f'<div class="mega__layout">{side}{grids}</div></div></div></div>')
     other = 'en' if lang == 'zh' else 'zh-CN'
     current_attr = ' aria-current="page"'
-    sheet = ''.join(f'<a class="msheet__link" href="{href(lang, k)}"{current_attr if cur == k else ""}>{e(c["nav"][k])}</a>' for k in NAV)
+    sheet = ''
+    subs = ''
+    for k in NAV:
+        label = e(c['nav'][k])
+        mark = current_attr if cur == k else ''
+        if k not in menus:
+            sheet += f'<a class="msheet__link" href="{href(lang, k)}"{mark}>{label}</a>'
+            continue
+        sheet += (f'<button class="msheet__link msheet__toggle" type="button" data-sub="msub-{k}" aria-controls="msub-{k}" aria-expanded="false"{mark}>'
+                  f'<span>{label}</span>{icon("chevron-right")}</button>')
+        groups, (all_href, all_label) = menus[k]
+        tabs = ''
+        lists = ''
+        for n, (cap, items) in enumerate(groups):
+            on = n == 0
+            tabs += (f'<button class="msub__tab" type="button" role="tab" id="mtab-{k}-{n}" aria-controls="mlist-{k}-{n}" '
+                     f'aria-selected="{"true" if on else "false"}">{e(cap)}</button>')
+            cards = ''.join(f'<a class="msub__card" href="{u}"><span class="mega__icon">{icon(menu_icon(u))}</span><span>{e(name)}</span></a>' for u, name in items)
+            lists += f'<div class="msub__list{" is-active" if on else ""}" id="mlist-{k}-{n}" role="tabpanel" aria-labelledby="mtab-{k}-{n}">{cards}</div>'
+        tablist = f'<div class="msub__tabs" role="tablist">{tabs}</div>' if len(groups) > 1 else ''
+        subs += (f'\n    <div class="msub" id="msub-{k}" hidden>'
+                 f'<button class="msub__back" type="button" data-sub-back><span class="msub__back-icon">{icon("chevron-left")}</span><span class="msub__back-label">{e(ui["menuBack"])}</span></button>'
+                 f'<a class="msub__title" href="{all_href}">{e(all_label)}</a>{tablist}<div class="msub__content">{lists}</div></div>')
     sheet += f'<a class="msheet__link" href="{href(lang, "partner")}">{e(c["nav"]["partner"])}</a>'
     return f'''<header class="nav">
   <div class="nav__bar">
@@ -373,15 +398,16 @@ def nav(c, lang, page, alt_href):
     <div class="nav__actions">
       <a class="iconbtn nav__lang" href="{alt_href}" hreflang="{other}" lang="{other}" aria-label="{e(ui["langSwitchLabel"])}">{e(ui["langSwitch"])}</a>
       <a class="btn btn--glass nav__cta" href="{href(lang, 'partner')}">{e(ui["talk"])}</a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="msheet" aria-label="{e(ui["menu"])}"><span class="burger__in"><span class="burger__line"></span><span class="burger__line"></span></span></button>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="msheet" aria-label="{e(ui["menu"])}" data-label-open="{e(ui["menu"])}" data-label-close="{e(ui["menuClose"])}"><span class="burger__in"><span class="burger__line"></span><span class="burger__line"></span></span></button>
     </div>
   </div>
-  <div class="msheet" id="msheet">
+  <div class="msheet" id="msheet" aria-hidden="true">
     <nav class="msheet__items" aria-label="{e(ui["menu"])}">{sheet}</nav>
     <div class="msheet__contacts">
       <a class="contactbtn" href="{alt_href}" hreflang="{other}" lang="{other}">{icon('globe')}<span>{e(ui["langSwitchLabel"])}</span></a>
       <a class="contactbtn" href="mailto:help@tgobrands.com">{icon('mail')}<span>help@tgobrands.com</span></a>
     </div>
+    {subs}
   </div>
 </header>'''
 

@@ -56,26 +56,80 @@
         });
       });
     });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeAll(); closeSheet(); } });
     document.addEventListener('pointerdown', function (e) { if (!nav.contains(e.target)) closeAll(); });
 
     var burger = $('.burger', nav), sheet = $('.msheet', nav);
+    var root = document.documentElement;
+    function openSub(id) {
+      var panel = document.getElementById(id);
+      if (!panel) return;
+      $$('.msheet__toggle', sheet).forEach(function (b) { b.setAttribute('aria-expanded', b.getAttribute('data-sub') === id ? 'true' : 'false'); });
+      panel.hidden = false;
+      panel.scrollTop = 0;
+      panel.classList.remove('is-in'); void panel.offsetWidth; panel.classList.add('is-in');
+      var back = $('[data-sub-back]', panel); if (back) back.focus();
+    }
+    function closeSubs(focusToggle) {
+      $$('.msub', sheet).forEach(function (panel) {
+        if (panel.hidden) return;
+        panel.hidden = true;
+        var toggle = $('.msheet__toggle[data-sub="' + panel.id + '"]', sheet);
+        if (toggle) { toggle.setAttribute('aria-expanded', 'false'); if (focusToggle) toggle.focus(); }
+      });
+    }
+    function openSheet() {
+      sheet.classList.add('is-open');
+      sheet.setAttribute('aria-hidden', 'false');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', burger.getAttribute('data-label-close'));
+      root.style.overflow = 'hidden';
+      sheet.scrollTop = 0;
+    }
     function closeSheet() {
-      if (!sheet || !sheet.classList.contains('is-open')) return;
+      if (!sheet || !sheet.classList.contains('is-open')) return false;
+      closeSubs(false);
       sheet.classList.remove('is-open');
+      sheet.setAttribute('aria-hidden', 'true');
       burger.setAttribute('aria-expanded', 'false');
-      document.documentElement.style.overflow = '';
+      burger.setAttribute('aria-label', burger.getAttribute('data-label-open'));
+      root.style.overflow = '';
+      return true;
     }
     if (burger && sheet) {
+      // the burger stays above the sheet: it opens it, and as an X it closes it
       burger.addEventListener('click', function () {
-        var open = !sheet.classList.contains('is-open');
-        if (!open) return closeSheet();
-        sheet.classList.add('is-open');
-        burger.setAttribute('aria-expanded', 'true');
-        document.documentElement.style.overflow = 'hidden';
+        if (sheet.classList.contains('is-open')) { closeSheet(); burger.focus(); }
+        else openSheet();
       });
+      $$('.msheet__toggle', sheet).forEach(function (b) {
+        b.addEventListener('click', function () { openSub(b.getAttribute('data-sub')); });
+      });
+      $$('[data-sub-back]', sheet).forEach(function (b) {
+        b.addEventListener('click', function () { closeSubs(true); });
+      });
+      // a section's category tabs switch its list of pages
+      $$('.msub', sheet).forEach(function (panel) {
+        var tabs = $$('.msub__tab', panel), lists = $$('.msub__list', panel);
+        tabs.forEach(function (tab, k) {
+          tab.addEventListener('click', function () {
+            tabs.forEach(function (x, n) { x.setAttribute('aria-selected', n === k ? 'true' : 'false'); });
+            lists.forEach(function (l, n) { l.classList.toggle('is-active', n === k); });
+          });
+        });
+      });
+      // following a link closes the sheet (a same-page anchor would otherwise land under it)
+      sheet.addEventListener('click', function (e) { if (e.target.closest('a[href]')) closeSheet(); });
       wide.addEventListener('change', function (e) { if (e.matches) closeSheet(); });
     }
+    // Escape steps back: out of a section's panel first, then out of the sheet
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      closeAll();
+      if (sheet && sheet.classList.contains('is-open')) {
+        if ($$('.msub', sheet).some(function (p) { return !p.hidden; })) closeSubs(true);
+        else { closeSheet(); burger.focus(); }
+      }
+    });
   }
 
   /* ── Footer contact form: posts to /api/lead like the application; if the server cannot take
