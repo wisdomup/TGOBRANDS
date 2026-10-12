@@ -1,0 +1,131 @@
+{
+  "cases": {
+    "labels": {
+      "kicker": "Case study · in progress",
+      "link": "Read the Philippines case study",
+      "private": "Names and figures stay private. The plan is with the client now; we will publish results once it has run, with their permission.",
+      "did": "What we did",
+      "service": "The service",
+      "plan": "How the plan runs",
+      "planTitle": "Results unlock the next budget, not the calendar.",
+      "gate": "Gate to the next phase",
+      "planNote": "A gate missed by a wide margin pauses the next round of hiring and moves the money to the dealers already signed, so a slow quarter stays a small loss.",
+      "split": "Who brings what",
+      "splitTitle": "The factory supplies the product. We build the business around it.",
+      "client": "The manufacturer brings",
+      "us": "TGO Brands brings",
+      "deliver": "What the client received",
+      "cta": "Plan your own entry"
+    },
+    "items": [
+      {
+        "market": "philippines",
+        "title": "Taking a Chinese kitchen-equipment maker into the Philippines",
+        "sub": "A factory that already exports most of what it makes wanted its own brand in the Philippines: one published price, a sales team, dealers and a service network, ready for a launch season. This is what we prepared.",
+        "did": [
+          {
+            "t": "A market study from public data",
+            "d": "Demand sized from outlets by format, hotels and their pipeline, and customs import records by tariff line, with a low, base and high case. Every figure carries its source and the date it was read.",
+            "service": "research-development"
+          },
+          {
+            "t": "A map of every rival",
+            "d": "Each competitor's range, channels, published prices, warranty and service, read from official sites and authorised retailers, to find the position nobody holds.",
+            "service": "research-development"
+          },
+          {
+            "t": "A position, a price ladder and a name",
+            "d": "One position with three proofs (quality, price and after-sales), entry, core and premium prices by category, and one brand name cleared and filed as a trademark before launch.",
+            "service": "brand-building"
+          },
+          {
+            "t": "A range made for the Philippines",
+            "d": "Launch models chosen from the factory catalogue and specified for Philippine power, humid and salty kitchens and tropical heat, with local plugs, English manuals and the safety reports customs asks for.",
+            "service": "certification-compliance"
+          },
+          {
+            "t": "Importer of record and customs",
+            "d": "Our Philippine entity imports: customs accreditation, a standards confirmation for each model, a tariff ruling and the ASEAN–China duty preference.",
+            "service": "customs-taxation"
+          },
+          {
+            "t": "Freight and stock",
+            "d": "Door-to-door sea and air freight from China, containers ordered against confirmed demand, and buffer stock staged before typhoon season.",
+            "service": "logistics-landed-cost"
+          },
+          {
+            "t": "A warranty people can use",
+            "d": "A local warranty written to Philippine consumer law, service hubs opened city by city, spare parts held in Manila, a named technician on every invoice and QR registration on every unit.",
+            "service": "warranty-after-sales"
+          },
+          {
+            "t": "One importer, four channels",
+            "d": "A direct sales team, regional dealers with territories and demo stock, projects with hotels, chains and franchisors, and online stores. One published price everywhere, and clear rules so channels never undercut each other.",
+            "service": "distribution-sales"
+          },
+          {
+            "t": "City by city",
+            "d": "Every large city and municipality ranked into tiers, each with its own coverage: the direct team, dealers or online. A tier opens only when the one before it has passed its gate.",
+            "service": "distribution-sales"
+          },
+          {
+            "t": "Online and on the ground",
+            "d": "A local website with the price list and chat, marketplace stores, a showroom with a test kitchen, short videos every week in Taglish, and the country's main foodservice trade shows.",
+            "service": "marketplaces"
+          },
+          {
+            "t": "Marketing in three phases",
+            "d": "Trade shows, performance ads, content, a demo fleet, dealer programmes and PR, budgeted low, medium and high, and part-funded by the factory.",
+            "service": "brand-scaling"
+          },
+          {
+            "t": "The team, the model and the scorecard",
+            "d": "The local team and premises, and one working model behind every number: a monthly build by channel, profit and loss, break-even, funding, a downside case, a risk register and a quarterly scorecard with guardrails.",
+            "service": "senior-brand-operator"
+          }
+        ],
+        "phases": [
+          {
+            "n": "Prove",
+            "d": "One city, the first container, and pilot installs with founding customers. The name, trademark, price list, website and online stores are built.",
+            "gate": "Pilots installed and the next orders booked."
+          },
+          {
+            "n": "Launch",
+            "d": "A trade-show launch before the hot season, the greater capital region, the first dealers, service in the next two cities, and the projects channel opens.",
+            "gate": "Units sold, dealers signed and the first customer stories published."
+          },
+          {
+            "n": "Scale",
+            "d": "Regional capitals, the full dealer network, more service hubs, the wider catalogue and the online push.",
+            "gate": "The first profitable month."
+          }
+        ],
+        "client": [
+          "Factory prices set for the Philippine market",
+          "A share of the launch marketing",
+          "Backing for the local warranty",
+          "Builds to Philippine power and materials",
+          "Credit terms on containers",
+          "Engineer visits and spare parts with each container"
+        ],
+        "us": [
+          "Our Philippine entity as importer of record",
+          "The local team: sales, key accounts, technicians and customer service",
+          "Warehouse, showroom and test kitchen",
+          "The service network",
+          "Dealers, project specifiers and the online stores",
+          "Marketing and working capital",
+          "Weekly reporting: leads, units, cost per lead, service response and stock"
+        ],
+        "deliver": [
+          "A market report, every source dated",
+          "A pitch deck for the factory's decision",
+          "A working model: change one assumption and every number follows",
+          "A risk register, each risk with an early sign and a response",
+          "The decisions to sign, with deadlines: agreement, prices, launch range, name, warranty and first order"
+        ]
+      }
+    ]
+  }
+}

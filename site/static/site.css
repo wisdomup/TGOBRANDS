@@ -2104,3 +2104,21 @@ html:not(.js) .slide:not(.slide--1), html:not(.js) :is(.slide-arrow, .slide-step
   .slide-arrow__ico { width: 16px; height: 16px; }
   .slide-cue { bottom: 1.5vh; font-size: 10px; }
 }
+
+/* ── Client case on a market playbook: anonymous, labelled in progress ── */
+.case__private { max-width: 60ch; margin: -12px auto 40px; color: var(--ink-3); font-size: var(--t-caption); line-height: 1.5; text-align: center; }
+.case__did { margin-bottom: 16px; text-align: center; }
+.case-card { display: flex; flex-direction: column; gap: 10px; }
+.case-card h3 + p { margin-top: 0; }
+.case-card p { color: var(--ink-2); }
+.case-card__svc { margin-top: auto; padding-top: 6px; align-self: flex-start; }
+.case-phases { margin: 0; padding: 0; list-style: none; }
+.case-phase { display: flex; flex-direction: column; gap: 10px; }
+.case-phase p { color: var(--ink-2); }
+.case-phase h3 + p { margin-top: 0; }
+.case-phase__gate { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); color: var(--text) !important; font-weight: 600; }
+.case-phase__gate .eyebrow { display: block; margin-bottom: 6px; font-weight: 500; }
+.case-deliver { margin-top: var(--gap); }
+.case-did { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1023px) { .case-did { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .case-did { grid-template-columns: minmax(0, 1fr); } }

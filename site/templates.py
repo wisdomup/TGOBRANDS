@@ -1268,6 +1268,62 @@ def ticks(items, kind=''):
     return f'<ul class="ticks{" ticks--" + kind if kind else ""}">' + ''.join(f'<li>{e(x)}</li>' for x in items) + '</ul>'
 
 
+def case_study(c, lang, slug):
+    """A client case for a market, kept anonymous: the brief, the work we did (each piece linked to
+    its service), how the plan runs, who brings what, and what the client received. No names and
+    no figures are published; the label says the case is still in progress."""
+    cs = c.get('cases')
+    item = next((k for k in cs['items'] if k['market'] == slug), None) if cs else None
+    if not item:
+        return ''
+    L = cs['labels']
+    names = {s['slug']: s['name'] for s in c['services']['items']}
+    did = ''.join(f'''
+        <article class="panel case-card">
+          <p class="offer__n">{n + 1:02d}</p>
+          <h3>{e(d["t"])}</h3>
+          <p>{e(d["d"])}</p>
+          <a class="btn btn--link case-card__svc" href="{href(lang, 'service', d['service'])}">{e(names[d['service']])} →</a>
+        </article>''' for n, d in enumerate(item['did']))
+    phases = ''.join(f'''
+        <li class="panel case-phase">
+          <p class="offer__n">{n + 1:02d}</p>
+          <h3>{e(ph["n"])}</h3>
+          <p>{e(ph["d"])}</p>
+          <p class="case-phase__gate"><span class="eyebrow">{e(L["gate"])}</span>{e(ph["gate"])}</p>
+        </li>''' for n, ph in enumerate(item['phases']))
+    return f'''
+
+  <section class="band case-study" id="case">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(L["kicker"])}<h2 class="sech">{e(item["title"])}</h2><p class="lead" style="--mw:60ch">{e(item["sub"])}</p></header>
+      <p class="case__private">{e(L["private"])}</p>
+      {eyebrow(L["did"], "case__did")}
+      <div class="grid case-did">{did}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <header class="shead">{eyebrow(L["plan"])}<h2 class="sech">{e(L["planTitle"])}</h2></header>
+    <ol class="grid grid--3 case-phases">{phases}
+    </ol>
+    <p class="note">{e(L["planNote"])}</p>
+  </section>
+
+  <section class="band">
+    <div class="wrap sec">
+      <header class="shead">{eyebrow(L["split"])}<h2 class="sech">{e(L["splitTitle"])}</h2></header>
+      <div class="grid grid--2">
+        <div class="panel fit"><h3>{e(L["client"])}</h3>{ticks(item["client"])}</div>
+        <div class="panel fit"><h3>{e(L["us"])}</h3>{ticks(item["us"])}</div>
+      </div>
+      <div class="panel fit case-deliver"><h3>{e(L["deliver"])}</h3>{ticks(item["deliver"])}</div>
+      <div class="actions"><a class="btn btn--primary" href="{href(lang, 'partner')}">{e(L["cta"])}</a></div>
+    </div>
+  </section>'''
+
+
 def page_playbook(c, lang, i):
     pb = c['playbooks']
     L = pb['labels']
@@ -1281,6 +1337,8 @@ def page_playbook(c, lang, i):
     guide_link = (f'\n      <a class="btn btn--outline" href="{href(lang, "guide", x["slug"])}">{e(c["travel"]["labels"]["guide"])}</a>'
                   if guide else '')
     estimate = href(lang, 'estimator') + '?market=' + x['code']
+    case = case_study(c, lang, x['slug'])
+    case_link = f'\n      <a class="btn btn--link" href="#case">{e(c["cases"]["labels"]["link"])} ↓</a>' if case else ''
     prev = ((href(lang, 'playbook', books[i - 1]['slug']), c['markets']['items'][books[i - 1]['market']]['c']) if i > 0
             else (href(lang, 'markets'), L['all']))
     nxt = ((href(lang, 'playbook', books[i + 1]['slug']), c['markets']['items'][books[i + 1]['market']]['c']) if i + 1 < len(books)
@@ -1294,7 +1352,7 @@ def page_playbook(c, lang, i):
     {eyebrow(ML["lead"] + " — " + m["who"], "playbook__lead")}
     <div class="actions actions--row">
       <a class="btn btn--primary" href="{estimate}">{e(L["estimate"])}</a>
-      <a class="btn btn--outline" href="{href(lang, 'trip', x['trip'])}">{e(L["trip"])}</a>{guide_link}
+      <a class="btn btn--outline" href="{href(lang, 'trip', x['trip'])}">{e(L["trip"])}</a>{guide_link}{case_link}
     </div>
   </section>
 
@@ -1324,7 +1382,7 @@ def page_playbook(c, lang, i):
       <div class="panel">{eyebrow(L["visiting"])}{ticks(x["visiting"])}</div>
     </div>
     <p class="note">{e(L["note"])}</p>
-  </section>
+  </section>{case}
   {pager(c['ui']['continue'], prev, nxt, c['ui']['prev'], c['ui']['next'])}
 </main>'''
 
